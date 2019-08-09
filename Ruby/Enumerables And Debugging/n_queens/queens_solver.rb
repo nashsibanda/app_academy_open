@@ -68,6 +68,7 @@ class Solver
     # puts "#{this_queen.name} moved to #{new_node.position.to_s}"
     puts @board.print_board
     puts "*" * @board.n * 5
+    sleep(0.1)
     return true
   end
 
