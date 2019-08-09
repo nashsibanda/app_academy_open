@@ -5,7 +5,8 @@
 require_relative "./board.rb"
 require_relative "./queens_solver.rb"
 
-size = 10
+puts "Welcome to n-Queens! How big is your intended chessboard?"
+size = gets.to_i
 
 board = Board.new(size)
 # puts board.print_board
