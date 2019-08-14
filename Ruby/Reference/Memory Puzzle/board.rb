@@ -8,14 +8,15 @@ class Board
   def initialize(pairs)
     @pairs = pairs
     @board = Array.new(@pairs / 2) { Array.new(@pairs / 2) }
+    self.populate
   end
 
   def [](position)
-    @board[position[0]][position[1]]
+    @board[position[0] + 1][position[1] + 1]
   end
 
   def []=(position, value)
-    @board[position[0]][position[1]] = value
+    @board[position[0] + 1][position[1] + 1] = value
   end
 
   def populate
@@ -37,6 +38,16 @@ class Board
     end
   end
 
+  def grid_helper
+=begin
+  Create a function that:
+    Sees how big the grid is
+    Makes the first row of the grid the spot indexes (0 and up)
+    Makes the first spot on each row the row indexes
+    Does so dynamically based on the grid size (pair numbers, maybe?)
+=end
+  end
+
   def print_board
     display = Array.new(@pairs / 2) { Array.new(@pairs / 2) }
     @board.each_with_index do |row, r_idx|
@@ -50,7 +61,6 @@ class Board
 end
 
 temp = Board.new(8)
-temp.populate
 pos = [0, 1]
-puts temp.print_board
+puts temp.print_board.map(&:join)
 puts temp[pos].face_value
