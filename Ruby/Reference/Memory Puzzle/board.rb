@@ -38,10 +38,10 @@ class Board
   end
 
   def print_board
-    display = Array.new([])
+    display = Array.new(@pairs / 2) { Array.new(@pairs / 2) }
     @board.each_with_index do |row, r_idx|
       row.each_with_index do |spot, s_idx|
-        display[r_idx] << spot.face_value
+        display[r_idx][s_idx] = spot.face_value
       end
     end
     return display
@@ -52,5 +52,5 @@ end
 temp = Board.new(8)
 temp.populate
 pos = [0, 1]
-p temp.print_board
+puts temp.print_board
 puts temp[pos].face_value
