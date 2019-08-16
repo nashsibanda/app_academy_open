@@ -52,7 +52,11 @@ class Board
     display = Array.new(@pairs / 2) { Array.new(@pairs / 2) }
     @board.each_with_index do |row, r_idx|
       row.each_with_index do |spot, s_idx|
-        display[r_idx][s_idx] = spot.face_value
+        if spot.facing == "down"
+          display[r_idx][s_idx] = " #{spot.face_value} "
+        elsif spot.facing == "up"
+          display[r_idx][s_idx] = "*#{spot.face_value}*"
+        end
       end
     end
     return display
@@ -64,3 +68,6 @@ temp = Board.new(8)
 pos = [0, 1]
 puts temp.print_board.map(&:join)
 puts temp[pos].face_value
+# puts temp.board
+temp[pos].flip("up")
+puts temp.print_board.map(&:join)
