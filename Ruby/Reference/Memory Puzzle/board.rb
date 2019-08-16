@@ -7,7 +7,7 @@ class Board
 
   def initialize(pairs)
     @pairs = pairs
-    @board = Array.new(@pairs / 2) { Array.new(@pairs / 2) }
+    @board = self.make_board(@pairs)
     self.populate
   end
 
@@ -19,11 +19,32 @@ class Board
     @board[position[0] + 1][position[1] + 1] = value
   end
 
+  def make_board(pairs)
+    case pairs
+    when 6
+      Array.new(3) { Array.new(4) }
+    when 8
+      Array.new(4) { Array.new(4) }
+    when 10
+      Array.new(4) { Array.new(5) }
+    when 12
+      Array.new(4) { Array.new(6) }
+    when 15
+      Array.new(5) { Array.new(6) }
+    when 18
+      Array.new(6) { Array.new(6) }
+    when 21
+      Array.new(6) { Array.new(7) }
+    else
+      raise "Please select one of the following numbers of pairs: 6, 8, 10, 12, 15, 18, 21"
+    end
+  end
+
   def populate
     card_values = @@all_card_values.sample(@pairs)
     card_values = card_values.zip(card_values).flatten
-    row_indexes = (0...(@pairs / 2)).to_a.shuffle
-    col_indexes = (0...(@pairs / 2)).to_a.shuffle
+    row_indexes = (0...@board.length).to_a.shuffle
+    col_indexes = (0...@board[0].length).to_a.shuffle
     positions = []
     row_indexes.each do |r_idx|
       col_indexes.each do |c_idx|
@@ -64,7 +85,7 @@ class Board
 
 end
 
-temp = Board.new(8)
+temp = Board.new(10)
 pos = [0, 1]
 puts temp.print_board.map(&:join)
 puts temp[pos].face_value
