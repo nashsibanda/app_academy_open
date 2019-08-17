@@ -25,6 +25,7 @@ class Game
       end
       self.make_guess(pos)
     end
+    puts "Game over! You win!"
   end
 
   def make_guess(pos)
