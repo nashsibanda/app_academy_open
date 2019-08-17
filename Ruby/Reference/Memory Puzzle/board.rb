@@ -59,19 +59,7 @@ class Board
     end
   end
 
-  def grid_helper(card_board)
-    board_rows = card_board.length
-    board_cols = card_board[0].length
-    top_row = [" "]
-    (0...board_cols).each do |num|
-      top_row << " #{num.to_s} "
-    end
-    card_board.unshift(top_row)
-    (1..board_rows).each do |num|
-      card_board[num].unshift(num - 1)
-    end
-    return card_board
-  end
+  
 
   def make_card_board
     card_board = self.make_board(@pairs)
@@ -85,6 +73,22 @@ class Board
       end
     end
     return grid_helper(card_board)
+  end
+
+  private
+  
+  def grid_helper(card_board)
+    board_rows = card_board.length
+    board_cols = card_board[0].length
+    top_row = [" "]
+    (0...board_cols).each do |num|
+      top_row << " #{num.to_s} "
+    end
+    card_board.unshift(top_row)
+    (1..board_rows).each do |num|
+      card_board[num].unshift(num - 1)
+    end
+    return card_board
   end
 
 end
