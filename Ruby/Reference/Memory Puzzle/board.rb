@@ -69,7 +69,7 @@ class Board
     return over
   end
 
-  def make_card_board
+  def display_board
     card_board = self.make_board(@pairs)
     @board.each_with_index do |row, r_idx|
       row.each_with_index do |spot, s_idx|
@@ -80,7 +80,7 @@ class Board
         end
       end
     end
-    return grid_helper(card_board).map(&:join)
+    puts grid_helper(card_board).map(&:join)
   end
 
   private
@@ -101,10 +101,10 @@ class Board
 
 end
 
-# temp = Board.new(10)
+temp = Board.new(10)
 # pos = [0, 1]
-# puts temp.make_card_board.map(&:join)
+temp.display_board
 # puts temp[pos].face_value
 # # puts temp.board
 # temp[pos].flip("up")
-# puts temp.make_card_board.map(&:join)
+# puts temp.display_board.map(&:join)
