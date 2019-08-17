@@ -59,7 +59,15 @@ class Board
     end
   end
 
-  
+  def game_over?
+    over = true
+    @board.each do |row|
+      row.each do |card|
+        over = false if card.facing == "down"
+      end
+    end
+    return over
+  end
 
   def make_card_board
     card_board = self.make_board(@pairs)
@@ -72,11 +80,11 @@ class Board
         end
       end
     end
-    return grid_helper(card_board)
+    return grid_helper(card_board).map(&:join)
   end
 
   private
-  
+
   def grid_helper(card_board)
     board_rows = card_board.length
     board_cols = card_board[0].length
