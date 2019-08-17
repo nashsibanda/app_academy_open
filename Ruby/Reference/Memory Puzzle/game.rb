@@ -15,6 +15,10 @@ class Game
       system("clear")
       @board.display_board
       pos = @player.guess
+      if !valid_pos?(pos)
+        puts "Please choose a valid card position"
+        pos = @player.guess
+      end
       until @board[pos].facing == "down"
         puts "Please choose a face-down card"
         pos = @player.guess
@@ -32,6 +36,7 @@ class Game
     if @board[pos].face_value == @board[@first_guess].face_value
       @board[pos].match
       @board[@first_guess].match
+      system("clear")
       @board.display_board
       puts "Matched!"
       sleep(2)
@@ -39,6 +44,7 @@ class Game
       return
     end
     if @board[pos].face_value != @board[@first_guess].face_value
+      system("clear")
       @board.display_board
       puts "No match!"
       sleep(2)
@@ -47,6 +53,13 @@ class Game
       @first_guess = nil
       return
     end
+  end
+
+  def valid_pos?(pos)
+    if @board[pos] == nil
+      return false
+    end
+    true
   end
 
 end
