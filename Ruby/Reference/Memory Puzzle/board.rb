@@ -9,7 +9,6 @@ class Board
     @pairs = pairs
     @board = self.make_board(@pairs)
     self.populate
-    # self.grid_helper
   end
 
   def [](position)
@@ -72,13 +71,6 @@ class Board
       card_board[num].unshift(num - 1)
     end
     return card_board
-=begin
-  Create a function that:
-    Sees how big the grid is
-    Makes the first row of the grid the spot indexes (0 and up)
-    Makes the first spot on each row the row indexes
-    Does so dynamically based on the grid size (pair numbers, maybe?)
-=end
   end
 
   def make_card_board
@@ -92,16 +84,15 @@ class Board
         end
       end
     end
-    # self.grid_helper
     return grid_helper(card_board)
   end
 
 end
 
-temp = Board.new(10)
-pos = [0, 1]
-puts temp.make_card_board.map(&:join)
-puts temp[pos].face_value
-# puts temp.board
-temp[pos].flip("up")
-puts temp.make_card_board.map(&:join)
+# temp = Board.new(10)
+# pos = [0, 1]
+# puts temp.make_card_board.map(&:join)
+# puts temp[pos].face_value
+# # puts temp.board
+# temp[pos].flip("up")
+# puts temp.make_card_board.map(&:join)
