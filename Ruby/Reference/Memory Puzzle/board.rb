@@ -9,14 +9,15 @@ class Board
     @pairs = pairs
     @board = self.make_board(@pairs)
     self.populate
+    # self.grid_helper
   end
 
   def [](position)
-    @board[position[0] + 1][position[1] + 1]
+    @board[position[0]][position[1]]
   end
 
   def []=(position, value)
-    @board[position[0] + 1][position[1] + 1] = value
+    @board[position[0]][position[1]] = value
   end
 
   def make_board(pairs)
@@ -59,7 +60,14 @@ class Board
     end
   end
 
-  def grid_helper
+  def grid_helper(card_board)
+    board_rows = card_board.length
+    board_cols = card_board[0].length
+    top_row = [" "]
+    (0...board_rows).each do |num|
+      top_row << num.to_s
+    end
+    card_board.unshift(top_row)
 =begin
   Create a function that:
     Sees how big the grid is
@@ -69,26 +77,32 @@ class Board
 =end
   end
 
-  def print_board
-    display = Array.new(@pairs / 2) { Array.new(@pairs / 2) }
+  def make_card_board
+    card_board = self.make_board(@pairs)
     @board.each_with_index do |row, r_idx|
       row.each_with_index do |spot, s_idx|
         if spot.facing == "down"
-          display[r_idx][s_idx] = " #{spot.face_value} "
+          card_board[r_idx][s_idx] = " #{spot.face_value} "
         elsif spot.facing == "up"
-          display[r_idx][s_idx] = "*#{spot.face_value}*"
+          card_board[r_idx][s_idx] = "*#{spot.face_value}*"
         end
       end
     end
-    return display
+    # self.grid_helper
+    return card_board
+  end
+
+  def print_board
+    display = self.make_card_board
+
   end
 
 end
 
-temp = Board.new(10)
+temp = Board.new(8)
 pos = [0, 1]
-puts temp.print_board.map(&:join)
+puts temp.make_card_board.map(&:join)
 puts temp[pos].face_value
 # puts temp.board
 temp[pos].flip("up")
-puts temp.print_board.map(&:join)
+puts temp.make_card_board.map(&:join)
