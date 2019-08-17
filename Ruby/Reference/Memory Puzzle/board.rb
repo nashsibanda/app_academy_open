@@ -73,9 +73,9 @@ class Board
     card_board = self.make_board(@pairs)
     @board.each_with_index do |row, r_idx|
       row.each_with_index do |spot, s_idx|
-        if spot.facing == "down"
+        if !spot.matched && spot.facing == "down"
           card_board[r_idx][s_idx] = " * "
-        elsif spot.facing == "up"
+        elsif spot.matched || spot.facing == "up"
           card_board[r_idx][s_idx] = "*#{spot.face_value}*"
         end
       end
@@ -101,9 +101,9 @@ class Board
 
 end
 
-temp = Board.new(10)
+# temp = Board.new(10)
 # pos = [0, 1]
-temp.display_board
+# temp.display_board
 # puts temp[pos].face_value
 # # puts temp.board
 # temp[pos].flip("up")
