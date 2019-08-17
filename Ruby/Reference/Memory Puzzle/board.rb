@@ -64,10 +64,14 @@ class Board
     board_rows = card_board.length
     board_cols = card_board[0].length
     top_row = [" "]
-    (0...board_rows).each do |num|
-      top_row << num.to_s
+    (0...board_cols).each do |num|
+      top_row << " #{num.to_s} "
     end
     card_board.unshift(top_row)
+    (1..board_rows).each do |num|
+      card_board[num].unshift(num - 1)
+    end
+    return card_board
 =begin
   Create a function that:
     Sees how big the grid is
@@ -82,24 +86,19 @@ class Board
     @board.each_with_index do |row, r_idx|
       row.each_with_index do |spot, s_idx|
         if spot.facing == "down"
-          card_board[r_idx][s_idx] = " #{spot.face_value} "
+          card_board[r_idx][s_idx] = " * "
         elsif spot.facing == "up"
           card_board[r_idx][s_idx] = "*#{spot.face_value}*"
         end
       end
     end
     # self.grid_helper
-    return card_board
-  end
-
-  def print_board
-    display = self.make_card_board
-
+    return grid_helper(card_board)
   end
 
 end
 
-temp = Board.new(8)
+temp = Board.new(10)
 pos = [0, 1]
 puts temp.make_card_board.map(&:join)
 puts temp[pos].face_value
