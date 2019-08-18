@@ -8,5 +8,10 @@ class AIPlayer
   def remember_card(position, card)
     @seen_cards[position] = card
   end
+
+  def guess(board, first_guess)
+    positions = board.valid_coords
+    return positions.sample
+  end
   
 end
