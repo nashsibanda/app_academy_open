@@ -70,5 +70,5 @@ class Game
 
 end
 
-temp = Game.new(12, "a")
-temp.play
+# temp = Game.new(12, "a")
+# temp.play
