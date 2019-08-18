@@ -15,6 +15,14 @@ class PlayerFacade
       return AIPlayer.new
     end
   end
+
+  def remember_card(position, card)
+    @player.remember_card(position, card)
+  end
+
+  def seen_cards
+    @player.seen_cards
+  end
   
   def guess
     puts "Enter a card position separated by a comma, like this: '0,1'"
