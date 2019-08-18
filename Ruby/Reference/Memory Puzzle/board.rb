@@ -1,13 +1,14 @@
 require_relative "./card.rb"
 
 class Board
-  attr_reader :board
+  attr_reader :board, :valid_coords
 
   @@all_card_values = ("A".."Z").to_a
 
   def initialize(pairs)
     @pairs = pairs
     @board = self.make_board(@pairs)
+    @valid_coords
     self.populate
   end
 
@@ -51,6 +52,7 @@ class Board
         positions.push([r_idx, c_idx])
       end
     end
+    @valid_coords = positions
     positions.shuffle!
     i = 0
     while i < card_values.length
