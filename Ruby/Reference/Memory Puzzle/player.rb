@@ -24,8 +24,8 @@ class PlayerFacade
     @player.seen_cards
   end
   
-  def guess(board, first_guess, matched_card_positions)
-    @player.guess(board, first_guess, matched_card_positions)
+  def guess(first_guess, matched_card_positions)
+    @player.guess(first_guess, matched_card_positions)
   end
 
 end
