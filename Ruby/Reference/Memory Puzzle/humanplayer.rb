@@ -1,7 +1,7 @@
 class HumanPlayer
   attr_reader :seen_cards
 
-  def initialize
+  def initialize(board)
     @seen_cards = {}
   end
 

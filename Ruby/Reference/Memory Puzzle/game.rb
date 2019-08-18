@@ -5,7 +5,7 @@ class Game
   
   def initialize(pairs, player_type)
     @board = Board.new(pairs)
-    @player = PlayerFacade.new(player_type)
+    @player = PlayerFacade.new(player_type, @board)
     @first_guess
     @matched_card_positions = []
   end

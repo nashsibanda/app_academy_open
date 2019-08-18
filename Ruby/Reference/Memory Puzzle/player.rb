@@ -3,16 +3,16 @@ require_relative "./aiplayer.rb"
 
 class PlayerFacade
 
-  def initialize(type)
-    @player = self.player_chooser(type)
+  def initialize(type, board)
+    @player = self.player_chooser(type, board)
   end
 
-  def player_chooser(type)
+  def player_chooser(type, board)
     case type
     when "h"
-      return HumanPlayer.new
+      return HumanPlayer.new(board)
     when "a"
-      return AIPlayer.new
+      return AIPlayer.new(board)
     end
   end
 
