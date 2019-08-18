@@ -34,12 +34,12 @@ class Game
     puts @player.seen_cards
     sleep(0.5)
     if @first_guess == nil
-      @first_guess = pos
+      @first_guess = @board[pos]
       return
     end
-    if @board[pos].face_value == @board[@first_guess].face_value
+    if @board[pos].face_value == @first_guess.face_value
       @board[pos].match
-      @board[@first_guess].match
+      @first_guess.match
       system("clear")
       @board.display_board
       puts "Matched!"
@@ -47,13 +47,13 @@ class Game
       @first_guess = nil
       return
     end
-    if @board[pos].face_value != @board[@first_guess].face_value
+    if @board[pos].face_value != @first_guess.face_value
       system("clear")
       @board.display_board
       puts "No match!"
       sleep(2)
       @board[pos].flip("down")
-      @board[@first_guess].flip("down")
+      @first_guess.flip("down")
       @first_guess = nil
       return
     end
@@ -70,5 +70,5 @@ class Game
 
 end
 
-temp = Game.new(8, "h")
+temp = Game.new(8, "a")
 temp.play
