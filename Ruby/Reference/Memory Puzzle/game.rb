@@ -30,6 +30,9 @@ class Game
 
   def make_guess(pos)
     @board[pos].flip("up")
+    @player.remember_card(pos, @board[pos])
+    puts @player.seen_cards
+    sleep(0.5)
     if @first_guess == nil
       @first_guess = pos
       return
@@ -57,7 +60,9 @@ class Game
   end
 
   def valid_pos?(pos)
-    if @board[pos] == nil
+    if @board.board.length < pos[0]
+      return false
+    elsif @board.board[0].length < pos[1]
       return false
     end
     true
