@@ -31,7 +31,6 @@ class Game
   def make_guess(pos)
     @board[pos].flip("up")
     @player.remember_card(pos, @board[pos])
-    puts @player.seen_cards
     sleep(0.5)
     if @first_guess == nil
       @first_guess = @board[pos]
@@ -44,7 +43,7 @@ class Game
       system("clear")
       @board.display_board
       puts "Matched!"
-      sleep(1)
+      sleep(0.4)
       @first_guess = nil
       return
     end
@@ -52,7 +51,7 @@ class Game
       system("clear")
       @board.display_board
       puts "No match!"
-      sleep(1)
+      sleep(0.4)
       @board[pos].flip("down")
       @first_guess.flip("down")
       @first_guess = nil
@@ -71,5 +70,5 @@ class Game
 
 end
 
-temp = Game.new(8, "a")
+temp = Game.new(12, "a")
 temp.play

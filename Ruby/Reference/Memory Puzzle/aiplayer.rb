@@ -13,10 +13,6 @@ class AIPlayer
 
   def guess(first_guess, matched_card_positions)
     positions = @valid_coords - @seen_cards.keys - matched_card_positions
-    p matched_card_positions
-    p positions
-    p first_guess
-    p seen_cards
     if @seen_cards.length < 2
       return positions.sample
     end
