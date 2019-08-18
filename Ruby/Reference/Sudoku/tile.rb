@@ -2,8 +2,8 @@ require "colorize"
 require "colorized_string"
 
 class Tile
-  attr_reader :given, :position
-  attr_accessor :number
+  attr_reader :given, :position, :number
+  # attr_accessor :number
   
   def initialize(number, given, position)
     @number = number
@@ -17,6 +17,11 @@ class Tile
     else
       " #{@number} "
     end
+  end
+
+  def number=(value)
+    @number = value if @given == false
+    puts "Can't change a given (blue) number!".colorize(:yellow) if @given == true
   end
 
 end
