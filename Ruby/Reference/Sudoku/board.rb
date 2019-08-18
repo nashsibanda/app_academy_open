@@ -13,10 +13,24 @@ class Board
   end
 
   def populate_board
-    self.populate_board_rows
-    self.populate_board_cols
-    self.populate_board_squares
+    populate_board_rows
+    populate_board_cols
+    populate_board_squares
   end
+
+  def [](position)
+    @board_rows[position[0]][position[1]]
+  end
+
+  def []=(position, value)
+    @board_rows[position[0]][position[1]].number = value
+  end
+
+  def render
+    
+  end
+
+  private
 
   def populate_board_rows
     @num_array.each_with_index do |row, r_idx|
@@ -53,3 +67,6 @@ end
 
 temp = Board.new("sudoku1")
 p temp.board_squares
+puts
+puts
+p temp.board_rows
