@@ -104,7 +104,7 @@ class Board
 
 end
 
-temp = Board.new("sudoku1_solved")
-temp.render
+# temp = Board.new("sudoku1_solved")
+# temp.render
 # p temp.board_rows
-p temp.solved?
+# p temp.solved?
