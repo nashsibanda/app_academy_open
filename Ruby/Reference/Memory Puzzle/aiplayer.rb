@@ -11,6 +11,12 @@ class AIPlayer
 
   def guess(board, first_guess)
     positions = board.valid_coords
+    if @seen_cards.length < 0
+      return positions.sample
+    end
+    if first_guess == nil
+
+    end
     return positions.sample
   end
   
