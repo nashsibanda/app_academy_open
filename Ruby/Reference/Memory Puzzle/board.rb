@@ -65,7 +65,7 @@ class Board
     over = true
     @board.each do |row|
       row.each do |card|
-        over = false if card.facing == "down"
+        over = false if card.matched == false
       end
     end
     return over
