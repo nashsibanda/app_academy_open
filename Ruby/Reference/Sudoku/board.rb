@@ -33,7 +33,7 @@ class Board
         display_board[r_idx][t_idx] = @board_rows[r_idx][t_idx].to_s
       end
     end
-    puts display_board.map(&:join)
+    puts grid_helper(display_board).map(&:join)
   end
 
   def solved?
@@ -53,6 +53,20 @@ class Board
       end
     end
     return true
+  end
+
+  def grid_helper(display_board)
+    board_rows = display_board.length
+    board_cols = display_board[0].length
+    top_row = [" "]
+    (0...board_cols).each do |num|
+      top_row << " #{num.to_s.colorize(:red)} "
+    end
+    display_board.unshift(top_row)
+    (1..board_rows).each do |num|
+      display_board[num].unshift((num - 1).to_s.colorize(:red))
+    end
+    return display_board
   end
 
   private
