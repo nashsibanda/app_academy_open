@@ -1,4 +1,5 @@
 class AIPlayer
+  attr_reader :seen_cards
 
   def initialize
     @seen_cards = {}
