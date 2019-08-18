@@ -3,9 +3,9 @@ require_relative "./player.rb"
 
 class Game
   
-  def initialize(pairs)
+  def initialize(pairs, player_type)
     @board = Board.new(pairs)
-    @player = Player.new
+    @player = PlayerFacade.new(player_type)
     @first_guess
     @matched_card_positions = []
   end
@@ -65,5 +65,5 @@ class Game
 
 end
 
-temp = Game.new(8)
+temp = Game.new(8, "h")
 temp.play
