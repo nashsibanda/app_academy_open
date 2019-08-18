@@ -14,14 +14,14 @@ class Game
     while !@board.game_over?
       system("clear")
       @board.display_board
-      pos = @player.guess(@board, @first_guess, @matched_card_positions)
+      pos = @player.guess(@first_guess, @matched_card_positions)
       if !valid_pos?(pos)
         puts "Please choose a valid card position"
-        pos = @player.guess(@board, @first_guess, @matched_card_positions)
+        pos = @player.guess(@first_guess, @matched_card_positions)
       end
       until @board[pos].facing == "down"
         puts "Please choose a face-down card"
-        pos = @player.guess(@board, first_guess, @matched_card_positions)
+        pos = @player.guess(@first_guess, @matched_card_positions)
       end
       self.make_guess(pos)
     end
@@ -40,11 +40,11 @@ class Game
     if @board[pos].face_value == @first_guess.face_value
       @board[pos].match
       @first_guess.match
-      matched_card_positions.push(pos, @first_guess.position)
+      @matched_card_positions.push(pos, @first_guess.position)
       system("clear")
       @board.display_board
       puts "Matched!"
-      sleep(2)
+      sleep(1)
       @first_guess = nil
       return
     end
@@ -52,7 +52,7 @@ class Game
       system("clear")
       @board.display_board
       puts "No match!"
-      sleep(2)
+      sleep(1)
       @board[pos].flip("down")
       @first_guess.flip("down")
       @first_guess = nil
