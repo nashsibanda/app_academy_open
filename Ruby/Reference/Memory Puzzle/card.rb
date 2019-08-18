@@ -1,5 +1,5 @@
 class Card
-  attr_reader :face_value, :facing, :matched
+  attr_reader :face_value, :facing, :matched, :position
 
   def initialize(face_value, position)
     @face_value = face_value
