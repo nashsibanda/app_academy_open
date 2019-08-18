@@ -27,10 +27,10 @@ class Board
   end
 
   def render
-    display_board = @board_rows
-    display_board.each_with_index do |row, r_idx|
+    display_board = Array.new(@num_array.length) { Array.new(@num_array[0].length) }
+    @board_rows.each_with_index do |row, r_idx|
       row.each_with_index do |tile, t_idx|
-        display_board[r_idx][t_idx] = display_board[r_idx][t_idx].to_s
+        display_board[r_idx][t_idx] = @board_rows[r_idx][t_idx].to_s
       end
     end
     puts display_board.map(&:join)
@@ -90,7 +90,7 @@ class Board
 
 end
 
-temp = Board.new("sudoku1_almost")
+temp = Board.new("sudoku1_solved")
 temp.render
-p temp.board_rows
-# p temp.solved?
+# p temp.board_rows
+p temp.solved?
