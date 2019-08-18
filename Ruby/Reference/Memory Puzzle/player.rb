@@ -1,4 +1,5 @@
 require_relative "./humanplayer.rb"
+require_relative "./aiplayer.rb"
 
 class PlayerFacade
 
@@ -10,8 +11,8 @@ class PlayerFacade
     case type
     when "h"
       return HumanPlayer.new
-    # when "a"
-    #   return AIPlayer.new
+    when "a"
+      return AIPlayer.new
     end
   end
   
