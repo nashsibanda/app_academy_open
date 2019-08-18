@@ -14,14 +14,14 @@ class Game
     while !@board.game_over?
       system("clear")
       @board.display_board
-      pos = @player.guess
+      pos = @player.guess(@board, @first_guess)
       if !valid_pos?(pos)
         puts "Please choose a valid card position"
-        pos = @player.guess
+        pos = @player.guess(@board, @first_guess)
       end
       until @board[pos].facing == "down"
         puts "Please choose a face-down card"
-        pos = @player.guess
+        pos = @player.guess(@board, first_guess)
       end
       self.make_guess(pos)
     end
