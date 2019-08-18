@@ -36,6 +36,25 @@ class Board
     puts display_board.map(&:join)
   end
 
+  def solved?
+    if unique?(@board_rows) && unique?(@board_cols) && unique?(@board_squares)
+      return true
+    end
+    false
+  end
+  
+  def unique?(tile_array)
+    tile_array.all? do |array|
+      values = array.map { |tile| tile.number }
+      if values == values.uniq && !values.include?(0)
+        true
+      else
+        return false
+      end
+    end
+    return true
+  end
+
   private
 
   def populate_board_rows
@@ -71,11 +90,7 @@ class Board
 
 end
 
-temp = Board.new("sudoku1")
+temp = Board.new("sudoku1_almost")
 temp.render
-# String.disable_colorization = false
-# String.color_samples
-# puts "temp.board_squares".colorize(:blue)
-# puts
-# puts
-# p temp.board_rows
+p temp.board_rows
+# p temp.solved?
