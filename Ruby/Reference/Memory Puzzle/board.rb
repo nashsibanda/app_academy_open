@@ -76,7 +76,7 @@ class Board
         if !spot.matched && spot.facing == "down"
           card_board[r_idx][s_idx] = " * "
         elsif spot.matched || spot.facing == "up"
-          card_board[r_idx][s_idx] = "*#{spot.face_value}*"
+          card_board[r_idx][s_idx] = " #{spot.face_value} "
         end
       end
     end
