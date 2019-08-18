@@ -19,6 +19,7 @@ class Board
   end
 
   def [](position)
+    return @board_rows[position[0]] if position.is_a?(Integer)
     @board_rows[position[0]][position[1]]
   end
 
