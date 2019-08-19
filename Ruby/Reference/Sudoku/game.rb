@@ -28,7 +28,7 @@ class Game
 
 end
 
-temp = Game.new("sudoku1")
-temp.solve
+# temp = Game.new("sudoku3")
+# temp.solve
 # pos = [0, 3]
 # p temp.board[0]
