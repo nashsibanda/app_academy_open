@@ -15,7 +15,7 @@ end
 class RecursiveFunctions
 
   def test_select
-    puts "Pick a method to test: 1. range | 2. sum (recursive and iterative) | 3. exponent_1 | 4. exponent_2 | 5. deep_dup | 0. Exit this program"
+    puts "Pick a method to test: 1. range | 2. sum (recursive and iterative) | 3. exponent_1 | 4. exponent_2 | 5. deep_dup | 6. fibonacci | 0. Exit this program"
     test(gets.chomp)
   end
 
@@ -52,6 +52,12 @@ class RecursiveFunctions
       inductor = exponent_2(base, ((exponent - 1) / 2))
       return base * (inductor * inductor)
     end
+  end
+
+  def fibonacci(n)
+    return [1] if n == 1
+    return [1, 1] if n == 2
+    fibonacci(n - 1) + [fibonacci(n - 1).last + fibonacci(n - 2).last]
   end
 
   def test(method)
@@ -113,6 +119,16 @@ class RecursiveFunctions
       arr2 = [1, [2], [3, [4]]]
       p arr.deep_dup
       p arr2.deep_dup
+    when "6"
+      puts "Method source code:"
+      puts "--------------------"
+      RecursiveFunctions.instance_method(:fibonacci).source.display
+      puts "--------------------"
+      puts
+      puts "Test outputs"
+      p fibonacci(2)
+      p fibonacci(5)
+      p fibonacci(7)
     when "0"
       puts "Thanks!"
       sleep(1)
