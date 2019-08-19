@@ -9,12 +9,13 @@ class MemoryPuzzle
   end
 
   def new_game
+    system("clear")
     puts "***********************************"
     puts
     puts "     Welcome to Memory Puzzle!     "
     puts
     puts "***********************************"
-    sleep(3)
+    sleep(1.5)
     puts
     puts
     puts "How many pairs would you like to search for?"
@@ -33,7 +34,7 @@ class MemoryPuzzle
       puts "Enter 'h' for a human player (that's you, by the way), or 'a' for an AI player."
       @player_type = gets.chomp.downcase
     end
-    puts "OK, perfect. So I will make a puzzle with #{@pairs} pairs of hidden cards, and it will be solved by #{@player_type_label} player. Does that sound alright?"
+    puts "OK, perfect. So I will make a puzzle with #{@pairs} pairs of hidden cards, and it will be solved by #{player_type_label(@player_type)} player. Does that sound alright?"
     puts "If so, please enter 'y' below to start. If not, please enter 'n' and let's try this again, shall we?"
     if confirm
       game = Game.new(@pairs, @player_type)
