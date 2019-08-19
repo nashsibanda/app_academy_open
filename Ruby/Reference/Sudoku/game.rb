@@ -7,6 +7,7 @@ class Game
   def initialize(filename)
     @board = Board.new(filename)
     @player = Player.new
+    @solver = Solver.new(@board)
   end
 
   def play
@@ -21,9 +22,13 @@ class Game
     puts " * * * Puzzle solved! * * *".colorize(:green)
   end
 
+  def solve
+    @solver.solve
+  end
+
 end
 
-temp = Game.new("sudoku1_almost")
-temp.play
+temp = Game.new("sudoku1")
+temp.solve
 # pos = [0, 3]
 # p temp.board[0]
