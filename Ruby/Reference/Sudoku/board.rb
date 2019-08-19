@@ -1,7 +1,8 @@
 require_relative "./tile.rb"
+require_relative "./solver.rb"
 
 class Board
-  attr_reader :board_rows, :board_cols, :board_squares
+  attr_reader :board_rows, :board_cols, :board_squares, :changeable_tiles, :parent_positions
   
   def initialize(filename)
     @filename = "./puzzles/#{filename}.txt"
@@ -9,13 +10,9 @@ class Board
     @board_rows = Array.new(@num_array.length) { Array.new(@num_array[0].length) }
     @board_cols = Array.new(@num_array.length) { Array.new(@num_array[0].length) }
     @board_squares = Array.new(@num_array.length) { Array.new(@num_array[0].length) }
-    self.populate_board
-  end
-
-  def populate_board
-    populate_board_rows
-    populate_board_cols
-    populate_board_squares
+    @changeable_tiles = []
+    @parent_positions = {}
+    populate_board
   end
 
   def [](position)
@@ -38,9 +35,7 @@ class Board
   end
 
   def solved?
-    if unique?(@board_rows) && unique?(@board_cols) && unique?(@board_squares)
-      return true
-    end
+    return true if unique?(@board_rows) && unique?(@board_cols) && unique?(@board_squares)
     false
   end
   
@@ -55,6 +50,8 @@ class Board
     end
     return true
   end
+  
+  private
 
   def grid_helper(display_board)
     board_rows = display_board.length
@@ -69,8 +66,24 @@ class Board
     end
     return display_board
   end
+  
+  def populate_board
+    populate_board_rows
+    populate_board_cols
+    populate_board_squares
+    populate_changeable_tiles_and_parents
+  end
 
-  private
+  def populate_changeable_tiles_and_parents
+    @board_rows.each do |row|
+      row.each do |tile|
+        if !tile.given
+          @changeable_tiles << tile
+        end
+      end
+    end
+    (1...@changeable_tiles.length).each { |idx| @parent_positions[@changeable_tiles[idx]] = @changeable_tiles[idx - 1] }
+  end
 
   def populate_board_rows
     @num_array.each_with_index do |row, r_idx|
@@ -105,7 +118,10 @@ class Board
 
 end
 
-# temp = Board.new("sudoku1_solved")
+temp = Board.new("sudoku1")
+p temp[0]
 # temp.render
+# p temp.changeable_tiles.map { |tile| tile.position }
+# p temp.parent_positions
 # p temp.board_rows
 # p temp.solved?
