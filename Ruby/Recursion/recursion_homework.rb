@@ -43,7 +43,7 @@ class Recursion
       p sum_to(5)  # => returns 15
       p sum_to(1)  # => returns 1
       p sum_to(9)  # => returns 45
-      p sum_to(-8)  # => returns nil  
+      p sum_to(-8)  # => returns nil
     when "2"
       puts "Method source code:"
       puts "--------------------"
@@ -92,6 +92,8 @@ class Recursion
       p reverse("id") # => "di"
       p reverse("") # => ""
     when "6"
+      puts "Thanks!"
+      sleep(1)
       return true
     else
       puts "#{method} is not a valid selection."
@@ -109,5 +111,3 @@ end
 
 recursor = Recursion.new
 recursor.test_select
-
-# Recursion.instance_method(:sum_to).source.display
