@@ -1,6 +1,25 @@
 require 'method_source'
 
+class Array
+  
+  def deep_dup
+    output = []
+    self.each do |ele|
+      output.push(ele.deep_dup) if ele.is_a?(Array)
+      output << ele
+    end
+  end
+
+end
+
 class RecursiveFunctions
+
+  def test_select
+    puts "Pick a method to test: 1. range | 2. sum (recursive and iterative) | 3. exponent_1 | 4. exponent_2 | 5. deep_dup | 0. Exit this program"
+    test(gets.chomp)
+  end
+
+  private
   
   def range(startnum, endnum)
     return [] if startnum >= endnum
@@ -83,6 +102,17 @@ class RecursiveFunctions
       p exponent_2(2, 2)
       p exponent_2(2, 100)
       p exponent_2(3, 3)
+    when "5"
+      puts "Method source code:"
+      puts "--------------------"
+      Array.instance_method(:deep_dup).source.display
+      puts "--------------------"
+      puts
+      puts "Test outputs"
+      arr = [1, 2, 3, 4, 5, [6, [3, 2, [2, 2]], 2], 7]
+      arr2 = [1, [2], [3, [4]]]
+      p arr.deep_dup
+      p arr2.deep_dup
     when "0"
       puts "Thanks!"
       sleep(1)
@@ -92,11 +122,6 @@ class RecursiveFunctions
     end
     puts
     test_select
-  end
-
-  def test_select
-    puts "Pick a method to test: 1. range | 2. sum (recursive and iterative) | 3. exponent_1 | 4. exponent_2 | 0. Exit this program"
-    test(gets.chomp)
   end
 
 end
