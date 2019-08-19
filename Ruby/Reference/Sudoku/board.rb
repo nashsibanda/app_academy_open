@@ -2,7 +2,7 @@ require_relative "./tile.rb"
 require_relative "./solver.rb"
 
 class Board
-  attr_reader :board_rows, :board_cols, :board_squares, :changeable_tiles, :parent_positions
+  attr_reader :board_rows, :board_cols, :board_squares, :changeable_tiles, :parent_tiles, :child_tiles
   
   def initialize(filename)
     @filename = "./puzzles/#{filename}.txt"
@@ -11,8 +11,9 @@ class Board
     @board_cols = Array.new(@num_array.length) { Array.new(@num_array[0].length) }
     @board_squares = Array.new(@num_array.length) { Array.new(@num_array[0].length) }
     @changeable_tiles = []
-    @parent_positions = {}
+    @parent_tiles = {}
     populate_board
+    @child_tiles = @parent_tiles.invert
   end
 
   def [](position)
@@ -105,7 +106,7 @@ class Board
         end
       end
     end
-    (1...@changeable_tiles.length).each { |idx| @parent_positions[@changeable_tiles[idx]] = @changeable_tiles[idx - 1] }
+    (1...@changeable_tiles.length).each { |idx| @parent_tiles[@changeable_tiles[idx]] = @changeable_tiles[idx - 1] }
   end
 
   def populate_board_rows
@@ -140,12 +141,3 @@ class Board
   end
 
 end
-
-temp = Board.new("sudoku1_almost")
-pos = [0, 1]
-p temp.unique?(temp[pos])
-# temp.render
-# p temp.changeable_tiles.map { |tile| tile.position }
-# p temp.parent_positions
-# p temp.board_rows
-# p temp.solved?
