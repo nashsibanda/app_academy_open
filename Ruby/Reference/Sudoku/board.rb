@@ -35,11 +35,36 @@ class Board
   end
 
   def solved?
-    return true if unique?(@board_rows) && unique?(@board_cols) && unique?(@board_squares)
+    return true if dimension_solved?(@board_rows) && dimension_solved?(@board_cols) && dimension_solved?(@board_squares)
     false
   end
+
+  def unique?(tile)
+    return false if tile.number == 0
+    tile_row = @board_rows.select { |row| row.include?(tile) }.flatten
+    tile_column = @board_cols.select { |col| col.include?(tile) }.flatten
+    tile_square = @board_squares.select { |square| square.include?(tile) }.flatten
+    tile_row.each do |row_tile|
+      if tile != row_tile && tile.number == row_tile.number
+        return false
+      end
+    end
+    tile_column.each do |column_tile|
+      if tile != column_tile && tile.number == column_tile.number
+        return false
+      end
+    end
+    tile_square.each do |square_tile|
+      if tile != square_tile && tile.number == square_tile.number
+        return false
+      end
+    end
+    true
+  end
   
-  def unique?(tile_array)
+  private
+  
+  def dimension_solved?(tile_array)
     tile_array.all? do |array|
       values = array.map { |tile| tile.number }
       if values == values.uniq && !values.include?(0)
@@ -50,8 +75,6 @@ class Board
     end
     return true
   end
-  
-  private
 
   def grid_helper(display_board)
     board_rows = display_board.length
@@ -118,8 +141,9 @@ class Board
 
 end
 
-temp = Board.new("sudoku1")
-p temp[0]
+temp = Board.new("sudoku1_almost")
+pos = [0, 1]
+p temp.unique?(temp[pos])
 # temp.render
 # p temp.changeable_tiles.map { |tile| tile.position }
 # p temp.parent_positions
