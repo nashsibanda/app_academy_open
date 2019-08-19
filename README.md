@@ -12,3 +12,4 @@ Projects completed so far:
 - [Maze Solver](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Enumerables%20And%20Debugging/maze_solver)
 - [Ghost](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Enumerables%20And%20Debugging/ghost)
 - [Memory](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Reference/Memory%20Puzzle)
+- [Sudoku](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Reference/Sudoku)
