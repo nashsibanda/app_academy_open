@@ -64,8 +64,7 @@ class RecursiveFunctions
   def bsearch(array, target)
     return nil if !array.include?(target)
     midpoint_idx = (array.length / 2.0).ceil
-    left_arr = array[0...midpoint_idx]
-    right_arr = array[midpoint_idx..-1]
+    left_arr, right_arr = array[0...midpoint_idx], array[midpoint_idx..-1]
     return (left_arr.length - 1) if left_arr.last == target
     if left_arr.last > target
       bsearch(left_arr, target)
@@ -76,18 +75,9 @@ class RecursiveFunctions
 
   def merge_sort(array)
     return array if array.length <= 1
-    sliced = slice(array)
-    left_slice = sliced[0]
-    right_slice = sliced[1]
-    if left_slice.length <= 1 && right_slice.length <= 1
-      merged = []
-      until merged.length == array.length
-        merged = merge(left_slice, right_slice)
-      end
-      return merged
-    end
-    merged = merge(merge_sort(left_slice), merge_sort(right_slice))
-    merged
+    left_slice, right_slice = slice(array)[0], slice(array)[1]
+    return merge(left_slice, right_slice) if left_slice.length <= 1 && right_slice.length <= 1
+    return merge(merge_sort(left_slice), merge_sort(right_slice))
   end
 
   def slice(array)
@@ -107,9 +97,9 @@ class RecursiveFunctions
 
   def subsets(array)
     return [array] if array.empty?
-    lastele = [array.pop]
+    last_ele = [array.pop]
     inductor = subsets(array)
-    return inductor + (inductor.map {|ele| ele + lastele})
+    return inductor + (inductor.map { |ele| ele + last_ele })
   end
 
   def test(method)
@@ -224,7 +214,7 @@ class RecursiveFunctions
       p subsets([1]) # => [[], [1]]
       p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
       p subsets([1, 2, 3]) # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
-      p subsets([16, 5, 2, 9, 18, 15, 6])
+      # p subsets([16, 5, 2, 9, 18, 15, 6])
     when "0"
       puts "Thanks!"
       # sleep(1)
