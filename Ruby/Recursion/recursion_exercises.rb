@@ -1,4 +1,5 @@
 require 'method_source'
+require 'byebug'
 
 class Array
   
@@ -15,7 +16,7 @@ end
 class RecursiveFunctions
 
   def test_select
-    puts "Pick a method to test: 1. range | 2. sum (recursive and iterative) | 3. exponent_1 | 4. exponent_2 | 5. deep_dup | 6. fibonacci | 0. Exit this program"
+    puts "Pick a method to test: 1. range | 2. sum (recursive and iterative) | 3. exponent_1 | 4. exponent_2 | 5. deep_dup | 6. fibonacci | 7. bsearch | 0. Exit this program"
     test(gets.chomp)
   end
 
@@ -58,6 +59,19 @@ class RecursiveFunctions
     return [1] if n == 1
     return [1, 1] if n == 2
     fibonacci(n - 1) + [fibonacci(n - 1).last + fibonacci(n - 2).last]
+  end
+
+  def bsearch(array, target)
+    return nil if !array.include?(target)
+    midpoint_idx = (array.length / 2.0).ceil
+    left_arr = array[0...midpoint_idx]
+    right_arr = array[midpoint_idx..-1]
+    return (left_arr.length - 1) if left_arr.last == target
+    if left_arr.last > target
+      bsearch(left_arr, target)
+    elsif left_arr.last < target
+      (left_arr.length - 1) + (bsearch(right_arr, target) + 1)
+    end
   end
 
   def test(method)
@@ -129,6 +143,20 @@ class RecursiveFunctions
       p fibonacci(2)
       p fibonacci(5)
       p fibonacci(7)
+    when "7"
+      puts "Method source code:"
+      puts "--------------------"
+      RecursiveFunctions.instance_method(:bsearch).source.display
+      puts "--------------------"
+      puts
+      puts "Test outputs"
+      p bsearch([1, 2, 3], 1) # => 0
+      p bsearch([2, 3, 4, 5], 3) # => 1
+      p bsearch([2, 4, 6, 8, 10], 6) # => 2
+      p bsearch([1, 3, 4, 5, 9], 5) # => 3
+      p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+      p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+      p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
     when "0"
       puts "Thanks!"
       sleep(1)
