@@ -16,7 +16,7 @@ end
 class RecursiveFunctions
 
   def test_select
-    puts "Pick a method to test: 1. range | 2. sum (recursive and iterative) | 3. exponent_1 | 4. exponent_2 | 5. deep_dup | 6. fibonacci | 7. bsearch | 8. merge_sort | 0. Exit this program"
+    puts "Pick a method to test: 1. range | 2. sum (recursive and iterative) | 3. exponent_1 | 4. exponent_2 | 5. deep_dup | 6. fibonacci | 7. bsearch | 8. merge_sort | 9. subsets | 0. Exit this program"
     test(gets.chomp)
   end
 
@@ -75,10 +75,8 @@ class RecursiveFunctions
   end
 
   def merge_sort(array)
-    # debugger
     return array if array.length <= 1
     sliced = slice(array)
-    # split = []
     left_slice = sliced[0]
     right_slice = sliced[1]
     if left_slice.length <= 1 && right_slice.length <= 1
@@ -105,6 +103,13 @@ class RecursiveFunctions
       merged << right_arr.shift
       merge(left_arr, right_arr, merged)
     end
+  end
+
+  def subsets(array)
+    return [array] if array.empty?
+    lastele = [array.pop]
+    inductor = subsets(array)
+    return inductor + (inductor.map {|ele| ele + lastele})
   end
 
   def test(method)
@@ -206,6 +211,20 @@ class RecursiveFunctions
       p merge_sort([19, 20, 3, 17, 6, 9, 18]) # => [3, 6, 9, 17, 18, 19, 20]
       p merge_sort([3, 15, 18, 7, 2, 9, 16]) # => [2, 3, 7, 9, 15, 16, 18]
       p merge_sort([3, 14, 6, 16, 5, 9, 1]) # => [1, 3, 5, 6, 9, 14, 16]
+    when "9"
+      puts "Method source code:"
+      puts "--------------------"
+      RecursiveFunctions.instance_method(:subsets).source.display
+      # puts
+      # RecursiveFunctions.instance_method(:merge).source.display
+      puts "--------------------"
+      puts
+      puts "Test outputs:"
+      p subsets([]) # => [[]]
+      p subsets([1]) # => [[], [1]]
+      p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
+      p subsets([1, 2, 3]) # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+      p subsets([16, 5, 2, 9, 18, 15, 6])
     when "0"
       puts "Thanks!"
       # sleep(1)
