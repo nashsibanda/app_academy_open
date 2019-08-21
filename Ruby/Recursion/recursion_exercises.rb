@@ -15,6 +15,10 @@ end
 
 class RecursiveFunctions
 
+  def initialize
+    @cycles = 0
+  end
+  
   def test_select
     puts "Pick a method to test: 1. range | 2. sum (recursive and iterative) | 3. exponent_1 | 4. exponent_2 | 5. deep_dup | 6. fibonacci | 7. bsearch | 8. merge_sort | 9. subsets | 0. Exit this program"
     test(gets.chomp)
@@ -77,7 +81,7 @@ class RecursiveFunctions
     return array if array.length <= 1
     left_slice, right_slice = slice(array)[0], slice(array)[1]
     return merge(left_slice, right_slice) if left_slice.length <= 1 && right_slice.length <= 1
-    return merge(merge_sort(left_slice), merge_sort(right_slice))
+    merge(merge_sort(left_slice), merge_sort(right_slice))
   end
 
   def slice(array)
@@ -102,8 +106,21 @@ class RecursiveFunctions
     return inductor + (inductor.map { |ele| ele + last_ele })
   end
 
+  def shuffle_permutations(array)
+    array = [array] if !array[0].is_a?(Array)
+    return array.sort if array.length == factorial(array.first.length)
+    array << array[0].shuffle
+    permutations(array.uniq)
+  end
+
+  def factorial(num)
+    return 1 if num <= 1
+    num * factorial(num - 1)
+  end
+
   def test(method)
     system("clear")
+    @cycles = 0
     case method
     when "1" # => Range method
       puts "Method source code:"
@@ -201,12 +218,10 @@ class RecursiveFunctions
       p merge_sort([19, 20, 3, 17, 6, 9, 18]) # => [3, 6, 9, 17, 18, 19, 20]
       p merge_sort([3, 15, 18, 7, 2, 9, 16]) # => [2, 3, 7, 9, 15, 16, 18]
       p merge_sort([3, 14, 6, 16, 5, 9, 1]) # => [1, 3, 5, 6, 9, 14, 16]
-    when "9"
+    when "9" # => Subsets
       puts "Method source code:"
       puts "--------------------"
       RecursiveFunctions.instance_method(:subsets).source.display
-      # puts
-      # RecursiveFunctions.instance_method(:merge).source.display
       puts "--------------------"
       puts
       puts "Test outputs:"
@@ -215,6 +230,18 @@ class RecursiveFunctions
       p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
       p subsets([1, 2, 3]) # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
       # p subsets([16, 5, 2, 9, 18, 15, 6])
+    when "10" # => Shuffle Permutations
+      puts "Method source code:"
+      puts "--------------------"
+      RecursiveFunctions.instance_method(:shuffle_permutations).source.display
+      puts "--------------------"
+      puts
+      puts "Test outputs:"
+      p shuffle_permutations([]) # => [[]]
+      p shuffle_permutations([1]) # => [[], [1]]
+      p shuffle_permutations([1, 2]) # => [[], [1], [2], [1, 2]]
+      p shuffle_permutations([1, 2, 3]) # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+      p shuffle_permutations([16, 5, 2, 9])
     when "0"
       puts "Thanks!"
       # sleep(1)
