@@ -21,7 +21,7 @@ class RecursiveFunctions
   
   def test_select
     puts "--------------------
-    
+
     Pick a method to test:
     1. range 
     2. sum (recursive and iterative) 
@@ -33,7 +33,8 @@ class RecursiveFunctions
     9. subsets 
     10. shuffle_permutations 
     11. calc_permutations 
-    12. greedy_make_change 
+    12. greedy_make_change
+    13. make_better_change
     0. Exit this program
     
     Please enter a selection below:"
@@ -162,6 +163,30 @@ class RecursiveFunctions
       output += greedy_make_change((num), coins)
     end
     output
+  end
+
+  def make_better_change(num, coins = [50, 20, 10, 5, 1])
+    output = []
+    return output if num == 0
+    rem = num
+    best_coin = coins.first
+    coins.each do |coin|
+      c_factor = (num % coin) + (num - coin)
+      if c_factor < rem
+        rem, best_coin = c_factor, coin
+      end
+    end
+    if num >= best_coin
+      output << best_coin
+      num -= best_coin
+      output += make_better_change(num, coins)
+    end
+    until coins.empty?
+      coins.shift
+      output += make_better_change((num), coins)
+    end
+    output.sort.reverse
+
   end
 
   def test(method)
@@ -301,7 +326,7 @@ class RecursiveFunctions
       p calc_permutations([1, 2, 3]) # => [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
       p calc_permutations([1, 2, 3, 4]) # => [[1, 2, 3, 4], [1, 2, 4, 3], [1, 3, 2, 4], [1, 3, 4, 2], [1, 4, 2, 3], [1, 4, 3, 2], [2, 1, 3, 4], [2, 1, 4, 3], [2, 3, 1, 4], [2, 3, 4, 1], [2, 4, 1, 3], [2, 4, 3, 1], [3, 1, 2, 4], [3, 1, 4, 2], [3, 2, 1, 4], [3, 2, 4, 1], [3, 4, 1, 2], [3, 4, 2, 1], [4, 1, 2, 3], [4, 1, 3, 2], [4, 2, 1, 3], [4, 2, 3, 1], [4, 3, 1, 2], [4, 3, 2, 1]]
       # p calc_permutations([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) # => DANGER! DO NOT RUN! 3.6 million permutations!
-    when "12"
+    when "12" # => Greedy Make Change
       puts "Method source code:"
       puts "--------------------"
       RecursiveFunctions.instance_method(:greedy_make_change).source.display
@@ -313,6 +338,20 @@ class RecursiveFunctions
       p greedy_make_change(134, [25, 10, 5, 1])
       p greedy_make_change(21, [12, 7, 1])
       p greedy_make_change(24, [10, 7, 1])
+      p greedy_make_change(6, [1, 3, 4])
+    when "13" # => Make Better Change
+      puts "Method source code:"
+      puts "--------------------"
+      RecursiveFunctions.instance_method(:make_better_change).source.display
+      puts "--------------------"
+      puts
+      puts "Test outputs:"
+      p make_better_change(100)
+      p make_better_change(37)
+      p make_better_change(134, [25, 10, 5, 1])
+      p make_better_change(21, [12, 7, 1])
+      p make_better_change(24, [10, 7, 1])
+      p make_better_change(6, [1, 3, 4])
     when "0"
       puts "Thanks!"
       # sleep(1)
@@ -325,7 +364,6 @@ class RecursiveFunctions
   end
 
 end
-
 
 recursor = RecursiveFunctions.new
 recursor.test_select
