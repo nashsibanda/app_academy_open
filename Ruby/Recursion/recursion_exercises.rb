@@ -20,7 +20,23 @@ class RecursiveFunctions
   end
   
   def test_select
-    puts "Pick a method to test: 1. range | 2. sum (recursive and iterative) | 3. exponent_1 | 4. exponent_2 | 5. deep_dup | 6. fibonacci | 7. bsearch | 8. merge_sort | 9. subsets | 10. shuffle_permutations | 11. calc_permutations | 0. Exit this program"
+    puts "--------------------
+    
+    Pick a method to test:
+    1. range 
+    2. sum (recursive and iterative) 
+    3. exponent_1 | 4. exponent_2 
+    5. deep_dup 
+    6. fibonacci 
+    7. bsearch 
+    8. merge_sort 
+    9. subsets 
+    10. shuffle_permutations 
+    11. calc_permutations 
+    12. greedy_make_change 
+    0. Exit this program
+    
+    Please enter a selection below:"
     test(gets.chomp)
   end
 
@@ -131,6 +147,21 @@ class RecursiveFunctions
   def factorial(num)
     return 1 if num <= 1
     num * factorial(num - 1)
+  end
+
+  def greedy_make_change(num, coins = [50, 20, 10, 5, 1])
+    output = []
+    return output if num == 0
+    if num >= coins.first
+      output << coins.first
+      num -= coins.first
+      output += greedy_make_change(num, coins)
+    end
+    until coins.empty?
+      coins.shift
+      output += greedy_make_change((num), coins)
+    end
+    output
   end
 
   def test(method)
@@ -265,11 +296,23 @@ class RecursiveFunctions
       puts
       puts "Test outputs:"
       p calc_permutations([]) # => [[]]
-      p calc_permutations([1]) # => [[], [1]]
-      p calc_permutations([1, 2]) # => [[], [1], [2], [1, 2]]
-      p calc_permutations([1, 2, 3]) # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
-      p calc_permutations([1, 2, 3, 4])
+      p calc_permutations([1]) # => [[1]]
+      p calc_permutations([1, 2]) # => [[1, 2], [2, 1]]
+      p calc_permutations([1, 2, 3]) # => [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+      p calc_permutations([1, 2, 3, 4]) # => [[1, 2, 3, 4], [1, 2, 4, 3], [1, 3, 2, 4], [1, 3, 4, 2], [1, 4, 2, 3], [1, 4, 3, 2], [2, 1, 3, 4], [2, 1, 4, 3], [2, 3, 1, 4], [2, 3, 4, 1], [2, 4, 1, 3], [2, 4, 3, 1], [3, 1, 2, 4], [3, 1, 4, 2], [3, 2, 1, 4], [3, 2, 4, 1], [3, 4, 1, 2], [3, 4, 2, 1], [4, 1, 2, 3], [4, 1, 3, 2], [4, 2, 1, 3], [4, 2, 3, 1], [4, 3, 1, 2], [4, 3, 2, 1]]
       # p calc_permutations([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) # => DANGER! DO NOT RUN! 3.6 million permutations!
+    when "12"
+      puts "Method source code:"
+      puts "--------------------"
+      RecursiveFunctions.instance_method(:greedy_make_change).source.display
+      puts "--------------------"
+      puts
+      puts "Test outputs:"
+      p greedy_make_change(100)
+      p greedy_make_change(37)
+      p greedy_make_change(134, [25, 10, 5, 1])
+      p greedy_make_change(21, [12, 7, 1])
+      p greedy_make_change(24, [10, 7, 1])
     when "0"
       puts "Thanks!"
       # sleep(1)
