@@ -20,7 +20,7 @@ class RecursiveFunctions
   end
   
   def test_select
-    puts "Pick a method to test: 1. range | 2. sum (recursive and iterative) | 3. exponent_1 | 4. exponent_2 | 5. deep_dup | 6. fibonacci | 7. bsearch | 8. merge_sort | 9. subsets | 0. Exit this program"
+    puts "Pick a method to test: 1. range | 2. sum (recursive and iterative) | 3. exponent_1 | 4. exponent_2 | 5. deep_dup | 6. fibonacci | 7. bsearch | 8. merge_sort | 9. subsets | 10. shuffle_permutations | 11. calc_permutations | 0. Exit this program"
     test(gets.chomp)
   end
 
@@ -111,6 +111,21 @@ class RecursiveFunctions
     return array.sort if array.length == factorial(array.first.length)
     array << array[0].shuffle
     permutations(array.uniq)
+  end
+
+  def calc_permutations(array)
+    output = []
+    array = [array] if !array[0].is_a?(Array)
+    return array.sort if array.first.empty? || array.first.any? && array.length == factorial(array.first.length)
+    if array.first.length <= 2
+      array << [array.first[1], array.first[0]]
+      return array
+    end
+    array.first.each do |perm_ele|
+      inductor = calc_permutations(array.map { |sub_arr| sub_arr.reject { |ele| ele == perm_ele } })
+      output += inductor.map { |ele| [perm_ele] + ele }
+    end
+    output
   end
 
   def factorial(num)
@@ -242,6 +257,19 @@ class RecursiveFunctions
       p shuffle_permutations([1, 2]) # => [[], [1], [2], [1, 2]]
       p shuffle_permutations([1, 2, 3]) # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
       p shuffle_permutations([16, 5, 2, 9])
+    when "11" # => Calculated Permutations
+      puts "Method source code:"
+      puts "--------------------"
+      RecursiveFunctions.instance_method(:calc_permutations).source.display
+      puts "--------------------"
+      puts
+      puts "Test outputs:"
+      p calc_permutations([]) # => [[]]
+      p calc_permutations([1]) # => [[], [1]]
+      p calc_permutations([1, 2]) # => [[], [1], [2], [1, 2]]
+      p calc_permutations([1, 2, 3]) # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+      p calc_permutations([1, 2, 3, 4])
+      # p calc_permutations([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) # => DANGER! DO NOT RUN! 3.6 million permutations!
     when "0"
       puts "Thanks!"
       # sleep(1)
