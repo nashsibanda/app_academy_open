@@ -5,8 +5,8 @@ class WordChainer
 
   attr_reader :dictionary, :path
   
-  def initialize(dictionary_file_name)
-    @dictionary = make_dict(dictionary_file_name)
+  def initialize(dictionary)
+    @dictionary = dictionary
     @current_words = []
     @all_seen_words = {}
     @path = []
@@ -17,12 +17,12 @@ class WordChainer
     @all_seen_words[source] = nil
     explore_current_words until @current_words.empty? || @all_seen_words.include?(target)
     build_path(target)
+    @path = "No path found".reverse if @path.length <= 1
   end
 
   private
   
   def build_path(target)
-    # debugger
     prior = @all_seen_words[target]
     @path << target
     return if prior == nil
@@ -50,25 +50,8 @@ class WordChainer
         @all_seen_words[adj_word] = c_word
       end
     end
-    # new_current_words.each do |nc_word|
-    #   p "#{nc_word}, from #{@all_seen_words[nc_word]}"
-    # end
     @current_words = new_current_words
-  end
-
-  def make_dict(filename)
-    Set.new File.readlines("#{filename}.txt", chomp: true)
   end
 
 
 end
-
-start = Time.now
-temp = WordChainer.new("english")
-# p temp.dictionary
-temp.run("duck", "ruby")
-p temp.path.reverse
-finish = Time.now
-time_diff = finish - start
-puts
-puts "#{time_diff} seconds elapsed"
