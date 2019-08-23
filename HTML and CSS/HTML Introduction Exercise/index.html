@@ -59,6 +59,36 @@
     </ol>
   </section>
 
+  <section>
+    <form action="">
+      <label for="reviewer-name">Reviewer Name:</label>
+      <input type="text" name="reviewer-name" id="reviewer-name">
+      <label for="rating">Rating:</label>
+      <input type="radio" name="rating" id="5stars" value="5">
+      <label for="5stars">5 Stars</label>
+      <input type="radio" name="rating" id="4stars" value="4">
+      <label for="4stars">4 Stars</label>
+      <input type="radio" name="rating" id="3stars" value="3">
+      <label for="3stars">3 Stars</label>
+      <input type="radio" name="rating" id="2stars" value="2">
+      <label for="2stars">2 Stars</label>
+      <input type="radio" name="rating" id="1stars" value="1">
+      <label for="1stars">1 Stars</label>
+      <label for="cooking-expertise">Cooking Expertise:</label>
+      <select name="cooking-expertise" id="cooking-expertise">
+        <option value="default" disabled selected>Cooking Expertise</option>
+        <option value="sometimes-cook">Sometimes Cook</option>
+        <option value="cook-everyday">Cook Everyday</option>
+        <option value="cooking-hobby">Cooking is a Hobby</option>
+        <option value="pro-chef">Professional Chef</option>
+      </select>
+      <label>Review:
+        <textarea name="review" id="review" cols="30" rows="10"></textarea>
+      </label>
+      <input type="submit" value="Submit Review">
+    </form>
+  </section>
+
   <footer>
     <p>Original pork recipe from <a href="https://www.fifteenspatulas.com/the-best-and-simplest-carnitas/" target="blank">Fifteen Spatulas</a></p>
   </footer>
