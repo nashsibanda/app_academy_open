@@ -6,7 +6,7 @@ class Player
   end
 
   def action
-    puts "Would you like to reveal this location, or flag it? Enter 'r' or 'f'"
+    puts "Would you like to reveal this location, or add/remove a flag? Enter 'r' or 'f'"
     return gets.chomp
   end
 

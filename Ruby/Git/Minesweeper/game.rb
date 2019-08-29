@@ -13,6 +13,10 @@ class Game
     until solved?
       render_board
       turn = player_turn
+      position = [turn[0], turn[1]]
+      action = turn[2]
+      @board[position[0], position[1]].action(action)
+      reveal_empty_neighbours(position)
     end
   end
 
@@ -41,7 +45,16 @@ class Game
   end
 
   def valid_coords?(coords)
-    return true if coords.length == 2 && coords[]
+    return true if coords.length == 2 && coords[0] < @board.height && coords[1] < @board.width && coords.all? { |num| num >= 0 }
+    false
+  end
+
+  def valid_action?(action)
+    return true if action == "r" || action == "f"
+    false
   end
 
 end
+
+temp = Game.new(25, 20)
+temp.run
