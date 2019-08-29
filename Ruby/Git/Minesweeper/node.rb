@@ -1,17 +1,22 @@
 class Node
 
   attr_reader :bomb, :flagged, :position, :neighbours
-  attr_accessor :bomb, :flagged
+  attr_accessor :bomb, :flagged, :bombed_neighbours
   
   def initialize(position, width, height)
     @bomb = false
     @flagged = false
     @position = position
     @neighbours = calc_neighbours(width, height)
+    @bombed_neighbours = []
   end
 
   def to_s
     "I'm at #{@position} and my neighbours are #{@neighbours}"
+  end
+
+  def inspect
+    { @position => @bombed_neighbours, "bomb" => @bomb }.inspect
   end
 
   def flag_toggle
