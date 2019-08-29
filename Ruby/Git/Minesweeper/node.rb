@@ -1,6 +1,6 @@
 class Node
 
-  attr_reader :bomb, :flagged, :position, :neighbours
+  attr_reader :bomb, :flagged, :position, :neighbours,  :revealed
   attr_accessor :bomb, :flagged, :bombed_neighbours
   
   def initialize(position, width, height)
@@ -9,6 +9,7 @@ class Node
     @position = position
     @neighbours = calc_neighbours(width, height)
     @bombed_neighbours = []
+    @revealed = false
   end
 
   def to_s
@@ -21,6 +22,10 @@ class Node
 
   def flag_toggle
     @flagged ? @flagged = false : @flagged = true
+  end
+
+  def reveal
+    @revealed = true
   end
 
   private
