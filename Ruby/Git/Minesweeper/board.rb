@@ -4,11 +4,13 @@ class Board
 
   attr_reader :board, :positions
 
-  def initialize(width, height = width)
+  def initialize(bombs, width, height = width)
     @board = make_board(width, height)
     @width, @height = width, height
     @positions = []
+    @bombs = bombs
     populate_nodes
+    add_bombs(@bombs)
   end
   
   def [](row, col)
@@ -35,7 +37,15 @@ class Board
     end
   end
 
+  def add_bombs(bombs)
+    bomb_positions = @positions.sample(bombs)
+    p bomb_positions
+    bomb_positions.each do |position|
+      @board[position[0]][position[1]].bomb = true
+    end
+  end
+
 end
 
-temp = Board.new(3, 5)
+temp = Board.new(5, 3, 5)
 p temp.board
