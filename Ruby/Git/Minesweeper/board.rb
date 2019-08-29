@@ -2,10 +2,12 @@ require_relative "node"
 
 class Board
 
-  attr_reader :board
+  attr_reader :board, :positions
 
   def initialize(width, height = width)
     @board = make_board(width, height)
+    @width, @height = width, height
+    @positions = []
     populate_nodes
   end
   
@@ -27,7 +29,8 @@ class Board
     @board.each_with_index do |row, row_idx|
       row.each_with_index do |spot, spot_idx|
         position = [row_idx, spot_idx]
-        @board[row_idx][spot_idx] = Node.new(position)
+        @positions << position
+        @board[row_idx][spot_idx] = Node.new(position, @width, @height)
       end
     end
   end
