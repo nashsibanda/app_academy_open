@@ -1,10 +1,11 @@
 require_relative "node"
+require "colorize"
 
 class Board
 
   attr_reader :board, :positions, :bomb_positions
 
-  def initialize(bombs, width, height = width)
+  def initialize(bombs, width, height)
     @board = make_board(width, height)
     @width, @height = width, height
     @positions, @nodes = [], []
@@ -24,7 +25,8 @@ class Board
   end
 
   def render
-    puts @board.map { |row| row.map { |node| node.display_value } }.map(&:join)
+    display_board = @board.map { |row| row.map { |node| node.display_value } }
+    puts grid_helper(display_board).map(&:join)
   end
 
   def solved?
@@ -68,8 +70,24 @@ class Board
     end
   end
 
+  def grid_helper(display_board)
+    board_rows = display_board.length
+    board_cols = display_board[0].length
+    top_row = [" "]
+    (0...board_cols).each do |num|
+      top_row << " #{num.to_s.colorize(:red)} " if num < 10
+      top_row << " #{num.to_s.colorize(:red)}" if num >= 10
+    end
+    display_board.unshift(top_row)
+    (1..board_rows).each do |num|
+      display_board[num].unshift("#{(num - 1).to_s.colorize(:red)} ") if num < 11
+      display_board[num].unshift("#{(num - 1).to_s.colorize(:red)}") if num >= 11
+    end
+    return display_board
+  end
+
 end
 
-temp = Board.new(25, 20)
+temp = Board.new(25, 20, 20)
 p temp.bomb_positions
 temp.render
