@@ -2,15 +2,17 @@ require_relative "node"
 
 class Board
 
-  attr_reader :board, :positions
+  attr_reader :board, :positions, :bomb_positions
 
   def initialize(bombs, width, height = width)
     @board = make_board(width, height)
     @width, @height = width, height
-    @positions = []
+    @positions, @nodes = [], []
     @bombs = bombs
+    @bomb_positions
     populate_nodes
     add_bombs(@bombs)
+    check_neighbours_for_bombs
   end
   
   def [](row, col)
@@ -32,20 +34,33 @@ class Board
       row.each_with_index do |spot, spot_idx|
         position = [row_idx, spot_idx]
         @positions << position
-        @board[row_idx][spot_idx] = Node.new(position, @width, @height)
+        new_node = Node.new(position, @width, @height)
+        @nodes << new_node
+        @board[row_idx][spot_idx] = new_node
       end
     end
   end
 
   def add_bombs(bombs)
     bomb_positions = @positions.sample(bombs)
-    p bomb_positions
+    @bomb_positions = bomb_positions
     bomb_positions.each do |position|
       @board[position[0]][position[1]].bomb = true
+    end
+  end
+
+  def check_neighbours_for_bombs
+    @bomb_positions.each do |position|
+      @nodes.each do |node|
+        if node.neighbours.include?(position)
+          node.bombed_neighbours << position
+        end
+      end
     end
   end
 
 end
 
 temp = Board.new(5, 3, 5)
+p temp.bomb_positions
 p temp.board
