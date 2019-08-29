@@ -23,6 +23,21 @@ class Board
     @board[row][col][value]
   end
 
+  def render
+    rendered_board = make_board(@width, @height)
+    @board.each_with_index do |row, row_idx|
+      row.each_with_index do |spot, spot_idx|
+        if !spot.revealed
+          rendered_board[row_idx][spot_idx] = " * "
+        end
+        if spot.bomb
+          rendered_board[row_idx][spot_idx] = " B "
+        end
+      end
+    end
+    puts rendered_board.map(&:join)
+  end
+
   private
 
   def make_board(width, height)
@@ -61,6 +76,6 @@ class Board
 
 end
 
-temp = Board.new(5, 3, 5)
+temp = Board.new(5, 9)
 p temp.bomb_positions
-p temp.board
+temp.render
