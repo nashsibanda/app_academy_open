@@ -3,7 +3,7 @@ require "colorize"
 
 class Board
 
-  attr_reader :board, :positions, :bomb_positions
+  attr_reader :board, :positions, :bomb_positions, :width, :height
 
   def initialize(bombs, width, height)
     @board = make_board(width, height)
@@ -21,7 +21,7 @@ class Board
   end
 
   def []=(row, col, value)
-    @board[row][col][value]
+    @board[row][col] = [value]
   end
 
   def render
@@ -88,6 +88,6 @@ class Board
 
 end
 
-temp = Board.new(25, 20, 20)
-p temp.bomb_positions
-temp.render
+# temp = Board.new(25, 20, 20)
+# p temp.bomb_positions
+# temp.render
