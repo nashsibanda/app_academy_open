@@ -30,12 +30,16 @@ class Node
   end
 
   def display_value
-    if @bomb
-      @display = " B "
+    if flagged
+      return " F "
+    elsif !revealed
+      return " * "
+    elsif @bomb
+      return " B "
     elsif @bombed_neighbours.length == 0
-      @display = " - "
+      return " - "
     else
-      @display = " #{@bombed_neighbours.length} "
+      return " #{@bombed_neighbours.length} "
     end
   end
 
