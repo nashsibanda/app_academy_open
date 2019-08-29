@@ -24,18 +24,11 @@ class Board
   end
 
   def render
-    rendered_board = make_board(@width, @height)
-    @board.each_with_index do |row, row_idx|
-      row.each_with_index do |spot, spot_idx|
-        if !spot.revealed
-          rendered_board[row_idx][spot_idx] = " * "
-        end
-        if spot.bomb
-          rendered_board[row_idx][spot_idx] = " B "
-        end
-      end
-    end
-    puts rendered_board.map(&:join)
+    puts @board.map { |row| row.map { |node| node.display_value } }.map(&:join)
+  end
+
+  def solved?
+    @board.all? { |row| row.all? { |node| !node.bomb && node.revealed } }
   end
 
   private
@@ -70,12 +63,13 @@ class Board
         if node.neighbours.include?(position)
           node.bombed_neighbours << position
         end
+        node.display_value
       end
     end
   end
 
 end
 
-temp = Board.new(5, 9)
+temp = Board.new(25, 20)
 p temp.bomb_positions
 temp.render
