@@ -1,6 +1,6 @@
 class Node
 
-  attr_reader :bomb, :flagged, :position, :neighbours,  :revealed
+  attr_reader :bomb, :flagged, :position, :neighbours, :revealed, :display
   attr_accessor :bomb, :flagged, :bombed_neighbours
   
   def initialize(position, width, height)
@@ -10,6 +10,7 @@ class Node
     @neighbours = calc_neighbours(width, height)
     @bombed_neighbours = []
     @revealed = false
+    @display
   end
 
   def to_s
@@ -28,12 +29,32 @@ class Node
     @revealed = true
   end
 
+  def display_value
+    if @bomb
+      @display = " B "
+    elsif @bombed_neighbours.length == 0
+      @display = " - "
+    else
+      @display = " #{@bombed_neighbours.length} "
+    end
+  end
+
   private
 
   def calc_neighbours(width, height)
-    neighbours = [[@position[0], @position[1] - 1], [@position[0], @position[1] + 1], [@position[0] - 1, @position[1]], [@position[0] + 1, @position[1]]]
+    neighbours = [
+      [@position[0], @position[1] - 1], 
+      [@position[0], @position[1] + 1], 
+      [@position[0] - 1, @position[1]], 
+      [@position[0] + 1, @position[1]],
+      [@position[0] - 1, @position[1] - 1], 
+      [@position[0] + 1, @position[1] - 1], 
+      [@position[0] - 1, @position[1] + 1], 
+      [@position[0] + 1, @position[1] + 1]
+    ]
     neighbours.delete_if { |coords| !coords[0].between?(0, height) || !coords[1].between?(0, width) }
     neighbours
   end
+
 
 end
