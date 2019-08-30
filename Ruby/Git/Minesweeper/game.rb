@@ -11,35 +11,56 @@ class Game
   end
 
   def run
-    until solved?
-      # p @board.nodes
+    until game_over?
       render_board
       turn = player_turn
       position = [turn[0], turn[1]]
       action = turn[2]
       selected_node = @board[position[0], position[1]]
-      # selected_node.action(action)
       if action == "r"
         reveal_empty_neighbours(selected_node)
       else
         selected_node.action(action)
       end
     end
+    return true
+  end
+
+  
+  def solved?
+    if @board.solved?
     flag_all_bombs
     render_board
     puts "solved!"
     return true
+    end
+    false
+  end
+  
+  def lose?
+    if @board.lose?
+      reveal_all
+      render_board
+      puts "You lose!"
+      return true
+    end
+    false
+  end
+  
+  def game_over?
+    self.solved? || self.lose?
   end
 
   private
 
-  def solved?
-    @board.solved?
-  end
-
   def render_board
     @board.render
   end
+
+  def reveal_all
+    @board.reveal_all
+  end
+
   def flag_all_bombs
     @board.flag_all_bombs
   end
