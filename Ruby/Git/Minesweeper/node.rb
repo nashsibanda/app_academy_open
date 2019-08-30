@@ -18,7 +18,7 @@ class Node
   end
 
   def inspect
-    { @position => @bombed_neighbours, "bomb" => @bomb }.inspect
+    { "Node #{@position}'s bombed neighbours'" => @bombed_neighbours, "bomb" => @bomb, "revealed?" => @revealed }.inspect
   end
 
   def flag_toggle
@@ -26,7 +26,7 @@ class Node
   end
 
   def reveal
-    @revealed = true
+    @revealed = true if @flagged == false
   end
 
   def display_value
@@ -40,6 +40,15 @@ class Node
       return " - "
     else
       return " #{@bombed_neighbours.length} "
+    end
+  end
+
+  def action(action)
+    case action
+    when "r"
+      reveal
+    when "f"
+      flag_toggle
     end
   end
 
