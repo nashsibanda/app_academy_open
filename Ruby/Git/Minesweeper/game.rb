@@ -82,5 +82,5 @@ class Game
 
 end
 
-temp = Game.new(1, 4)
+temp = Game.new(3, 8)
 temp.run
