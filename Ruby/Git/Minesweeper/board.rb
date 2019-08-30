@@ -3,7 +3,7 @@ require "colorize"
 
 class Board
 
-  attr_reader :board, :positions, :bomb_positions, :width, :height
+  attr_reader :board, :positions, :bomb_positions, :width, :height, :nodes
 
   def initialize(bombs, width, height)
     @board = make_board(width, height)
@@ -30,7 +30,7 @@ class Board
   end
 
   def solved?
-    @board.all? { |row| row.all? { |node| !node.bomb && node.revealed } }
+    @nodes.all? { |node| (node.bomb && !node.revealed) || node.revealed }
   end
 
   private
@@ -63,7 +63,7 @@ class Board
     @bomb_positions.each do |position|
       @nodes.each do |node|
         if node.neighbours.include?(position)
-          node.bombed_neighbours << position
+          node.bombed_neighbours << @board[position[0], position[1]]
         end
         node.display_value
       end
@@ -73,7 +73,7 @@ class Board
   def grid_helper(display_board)
     board_rows = display_board.length
     board_cols = display_board[0].length
-    top_row = [" "]
+    top_row = ["  "]
     (0...board_cols).each do |num|
       top_row << " #{num.to_s.colorize(:red)} " if num < 10
       top_row << " #{num.to_s.colorize(:red)}" if num >= 10
