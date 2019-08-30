@@ -1,6 +1,7 @@
 require_relative "board"
 require_relative "player"
 require "colorize"
+require "byebug"
 
 class Game
   
@@ -11,13 +12,22 @@ class Game
 
   def run
     until solved?
+      # p @board.nodes
       render_board
       turn = player_turn
       position = [turn[0], turn[1]]
       action = turn[2]
-      @board[position[0], position[1]].action(action)
-      reveal_empty_neighbours(position)
+      selected_node = @board[position[0], position[1]]
+      # selected_node.action(action)
+      if action == "r"
+        reveal_empty_neighbours(selected_node)
+      else
+        selected_node.action(action)
+      end
     end
+    render_board
+    puts "solved!"
+    return true
   end
 
   private
@@ -54,7 +64,19 @@ class Game
     false
   end
 
+  def reveal_empty_neighbours(node)
+    # debugger
+    return if node == nil || node.revealed
+    node.action("r")
+    return if node.display_value != " - "
+    node.neighbours.each do |position|
+      next if !valid_coords?(position)
+      neighbour = @board[position[0], position[1]]
+      reveal_empty_neighbours(neighbour)
+    end
+  end
+
 end
 
-temp = Game.new(25, 20)
+temp = Game.new(1, 4)
 temp.run
