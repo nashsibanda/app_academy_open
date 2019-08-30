@@ -33,6 +33,10 @@ class Board
     @nodes.all? { |node| (node.bomb && !node.revealed) || node.revealed }
   end
 
+  def flag_all_bombs
+    @nodes.each { |node| node.flagged = true if node.bomb}
+  end
+
   private
 
   def make_board(width, height)
