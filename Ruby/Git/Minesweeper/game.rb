@@ -25,6 +25,7 @@ class Game
         selected_node.action(action)
       end
     end
+    flag_all_bombs
     render_board
     puts "solved!"
     return true
@@ -38,6 +39,9 @@ class Game
 
   def render_board
     @board.render
+  end
+  def flag_all_bombs
+    @board.flag_all_bombs
   end
 
   def player_turn
