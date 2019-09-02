@@ -96,30 +96,6 @@ class Minesweeper
     end
   end
 
-  def valid_player_type?(player_type)
-    valid_types = ["a", "h"]
-    return valid_types.include?(player_type)
-  end
-
-  def player_type_label(player_type)
-    case player_type
-    when "a"
-      return "an AI"
-    when "h"
-      return "a Human"
-    end
-  end
-
-  def player(player_type)
-    case player_type
-    when "h"
-      @game.play
-    when "a"
-      @game.solve
-    end
-  end
-
-
 end
 
 program = Minesweeper.new
