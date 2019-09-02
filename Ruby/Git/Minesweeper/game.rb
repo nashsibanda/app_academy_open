@@ -2,6 +2,7 @@ require_relative "board"
 require_relative "player"
 require "colorize"
 require "byebug"
+require "yaml"
 
 class Game
   
@@ -70,7 +71,7 @@ class Game
   def player_turn
     coords_input = @player.coords
     return save_game if coords_input == "s"
-    coords = @player.coords.split(",").map(&:to_i)
+    coords = coords_input.split(",").map(&:to_i)
     until valid_coords?(coords)
       puts "This is an invalid input. Please try again."
       coords = @player.coords.split(",")
@@ -94,7 +95,12 @@ class Game
   end
 
   def save_game
-    puts "saved!"
+    puts "Please enter a name for your savefile."
+    puts
+    save_file_name = gets.chomp
+    puts "Saving game with filename #{save_file_name}....."
+    File.open("./saves/#{save_file_name}.yml", "w") { |file| file.write(self.to_yaml) }
+    puts "...Done!"
     sleep(1)
     return "saved"
   end
