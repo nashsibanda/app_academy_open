@@ -2,7 +2,8 @@ class Player
   
   def coords
     puts "Please choose coordinates. Example: for the spot at row 5, column 6, type '5,6':"
-    return gets.chomp
+    puts "Enter 's' at any time to save your game."
+    return gets.chomp.downcase
   end
 
   def action

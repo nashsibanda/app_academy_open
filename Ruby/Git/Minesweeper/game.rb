@@ -15,6 +15,7 @@ class Game
       system("clear")
       render_board
       turn = player_turn
+      next if turn == "saved"
       position = [turn[0], turn[1]]
       action = turn[2]
       selected_node = @board[position[0], position[1]]
@@ -67,6 +68,8 @@ class Game
   end
 
   def player_turn
+    coords_input = @player.coords
+    return save_game if coords_input == "s"
     coords = @player.coords.split(",").map(&:to_i)
     until valid_coords?(coords)
       puts "This is an invalid input. Please try again."
@@ -90,6 +93,12 @@ class Game
     false
   end
 
+  def save_game
+    puts "saved!"
+    sleep(1)
+    return "saved"
+  end
+
   def reveal_empty_neighbours(node)
     # debugger
     return if node == nil || node.revealed
@@ -103,3 +112,6 @@ class Game
   end
 
 end
+
+temp = Game.new(3, 8)
+temp.run
