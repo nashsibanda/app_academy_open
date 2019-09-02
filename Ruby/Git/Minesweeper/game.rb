@@ -12,6 +12,7 @@ class Game
 
   def run
     until game_over?
+      system("clear")
       render_board
       turn = player_turn
       position = [turn[0], turn[1]]
@@ -102,6 +103,3 @@ class Game
   end
 
 end
-
-temp = Game.new(3, 8)
-temp.run
