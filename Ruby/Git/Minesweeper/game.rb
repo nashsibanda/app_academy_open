@@ -8,6 +8,7 @@ class Game
   def initialize(bombs, width, height = width)
     @board = Board.new(bombs, width, height)
     @player = Player.new
+    @save_name = "unsaved"
   end
 
   def run
@@ -94,19 +95,28 @@ class Game
   end
 
   def save_game
+    puts
     puts "Please enter a name for your savefile. Uppercase letters will be converted to lowercase."
+    puts "Current savefile: #{@save_name}"
     puts
     save_file_name = gets.chomp.downcase
+    until valid_save_file_name?(save_file_name)
+      puts "Sorry, that is a system reserved filename. Please choose another one:"
+      puts
+      save_file_name = gets.chomp.downcase
+    end
     puts
     existing_saves = Dir.entries("./saves").delete_if{ |file| !file.include?(".yml") }.map!{ |file| file[0...-4] }
     if existing_saves.include?(save_file_name)
       puts "WARNING: A file with this name already exists. Are you sure you want to overwrite this file?"
       puts "Enter 'y' to overwrite, or 'n' to choose a different filename"
+      puts
       unless confirm
-        self.save_game
+        save_game
       end
     end
     puts "Saving game with filename #{save_file_name}....."
+    @save_name = save_file_name
     File.open("./saves/#{save_file_name}.yml", "w") { |file| file.write(self.to_yaml) }
     puts "...Done!"
     sleep(1)
@@ -138,7 +148,14 @@ class Game
     end
   end
 
+  def valid_save_file_name?(save_file_name)
+    if save_file_name == "new game" || save_file_name == "unsaved"
+      return false
+    end
+    true
+  end
+
 end
 
-temp = Game.new(3, 8)
-temp.run
+# temp = Game.new(3, 8)
+# temp.run
