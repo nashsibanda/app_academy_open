@@ -41,11 +41,11 @@ class Board
     @nodes.each { |node| node.flagged = true if node.bomb}
   end
 
+  private
+  
   def reveal_all
     @nodes.each { |node| node.reveal }
   end
-
-  private
 
   def make_board(width, height)
     board = Array.new (height) { Array.new(width, []) }
