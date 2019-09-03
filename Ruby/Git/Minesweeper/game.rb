@@ -1,7 +1,6 @@
 require_relative "board"
 require_relative "player"
 require "colorize"
-require "byebug"
 require "yaml"
 
 class Game
@@ -95,9 +94,18 @@ class Game
   end
 
   def save_game
-    puts "Please enter a name for your savefile."
+    puts "Please enter a name for your savefile. Uppercase letters will be converted to lowercase."
     puts
-    save_file_name = gets.chomp
+    save_file_name = gets.chomp.downcase
+    puts
+    existing_saves = Dir.entries("./saves").delete_if{ |file| !file.include?(".yml") }.map!{ |file| file[0...-4] }
+    if existing_saves.include?(save_file_name)
+      puts "WARNING: A file with this name already exists. Are you sure you want to overwrite this file?"
+      puts "Enter 'y' to overwrite, or 'n' to choose a different filename"
+      unless confirm
+        self.save_game
+      end
+    end
     puts "Saving game with filename #{save_file_name}....."
     File.open("./saves/#{save_file_name}.yml", "w") { |file| file.write(self.to_yaml) }
     puts "...Done!"
@@ -105,8 +113,21 @@ class Game
     return "saved"
   end
 
+  def confirm
+    confirm = gets.chomp.downcase
+    case confirm
+    when "y"
+      return true
+    when "n"
+      return false
+    else
+      puts "I'm not sure what that means. Please enter 'y' or 'n' to continue."
+      self.confirm
+      # false
+    end 
+  end
+
   def reveal_empty_neighbours(node)
-    # debugger
     return if node == nil || node.revealed
     node.action("r")
     return if node.display_value != " - "
