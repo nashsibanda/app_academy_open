@@ -13,3 +13,5 @@ Projects completed so far:
 - [Ghost](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Enumerables%20And%20Debugging/ghost)
 - [Memory](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Reference/Memory%20Puzzle)
 - [Sudoku](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Reference/Sudoku)
+- [Word Chainer](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Recursion/Word%20Chains)
+- [Minesweeper](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Git/Minesweeper)
