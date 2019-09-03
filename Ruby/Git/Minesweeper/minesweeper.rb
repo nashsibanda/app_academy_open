@@ -6,6 +6,7 @@ class Minesweeper
     @game
     @width
     @bombs
+    @game_type
   end
 
   def new_game
@@ -17,7 +18,21 @@ class Minesweeper
     puts "***********************************"
     sleep(1.5)
     puts
+    puts "Would you like to start a new game, or load a save file?"
+    puts "Please enter 'n' for a new game, or 'l' to load a save file:"
     puts
+    @game_type = gets.chomp.downcase
+    until valid_game_type?(@game_type)
+      puts "That's not a valid choice! Please choose from 1 to 3."
+      @game_type = gets.chomp.downcase
+    end
+    if @game_type == "l"
+      load_return = load_game
+      unless load_return == "new game"
+        return
+      end
+    end
+    puts 
     puts "How wide would you like the Minesweeper board to be?"
     puts "Please enter a number from 1-3:"
     puts
@@ -54,6 +69,26 @@ class Minesweeper
     end
   end
   
+  def load_game
+    puts "Please select a savefile, or enter 'new game' to start a new game:"
+    puts
+    saves = Dir.entries("./saves").delete_if{ |file| !file.include?(".yml") }.map!{ |file| file[0...-4] }
+    puts saves
+    puts
+    save_file = gets.chomp.downcase
+    puts
+    return save_file if save_file == "new game"
+    until valid_savefile?(save_file)
+      puts "That file doesn't exist! Please select a savefile, or enter 'new game' to start a new game:"
+      puts
+      save_file = gets.chomp.downcase
+      return save_file if save_file == "new game"
+    end
+    save_file = File.read("./saves/#{save_file}.yml")
+    @game = YAML.load(save_file)
+    @game.run
+  end
+
   private
 
   def confirm
@@ -69,9 +104,17 @@ class Minesweeper
       # false
     end 
   end
+
+  def valid_game_type?(game_type)
+    return ["n", "l"].include?(game_type)
+  end
   
   def valid_choice?(choice)
     return (1..3).to_a.include?(choice)
+  end
+
+  def valid_savefile?(save_file)
+    File.file?("./saves/#{save_file}.yml")
   end
 
   def width_define(choice)
@@ -95,6 +138,7 @@ class Minesweeper
       return (@width ** 2) / 7
     end
   end
+
 
 end
 
