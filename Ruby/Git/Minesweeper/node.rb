@@ -1,3 +1,5 @@
+require "colorize"
+
 class Node
 
   attr_reader :bomb, :flagged, :position, :neighbours, :revealed, :display
@@ -31,15 +33,15 @@ class Node
 
   def display_value
     if flagged
-      return " F "
+      return " F ".colorize(:yellow)
     elsif !revealed
       return " * "
     elsif @bomb
-      return " B "
+      return " B ".colorize(:red)
     elsif @bombed_neighbours.length == 0
       return " - "
     else
-      return " #{@bombed_neighbours.length} "
+      return " #{@bombed_neighbours.length} ".colorize(:blue)
     end
   end
 
