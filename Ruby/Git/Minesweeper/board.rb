@@ -87,13 +87,13 @@ class Board
     board_cols = display_board[0].length
     top_row = ["  "]
     (0...board_cols).each do |num|
-      top_row << " #{num.to_s.colorize(:red)} " if num < 10
-      top_row << " #{num.to_s.colorize(:red)}" if num >= 10
+      top_row << " #{num.to_s.colorize(:green)} " if num < 10
+      top_row << " #{num.to_s.colorize(:green)}" if num >= 10
     end
     display_board.unshift(top_row)
     (1..board_rows).each do |num|
-      display_board[num].unshift("#{(num - 1).to_s.colorize(:red)} ") if num < 11
-      display_board[num].unshift("#{(num - 1).to_s.colorize(:red)}") if num >= 11
+      display_board[num].unshift("#{(num - 1).to_s.colorize(:green)} ") if num < 11
+      display_board[num].unshift("#{(num - 1).to_s.colorize(:green)}") if num >= 11
     end
     return display_board
   end
