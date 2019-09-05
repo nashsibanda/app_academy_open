@@ -1,6 +1,9 @@
 require_relative "polytreenode"
+require "byebug"
 
 class KnightPathFinder
+  DELTAS = [[-1, -2], [-1, 2], [1, -2], [1, 2], [-2, -1], [-2, 1], [2, -1], [2, 1]]
+  
   attr_reader :nodes
   
   def initialize(start_position)
@@ -31,7 +34,15 @@ class KnightPathFinder
   end
 
   def give_children_to_nodes
-    
+    # debugger
+    @nodes.each do |node|
+      root_position = node.position
+      nearby_positions = DELTAS.map { |delta| delta = [(root_position[0] + delta[0]), (root_position[1] + delta[1])] }
+      child_nodes = @nodes.select { |node| nearby_positions.include?(node.position) }
+      # child_nodes.each { |child| node.children << child }
+      node.children = child_nodes
+      # p node
+    end
   end
 
 end
