@@ -4,13 +4,38 @@ require "byebug"
 class KnightPathFinder
   DELTAS = [[-1, -2], [-1, 2], [1, -2], [1, 2], [-2, -1], [-2, 1], [2, -1], [2, 1]]
   
-  attr_reader :nodes
+  attr_reader :nodes, :start_position, :considered_positions
   
   def initialize(start_position)
-    @start_position = start_position
     @valid_positions = valid_positions
     @nodes = populate_nodes
+    @start_position = select_node(start_position)
+    @considered_positions = [@start_position]
     give_children_to_nodes
+  end
+
+  def build_move_tree
+    # debugger
+    queue = [@start_position]
+    until queue.empty?
+      node = queue.shift
+      queue += new_move_positions(node)
+    end
+  end
+
+  def self.valid_moves(node)
+    return node.children
+  end
+
+  def new_move_positions(node)
+    # node = select_node(position)
+    new_moves = self.class.valid_moves(node).reject { |child| @considered_positions.include?(child) }
+    @considered_positions += new_moves
+    new_moves
+  end
+
+  def select_node(position)
+    return @nodes.select { |node| node.position == position }.first
   end
 
   private
@@ -48,4 +73,10 @@ class KnightPathFinder
 end
 
 temp = KnightPathFinder.new([0, 0])
-p temp.nodes
+# p temp.nodes
+puts
+p temp.start_position
+p temp.new_move_positions(temp.select_node([1, 2]))
+puts
+temp.build_move_tree
+p temp.considered_positions
