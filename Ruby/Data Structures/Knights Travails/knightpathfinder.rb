@@ -13,7 +13,7 @@ class KnightPathFinder
   end
 
   def find_path(target_position)
-    target_node = @root_node.bfs(target_position)
+    target_node = @root_node.dfs(target_position)
     trace_path_back(target_node)
   end
   
@@ -56,4 +56,5 @@ end
 
 temp = KnightPathFinder.new([0, 0])
 # temp.build_move_tree
-p temp.find_path([7, 6])
+p temp.find_path([6,2])
+p temp.find_path([7,6])
