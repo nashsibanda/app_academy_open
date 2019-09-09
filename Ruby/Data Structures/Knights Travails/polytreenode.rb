@@ -10,7 +10,7 @@ class PolyTreeNode
   end
 
   def inspect
-    { "Position" => @position, "Children" => @children.map { |child| child.position } }
+    { "Position" => @position, "Children" => @children.map { |child| child.position }, "Parent" => @parent }
   end
 
   def parent=(node)
