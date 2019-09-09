@@ -1,10 +1,9 @@
 require_relative "polytreenode"
-require "byebug"
 
 class KnightPathFinder
   DELTAS = [[-1, -2], [-1, 2], [1, -2], [1, 2], [-2, -1], [-2, 1], [2, -1], [2, 1]]
   
-  attr_reader :nodes, :start_position, :considered_positions
+  attr_reader :start_position, :considered_positions
   
   def initialize(start_position)
     @root_node = PolyTreeNode.new(start_position)
@@ -55,6 +54,5 @@ class KnightPathFinder
 end
 
 temp = KnightPathFinder.new([0, 0])
-# temp.build_move_tree
 p temp.find_path([6,2])
 p temp.find_path([7,6])
