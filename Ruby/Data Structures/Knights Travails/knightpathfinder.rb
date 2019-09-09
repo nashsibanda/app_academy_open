@@ -12,11 +12,20 @@ class KnightPathFinder
     build_move_tree
   end
 
-  def find_path(target)
-    
+  def find_path(target_position)
+    target_node = @root_node.bfs(target_position)
+    trace_path_back(target_node)
   end
   
   private
+
+  def trace_path_back(target_node)
+    parents_and_children_nodes = [target_node]
+    until parents_and_children_nodes.include?(@root_node)
+      parents_and_children_nodes << parents_and_children_nodes.last.parent
+    end
+    path = parents_and_children_nodes.reverse.map { |node| node.position }
+  end
 
   def build_move_tree
     nodes = [@root_node]
@@ -47,4 +56,4 @@ end
 
 temp = KnightPathFinder.new([0, 0])
 # temp.build_move_tree
-p temp.considered_positions
+p temp.find_path([7, 6])
