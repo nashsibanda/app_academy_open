@@ -23,7 +23,7 @@ class TicTacToeNode
     if @next_mover_mark == evaluator
       children.any? { |child| child.winning_node?(evaluator) }
     else
-      children.any? { |child| child.winning_node?(evaluator) }
+      children.all? { |child| child.winning_node?(evaluator) }
     end
   end
 
