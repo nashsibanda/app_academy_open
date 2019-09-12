@@ -29,6 +29,13 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
+    hand, i, selected_cup = [], 1, @cups[start_pos]
+    selected_cup.length.times { |x| hand.push(selected_cup.shift) }
+    hand.length.times do |time|
+      next_cup = @cups[(start_pos + i) % @cups.length]
+      next_cup.push(hand.shift)
+      i += 1
+    end
   end
 
   def next_turn(ending_cup_idx)
