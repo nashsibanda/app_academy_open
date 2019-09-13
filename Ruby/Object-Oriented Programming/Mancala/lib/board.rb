@@ -42,10 +42,17 @@ class Board
         i += 2
       end
     end
+    render
+    ending_cup_idx = (start_pos + i - 1) % @cups.length
+    ending_cup_idx == (start_pos + i) % @cups.length if ending_cup_idx == 13 || 6
+    return next_turn(ending_cup_idx, current_player_name)
   end
 
-  def next_turn(ending_cup_idx)
+  def next_turn(ending_cup_idx, current_player)
     # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
+    return :prompt if ending_cup_idx == points_cup_index(current_player)
+    return :switch if @cups[ending_cup_idx].length == 1
+    return ending_cup_idx if @cups[ending_cup_idx].length > 1
   end
 
   def render
@@ -57,6 +64,10 @@ class Board
   end
 
   def one_side_empty?
+    if @cups[0..5].all?(&:empty?) || @cups[7..12].all?(&:empty?)
+      return true
+    end
+    false
   end
 
   def winner
@@ -68,6 +79,15 @@ class Board
       return 13
     when @player2
       return 6
+    end
+  end
+
+  def points_cup_index(current_player)
+    case current_player
+    when @player1
+      return 6
+    when @player2
+      return 13
     end
   end
 
