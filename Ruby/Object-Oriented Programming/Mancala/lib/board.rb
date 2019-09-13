@@ -3,6 +3,7 @@ class Board
 
   def initialize(name1, name2)
     @cups = Array.new(14) { Array.new }
+    @player1, @player2 = name1, name2
     place_stones
   end
 
@@ -29,12 +30,17 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
-    hand, i, selected_cup = [], 1, @cups[start_pos]
+    hand, i, selected_cup, skipped_cup = [], 1, @cups[start_pos], skipped_cup_index(current_player_name)
     selected_cup.length.times { |x| hand.push(selected_cup.shift) }
     hand.length.times do |time|
-      next_cup = @cups[(start_pos + i) % @cups.length]
-      next_cup.push(hand.shift)
-      i += 1
+      cup_index = (start_pos + i) % @cups.length
+      if cup_index != skipped_cup
+        @cups[cup_index].push(hand.shift) 
+        i += 1
+      else
+        @cups[(cup_index + 1) % @cups.length].push(hand.shift) 
+        i += 2
+      end
     end
   end
 
@@ -55,4 +61,14 @@ class Board
 
   def winner
   end
+
+  def skipped_cup_index(current_player)
+    case current_player
+    when @player1
+      return 13
+    when @player2
+      return 6
+    end
+  end
+
 end
