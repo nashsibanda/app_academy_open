@@ -71,6 +71,10 @@ class Board
   end
 
   def winner
+    if @cups[6].length == @cups[13].length
+      return :draw
+    end
+    return @cups[6].length > @cups[13].length ? @player1 : @player2
   end
 
   def skipped_cup_index(current_player)
