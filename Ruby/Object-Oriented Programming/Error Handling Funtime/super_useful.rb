@@ -46,14 +46,29 @@ def feed_me_a_fruit
   end
 end
 
-p feed_me_a_fruit
-
 # PHASE 4
+class NotKnownForLongError < StandardError
+  def message
+    "You need to know each other for at least 5 years to be best friends - EVERYBODY knows that, silly!"
+  end
+end
+
+class StringsTooShort < StandardError
+  def message
+    "Please make sure you've got something entered for your name and your favourite pastime. I don't feel like you're really trying, to be honest."
+  end
+end
+
 class BestFriend
   def initialize(name, yrs_known, fav_pastime)
     @name = name
     @yrs_known = yrs_known
     @fav_pastime = fav_pastime
+    if yrs_known < 5
+      raise NotKnownForLongError
+    elsif name.length <= 0 || fav_pastime.length <= 0
+      raise StringsTooShort
+    end
   end
 
   def talk_about_friendship
