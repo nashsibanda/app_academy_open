@@ -11,7 +11,11 @@ class Piece
   end
 
   def valid_move?
-    return true    
+    true    
+  end
+
+  def empty?
+    false
   end
   
 end
