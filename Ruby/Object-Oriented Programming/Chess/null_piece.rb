@@ -3,9 +3,19 @@ require "singleton"
 
 class NullPiece < Piece
   include Singleton
+  attr_reader :symbol
   
   def initialize
-    super(:null)
+    @color = :null
+    @symbol = " "
+  end
+
+  def empty?
+    return true
+  end
+
+  def moves
+    return []
   end
 
 end
