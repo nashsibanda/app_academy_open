@@ -34,8 +34,8 @@ class Board
       if r_idx.between?(0,1) || r_idx.between?(6,7)
         row.each_index do |s_idx|
           position = [r_idx, s_idx]
-          self[position] = Piece.new(:white) if r_idx.between?(0,1)
-          self[position] = Piece.new(:black) if r_idx.between?(6,7)
+          self[position] = Piece.new(:white, self, position) if r_idx.between?(0,1)
+          self[position] = Piece.new(:black, self, position) if r_idx.between?(6,7)
         end
       end
     end
