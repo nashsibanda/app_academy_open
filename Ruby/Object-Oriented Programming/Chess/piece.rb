@@ -7,7 +7,11 @@ class Piece
   end
 
   def inspect
-    "#{@color.to_s.capitalize} Piece"
+    "#{@color.to_s.capitalize} #{self.symbol.to_s.capitalize}"
+  end
+
+  def symbol
+    :piece
   end
 
   def valid_move?

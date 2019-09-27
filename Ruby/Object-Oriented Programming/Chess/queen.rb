@@ -5,7 +5,7 @@ class Queen < Piece
   include Slideable
 
   def symbol
-    "Q"
+    return :queen
   end
   
   def move_dirs
@@ -15,5 +15,5 @@ class Queen < Piece
 
 end
 
-temp = Queen.new(:white, "board", [0, 0])
-p temp.move_dirs
+# temp = Queen.new(:white, "board", [0, 0])
+# p temp.move_dirs
