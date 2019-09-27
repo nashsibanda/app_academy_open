@@ -1,3 +1,5 @@
+require "byebug"
+
 module Slideable
   
   HORIZONTAL_DIRS = [[-1, 0], [0, -1], [1, 0], [0, 1]]
@@ -12,14 +14,30 @@ module Slideable
   end
 
   def moves
-    current_position = @position
+    # debugger
+    moves = []
+    move_dirs.each do |move_dir|
+      moves += grow_unblocked_moves_in_dir(move_dir[0], move_dir[1])
+    end
+    moves.uniq
   end
 
   private
 
   def move_dirs
-    directions = HORIZONTAL_DIRS + DIAGONAL_DIRS
-    directions
+    raise "Move_DirsNotImplemented"
   end
+
+  def grow_unblocked_moves_in_dir(dx, dy)
+    current_position = @position
+    new_position = [(@position[0] + dx), (@position[1] + dy)]
+    unblocked_moves = []
+    until !@board[new_position].is_a?(Piece) || !@board[new_position].empty?
+      unblocked_moves << new_position
+      new_position = [(new_position[0] + dx), (new_position[1] + dy)]
+    end
+    unblocked_moves
+  end
+
 
 end
