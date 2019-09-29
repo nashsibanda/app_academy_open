@@ -1,3 +1,5 @@
+require "byebug"
+
 class Pawn < Piece
   
   def symbol
@@ -10,6 +12,13 @@ class Pawn < Piece
 
   private
 
+  def at_start_row?
+    if @color == :white && @position[0] == 1
+      return true
+    end
+    false
+  end
+
   def forward_dir
     case @color
     when :white
@@ -20,10 +29,14 @@ class Pawn < Piece
   end
 
   def forward_steps
+    # debugger
     forward_steps = []
-    forward_steps << [(@position[0] + forward_dir), @position[1]]
-    if (@color == :white && @position[0] == 1) || (@color == :black && @position[0] == 6)
-      forward_steps << [(@position[0] + forward_dir + forward_dir), @position[1]]
+    step, double_step = [(@position[0] + forward_dir), @position[1]], [(@position[0] + forward_dir + forward_dir), @position[1]]
+    if @board[step].empty?
+      forward_steps << step
+      if at_start_row? && @board[double_step].empty?
+        forward_steps << double_step
+      end
     end
     return forward_steps
   end

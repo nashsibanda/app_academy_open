@@ -50,18 +50,23 @@ class Board
   def debug_add_knight
     pos = [2, 3]
     self[pos] = Queen.new(:white, self, pos)
+    pos2 = [1, 1]
+    pos3 = [2, 2]
+    self[pos2] = Pawn.new(:white, self, pos2)
+    self[pos3] = Pawn.new(:black, self, pos3)
   end
 
 end
 
 temp = Board.new
-p temp
+temp.rows.each { |row| puts row.map { |piece| piece.inspect }.join(" ") }
 pos = [2, 3]
 endpos = [6, 7]
+pawnpos = [1, 1]
 # p temp[pos].valid_moves
-p temp[pos].moves
-temp.move_piece(:white, pos, endpos)
-# p temp
-p temp[endpos].moves
-temp.move_piece(:white, endpos, pos)
-p temp
+# p temp[pos].moves
+# temp.move_piece(:white, pos, endpos)
+# # p temp
+# p temp[endpos].moves
+# temp.move_piece(:white, endpos, pos)
+p temp[pawnpos].move_dirs
