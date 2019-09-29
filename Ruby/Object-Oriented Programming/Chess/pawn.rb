@@ -6,8 +6,8 @@ class Pawn < Piece
     return :pawn
   end
 
-  def move_dirs
-    move_dirs = forward_steps + side_attacks
+  def moves
+    return forward_steps + side_attacks
   end
 
   private

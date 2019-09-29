@@ -7,9 +7,9 @@ module Stepable
       moves << move
     end
     moves.delete_if do |move|
-      return true if move.any? { |coord| coord < 0 || coord >= @board.rows.length }
+      move.any? { |coord| coord < 0 || coord >= @board.rows.length }
     end
-    moves
+    return moves
   end
 
   private
