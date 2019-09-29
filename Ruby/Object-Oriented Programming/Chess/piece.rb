@@ -1,5 +1,8 @@
 class Piece
 
+  attr_reader :color
+  attr_accessor :position
+
   def initialize(color, board, position)
     @color = color
     @board = board
@@ -14,8 +17,8 @@ class Piece
     :piece
   end
 
-  def valid_move?
-    true    
+  def valid_moves
+    return moves.select { |move| @board[move].color != @color }
   end
 
   def empty?
