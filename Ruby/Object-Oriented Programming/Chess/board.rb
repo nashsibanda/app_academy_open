@@ -7,7 +7,7 @@ class Board
     @rows = Array.new (8) { Array.new (8) { NullPiece.instance } }
     @sentinel = NullPiece.instance
     populate_pieces
-    debug_add_knight
+    # debug_add_knight
   end
 
   def [](position)
@@ -33,13 +33,42 @@ class Board
 
   def populate_pieces
     @rows.each_with_index do |row, r_idx|
-      if r_idx.between?(0,1) || r_idx.between?(6,7)
+      if r_idx == 0
         row.each_index do |s_idx|
-          position = [r_idx, s_idx]
-          self[position] = Piece.new(:white, self, position) if r_idx.between?(0,1)
-          self[position] = Piece.new(:black, self, position) if r_idx.between?(6,7)
+          position, color = [r_idx, s_idx], :white
+          self[position] = Rook.new(color, self, position) if s_idx == 0 || s_idx == 7
+          self[position] = Knight.new(color, self, position) if s_idx == 1 || s_idx == 6
+          self[position] = Bishop.new(color, self, position) if s_idx == 2 || s_idx == 5
+          self[position] = King.new(color, self, position) if s_idx == 3
+          self[position] = Queen.new(color, self, position) if s_idx == 4
+        end
+      elsif r_idx == 1
+        row.each_index do |s_idx|
+          position, color = [r_idx, s_idx], :white
+          self[position] = Pawn.new(color, self, position)
+        end
+      elsif r_idx == 6
+        row.each_index do |s_idx|
+          position, color = [r_idx, s_idx], :black
+          self[position] = Pawn.new(color, self, position)
+        end
+      elsif r_idx == 7
+        row.each_index do |s_idx|
+          position, color = [r_idx, s_idx], :black
+          self[position] = Rook.new(color, self, position) if s_idx == 0 || s_idx == 7
+          self[position] = Knight.new(color, self, position) if s_idx == 1 || s_idx == 6
+          self[position] = Bishop.new(color, self, position) if s_idx == 2 || s_idx == 5
+          self[position] = King.new(color, self, position) if s_idx == 3
+          self[position] = Queen.new(color, self, position) if s_idx == 4
         end
       end
+      # if r_idx.between?(0,1) || r_idx.between?(6,7)
+      #   row.each_index do |s_idx|
+      #     position = [r_idx, s_idx]
+      #     self[position] = Piece.new(:white, self, position) if r_idx.between?(0,1)
+      #     self[position] = Piece.new(:black, self, position) if r_idx.between?(6,7)
+      #   end
+      # end
     end
   end
 
@@ -47,20 +76,20 @@ class Board
     return true
   end
 
-  def debug_add_knight
-    pos = [2, 3]
-    self[pos] = Queen.new(:white, self, pos)
-    pos2 = [1, 1]
-    pos3 = [2, 2]
-    self[pos2] = Pawn.new(:white, self, pos2)
-    self[pos3] = Pawn.new(:black, self, pos3)
-  end
+  # def debug_add_knight
+  #   pos = [2, 3]
+  #   self[pos] = Queen.new(:white, self, pos)
+  #   pos2 = [1, 1]
+  #   pos3 = [2, 2]
+  #   self[pos2] = Pawn.new(:white, self, pos2)
+  #   self[pos3] = Pawn.new(:black, self, pos3)
+  # end
 
 end
 
 temp = Board.new
 temp.rows.each { |row| puts row.map { |piece| piece.inspect }.join(" ") }
-pos = [2, 3]
+pos = [0, 6]
 endpos = [6, 7]
 pawnpos = [1, 1]
 # p temp[pos].valid_moves
@@ -69,4 +98,5 @@ pawnpos = [1, 1]
 # # p temp
 # p temp[endpos].moves
 # temp.move_piece(:white, endpos, pos)
-p temp[pawnpos].move_dirs
+p temp[pos]
+p temp[pos].valid_moves
