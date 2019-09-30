@@ -24,6 +24,8 @@ class Board
       raise "TriedToMoveNullPiece"
     elsif !piece_in_hand.valid_moves.include?(end_pos)
       raise "InvalidMoveAttempted"
+    elsif piece_in_hand.color != color
+      raise "WrongColorSelected"
     end
     self[start_pos], self[end_pos] = NullPiece.instance, self[start_pos]
     self[end_pos].position = end_pos
