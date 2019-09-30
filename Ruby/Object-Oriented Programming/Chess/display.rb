@@ -1,5 +1,6 @@
 require_relative "cursor"
 require_relative "board"
+# require_relative "colors"
 
 class Display
   
@@ -14,11 +15,17 @@ class Display
       row.each_with_index do |piece, p_idx|
         pos = [r_idx, p_idx]
         if pos == @cursor.cursor_pos
-          if render_board[pos].class == NullPiece
-            render_board[pos] = "☐".colorize(:green)
+          if render_board[pos].class == NullPiece && @cursor.selected
+            render_board[pos] = "☐".colorize(cursor_color(:selected))
+          elsif render_board[pos].class == NullPiece
+            render_board[pos] = "☐".colorize(cursor_color(:hovered))
+          elsif @cursor.selected
+            piece.color = cursor_color(:selected)
           else
-            piece.color = :hovered
+            piece.color = cursor_color(:hovered)
           end
+        else
+          piece.color = cursor_color(piece.color)
         end
       end
       puts row.join(" ")
@@ -36,8 +43,19 @@ class Display
 
   private
 
-  def cursor_color
-    
+  def cursor_color(state = @color)
+    case state
+    when :hovered
+      :green
+    when :selected
+      :red
+    when :white
+      :yellow
+    when :black
+      :blue
+    when :null
+      :gray
+    end
   end
 
 end
