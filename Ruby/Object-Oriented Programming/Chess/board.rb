@@ -62,13 +62,6 @@ class Board
           self[position] = Queen.new(color, self, position) if s_idx == 4
         end
       end
-      # if r_idx.between?(0,1) || r_idx.between?(6,7)
-      #   row.each_index do |s_idx|
-      #     position = [r_idx, s_idx]
-      #     self[position] = Piece.new(:white, self, position) if r_idx.between?(0,1)
-      #     self[position] = Piece.new(:black, self, position) if r_idx.between?(6,7)
-      #   end
-      # end
     end
   end
 
@@ -90,7 +83,7 @@ end
 temp = Board.new
 temp.rows.each { |row| puts row.map { |piece| piece.inspect }.join(" ") }
 pos = [0, 6]
-endpos = [6, 7]
+endpos = [2, 7]
 pawnpos = [1, 1]
 # p temp[pos].valid_moves
 # p temp[pos].moves
@@ -100,3 +93,6 @@ pawnpos = [1, 1]
 # temp.move_piece(:white, endpos, pos)
 p temp[pos]
 p temp[pos].valid_moves
+temp.move_piece(:white, pos, endpos)
+p temp[pos]
+p temp[endpos]

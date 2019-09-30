@@ -1,4 +1,4 @@
-require "byebug"
+require_relative "piece"
 
 class Pawn < Piece
   
@@ -29,7 +29,6 @@ class Pawn < Piece
   end
 
   def forward_steps
-    # debugger
     forward_steps = []
     step, double_step = [(@position[0] + forward_dir), @position[1]], [(@position[0] + forward_dir + forward_dir), @position[1]]
     if @board[step].empty?
