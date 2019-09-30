@@ -45,11 +45,23 @@ class Board
         c_pos = [r_idx, s_idx]
         orig_piece = self[c_pos]
         c_class, c_color, c_position = orig_piece.class, orig_piece.color, orig_piece.position
-        next if c_class == NullPiece
-        cloned_board[c_pos] = c_class.new(c_color, cloned_board, c_position)
+        if c_class == NullPiece
+          cloned_board[c_pos] = c_class.instance
+        else
+          cloned_board[c_pos] = c_class.new(c_color, cloned_board, c_position)
+        end
       end
     end
     cloned_board
+  end
+
+  def in_check?(color)
+    king = select_pieces(color).select { |piece| piece.class == King }.first
+    p "KING: #{king}"
+    if select_pieces.any? { |piece| piece.valid_moves.include?(king.position) && piece.color != king.color }
+      return true
+    end
+    false
   end
 
   private
@@ -58,31 +70,31 @@ class Board
     @rows.each_with_index do |row, r_idx|
       if r_idx == 0
         row.each_index do |s_idx|
-          position, color = [r_idx, s_idx], :white
+          position, color = [r_idx, s_idx], :black
           self[position] = Rook.new(color, self, position) if s_idx == 0 || s_idx == 7
           self[position] = Knight.new(color, self, position) if s_idx == 1 || s_idx == 6
           self[position] = Bishop.new(color, self, position) if s_idx == 2 || s_idx == 5
-          self[position] = King.new(color, self, position) if s_idx == 3
-          self[position] = Queen.new(color, self, position) if s_idx == 4
+          self[position] = Queen.new(color, self, position) if s_idx == 3
+          self[position] = King.new(color, self, position) if s_idx == 4
         end
       elsif r_idx == 1
         row.each_index do |s_idx|
-          position, color = [r_idx, s_idx], :white
+          position, color = [r_idx, s_idx], :black
           self[position] = Pawn.new(color, self, position)
         end
       elsif r_idx == 6
         row.each_index do |s_idx|
-          position, color = [r_idx, s_idx], :black
+          position, color = [r_idx, s_idx], :white
           self[position] = Pawn.new(color, self, position)
         end
       elsif r_idx == 7
         row.each_index do |s_idx|
-          position, color = [r_idx, s_idx], :black
+          position, color = [r_idx, s_idx], :white
           self[position] = Rook.new(color, self, position) if s_idx == 0 || s_idx == 7
           self[position] = Knight.new(color, self, position) if s_idx == 1 || s_idx == 6
           self[position] = Bishop.new(color, self, position) if s_idx == 2 || s_idx == 5
-          self[position] = King.new(color, self, position) if s_idx == 3
-          self[position] = Queen.new(color, self, position) if s_idx == 4
+          self[position] = Queen.new(color, self, position) if s_idx == 3
+          self[position] = King.new(color, self, position) if s_idx == 4
         end
       end
     end
@@ -92,6 +104,33 @@ class Board
     return true
   end
 
+  def select_pieces(color = :all)
+    selection = []
+    if color == :all
+      rows.each do |row|
+        row.each do |piece|
+          selection << piece if piece.class != NullPiece
+        end
+      end
+      return selection
+    else
+      rows.each do |row|
+        row.each do |piece|
+          selection << piece if piece.color == color
+        end
+      end
+      return selection
+    end
+  end
+  
+  def select_all_pieces(color)
+    selection = []
+    rows.each do |row|
+      row.each do |piece|
+        selection << piece if piece.color == color
+      end
+    end
+  end
   # def debug_add_knight
   #   pos = [2, 3]
   #   self[pos] = Queen.new(:white, self, pos)
@@ -105,10 +144,10 @@ end
 
 # temp = Board.new
 # temp.rows.each { |row| puts row.map { |piece| piece.inspect }.join(" ") }
-# pos = [0, 6]
+# pos = [1, 6]
 # endpos = [2, 7]
 # pawnpos = [1, 1]
-# # p temp[pos].valid_moves
+# p temp[pos].moves
 # # p temp[pos].moves
 # # temp.move_piece(:white, pos, endpos)
 # # # p temp

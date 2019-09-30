@@ -13,7 +13,7 @@ class Pawn < Piece
   private
 
   def at_start_row?
-    if @color == :white && @position[0] == 1
+    if (@color == :white && @position[0] == 6) || (@color == :black && @position[0] == 1)
       return true
     end
     false
@@ -22,9 +22,9 @@ class Pawn < Piece
   def forward_dir
     case @color
     when :white
-      return 1
-    when :black
       return -1
+    when :black
+      return 1
     end    
   end
 
