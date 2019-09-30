@@ -64,6 +64,15 @@ class Board
     false
   end
 
+  def checkmate?(color)
+    if in_check?(color)
+      if select_pieces(color).all? { |piece| piece.valid_moves.empty? }
+        return true
+      end
+    end
+    false
+  end
+
   private
 
   def populate_pieces
