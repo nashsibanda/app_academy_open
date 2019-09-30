@@ -29,6 +29,11 @@ class Board
     self[end_pos].position = end_pos
   end
 
+  def valid_pos?(pos)
+    return true if self[pos]
+    false
+  end
+
   private
 
   def populate_pieces
