@@ -30,8 +30,10 @@ class Board
   end
 
   def valid_pos?(pos)
-    return true if self[pos]
-    false
+    if pos.any? { |coord| coord >= @rows.length || coord < 0 }
+      return false
+    end
+    true
   end
 
   def clone
