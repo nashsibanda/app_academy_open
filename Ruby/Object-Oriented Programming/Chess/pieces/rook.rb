@@ -5,7 +5,7 @@ class Rook < Piece
   include Slideable
 
   def symbol
-    return :rook
+    return "♜"
   end
   
   def move_dirs

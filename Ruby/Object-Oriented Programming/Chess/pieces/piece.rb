@@ -1,3 +1,5 @@
+require 'colorize'
+
 class Piece
 
   attr_reader :color
@@ -10,7 +12,7 @@ class Piece
   end
 
   def inspect
-    "#{@color.to_s.capitalize} #{self.symbol.to_s.capitalize}"
+    "#{self.symbol.to_s[0].capitalize.colorize(nicer_color)}"
   end
 
   def symbol
@@ -23,6 +25,19 @@ class Piece
 
   def empty?
     false
+  end
+
+  private
+
+  def nicer_color
+    case @color
+    when :white
+      :yellow
+    when :black
+      :blue
+    when :null
+      :gray
+    end
   end
   
 end

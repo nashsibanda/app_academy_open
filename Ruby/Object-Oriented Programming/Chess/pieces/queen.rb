@@ -5,7 +5,7 @@ class Queen < Piece
   include Slideable
 
   def symbol
-    return :queen
+    return '♛'
   end
   
   def move_dirs

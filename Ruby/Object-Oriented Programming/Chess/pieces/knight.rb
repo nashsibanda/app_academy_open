@@ -5,7 +5,7 @@ class Knight < Piece
   include Stepable
 
   def symbol
-    return :knight
+    return "♞"
   end
   
   def move_diffs

@@ -5,7 +5,7 @@ class Bishop < Piece
   include Slideable
 
   def symbol
-    return :bishop
+    return "♝"
   end
   
   def move_dirs

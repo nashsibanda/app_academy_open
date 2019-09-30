@@ -5,7 +5,7 @@ class King < Piece
   include Stepable
 
   def symbol
-    return :king
+    return "♚"
   end
   
   def move_diffs
