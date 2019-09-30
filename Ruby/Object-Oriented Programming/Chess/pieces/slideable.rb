@@ -29,7 +29,7 @@ module Slideable
     current_position = @position
     new_position = [(@position[0] + dx), (@position[1] + dy)]
     unblocked_moves = []
-    until !@board[new_position].is_a?(Piece) || new_position[0] < 0 || new_position[1] < 0
+    until !@board.valid_pos?(new_position) || !@board[new_position].is_a?(Piece) || new_position[0] < 0 || new_position[1] < 0
       unblocked_moves << new_position
       break if !@board[new_position].empty?
       new_position = [(new_position[0] + dx), (new_position[1] + dy)]

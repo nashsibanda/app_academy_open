@@ -43,8 +43,12 @@ class Pawn < Piece
   def side_attacks
     side_attacks = []
     left, right = [(@position[0] + forward_dir), (@position[1] - 1)], [(@position[0] + forward_dir), (@position[1] + 1)]
-    side_attacks << left if !@board[left].empty? && @board[left].color != @color
-    side_attacks << right if !@board[right].empty? && @board[right].color != @color
+    if @board.valid_pos?(left)
+      side_attacks << left if !@board[left].empty? && @board[left].color != @color
+    end
+    if @board.valid_pos?(right)
+      side_attacks << right if !@board[right].empty? && @board[right].color != @color
+    end
     side_attacks
   end
 
