@@ -2,8 +2,8 @@ require 'colorize'
 
 class Piece
 
-  attr_reader :color
-  attr_accessor :position
+  # attr_reader :color
+  attr_accessor :position, :color
 
   def initialize(color, board, position)
     @color = color
@@ -11,7 +11,7 @@ class Piece
     @position = position
   end
 
-  def inspect
+  def to_s
     "#{self.symbol.to_s[0].capitalize.colorize(nicer_color)}"
   end
 
@@ -29,8 +29,12 @@ class Piece
 
   private
 
-  def nicer_color
-    case @color
+  def nicer_color(state = @color)
+    case state
+    when :hovered
+      :green
+    when :selected
+      :red
     when :white
       :yellow
     when :black
