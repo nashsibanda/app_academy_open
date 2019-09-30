@@ -1,7 +1,7 @@
 require_relative "piece_kit"
 
 class Board
-  attr_reader :rows
+  attr_accessor :rows
   
   def initialize
     @rows = Array.new (8) { Array.new (8) { NullPiece.instance } }
@@ -32,6 +32,20 @@ class Board
   def valid_pos?(pos)
     return true if self[pos]
     false
+  end
+
+  def clone
+    cloned_board = Board.new
+    cloned_board.rows.each_with_index do |row, r_idx|
+      row.each_with_index do |spot, s_idx|
+        c_pos = [r_idx, s_idx]
+        orig_piece = self[c_pos]
+        c_class, c_color, c_position = orig_piece.class, orig_piece.color, orig_piece.position
+        next if c_class == NullPiece
+        cloned_board[c_pos] = c_class.new(c_color, cloned_board, c_position)
+      end
+    end
+    cloned_board
   end
 
   private
@@ -85,19 +99,19 @@ class Board
 
 end
 
-temp = Board.new
-temp.rows.each { |row| puts row.map { |piece| piece.inspect }.join(" ") }
-pos = [0, 6]
-endpos = [2, 7]
-pawnpos = [1, 1]
+# temp = Board.new
+# temp.rows.each { |row| puts row.map { |piece| piece.inspect }.join(" ") }
+# pos = [0, 6]
+# endpos = [2, 7]
+# pawnpos = [1, 1]
+# # p temp[pos].valid_moves
+# # p temp[pos].moves
+# # temp.move_piece(:white, pos, endpos)
+# # # p temp
+# # p temp[endpos].moves
+# # temp.move_piece(:white, endpos, pos)
+# p temp[pos]
 # p temp[pos].valid_moves
-# p temp[pos].moves
 # temp.move_piece(:white, pos, endpos)
-# # p temp
-# p temp[endpos].moves
-# temp.move_piece(:white, endpos, pos)
-p temp[pos]
-p temp[pos].valid_moves
-temp.move_piece(:white, pos, endpos)
-p temp[pos]
-p temp[endpos]
+# p temp[pos]
+# p temp[endpos]
