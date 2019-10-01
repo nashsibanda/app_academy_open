@@ -6,7 +6,7 @@ class Display
   
   def initialize(board)
     @board = board
-    @cursor = Cursor.new([0,0], board)
+    @cursor = Cursor.new([0, 0], board)
   end
 
   def render
@@ -34,10 +34,16 @@ class Display
   end
 
   def render_loop
+    i = 0
     while true
       system("clear")
       render
-      @cursor.get_input
+      check_checker
+      puts "Iteration: #{i}"
+      sleep(1)
+      check_maker(i)
+      # @cursor.get_input
+      i += 1
     end
   end
 
@@ -58,8 +64,42 @@ class Display
     end
   end
 
-end
+  def check_checker
+    puts "White in check: #{@board.in_check?(:white)}"
+    puts "White in checkmate: #{@board.checkmate?(:white)}"
+    puts "Black in check: #{@board.in_check?(:black)}"
+    puts "Black in checkmate: #{@board.checkmate?(:black)}"
+    pos = [6, 5]
+    puts "Orig. pawn spot: #{@board[pos].class}"
+  end
 
-tempboard = Board.new
-tempdisplay = Display.new(tempboard)
-tempdisplay.render_loop
+  def check_maker(iteration)
+    case iteration
+    when 0
+      return
+    when 1
+      s = [6,5]
+      e = [5,5]
+      color = :white
+      @board.move_piece(color, s, e)
+    when 2
+      s = [1, 4]
+      e = [3, 4]
+      color = :black
+      @board.move_piece(color, s, e)
+    when 3
+      s = [6, 6]
+      e = [4, 6]
+      color = :white
+      @board.move_piece(color, s, e)
+    when 4
+      s = [0,3]
+      e = [4, 7]
+      color = :black
+      @board.move_piece(color, s, e)
+    else
+      return
+    end
+  end
+
+end

@@ -8,7 +8,6 @@ class Board
     @sentinel = NullPiece.instance
     @original = original
     populate_pieces
-    # debug_add_knight
   end
 
   def [](position)
@@ -24,8 +23,10 @@ class Board
     if @original == true
       if piece_in_hand.is_a?(NullPiece)
         raise "TriedToMoveNullPiece"
-      elsif !piece_in_hand.valid_moves.include?(end_pos)
+      elsif !piece_in_hand.available_moves.include?(end_pos)
         raise "InvalidMoveAttempted"
+      elsif !piece_in_hand.valid_moves.include?(end_pos)
+        raise "YouAreStillInCheck"
       elsif piece_in_hand.color != color
         raise "WrongColorSelected"
       end
@@ -111,10 +112,6 @@ class Board
     end
   end
 
-  def valid_move?
-    return true
-  end
-
   def select_pieces(color = :all)
     selection = []
     if color == :all
@@ -142,30 +139,5 @@ class Board
       end
     end
   end
-  # def debug_add_knight
-  #   pos = [2, 3]
-  #   self[pos] = Queen.new(:white, self, pos)
-  #   pos2 = [1, 1]
-  #   pos3 = [2, 2]
-  #   self[pos2] = Pawn.new(:white, self, pos2)
-  #   self[pos3] = Pawn.new(:black, self, pos3)
-  # end
 
 end
-
-# temp = Board.new
-# temp.rows.each { |row| puts row.map { |piece| piece.inspect }.join(" ") }
-# pos = [1, 6]
-# endpos = [2, 7]
-# pawnpos = [1, 1]
-# p temp[pos].moves
-# # p temp[pos].moves
-# # temp.move_piece(:white, pos, endpos)
-# # # p temp
-# # p temp[endpos].moves
-# # temp.move_piece(:white, endpos, pos)
-# p temp[pos]
-# p temp[pos].valid_moves
-# temp.move_piece(:white, pos, endpos)
-# p temp[pos]
-# p temp[endpos]
