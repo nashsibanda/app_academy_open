@@ -1,8 +1,7 @@
 require_relative "cursor"
-require_relative "board"
-# require_relative "colors"
 
 class Display
+  attr_reader :cursor
   
   def initialize(board)
     @board = board
@@ -97,6 +96,8 @@ class Display
       e = [4, 7]
       color = :black
       @board.move_piece(color, s, e)
+    when 8
+      Process.exit(0)
     else
       return
     end
