@@ -17,11 +17,26 @@ class Piece
     :piece
   end
 
-  def valid_moves
+  def available_moves
     return moves.select { |move| @board[move].color != @color }
   end
 
+  def valid_moves
+    moves_to_try = available_moves
+    moves_to_try.delete_if { |move| move_into_check?(move) }
+    return moves_to_try
+  end
+
   def empty?
+    false
+  end
+
+  private
+
+  def move_into_check?(move)
+    cloned_board = @board.clone
+    cloned_board.move_piece(@color, @position, move)
+    return true if cloned_board.in_check?(@color)
     false
   end
 
