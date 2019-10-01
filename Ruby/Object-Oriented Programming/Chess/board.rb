@@ -3,9 +3,10 @@ require_relative "piece_kit"
 class Board
   attr_accessor :rows
   
-  def initialize
+  def initialize(original = true)
     @rows = Array.new (8) { Array.new (8) { NullPiece.instance } }
     @sentinel = NullPiece.instance
+    @original = original
     populate_pieces
     # debug_add_knight
   end
@@ -20,12 +21,14 @@ class Board
 
   def move_piece(color, start_pos, end_pos)
     piece_in_hand = self[start_pos]
-    if piece_in_hand.is_a?(NullPiece)
-      raise "TriedToMoveNullPiece"
-    elsif !piece_in_hand.valid_moves.include?(end_pos)
-      raise "InvalidMoveAttempted"
-    elsif piece_in_hand.color != color
-      raise "WrongColorSelected"
+    if @original == true
+      if piece_in_hand.is_a?(NullPiece)
+        raise "TriedToMoveNullPiece"
+      elsif !piece_in_hand.valid_moves.include?(end_pos)
+        raise "InvalidMoveAttempted"
+      elsif piece_in_hand.color != color
+        raise "WrongColorSelected"
+      end
     end
     self[start_pos], self[end_pos] = NullPiece.instance, self[start_pos]
     self[end_pos].position = end_pos
@@ -39,7 +42,7 @@ class Board
   end
 
   def clone
-    cloned_board = Board.new
+    cloned_board = Board.new(false)
     cloned_board.rows.each_with_index do |row, r_idx|
       row.each_with_index do |spot, s_idx|
         c_pos = [r_idx, s_idx]
@@ -57,8 +60,7 @@ class Board
 
   def in_check?(color)
     king = select_pieces(color).select { |piece| piece.class == King }.first
-    p "KING: #{king}"
-    if select_pieces.any? { |piece| piece.valid_moves.include?(king.position) && piece.color != king.color }
+    if select_pieces.any? { |piece| piece.available_moves.include?(king.position) && piece.color != king.color }
       return true
     end
     false
