@@ -5,10 +5,11 @@ class Display
   
   def initialize(board)
     @board = board
-    @cursor = Cursor.new([0, 0], board)
+    @cursor = Cursor.new([7, 0], board)
   end
 
   def render
+    system("clear")
     render_board = @board.clone
     render_board.rows.each_with_index do |row, r_idx|
       row.each_with_index do |piece, p_idx|
@@ -35,7 +36,7 @@ class Display
   def render_loop
     i = 0
     while true
-      system("clear")
+      # system("clear")
       render
       check_checker
       puts "Iteration: #{i}"
