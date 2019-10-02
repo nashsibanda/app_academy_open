@@ -22,13 +22,13 @@ class Board
     piece_in_hand = self[start_pos]
     if @original == true
       if piece_in_hand.is_a?(NullPiece)
-        raise "TriedToMoveNullPiece"
-      elsif !piece_in_hand.available_moves.include?(end_pos)
-        raise "InvalidMoveAttempted"
-      elsif !piece_in_hand.valid_moves.include?(end_pos)
-        raise "YouAreStillInCheck"
+        raise "You can't move an empty square!"
       elsif piece_in_hand.color != color
-        raise "WrongColorSelected"
+        raise "You can only move a piece of your own color!"
+      elsif !piece_in_hand.available_moves.include?(end_pos)
+        raise "This is an invalid move!"
+      elsif !piece_in_hand.valid_moves.include?(end_pos)
+        raise "You need to move out of check!"
       end
     end
     self[start_pos], self[end_pos] = NullPiece.instance, self[start_pos]
@@ -62,6 +62,7 @@ class Board
   def in_check?(color)
     king = select_pieces(color).select { |piece| piece.class == King }.first
     if select_pieces.any? { |piece| piece.available_moves.include?(king.position) && piece.color != king.color }
+      # puts "#{color.to_s.capitalize} is in check!" unless checkmate?(color)
       return true
     end
     false
