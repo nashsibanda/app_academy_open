@@ -1,5 +1,6 @@
 body {
   font-family: Arial, sans-serif;
+  background-color: rgb(209, 225, 230);
 }
 
 h1 {
@@ -20,4 +21,13 @@ ol {
 
 header > img {
   width: 100px;
+}
+
+ul li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.user_review p:nth-last-of-type(1){
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
