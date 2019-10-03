@@ -52,16 +52,30 @@ describe Dessert do
   end
 
   describe "#eat" do
-    it "subtracts an amount from the quantity"
+    it "subtracts an amount from the quantity" do
+      dessert.eat(1)
+      expect(dessert.quantity).to eq(4)
+    end
 
-    it "raises an error if the amount is greater than the quantity"
+    it "raises an error if the amount is greater than the quantity" do
+      expect do
+        dessert.eat(6)
+      end.to raise_error("not enough left!")
+    end
   end
 
   describe "#serve" do
-    it "contains the titleized version of the chef's name"
+    it "contains the titleized version of the chef's name" do
+      allow(chef).to receive(:titleize).and_return("Maester Butterscotch")
+      expect(dessert.serve).to include("Maester Butterscotch")
+    end
   end
-
+  
   describe "#make_more" do
-    it "calls bake on the dessert's chef with the dessert passed in"
+    it "calls bake on the dessert's chef with the dessert passed in" do
+      allow(chef).to receive(:bake).and_return(dessert.heat!)
+      dessert.make_more
+      expect(dessert.temp).to eq(400)
+    end
   end
 end
