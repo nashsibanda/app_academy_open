@@ -16,4 +16,14 @@ class Array
     output.map(&:sort).my_uniq
   end
 
+  def my_transpose
+    output = []
+    self.length.times do |i|
+      transposed_array = []
+      self.each { |sub_array| transposed_array << sub_array[i] }
+      output << transposed_array
+    end
+    output
+  end
+
 end

@@ -11,8 +11,9 @@ describe Array do
   end
 
   describe "#two_sum" do
-  subject(:two_sum_subject) { [-1, 0, 2, -2, 1, -2, 1, -1] }
-  let(:correct) { [[0, 4], [0, 6], [2, 3], [2, 5], [4, 7], [6, 7]] }
+    subject(:two_sum_subject) { [-1, 0, 2, -2, 1, -2, 1, -1] }
+    let(:correct) { [[0, 4], [0, 6], [2, 3], [2, 5], [4, 7], [6, 7]] }
+    
     it "should return pairs of indexes that sum to zero" do
       expect(two_sum_subject.two_sum).to match_array(correct)
     end
@@ -21,4 +22,24 @@ describe Array do
       expect(two_sum_subject.two_sum).to eq(correct)
     end
   end
+
+  describe "#my_transpose" do
+    subject(:transpose_subject) { [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8]
+    ] }
+    let(:transposed) { [
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8]
+    ] }
+
+    it "should return a transposed 2-D array" do
+      expect(transpose_subject.my_transpose).to eq(transposed)
+    end
+
+  end
+
+
 end
