@@ -15,3 +15,5 @@ Projects completed so far:
 - [Sudoku](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Reference/Sudoku)
 - [Word Chainer](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Recursion/Word%20Chains)
 - [Minesweeper](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Git/Minesweeper)
+- [TicTacToe](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Data%20Structures/TicTacToe)
+- [Chess](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Object-Oriented%20Programming/Chess)
