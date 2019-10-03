@@ -28,15 +28,27 @@ describe Dessert do
         Dessert.new("cake", "five", chef)
       end.to raise_error(ArgumentError)
     end
-    
+
   end
 
   describe "#add_ingredient" do
-    it "adds an ingredient to the ingredients array"
+    it "adds an ingredient to the ingredients array" do
+      dessert.add_ingredient("butter")
+      expect(dessert.ingredients).to include("butter")
+    end
   end
-
+  
   describe "#mix!" do
-    it "shuffles the ingredient array"
+    it "shuffles the ingredient array" do
+      dessert.add_ingredient("flour")
+      dessert.add_ingredient("sugar")
+      dessert.add_ingredient("water")
+      dessert.add_ingredient("butter")
+      @original_order = dessert.ingredients.dup
+      dessert.mix!
+      expect(dessert.ingredients).not_to eq(@original_order)
+      expect(dessert.ingredients).to match_array(@original_order)
+    end
   end
 
   describe "#eat" do
