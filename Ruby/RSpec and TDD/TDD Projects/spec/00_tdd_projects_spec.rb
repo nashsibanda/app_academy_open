@@ -1,5 +1,5 @@
 require 'rspec'
-require 'tdd_projects'
+require '00_tdd_projects'
 
 describe Array do
   
@@ -37,6 +37,15 @@ describe Array do
 
     it "should return a transposed 2-D array" do
       expect(transpose_subject.my_transpose).to eq(transposed)
+    end
+  end
+
+  describe "#stock_picker" do
+    subject(:stocks) { [159, 299, 3, 14, 46, 33, 172] }
+    let(:best_days) { [2, 6] }
+
+    it "should choose the best buy and sell days" do
+      expect(stocks.stock_picker).to eq(best_days)
     end
 
   end
