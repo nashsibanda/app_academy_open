@@ -25,6 +25,14 @@ class Deck
     build_deck
   end
 
+  def shuffle!
+    @cards.shuffle!
+  end
+
+  def draw
+    @cards.shift
+  end
+
   private
 
   def build_deck

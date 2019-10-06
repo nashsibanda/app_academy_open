@@ -18,8 +18,23 @@ describe Deck do
 
   describe "#shuffle!" do
 
-    it "should shuffle card order"
-    
+    it "should shuffle card order" do
+      original = deck.cards.dup
+      deck.shuffle!
+      expect(deck.cards).to match_array(original)
+      expect(deck.cards).not_to eq(original)
+    end
+
+  end
+
+  describe "#draw" do
+
+    it "should pop a card from the deck" do
+      deck.shuffle!
+      top_card = deck.cards.first
+      expect(deck.draw).to eq(top_card)
+    end
+
   end
 
 end
