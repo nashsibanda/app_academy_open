@@ -30,28 +30,35 @@ describe TowersGame do
       game.move_disc(1, 2)
       expect { game.move_disc(1, 2) }.to raise_error("Can't place a disc above a smaller disc")
     end
-
+    
   end
 
-  describe "#user_move" do
-
-    it "prompts the user to choose start and end arrays"
-
-    it "calls #move_disc with the arrays chosen"
-
-    it "raises an error if user chooses an empty array"
-
-    it "handles errors from #move_disc"
-
-    it "lets user re-attempt after an invalid move"
-
-  end
-
-  describe "#play" do
-
-    it "repeatedly calls #user_move"
-
-    it "ends the game when the puzzle is solved"
+  describe 'won?' do
+    
+    it "returns false if the game isn't won" do
+      expect(game.won?).to be false
+    end
+    
+    it "returns true if game is won" do
+      game.move_disc(1, 2)
+      game.move_disc(1, 3)
+      game.move_disc(2, 3)
+      game.move_disc(1, 2)
+      game.move_disc(3, 1)
+      game.move_disc(3, 2)
+      game.move_disc(1, 2)
+      game.move_disc(1, 3)
+      game.move_disc(2, 1)
+      game.move_disc(2, 3)
+      game.move_disc(1, 2)
+      game.move_disc(3, 1)
+      game.move_disc(2, 1)
+      game.move_disc(2, 3)
+      game.move_disc(1, 2)
+      game.move_disc(1, 3)
+      game.move_disc(2, 3)
+      expect(game.won?).to be true
+    end
 
   end
 
