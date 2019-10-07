@@ -47,7 +47,8 @@ class Hand
   def detect_hands
     hands = {}
     @cards.sort_by! { |card| card.value }
-    hand_faces = @cards.map { |card| card.face }
+    hand_faces = Hash.new([])
+    @cards.each { |card| hand_faces[card.face] += [card] }
     hand_suits = @cards.map { |card| card.suit }
     # straight detector
     @cards.each do |card1|
@@ -74,8 +75,17 @@ class Hand
     # straight flush detector
     hands[:straight_flush] = hands[:straight] if hands.has_key?(:straight) && hands.has_key?(:flush)
     # royal flush detector
-    hands[:royal_flush] = hands[:straight_flush] if hands.has_key?(:straight_flush) && hand_faces.include?("A") && hand_faces.include?("10")
+    hands[:royal_flush] = hands[:straight_flush] if hands.has_key?(:straight_flush) && hand_faces.keys.include?("A") && hand_faces.keys.include?("10")
+
     # four of a kind detector
+    four_hand = hand_faces.select { |k,v| v.size == 4 }
+    three_hand = hand_faces.select { |k,v| v.size == 3 }
+    unless four_hand.empty?
+      hands[:four_of_a_kind] = four_hand.first.last
+    end
+    unless three_hand.empty?
+      hands[:three_of_a_kind] = three_hand.first.last
+    end
     # three of a kind detector
     # full house detector
     # two pair detector
