@@ -20,7 +20,7 @@ class Hand
   def initialize(deck)
     @cards = []
     @deck = deck
-    @best_hand
+    # @best_hand
   end
 
   def draw(card)
@@ -28,6 +28,10 @@ class Hand
   end
 
   def find_best_hand
+    
+  end
+
+  def best_hand
     detected_hands = detect_hands
     highest_value_hand = {}
     catch :found_best_hand do
@@ -39,7 +43,7 @@ class Hand
         end
       end
     end
-    @best_hand = highest_value_hand
+    return highest_value_hand
   end
 
   private
@@ -76,21 +80,30 @@ class Hand
     hands[:straight_flush] = hands[:straight] if hands.has_key?(:straight) && hands.has_key?(:flush)
     # royal flush detector
     hands[:royal_flush] = hands[:straight_flush] if hands.has_key?(:straight_flush) && hand_faces.keys.include?("A") && hand_faces.keys.include?("10")
-
-    # four of a kind detector
+    return hands unless hands.empty?
+    # four/three of a kind detector
     four_hand = hand_faces.select { |k,v| v.size == 4 }
     three_hand = hand_faces.select { |k,v| v.size == 3 }
+    pairs = hand_faces.select { |k,v| v.size == 2 }
     unless four_hand.empty?
       hands[:four_of_a_kind] = four_hand.first.last
     end
+    return hands unless hands.empty?
     unless three_hand.empty?
       hands[:three_of_a_kind] = three_hand.first.last
+      # full house detector
+      unless pairs.empty?
+        hands[:full_house] = @cards
+      end
     end
-    # three of a kind detector
-    # full house detector
-    # two pair detector
-    # one pair detector
-    # high card detector
+    return hands unless hands.empty?
+    # two/one pair detector
+    hands[:two_pair] = pairs.values.flatten if pairs.size == 2
+    return hands unless hands.empty?
+    hands[:one_pair] = pairs.values.flatten if pairs.size == 1
+    return hands unless hands.empty?
+    # high card default
+    hands[:high_card] = @cards
     return hands
   end
   

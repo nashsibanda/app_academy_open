@@ -52,7 +52,7 @@ describe Hand do
 
   end
 
-  describe "#find_best_hand" do
+  describe "#best_hand" do
 
     it "should detect a royal flush" do
       hand.draw(@test_cards["Q_of_hearts"])
@@ -60,7 +60,6 @@ describe Hand do
       hand.draw(@test_cards["A_of_hearts"])
       hand.draw(@test_cards["J_of_hearts"])
       hand.draw(@test_cards["10_of_hearts"])
-      hand.find_best_hand
       expect(hand.best_hand).to have_key(:royal_flush)
     end
     
@@ -70,7 +69,6 @@ describe Hand do
       hand.draw(@test_cards["9_of_hearts"])
       hand.draw(@test_cards["J_of_hearts"])
       hand.draw(@test_cards["10_of_hearts"])
-      hand.find_best_hand
       expect(hand.best_hand).to have_key(:straight_flush)
     end
     
@@ -80,7 +78,6 @@ describe Hand do
       hand.draw(@test_cards["Q_of_clubs"])
       hand.draw(@test_cards["Q_of_diamonds"])
       hand.draw(@test_cards["10_of_hearts"])
-      hand.find_best_hand
       expect(hand.best_hand).to have_key(:four_of_a_kind)
     end
     
@@ -90,7 +87,6 @@ describe Hand do
       hand.draw(@test_cards["Q_of_clubs"])
       hand.draw(@test_cards["J_of_hearts"])
       hand.draw(@test_cards["J_of_clubs"])
-      hand.find_best_hand
       expect(hand.best_hand).to have_key(:full_house)
     end
     
@@ -100,7 +96,6 @@ describe Hand do
       hand.draw(@test_cards["3_of_hearts"])
       hand.draw(@test_cards["5_of_hearts"])
       hand.draw(@test_cards["6_of_hearts"])
-      hand.find_best_hand
       expect(hand.best_hand).to have_key(:flush)
     end
     
@@ -110,7 +105,6 @@ describe Hand do
       hand.draw(@test_cards["3_of_diamonds"])
       hand.draw(@test_cards["5_of_hearts"])
       hand.draw(@test_cards["A_of_hearts"])
-      hand.find_best_hand
       expect(hand.best_hand).to have_key(:straight)
     end
     
@@ -120,7 +114,6 @@ describe Hand do
       hand.draw(@test_cards["2_of_diamonds"])
       hand.draw(@test_cards["5_of_hearts"])
       hand.draw(@test_cards["A_of_hearts"])
-      hand.find_best_hand
       expect(hand.best_hand).to have_key(:three_of_a_kind)
     end
     
@@ -130,7 +123,6 @@ describe Hand do
       hand.draw(@test_cards["5_of_diamonds"])
       hand.draw(@test_cards["5_of_hearts"])
       hand.draw(@test_cards["A_of_hearts"])
-      hand.find_best_hand
       expect(hand.best_hand).to have_key(:two_pair)
     end
     
@@ -140,7 +132,6 @@ describe Hand do
       hand.draw(@test_cards["5_of_diamonds"])
       hand.draw(@test_cards["5_of_hearts"])
       hand.draw(@test_cards["A_of_hearts"])
-      hand.find_best_hand
       expect(hand.best_hand).to have_key(:one_pair)
     end
     
@@ -150,7 +141,6 @@ describe Hand do
       hand.draw(@test_cards["5_of_diamonds"])
       hand.draw(@test_cards["Q_of_hearts"])
       hand.draw(@test_cards["A_of_hearts"])
-      hand.find_best_hand
       expect(hand.best_hand).to have_key(:high_card)
     end
 
