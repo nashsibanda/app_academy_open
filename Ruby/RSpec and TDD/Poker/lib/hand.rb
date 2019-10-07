@@ -14,11 +14,16 @@ class Hand
     high_card: "High Card"
   }
 
-  attr_reader :cards, :deck
+  attr_reader :deck
+  attr_accessor :cards
 
   def initialize(deck)
     @cards = []
     @deck = deck
+  end
+
+  def draw(card)
+    @cards << card
   end
   
 end
