@@ -1,10 +1,24 @@
 require_relative 'deck'
 
 class Hand
-  attr_reader :cards
+  HANDS = {
+    royal_flush: "Royal Flush",
+    straight_flush: "Straight Flush",
+    four_of_a_kind: "Four of a Kind",
+    full_house: "Full House",
+    flush: "Flush",
+    straight: "Straight",
+    three_of_a_kind: "Three of a Kind",
+    two_pair: "Two Pair",
+    one_pair: "One Pair",
+    high_card: "High Card"
+  }
 
-  def initialize
+  attr_reader :cards, :deck
+
+  def initialize(deck)
     @cards = []
+    @deck = deck
   end
   
 end
