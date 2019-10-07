@@ -92,4 +92,14 @@ describe Hand do
 
   describe "#find_high_card" do
 
+    it "should detect highest value card"
+
+    context "with a straight starting at A" do
+
+      it "should detect correct high value card"
+
+    end
+
+  end
+
 end
