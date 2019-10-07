@@ -25,7 +25,7 @@ describe Hand do
     @test_cards = {}
     SUITS.each do |suit|
       FACES_VALUES.each do |face, value|
-        @test_cards["#{face}_of_#{suit}".to_sym] = Card.new(suit, face, value)
+        @test_cards["#{face}_of_#{suit}"] = Card.new(suit, face, value)
       end
     end
   end
@@ -46,17 +46,22 @@ describe Hand do
   describe "#draw" do
 
     it "should add a card to @cards" do
-      hand.draw(@test_cards[:A_of_hearts])
-      expect(hand.cards).to include(@test_cards[:A_of_hearts])
+      hand.draw(@test_cards["A_of_hearts"])
+      expect(hand.cards).to include(@test_cards["A_of_hearts"])
     end
 
   end
 
-  describe "#best_hand" do
+  describe "#find_best_hand" do
 
     it "should detect a royal flush" do
-      
-      puts @test_cards[:A_of_hearts].value
+      hand.draw(@test_cards["Q_of_hearts"])
+      hand.draw(@test_cards["K_of_hearts"])
+      hand.draw(@test_cards["A_of_hearts"])
+      hand.draw(@test_cards["J_of_hearts"])
+      hand.draw(@test_cards["10_of_hearts"])
+      hand.find_best_hand
+      expect(hand.best_hand).to have_key(:royal_flush)
     end
 
     it "should detect a straight flush"
@@ -84,5 +89,7 @@ describe Hand do
     end
 
   end
+
+  describe "#find_high_card" do
 
 end
