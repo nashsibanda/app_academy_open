@@ -52,7 +52,7 @@ class Hand
     # straight detector
     @cards.each do |card1|
       @cards.each do |card2|
-        if card2.value.last == (card1.value.last + 1)
+        if card2.value.last == (card1.value.first + 1)
           @cards.each do |card3|
             if card3.value.last == (card2.value.last + 1)
               @cards.each do |card4|
@@ -75,6 +75,12 @@ class Hand
     hands[:straight_flush] = hands[:straight] if hands.has_key?(:straight) && hands.has_key?(:flush)
     # royal flush detector
     hands[:royal_flush] = hands[:straight_flush] if hands.has_key?(:straight_flush) && hand_faces.include?("A") && hand_faces.include?("10")
+    # four of a kind detector
+    # three of a kind detector
+    # full house detector
+    # two pair detector
+    # one pair detector
+    # high card detector
     return hands
   end
   
