@@ -255,12 +255,6 @@ describe Hand do
         hand.best_hand
         expect(hand.find_high_card[:kicker]).to eq(@test_cards["10_of_hearts"])
       end
-      
-      it "should return lowest kicker face" do
-        draw(:three_of_a_kind)
-        hand.best_hand
-        expect(hand.find_high_card[:low_kicker]).to eq(@test_cards["5_of_hearts"])
-      end
 
     end
     

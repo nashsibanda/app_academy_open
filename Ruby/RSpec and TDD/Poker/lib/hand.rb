@@ -53,10 +53,10 @@ class Hand
       @high_card = high_card
       return high_card
     end
-    if @best_hand_found.has_key?(:full_house)
-      triplet_card = @best_hand_found.first.last.max { |a, b| a.value.last <=> b.value.last }
-      pair_card = @best_hand_found.first.last.min { |a, b| a.value.last <=> b.value.last }
-      high_card = { triplet: triplet_card, pair: pair_card }
+    if @best_hand_found.has_key?(:four_of_a_kind)
+      quad_card = @best_hand_found.first.last.max { |a, b| a.value.last <=> b.value.last }
+      kicker = @cards.select { |card| !@best_hand_found.first.last.include?(card) }.max { |a, b| a.value.last <=> b.value.last }
+      high_card = { quad: quad_card, kicker: kicker }
       @high_card = high_card
       return high_card
     end
