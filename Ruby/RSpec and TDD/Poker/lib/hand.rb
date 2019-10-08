@@ -14,7 +14,7 @@ class Hand
     high_card: "High Card"
   }
 
-  attr_reader :deck, :best_hand
+  attr_reader :deck, :best_hand_found, :high_card
   attr_accessor :cards
 
   def initialize(deck)
@@ -49,14 +49,14 @@ class Hand
     if @best_hand_found.has_key?(:full_house)
       triplet_card = @best_hand_found.first.last.max { |a, b| a.value.last <=> b.value.last }
       pair_card = @best_hand_found.first.last.min { |a, b| a.value.last <=> b.value.last }
-      high_card = { triplet: triplet_card, pair: pair_card }
+      high_card = { high_card: triplet_card, pair: pair_card }
       @high_card = high_card
       return high_card
     end
     if @best_hand_found.has_key?(:four_of_a_kind)
       quad_card = @best_hand_found.first.last.max { |a, b| a.value.last <=> b.value.last }
       kicker = @cards.select { |card| !@best_hand_found.first.last.include?(card) }.max { |a, b| a.value.last <=> b.value.last }
-      high_card = { quad: quad_card, kicker: kicker }
+      high_card = { high_card: quad_card, kicker: kicker }
       @high_card = high_card
       return high_card
     end
@@ -64,7 +64,7 @@ class Hand
       triplet_card = @best_hand_found.first.last.max { |a, b| a.value.last <=> b.value.last }
       high_kicker = @cards.select { |card| !@best_hand_found.first.last.include?(card) }.max { |a, b| a.value.last <=> b.value.last }
       low_kicker = @cards.select { |card| !@best_hand_found.first.last.include?(card) }.min { |a, b| a.value.last <=> b.value.last }
-      high_card = { triplet: triplet_card, high_kicker: high_kicker, low_kicker: low_kicker }
+      high_card = { high_card: triplet_card, high_kicker: high_kicker, low_kicker: low_kicker }
       @high_card = high_card
       return high_card
     end
@@ -72,7 +72,16 @@ class Hand
       high_pair_card = @best_hand_found.first.last.max { |a, b| a.value.last <=> b.value.last }
       low_pair_card = @best_hand_found.first.last.min { |a, b| a.value.last <=> b.value.last }
       kicker = @cards.select { |card| !@best_hand_found.first.last.include?(card) }.max { |a, b| a.value.last <=> b.value.last }
-      high_card = { high_pair: high_pair_card, low_pair: low_pair_card, kicker: kicker }
+      high_card = { high_card: high_pair_card, low_pair: low_pair_card, kicker: kicker }
+      @high_card = high_card
+      return high_card
+    end
+    if @best_hand_found.has_key?(:one_pair)
+      pair_card = @best_hand_found.first.last.max { |a, b| a.value.last <=> b.value.last }
+      high_kicker = @cards.select { |card| !@best_hand_found.first.last.include?(card) }.max { |a, b| a.value.last <=> b.value.last }
+      low_kicker = @cards.select { |card| !@best_hand_found.first.last.include?(card) }.min { |a, b| a.value.last <=> b.value.last }
+      mid_kicker = @cards.select { |card| !@best_hand_found.first.last.include?(card) && !high_kicker && !low_kicker }
+      high_card = { high_card: pair_card, high_kicker: high_kicker, mid_kicker: mid_kicker, low_kicker: low_kicker }
       @high_card = high_card
       return high_card
     end
@@ -92,6 +101,19 @@ class Hand
     end
     @best_hand_found = highest_value_hand
     return highest_value_hand
+  end
+
+  def stronger_hand?(opponent_hand)
+    opponent_hand_type = opponent_hand.best_hand_found.keys.first
+    my_hand_type = @best_hand_found.keys.first
+    if opponent_hand_type != my_hand_type
+      opponent_hand_rank = HANDS.keys.index(opponent_hand_type)
+      my_hand_rank = HANDS.keys.index(my_hand_type)
+      return false if my_hand_rank < opponent_hand_rank
+      return true
+    end
+    return true if opponent_hand.high_card[:high_card].value.last > @high_card[:high_card].value.last
+    return false if opponent_hand.high_card[:high_card].value.last < @high_card[:high_card].value.last
   end
 
   private
