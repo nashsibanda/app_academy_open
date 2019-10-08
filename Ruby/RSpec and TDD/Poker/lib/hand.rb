@@ -80,8 +80,8 @@ class Hand
       pair_card = @best_hand_found.first.last.max { |a, b| a.value.last <=> b.value.last }
       high_kicker = @cards.select { |card| !@best_hand_found.first.last.include?(card) }.max { |a, b| a.value.last <=> b.value.last }
       low_kicker = @cards.select { |card| !@best_hand_found.first.last.include?(card) }.min { |a, b| a.value.last <=> b.value.last }
-      mid_kicker = @cards.select { |card| !@best_hand_found.first.last.include?(card) && !high_kicker && !low_kicker }
-      high_card = { high_card: pair_card, high_kicker: high_kicker, mid_kicker: mid_kicker, low_kicker: low_kicker }
+      mid_kicker = @cards.select { |card| !@best_hand_found.first.last.include?(card) }.sort_by { |card| card.value.last }[1]
+      high_card = { high_card: pair_card, kicker: high_kicker, mid_kicker: mid_kicker, low_kicker: low_kicker }
       @high_card = high_card
       return high_card
     end
@@ -114,6 +114,9 @@ class Hand
     end
     return true if opponent_hand.high_card[:high_card].value.last > @high_card[:high_card].value.last
     return false if opponent_hand.high_card[:high_card].value.last < @high_card[:high_card].value.last
+    return false if opponent_hand.high_card[:low_pair].value.last < @high_card[:low_pair].value.last
+    return true if opponent_hand.high_card[:low_pair].value.last > @high_card[:low_pair].value.last
+    
   end
 
   private

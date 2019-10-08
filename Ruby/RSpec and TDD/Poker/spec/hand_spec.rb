@@ -115,6 +115,18 @@ describe Hand do
       player.draw(@test_cards["5_of_diamonds"])
       player.draw(@test_cards["5_of_hearts"])
       player.draw(@test_cards["A_of_hearts"])
+    when :opp_two_pair_2
+      player.draw(@test_cards["2_of_clubss"])
+      player.draw(@test_cards["2_of_hearts"])
+      player.draw(@test_cards["5_of_clubs"])
+      player.draw(@test_cards["5_of_hearts"])
+      player.draw(@test_cards["A_of_hearts"])
+    when :opp_two_pair
+      player.draw(@test_cards["4_of_spades"])
+      player.draw(@test_cards["4_of_hearts"])
+      player.draw(@test_cards["5_of_clubs"])
+      player.draw(@test_cards["5_of_spades"])
+      player.draw(@test_cards["A_of_hearts"])
     when :one_pair
       player.draw(@test_cards["2_of_spades"])
       player.draw(@test_cards["7_of_hearts"])
@@ -292,7 +304,7 @@ describe Hand do
       it "should return high kicker face" do
         draw(hand, :one_pair)
         hand.best_hand
-        expect(hand.find_high_card[:high_kicker]).to eq(@test_cards["A_of_hearts"])
+        expect(hand.find_high_card[:kicker]).to eq(@test_cards["A_of_hearts"])
       end
       
       it "should return mid kicker face" do
@@ -330,23 +342,21 @@ describe Hand do
         opponent.analyse_hand
         expect(hand.stronger_hand?(opponent)).to eq(false)
       end
-
-    end
-      
-    context "with two three-of-a-kinds" do
-    
-      it "should correctly resolve a winner on high kicker" do
-      end
-      
-      it "should correctly resolve a winner on low kicker"
       
     end
     
     context "with two two-pairs" do
       
-      it "should correctly resolve a winner on low pair"
+      it "should correctly resolve a winner on low pair" do
+        draw(hand, :opp_two_pair)
+        draw(opponent, :two_pair)
+        hand.analyse_hand
+        opponent.analyse_hand
+        expect(hand.stronger_hand?(opponent)).to eq(false)
+      end
       
-      it "should correctly resolve a winner on kicker"
+      it "should correctly resolve a winner on kicker" do
+      end
 
     end
 
