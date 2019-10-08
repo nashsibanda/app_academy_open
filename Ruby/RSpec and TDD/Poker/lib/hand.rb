@@ -53,6 +53,21 @@ class Hand
       @high_card = high_card
       return high_card
     end
+    if @best_hand_found.has_key?(:full_house)
+      triplet_card = @best_hand_found.first.last.max { |a, b| a.value.last <=> b.value.last }
+      pair_card = @best_hand_found.first.last.min { |a, b| a.value.last <=> b.value.last }
+      high_card = { triplet: triplet_card, pair: pair_card }
+      @high_card = high_card
+      return high_card
+    end
+    if @best_hand_found.has_key?(:two_pair)
+      high_pair_card = @best_hand_found.first.last.max { |a, b| a.value.last <=> b.value.last }
+      low_pair_card = @best_hand_found.first.last.min { |a, b| a.value.last <=> b.value.last }
+      kicker = @cards.select { |card| !@best_hand_found.first.last.include?(card) }.max { |a, b| a.value.last <=> b.value.last }
+      high_card = { high_pair: high_pair_card, low_pair: low_pair_card, kicker: kicker }
+      @high_card = high_card
+      return high_card
+    end
   end
 
   def best_hand

@@ -217,24 +217,50 @@ describe Hand do
         hand.best_hand
         expect(hand.find_high_card[:pair]).to eq(@test_cards["J_of_hearts"]).or eq(@test_cards["J_of_clubs"])
       end
-
+      
     end
-
+    
     context "with a two pair" do
-
-      it "should return highest pair face"
-
-      it "should return lowest pair face"
-
-      it "should return kicker face"
-
+      
+      it "should return highest pair face" do
+        draw(:two_pair)
+        hand.best_hand
+        expect(hand.find_high_card[:high_pair]).to eq(@test_cards["5_of_diamonds"]).or eq(@test_cards["5_of_hearts"])
+      end
+      
+      it "should return lowest pair face" do
+        draw(:two_pair)
+        hand.best_hand
+        expect(hand.find_high_card[:low_pair]).to eq(@test_cards["2_of_spades"]).or eq(@test_cards["2_of_hearts"])
+      end
+      
+      it "should return kicker face" do
+        draw(:two_pair)
+        hand.best_hand
+        expect(hand.find_high_card[:kicker]).to eq(@test_cards["A_of_hearts"])
+      end
+      
     end
-
+    
     context "with a four or three of a kind" do
       
-      it "should return 'of a kind' face"
-
-      it "should return highest kicker face"
+      it "should return 'of a kind' face" do
+        draw(:four_of_a_kind)
+        hand.best_hand
+        expect(hand.find_high_card[:quad]).to eq(@test_cards["Q_of_hearts"]).or eq(@test_cards["Q_of_spades"]).or eq(@test_cards["Q_of_clubs"]).or eq(@test_cards["Q_of_diamonds"])
+      end
+      
+      it "should return highest kicker face" do
+        draw(:four_of_a_kind)
+        hand.best_hand
+        expect(hand.find_high_card[:high_kicker]).to eq(@test_cards["10_of_hearts"])
+      end
+      
+      it "should return lowest kicker face" do
+        draw(:three_of_a_kind)
+        hand.best_hand
+        expect(hand.find_high_card[:low_kicker]).to eq(@test_cards["5_of_hearts"])
+      end
 
     end
 
