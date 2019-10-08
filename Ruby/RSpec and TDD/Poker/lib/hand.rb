@@ -20,15 +20,39 @@ class Hand
   def initialize(deck)
     @cards = []
     @deck = deck
-    # @best_hand
+    @best_hand_found
+    @high_card
   end
 
   def draw(card)
     @cards << card
   end
 
-  def find_best_hand
-    
+  def analyse_hand
+    best_hand
+    find_high_card
+  end
+
+  def find_high_card
+    if low_A_straight?
+      highest_value_card = @best_hand_found.first.last.max { |a, b| a.value.first <=> b.value.first }
+      high_card = { high_card: highest_value_card }
+      @high_card = high_card
+      return high_card
+    end
+    if @best_hand_found.has_key?(:flush) || @best_hand_found.has_key?(:royal_flush) || @best_hand_found.has_key?(:straight)
+      highest_value_card = @best_hand_found.first.last.max { |a, b| a.value.last <=> b.value.last }
+      high_card = { high_card: highest_value_card }
+      @high_card = high_card
+      return high_card
+    end
+    if @best_hand_found.has_key?(:full_house)
+      triplet_card = @best_hand_found.first.last.max { |a, b| a.value.last <=> b.value.last }
+      pair_card = @best_hand_found.first.last.min { |a, b| a.value.last <=> b.value.last }
+      high_card = { triplet: triplet_card, pair: pair_card }
+      @high_card = high_card
+      return high_card
+    end
   end
 
   def best_hand
@@ -43,6 +67,7 @@ class Hand
         end
       end
     end
+    @best_hand_found = highest_value_hand
     return highest_value_hand
   end
 
@@ -105,6 +130,16 @@ class Hand
     # high card default
     hands[:high_card] = @cards
     return hands
+  end
+
+  def low_A_straight?
+    if @best_hand_found.has_key?(:straight)
+      if @best_hand_found.first.last.any? { |card| card.face == "A" }
+        if @best_hand_found.first.last.any? { |card| card.face == "2" }
+          return true
+        end
+      end
+    end
   end
   
 end
