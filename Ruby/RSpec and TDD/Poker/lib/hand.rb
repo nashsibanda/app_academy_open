@@ -60,6 +60,14 @@ class Hand
       @high_card = high_card
       return high_card
     end
+    if @best_hand_found.has_key?(:three_of_a_kind)
+      triplet_card = @best_hand_found.first.last.max { |a, b| a.value.last <=> b.value.last }
+      high_kicker = @cards.select { |card| !@best_hand_found.first.last.include?(card) }.max { |a, b| a.value.last <=> b.value.last }
+      low_kicker = @cards.select { |card| !@best_hand_found.first.last.include?(card) }.min { |a, b| a.value.last <=> b.value.last }
+      high_card = { triplet: triplet_card, high_kicker: high_kicker, low_kicker: low_kicker }
+      @high_card = high_card
+      return high_card
+    end
     if @best_hand_found.has_key?(:two_pair)
       high_pair_card = @best_hand_found.first.last.max { |a, b| a.value.last <=> b.value.last }
       low_pair_card = @best_hand_found.first.last.min { |a, b| a.value.last <=> b.value.last }

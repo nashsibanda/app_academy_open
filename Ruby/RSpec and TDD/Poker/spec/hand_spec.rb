@@ -263,7 +263,7 @@ describe Hand do
       it "should return 'of a kind' face" do
         draw(:three_of_a_kind)
         hand.best_hand
-        expect(hand.find_high_card[:quad]).to eq(@test_cards["2_of_hearts"]).or eq(@test_cards["2_of_spades"]).or eq(@test_cards["2_of_diamonds"])
+        expect(hand.find_high_card[:triplet]).to eq(@test_cards["2_of_hearts"]).or eq(@test_cards["2_of_spades"]).or eq(@test_cards["2_of_diamonds"])
       end
       
       it "should return highest kicker face" do
