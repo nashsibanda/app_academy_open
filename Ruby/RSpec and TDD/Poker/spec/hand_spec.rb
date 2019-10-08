@@ -29,18 +29,18 @@ describe Hand do
       end
     end
   end
-
-
+  
+  
   describe "#initialize" do
-
+  
     it "should have an array" do
       expect(hand.cards).to be_an(Array)
     end
-
+    
     it "should have a deck" do
       expect(hand.deck).to be_a(Deck)
     end
-
+    
   end
 
   describe "#draw" do
@@ -52,95 +52,125 @@ describe Hand do
 
   end
 
-  describe "#best_hand" do
-
-    it "should detect a royal flush" do
+  def draw(hand_symbol)
+    case hand_symbol
+    when :royal_flush
       hand.draw(@test_cards["Q_of_hearts"])
       hand.draw(@test_cards["K_of_hearts"])
       hand.draw(@test_cards["A_of_hearts"])
       hand.draw(@test_cards["J_of_hearts"])
       hand.draw(@test_cards["10_of_hearts"])
-      expect(hand.best_hand).to have_key(:royal_flush)
-    end
-    
-    it "should detect a straight flush" do
+    when :ace_high_straight
+      hand.draw(@test_cards["Q_of_hearts"])
+      hand.draw(@test_cards["K_of_clubs"])
+      hand.draw(@test_cards["A_of_hearts"])
+      hand.draw(@test_cards["J_of_spades"])
+      hand.draw(@test_cards["10_of_hearts"])
+    when :straight_flush
       hand.draw(@test_cards["Q_of_hearts"])
       hand.draw(@test_cards["K_of_hearts"])
       hand.draw(@test_cards["9_of_hearts"])
       hand.draw(@test_cards["J_of_hearts"])
       hand.draw(@test_cards["10_of_hearts"])
-      expect(hand.best_hand).to have_key(:straight_flush)
-    end
-    
-    it "should detect a four of a kind" do
+    when :four_of_a_kind
       hand.draw(@test_cards["Q_of_hearts"])
       hand.draw(@test_cards["Q_of_spades"])
       hand.draw(@test_cards["Q_of_clubs"])
       hand.draw(@test_cards["Q_of_diamonds"])
       hand.draw(@test_cards["10_of_hearts"])
-      expect(hand.best_hand).to have_key(:four_of_a_kind)
-    end
-    
-    it "should detect a full house" do
+    when :full_house
       hand.draw(@test_cards["Q_of_hearts"])
       hand.draw(@test_cards["Q_of_spades"])
       hand.draw(@test_cards["Q_of_clubs"])
       hand.draw(@test_cards["J_of_hearts"])
       hand.draw(@test_cards["J_of_clubs"])
-      expect(hand.best_hand).to have_key(:full_house)
-    end
-    
-    it "should detect a flush" do
+    when :flush
       hand.draw(@test_cards["Q_of_hearts"])
       hand.draw(@test_cards["J_of_hearts"])
       hand.draw(@test_cards["3_of_hearts"])
       hand.draw(@test_cards["5_of_hearts"])
       hand.draw(@test_cards["6_of_hearts"])
-      expect(hand.best_hand).to have_key(:flush)
-    end
-    
-    it "should detect a straight" do
+    when :straight
       hand.draw(@test_cards["2_of_spades"])
       hand.draw(@test_cards["4_of_hearts"])
       hand.draw(@test_cards["3_of_diamonds"])
       hand.draw(@test_cards["5_of_hearts"])
       hand.draw(@test_cards["A_of_hearts"])
-      expect(hand.best_hand).to have_key(:straight)
-    end
-    
-    it "should detect a three of a kind" do
+    when :three_of_a_kind
       hand.draw(@test_cards["2_of_spades"])
       hand.draw(@test_cards["2_of_hearts"])
       hand.draw(@test_cards["2_of_diamonds"])
       hand.draw(@test_cards["5_of_hearts"])
       hand.draw(@test_cards["A_of_hearts"])
-      expect(hand.best_hand).to have_key(:three_of_a_kind)
-    end
-    
-    it "should detect a two pair" do
+    when :two_pair
       hand.draw(@test_cards["2_of_spades"])
       hand.draw(@test_cards["2_of_hearts"])
       hand.draw(@test_cards["5_of_diamonds"])
       hand.draw(@test_cards["5_of_hearts"])
       hand.draw(@test_cards["A_of_hearts"])
-      expect(hand.best_hand).to have_key(:two_pair)
-    end
-    
-    it "should detect a one pair" do
+    when :one_pair
       hand.draw(@test_cards["2_of_spades"])
       hand.draw(@test_cards["7_of_hearts"])
       hand.draw(@test_cards["5_of_diamonds"])
       hand.draw(@test_cards["5_of_hearts"])
       hand.draw(@test_cards["A_of_hearts"])
-      expect(hand.best_hand).to have_key(:one_pair)
-    end
-    
-    it "should detect a high card" do
+    when :high_card
       hand.draw(@test_cards["2_of_spades"])
       hand.draw(@test_cards["7_of_hearts"])
       hand.draw(@test_cards["5_of_diamonds"])
       hand.draw(@test_cards["Q_of_hearts"])
       hand.draw(@test_cards["A_of_hearts"])
+    end
+  end
+
+  describe "#best_hand" do
+
+    it "should detect a royal flush" do
+      draw(:royal_flush)
+      expect(hand.best_hand).to have_key(:royal_flush)
+    end
+    
+    it "should detect a straight flush" do
+      draw(:straight_flush)
+      expect(hand.best_hand).to have_key(:straight_flush)
+    end
+    
+    it "should detect a four of a kind" do
+      draw(:four_of_a_kind)
+      expect(hand.best_hand).to have_key(:four_of_a_kind)
+    end
+    
+    it "should detect a full house" do
+      draw(:full_house)
+      expect(hand.best_hand).to have_key(:full_house)
+    end
+    
+    it "should detect a flush" do
+      expect(hand.best_hand).to have_key(:flush)
+    end
+    
+    it "should detect a straight" do
+      draw(:straight)
+      expect(hand.best_hand).to have_key(:straight)
+    end
+    
+    it "should detect a three of a kind" do
+      draw(:three_of_a_kind)
+      expect(hand.best_hand).to have_key(:three_of_a_kind)
+    end
+    
+    it "should detect a two pair" do
+      draw(:two_pair)
+      expect(hand.best_hand).to have_key(:two_pair)
+    end
+    
+    it "should detect a one pair" do
+      draw(:one_pair)
+      expect(hand.best_hand).to have_key(:one_pair)
+    end
+    
+    it "should detect a high card" do
+      draw(:high_card)
       expect(hand.best_hand).to have_key(:high_card)
     end
 
@@ -148,14 +178,67 @@ describe Hand do
 
   describe "#find_high_card" do
 
-    it "should detect highest value card"
+    context "with a straight, flush, straight flush or royal flush" do
 
-    context "with a straight starting at A" do
+      it "should return highest face card" do
+        draw(:flush)
+        hand.best_hand
+        expect(hand.find_high_card).to include( :high_card => @test_cards["Q_of_hearts"] )
+      end
+      
+      context "with a straight containing A" do
+        
+        it "should return correct high face card for low A" do
+          draw(:straight)
+          hand.best_hand
+          expect(hand.find_high_card).to include( :high_card => @test_cards["5_of_hearts"] )
+        end
+        
+        it "should correctly return Ace-high" do
+          draw(:ace_high_straight)
+          hand.best_hand
+          expect(hand.find_high_card).to include( :high_card => @test_cards["A_of_hearts"] )
+        end
+        
+      end
+      
+    end
+    
+    context "with a full house" do
+      
+      it "should return triplet face" do
+        draw(:full_house)
+        hand.best_hand
+        expect(hand.find_high_card[:triplet]).to eq(@test_cards["Q_of_hearts"]).or eq(@test_cards["Q_of_spades"]).or eq(@test_cards["Q_of_clubs"])
+      end
+      
+      it "should return face of pair" do
+        draw(:full_house)
+        hand.best_hand
+        expect(hand.find_high_card[:pair]).to eq(@test_cards["J_of_hearts"]).or eq(@test_cards["J_of_clubs"])
+      end
 
-      it "should detect correct high value card"
+    end
+
+    context "with a two pair" do
+
+      it "should return highest pair face"
+
+      it "should return lowest pair face"
+
+      it "should return kicker face"
+
+    end
+
+    context "with a four or three of a kind" do
+      
+      it "should return 'of a kind' face"
+
+      it "should return highest kicker face"
 
     end
 
   end
+
 
 end
