@@ -114,8 +114,16 @@ class Hand
     end
     return true if opponent_hand.high_card[:high_card].value.last > @high_card[:high_card].value.last
     return false if opponent_hand.high_card[:high_card].value.last < @high_card[:high_card].value.last
-    return false if opponent_hand.high_card[:low_pair].value.last < @high_card[:low_pair].value.last
-    return true if opponent_hand.high_card[:low_pair].value.last > @high_card[:low_pair].value.last
+    if opponent_hand_type == :two_pair
+      return false if opponent_hand.high_card[:low_pair].value.last < @high_card[:low_pair].value.last
+      return true if opponent_hand.high_card[:low_pair].value.last > @high_card[:low_pair].value.last
+    end
+    return false if opponent_hand.high_card[:kicker].value.last < @high_card[:kicker].value.last
+    return true if opponent_hand.high_card[:kicker].value.last > @high_card[:kicker].value.last
+    return false if opponent_hand.high_card[:mid_kicker].value.last < @high_card[:mid_kicker].value.last
+    return true if opponent_hand.high_card[:mid_kicker].value.last > @high_card[:mid_kicker].value.last
+    return false if opponent_hand.high_card[:low_kicker].value.last < @high_card[:low_kicker].value.last
+    return true if opponent_hand.high_card[:low_kicker].value.last > @high_card[:low_kicker].value.last
     
   end
 

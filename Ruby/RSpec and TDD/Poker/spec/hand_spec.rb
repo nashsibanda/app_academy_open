@@ -116,11 +116,11 @@ describe Hand do
       player.draw(@test_cards["5_of_hearts"])
       player.draw(@test_cards["A_of_hearts"])
     when :opp_two_pair_2
-      player.draw(@test_cards["2_of_clubss"])
-      player.draw(@test_cards["2_of_hearts"])
+      player.draw(@test_cards["2_of_clubs"])
+      player.draw(@test_cards["2_of_diamonds"])
       player.draw(@test_cards["5_of_clubs"])
-      player.draw(@test_cards["5_of_hearts"])
-      player.draw(@test_cards["A_of_hearts"])
+      player.draw(@test_cards["5_of_spades"])
+      player.draw(@test_cards["K_of_hearts"])
     when :opp_two_pair
       player.draw(@test_cards["4_of_spades"])
       player.draw(@test_cards["4_of_hearts"])
@@ -133,6 +133,18 @@ describe Hand do
       player.draw(@test_cards["5_of_diamonds"])
       player.draw(@test_cards["5_of_hearts"])
       player.draw(@test_cards["A_of_hearts"])
+    when :opp_one_pair
+      player.draw(@test_cards["3_of_spades"])
+      player.draw(@test_cards["4_of_hearts"])
+      player.draw(@test_cards["5_of_clubs"])
+      player.draw(@test_cards["5_of_spades"])
+      player.draw(@test_cards["A_of_clubs"])
+    when :opp_one_pair_2
+      player.draw(@test_cards["3_of_spades"])
+      player.draw(@test_cards["7_of_clubs"])
+      player.draw(@test_cards["5_of_clubs"])
+      player.draw(@test_cards["5_of_spades"])
+      player.draw(@test_cards["A_of_clubs"])
     when :high_card
       player.draw(@test_cards["2_of_spades"])
       player.draw(@test_cards["7_of_hearts"])
@@ -356,6 +368,31 @@ describe Hand do
       end
       
       it "should correctly resolve a winner on kicker" do
+        draw(hand, :opp_two_pair_2)
+        draw(opponent, :two_pair)
+        hand.analyse_hand
+        opponent.analyse_hand
+        expect(hand.stronger_hand?(opponent)).to eq(true)
+      end
+
+    end
+    
+    context "with two one-pairs" do
+      
+      it "should correctly resolve a winner on mid kicker" do
+        draw(hand, :opp_one_pair)
+        draw(opponent, :one_pair)
+        hand.analyse_hand
+        opponent.analyse_hand
+        expect(hand.stronger_hand?(opponent)).to eq(true)
+      end
+      
+      it "should correctly resolve a winner on low kicker" do
+        draw(hand, :opp_one_pair_2)
+        draw(opponent, :one_pair)
+        hand.analyse_hand
+        opponent.analyse_hand
+        expect(hand.stronger_hand?(opponent)).to eq(false)
       end
 
     end
