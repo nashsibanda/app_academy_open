@@ -136,8 +136,8 @@ class Hand
     arr_of_indexes.each do |index|
       discarded_card = @cards[index]
       @discarded << discarded_card
-      @cards.delete(discarded_card)
     end
+    @cards.delete_if { |card| @discarded.include?(card) } 
   end
 
   private
