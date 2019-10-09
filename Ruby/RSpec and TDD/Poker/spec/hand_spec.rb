@@ -335,7 +335,7 @@ describe Hand do
 
   end
 
-  describe "stronger_hand" do
+  describe "#stronger_hand" do
 
     it "should correctly resolve a winner from different hands" do
       draw(hand, :straight)
@@ -393,6 +393,43 @@ describe Hand do
         hand.analyse_hand
         opponent.analyse_hand
         expect(hand.stronger_hand?(opponent)).to eq(false)
+      end
+
+    end
+
+  end
+
+  describe "#discard" do
+
+    it "should discard card at index" do
+      draw(hand, :flush)
+      hand.discard([2])
+      expect(hand.cards).not_to include(@test_cards["3_of_hearts"])
+      expect(hand.discarded).to include(@test_cards["3_of_hearts"])
+    end
+
+  end
+
+  describe "#full_hand?" do
+
+    context "when there are not 5 cards" do
+  
+      it "should return false" do
+        draw(hand, :flush)
+        hand.discard([2, 3])
+        expect(hand.full_hand?).to be false
+      end
+
+    end
+    
+    context "when there are 5 cards" do
+  
+      it "should return true" do
+        draw(hand, :flush)
+        hand.discard([2, 3])
+        hand.draw(@test_cards["2_of_spades"])
+        hand.draw(@test_cards["3_of_spades"])
+        expect(hand.full_hand?).to be true
       end
 
     end

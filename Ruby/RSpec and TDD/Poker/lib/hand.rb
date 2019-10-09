@@ -14,7 +14,7 @@ class Hand
     high_card: "High Card"
   }
 
-  attr_reader :deck, :best_hand_found, :high_card
+  attr_reader :deck, :best_hand_found, :high_card, :discarded
   attr_accessor :cards
 
   def initialize(deck)
@@ -22,6 +22,7 @@ class Hand
     @deck = deck
     @best_hand_found
     @high_card
+    @discarded = []
   end
 
   def draw(card)
@@ -125,6 +126,18 @@ class Hand
     return false if opponent_hand.high_card[:low_kicker].value.last < @high_card[:low_kicker].value.last
     return true if opponent_hand.high_card[:low_kicker].value.last > @high_card[:low_kicker].value.last
     
+  end
+
+  def full_hand?
+    return @cards.size == 5
+  end
+
+  def discard(arr_of_indexes)
+    arr_of_indexes.each do |index|
+      discarded_card = @cards[index]
+      @discarded << discarded_card
+      @cards.delete(discarded_card)
+    end
   end
 
   private
