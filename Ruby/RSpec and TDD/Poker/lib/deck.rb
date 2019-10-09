@@ -33,9 +33,15 @@ class Deck
     @cards.shift
   end
 
+  def rebuild_deck
+    build_deck
+    shuffle!
+  end
+
   private
 
   def build_deck
+    @cards = []
     SUITS.each do |suit|
       FACES_VALUES.each do |face, value|
         @cards.push(Card.new(suit, face, value))
