@@ -29,7 +29,7 @@ class Deck
     @cards.shuffle!
   end
 
-  def draw
+  def deal
     @cards.shift
   end
 

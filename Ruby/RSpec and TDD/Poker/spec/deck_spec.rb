@@ -27,12 +27,12 @@ describe Deck do
 
   end
 
-  describe "#draw" do
+  describe "#deal" do
 
     it "should pop a card from the deck" do
       deck.shuffle!
       top_card = deck.cards.first
-      expect(deck.draw).to eq(top_card)
+      expect(deck.deal).to eq(top_card)
     end
 
   end

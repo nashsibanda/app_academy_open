@@ -8,7 +8,7 @@ class Player
   end
 
   def draw
-    @hand.draw(@deck.draw)
+    @hand.draw(@deck.deal)
   end
 
   # private
@@ -27,4 +27,6 @@ deck.shuffle!
   player.draw
 end
 player.hand.analyse_hand
+player.view_cards
+player.view_cards
 player.view_cards
