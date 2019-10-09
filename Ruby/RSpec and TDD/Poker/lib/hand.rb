@@ -40,7 +40,7 @@ class Hand
       @high_card = high_card
       return high_card
     end
-    if @best_hand_found.has_key?(:flush) || @best_hand_found.has_key?(:royal_flush) || @best_hand_found.has_key?(:straight)
+    if @best_hand_found.has_key?(:flush) || @best_hand_found.has_key?(:royal_flush) || @best_hand_found.has_key?(:straight) || @best_hand_found.has_key?(:high_card)
       highest_value_card = @best_hand_found.first.last.max { |a, b| a.value.last <=> b.value.last }
       high_card = { high_card: highest_value_card }
       @high_card = high_card
