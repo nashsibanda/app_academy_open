@@ -15,4 +15,11 @@ def my_min(list)
   return (list - bigger_numbers).first
 end
 
+def single_min(list)
+  smallest_number = list.first
+  list.each { |element| smallest_number = element if element < smallest_number }
+  smallest_number
+end
+
 p my_min(list)  # =>  -5
+p single_min(list)  # =>  -5
