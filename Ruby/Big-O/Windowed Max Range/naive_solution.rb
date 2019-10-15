@@ -1,4 +1,4 @@
-def windowed_max_range(array, window_size)
+def naive_windowed_max_range(array, window_size)
   current_max_range = 0
   array.each_index do |i|
     window = array[i...(i+window_size)]
