@@ -45,8 +45,41 @@ class MyStack
     @store.pop
   end
 
-  def push
-    @store.push
+  def push(element)
+    @store.push(element)
   end
   
+end
+
+class StackQueue
+  def initialize
+    @stack1, @stack2 = MyStack.new, MyStack.new
+  end
+
+  def size
+    @stack1.size + @stack2.size
+  end
+
+  def empty?
+    @active_stack.empty?
+  end
+
+  def enqueue(element)
+    @stack1.push(element)
+  end
+
+  def dequeue
+    stack_flipper if @stack2.empty?
+    @stack2.pop
+  end
+
+  private
+
+  def stack_flipper
+    until @stack2.empty?
+      @stack2.push(@stack1.pop)
+    end
+  end
+
+
 end
