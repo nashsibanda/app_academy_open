@@ -30,7 +30,7 @@ class MyStack
   end
   
   def peek
-    @store[0]
+    @store[-1]
   end
   
   def size
@@ -82,4 +82,50 @@ class StackQueue
   end
 
 
+end
+
+class MinMaxStack
+  def initialize
+    @store = MyStack.new
+  end
+
+  def max
+    @store.peek[:max] if !@store.empty?
+  end
+  
+  def min
+    @store.peek[:min] if !@store.empty?
+  end
+  
+  def peek
+    @store.peek[:value] if !@store.empty?
+  end
+  
+  def size
+    @store.size
+  end
+  
+  def empty?
+    @store.empty?
+  end
+
+  def pop
+    @store.pop[:value] if !@store.empty?
+  end
+
+  def push(element)
+    @store.push( {max: calc_max(element), min: calc_min(element), value: element } )
+  end
+
+  private
+
+  def calc_max(element)
+    return element if empty?
+    [max, element].max
+  end
+  
+  def calc_max(element)
+    return element if empty?
+    [min, element].min
+  end
 end
