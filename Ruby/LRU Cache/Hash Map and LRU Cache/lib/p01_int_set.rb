@@ -5,7 +5,7 @@ class MaxIntSet
   end
 
   def insert(num)
-    raise "Out of bounds" if num > @store.length || num < 0
+    raise "Out of bounds" unless is_valid?(num)
     @store[num] = true
   end
 
@@ -20,6 +20,7 @@ class MaxIntSet
   private
 
   def is_valid?(num)
+    num < @store.length && num >= 0
   end
 
   def validate!(num)
@@ -33,18 +34,21 @@ class IntSet
   end
 
   def insert(num)
+    self[num] << num unless include?(num)
   end
 
   def remove(num)
+    self[num].delete(num) if include?(num)
   end
 
   def include?(num)
+    self[num].include?(num)
   end
 
   private
 
   def [](num)
-    # optional but useful; return the bucket corresponding to `num`
+    @store[num % num_buckets]
   end
 
   def num_buckets
