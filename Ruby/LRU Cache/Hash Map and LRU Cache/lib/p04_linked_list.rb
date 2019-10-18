@@ -47,9 +47,13 @@ class LinkedList
   end
 
   def get(key)
+    selected_node = self.select { |node| node.key == key }.first
+    selected_node.val if selected_node
   end
 
   def include?(key)
+    selected_node = self.select { |node| node.key == key }.first
+    selected_node != nil
   end
 
   def append(key, val)
@@ -66,6 +70,10 @@ class LinkedList
   end
 
   def remove(key)
+    selected_node = self.select { |node| node.key == key }.first
+    selected_node.prev.next = selected_node.next
+    selected_node.next.prev = selected_node.prev
+    selected_node = nil
   end
 
   def each(&block)
