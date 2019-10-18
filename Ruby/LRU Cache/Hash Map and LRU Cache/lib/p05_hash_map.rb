@@ -9,15 +9,27 @@ class HashMap
   end
 
   def include?(key)
+    bucket(key).include?(key)
   end
 
   def set(key, val)
+    if include?(key)
+      bucket(key).update(key, val)
+    else
+      @count += 1
+      bucket(key).append(key, val)
+    end
   end
 
   def get(key)
+    bucket(key).get(key)
   end
 
   def delete(key)
+    if include?(key)
+      @count -= 1
+      bucket(key).remove(key) 
+    end
   end
 
   def each
@@ -45,5 +57,6 @@ class HashMap
 
   def bucket(key)
     # optional but useful; return the bucket corresponding to `key`
+    @store[key.hash % num_buckets]
   end
 end
