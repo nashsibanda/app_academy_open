@@ -22,6 +22,7 @@ class Node
 end
 
 class LinkedList
+  attr_reader :head, :tail
   include Enumerable
   def initialize
     @head, @tail = Node.new, Node.new
