@@ -47,6 +47,9 @@ class DynamicArray
   def []=(i, val)
     if i < 0
       @store[@count + i] = val
+    elsif i > @count
+      push(nil) until i == @count
+      push(val)
     else
       @store[i] = val
     end
