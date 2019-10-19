@@ -1,3 +1,5 @@
+require "byebug"
+
 class StaticArray
   attr_reader :store
 
@@ -28,6 +30,7 @@ end
 
 class DynamicArray
   attr_accessor :count
+  include Enumerable
 
   def initialize(capacity = 8)
     @store = StaticArray.new(capacity)
@@ -35,9 +38,15 @@ class DynamicArray
   end
 
   def [](i)
+    @store[i]
+    rescue
+      return nil
   end
-
+  
   def []=(i, val)
+    @store[i] = val
+    rescue
+      return nil
   end
 
   def capacity
@@ -48,24 +57,57 @@ class DynamicArray
   end
 
   def push(val)
+    index = @count
+    @count += 1
+    self[index] = val
   end
 
   def unshift(val)
+    i = @count - 1
+    until i < 0
+      self[(i + 1)] = self[i]
+      i -= 1
+    end
+    @count += 1
+    self[0] = val
   end
 
   def pop
+    return nil if @count <= 0
+    value = last
+    @store[@count - 1] = nil
+    @count -= 1
+    return value
   end
-
+  
   def shift
+    return nil if @count <= 0
+    value = first
+    i = 0
+    until i == @count
+      self[i] = self[i + 1]
+      i += 1
+    end
+    @count -= 1
+    value
   end
 
   def first
+    @store[0]
   end
 
   def last
+    @store[(@count - 1)]
   end
 
-  def each
+  def each(&prc)
+    i = 0
+    prc ||= Proc.new { |i| return i }
+    while i < @count
+      prc.call(self[i])
+      i += 1
+    end
+    self
   end
 
   def to_s
