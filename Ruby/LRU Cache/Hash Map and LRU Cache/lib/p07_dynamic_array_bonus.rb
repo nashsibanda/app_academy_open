@@ -38,13 +38,18 @@ class DynamicArray
   end
 
   def [](i)
+    return @store[@count + i] if i < 0
     @store[i]
     rescue
       return nil
   end
   
   def []=(i, val)
-    @store[i] = val
+    if i < 0
+      @store[@count + i] = val
+    else
+      @store[i] = val
+    end
     rescue
       return nil
   end
@@ -121,6 +126,12 @@ class DynamicArray
   def ==(other)
     return false unless [Array, DynamicArray].include?(other.class)
     # ...
+    i = 0
+    until i == capacity
+      return false unless self[i] == other[i]
+      i += 1
+    end
+    true
   end
 
   alias_method :<<, :push
