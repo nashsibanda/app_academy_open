@@ -54,11 +54,14 @@ class DynamicArray
   end
 
   def include?(val)
+    self.each { |el| return true if el == val }
+    false
   end
 
   def push(val)
     index = @count
     @count += 1
+    resize! if @count > capacity
     self[index] = val
   end
 
@@ -69,6 +72,7 @@ class DynamicArray
       i -= 1
     end
     @count += 1
+    resize! if @count > capacity
     self[0] = val
   end
 
@@ -125,5 +129,12 @@ class DynamicArray
   private
 
   def resize!
+    new_array = StaticArray.new(capacity * 2)
+    i = 0
+    until i == capacity
+      new_array[i] = self[i]
+      i += 1
+    end
+    @store = new_array
   end
 end
