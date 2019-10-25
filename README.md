@@ -17,3 +17,5 @@ Projects completed so far:
 - [Minesweeper](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Git/Minesweeper)
 - [TicTacToe](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Data%20Structures/TicTacToe)
 - [Chess](https://github.com/nashx90/app_academy_open/tree/master/Ruby/Object-Oriented%20Programming/Chess)
+- [Poker](https://github.com/nashx90/app_academy_open/tree/master/Ruby/RSpec%20and%20TDD/Poker)
+- [Hash Map and LRU Cache](https://github.com/nashx90/app_academy_open/tree/master/Ruby/LRU%20Cache/Hash%20Map%20and%20LRU%20Cache)
