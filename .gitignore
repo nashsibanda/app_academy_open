@@ -10,4 +10,4 @@ Ruby/Git/Minesweeper/saves/test1.yml
 Ruby/Git/Minesweeper/saves/test2.yml
 Ruby/Git/Minesweeper/saves/timepassages.yml
 !*.sql
-SQL/AA Questions/test.db
+SQL/AA Questions/lib/questions.db
