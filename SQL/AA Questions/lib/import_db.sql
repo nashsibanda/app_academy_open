@@ -100,6 +100,7 @@ INSERT INTO
   question_likes (question_id, liker_id)
 VALUES
   ((SELECT id FROM questions WHERE title = 'How do I inject SQL?'), (SELECT id FROM users WHERE fname = 'Katie' AND lname = 'Lymn')),
+  ((SELECT id FROM questions WHERE title = 'How do I inject SQL?'), (SELECT id FROM users WHERE fname = 'Johann')),
   ((SELECT id FROM questions WHERE title = 'Help'),(SELECT id FROM users WHERE fname = 'Johann')),
   ((SELECT id FROM questions WHERE title = 'How to efficiently determine whether there is a record in millions of records?'),(SELECT id FROM users WHERE fname = 'Nash')),
   ((SELECT id FROM questions WHERE title = 'Testing 123'),(SELECT id FROM users WHERE fname = 'Boy'));
