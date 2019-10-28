@@ -44,6 +44,10 @@ class Question
     QuestionFollow.most_followed_questions(amount)
   end
 
+  def self.most_liked(amount)
+    QuestionFollow.most_liked_questions(amount)
+  end
+
   # Instance methods
   def author
     User.find_by_id(@author_id)
