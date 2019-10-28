@@ -40,6 +40,10 @@ class Question
     data.map { |datum| Question.new(datum) }
   end
 
+  def self.most_followed(amount)
+    QuestionFollow.most_followed_questions(amount)
+  end
+
   # Instance methods
   def author
     User.find_by_id(@author_id)

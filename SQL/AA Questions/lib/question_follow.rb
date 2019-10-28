@@ -53,4 +53,21 @@ class QuestionFollow
     data.map { |datum| Question.new(datum) }
   end
 
+  def self.most_followed_questions(amount)
+    data = QuestionsDatabase.instance.execute(<<-SQL, amount)
+      SELECT
+        questions.id, title, body, author_id
+      FROM
+        questions
+      JOIN
+        question_follows ON question_follows.question_id = questions.id
+      GROUP BY
+        questions.id, title, body, author_id
+      ORDER BY
+        COUNT(follower_id) DESC
+      LIMIT ?
+    SQL
+    data.map { |datum| Question.new(datum) }
+  end
+
 end
