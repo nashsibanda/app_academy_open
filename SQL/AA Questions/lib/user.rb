@@ -39,4 +39,14 @@ class User
     SQL
     data.map { |datum| User.new(datum) }
   end
+
+  # Instance methods
+  def authored_questions
+    Question.find_by_author_id(@id)
+  end
+  
+  def authored_replies
+    Reply.find_by_user_id(@id)
+  end
+
 end
