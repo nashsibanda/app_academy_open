@@ -28,5 +28,30 @@ class Reply
     SQL
     data.map { |datum| Reply.new(datum) }.first
   end
+  
+  def self.find_by_user_id(replier_id)
+    data = QuestionsDatabase.instance.execute(<<-SQL, replier_id)
+      SELECT
+        *
+      FROM
+        replies
+      WHERE
+        replier_id = ?
+    SQL
+    data.map { |datum| Reply.new(datum) }
+  end
+  
+  def self.find_by_question_id(question_id)
+    data = QuestionsDatabase.instance.execute(<<-SQL, question_id)
+      SELECT
+        *
+      FROM
+        replies
+      WHERE
+        question_id = ?
+    SQL
+    data.map { |datum| Reply.new(datum) }
+  end
+  
 
 end
