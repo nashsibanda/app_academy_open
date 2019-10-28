@@ -80,4 +80,35 @@ class User
     data.first['avg_karma']
   end
 
+  def save
+    if self.id
+      update_record
+    else
+      insert_record
+    end
+  end
+
+  private
+
+  def insert_record
+    QuestionsDatabase.instance.execute(<<-SQL, @fname, @lname)
+      INSERT INTO
+        users (fname, lname)
+      VALUES
+        (?, ?)
+    SQL
+    @id = QuestionsDatabase.instance.last_insert_row_id
+  end
+
+  def update_record
+    QuestionsDatabase.instance.execute(<<-SQL, @fname, @lname, @id)
+      UPDATE
+        users
+      SET
+        fname = ?, lname = ?
+      WHERE
+        id = ?
+    SQL
+  end
+
 end
