@@ -19,4 +19,6 @@ class ShortenedUrl < ApplicationRecord
     primary_key: :id,
     foreign_key: :submitter_id,
     class_name: :User
+  
+  has_many :visitors, through: :visits, source: :visitor
 end
