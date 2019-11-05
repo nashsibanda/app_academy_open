@@ -2,6 +2,7 @@ class ShortenedUrl < ApplicationRecord
   validates :short_url, presence: true, uniqueness: true
   validates :long_url, presence: true
   validates :submitter_id, presence: true
+  validate :no_spamming, :nonpremium_max
 
   def self.random_code
     code = SecureRandom.urlsafe_base64
@@ -26,6 +27,18 @@ class ShortenedUrl < ApplicationRecord
   def num_recent_uniques
     recent_uniques = self.visitors.where("visits.created_at >= ?", 10.minutes.ago )
     recent_uniques.count
+  end
+
+  def no_spamming
+    if self.submitter.submitted_urls.where("shortened_urls.created_at >= ?", 5.minutes.ago ).count >= 5
+      errors[:submitter_id] << "Too many submissions at once!"
+    end
+  end
+  
+  def nonpremium_max
+    unless self.submitter.submitted_urls.count < 7 || self.submitter.premium
+      errors[:submitter_id] << "Non-premium members can only have 20 ShortURLs"
+    end
   end
 
   belongs_to :submitter,
