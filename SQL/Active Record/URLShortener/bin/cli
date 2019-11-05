@@ -1,0 +1,82 @@
+#!/usr/bin/env ruby
+def valid_email?(email)
+  email =~ /\A[^@]+@[^@]+\z/
+end
+
+def new_url(current_user)
+  puts "Type in your long URL:"
+  long_url = gets.chomp
+  new_url = ShortenedUrl.new_short_url(long_url, current_user)
+  puts
+  puts "Your ShortURL is: #{new_url.short_url}"
+  puts
+  puts "Would you like to do something else?"
+  menu(current_user)
+end
+
+def visit_url(current_user)
+  puts "Type in your short URL:"
+  short_url_input = gets.chomp
+  selected_url = ShortenedUrl.find_by(short_url: short_url_input)
+  puts "
+  Launching #{selected_url.long_url}..."
+  sleep(0.5)
+  Launchy.open(selected_url.long_url)
+  Visit.record_visit!(current_user, selected_url)
+  puts
+  puts "Would you like to do something else?"
+  menu(current_user)
+end
+
+def user_selector(email_input)
+  if User.exists?(email: email_input)
+    puts "Welcome back, #{email_input}!"
+    return User.find_by(email: email_input)
+  else
+    puts "Hello #{email_input}, this is your first time here!"
+    return User.create(email: email_input)
+  end
+end
+
+def menu(current_user)
+  puts "
+  Would you like to:
+0. Visit a ShortURL
+1. Create a new ShortURL
+9. Exit the program"
+  choice = gets.chomp
+  chooser(choice, current_user)
+end
+
+def chooser(input, current_user)
+  case input
+  when "0"
+    visit_url(current_user)
+  when "1"
+    new_url(current_user)
+  when "9"
+    puts "
+Thanks for using ShortURL!"
+    abort("Program Ended.")
+  else
+    puts "Please make a valid choice"
+    menu(current_user)
+  end
+end
+
+puts "***********************************"
+puts
+puts "        Welcome to ShortURL!       "
+puts
+puts "***********************************"
+sleep(1.5)
+puts "
+Please enter your email:"
+email_input = gets.chomp
+until valid_email?(email_input)
+  puts "Please enter a valid email:"
+  email_input = gets.chomp
+end
+current_user = user_selector(email_input)
+puts "Please select an option:"
+menu(current_user)
