@@ -16,6 +16,23 @@ class ShortenedUrl < ApplicationRecord
     ShortenedUrl.create!(long_url: orig_url, short_url: ShortenedUrl.random_code, submitter_id: user.id)
   end
 
+  def self.prune(mins)
+    ShortenedUrl
+      .joins(:submitter)
+      .left_joins(:visits)
+      .where("(shortened_urls.id IN (
+        SELECT shortened_urls.id 
+        FROM shortened_urls 
+        JOIN visits
+        ON visits.shortened_url_id = shortened_urls.id 
+        GROUP BY shortened_urls.id 
+        HAVING MAX(visits.created_at) < ?
+      ) OR (
+        visits.id IS NULL AND shortened_urls.created_at < ? 
+      )) AND users.premium = ?", mins.minutes.ago, mins.minutes.ago, false)
+      .destroy_all
+  end
+
   def num_clicks
     self.visits.count
   end
