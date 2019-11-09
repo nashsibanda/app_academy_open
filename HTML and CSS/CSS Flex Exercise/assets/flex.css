@@ -18,8 +18,7 @@ ul li a, figcaption a {
 }
 
 header > img {
-  width: 100px;
-  float: left;
+  width: initial;
 }
 
 .ingredients-list {
@@ -66,13 +65,21 @@ h2 + .user_review {
     border-top: 1px solid black;
 }
 
-nav {
-    float: right;
+header, header ul {
+  display: flex;
 }
 
-nav ul li {
-    display: inline-block;
+header {
+  justify-content: space-between;
 }
+
+/* nav {
+    float: right;
+} */
+
+/* nav ul li {
+    display: inline-block;
+} */
 
 nav ul li a {
     padding: 20px;
