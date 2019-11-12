@@ -1,6 +1,7 @@
 require '01_sql_object'
 require 'db_connection'
 require 'securerandom'
+# require 'byebug'
 
 describe SQLObject do
   before(:each) { DBConnection.reset }
@@ -217,11 +218,11 @@ describe SQLObject do
     describe '#update' do
       it 'saves updated attributes to the DB' do
         human = Human.find(2)
-
+        
         human.fname = 'Matthew'
         human.lname = 'von Rubens'
         human.update
-
+        
         # pull the human again
         human = Human.find(2)
         expect(human.fname).to eq('Matthew')

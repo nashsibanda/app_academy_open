@@ -99,10 +99,25 @@ class SQLObject
   end
 
   def update
-    # ...
+    col_names = self.class.columns.drop(1)
+    id_col = self.class.columns.take(1).first
+    rotated_values = attribute_values.rotate
+    set_line = col_names.map { |col| "#{col} = ?" }.join(", ")
+    DBConnection.execute(<<-SQL, *rotated_values)
+      UPDATE
+        #{self.class.table_name}
+      SET
+        #{set_line}
+      WHERE
+        #{id_col} = ?
+    SQL
   end
 
   def save
-    # ...
+    if self.id.nil?
+      self.insert
+    else
+      self.update
+    end
   end
 end
