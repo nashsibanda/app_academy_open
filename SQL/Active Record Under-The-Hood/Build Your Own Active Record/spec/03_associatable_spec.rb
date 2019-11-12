@@ -1,4 +1,5 @@
 require '03_associatable'
+require 'byebug'
 
 describe 'AssocOptions' do
   describe 'BelongsToOptions' do
@@ -108,6 +109,7 @@ describe 'Associatable' do
     let(:devon) { Human.find(1) }
 
     it 'fetches `human` from `Cat` correctly' do
+      # debugger
       expect(breakfast).to respond_to(:human)
       human = breakfast.human
 
