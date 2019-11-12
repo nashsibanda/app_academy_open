@@ -82,11 +82,20 @@ class SQLObject
   end
 
   def attribute_values
-    # ...
+    @attributes.values
   end
 
   def insert
-    # ...
+    @col_names = self.class.columns[1..-1].join(", ")
+    @injection_sites = ["?"] * (self.class.columns.length - 1 )
+    @injection_sites = @injection_sites.join(", ")
+    DBConnection.execute(<<-SQL, *attribute_values)
+      INSERT INTO
+        #{self.class.table_name} (#{@col_names})
+      VALUES
+        (#{@injection_sites})
+    SQL
+    self.id = DBConnection.last_insert_row_id
   end
 
   def update
