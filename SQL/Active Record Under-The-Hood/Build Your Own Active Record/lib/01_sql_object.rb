@@ -29,19 +29,41 @@ class SQLObject
   end
 
   def self.table_name
-    @table_name || self.name.downcase.pluralize
+    @table_name || self.name.underscore.pluralize
   end
 
   def self.all
-    # ...
+    rows = DBConnection.execute(<<-SQL)
+      SELECT
+        *
+      FROM
+        #{self.table_name}
+    SQL
+    self.parse_all(rows)
   end
 
   def self.parse_all(results)
-    # ...
+    results_array = []
+    results.each do |result|
+      result_object = self.new(result)
+      results_array << result_object
+    end
+    results_array
   end
 
   def self.find(id)
-    # ...
+    row = DBConnection.execute(<<-SQL, id).first
+      SELECT
+        *
+      FROM
+        #{self.table_name}
+      WHERE
+        id = ?
+      LIMIT
+        1
+    SQL
+    return nil unless row
+    self.new(row)
   end
 
   def initialize(params = {})
