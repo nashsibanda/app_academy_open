@@ -3,7 +3,8 @@ class ArtworksController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
   def index
-    render json: Artwork.all
+    # user = User.find(params[:user_id]).shared_artworks
+    render json: { created_artworks: Artwork.where(artist_id: params[:user_id]), shared_artworks: User.find(params[:user_id]).shared_artworks }
   end
 
   def show
