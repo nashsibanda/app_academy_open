@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action
+    rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
   def index
     render json: User.all
@@ -33,18 +35,18 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    if user
-      User.destroy(params[:id])
-      render json: User.all
-    else
-      render json: user.errors, status: :unprocessable_entity
-    end
+    user.destroy
+    render json: user
   end
 
   private
 
   def user_params
     params.require(:user).permit(:name, :email)
+  end
+
+  def handle_record_not_found
+    render plain: "User not found", status: :unprocessable_entity
   end
 
 end
