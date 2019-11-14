@@ -1,15 +1,25 @@
 class UsersController < ApplicationController
 
   def index
-    render plain: "I'm in the index action!"
-  end
-
-  def create
-    render json: params
+    render json: User.all
   end
 
   def show
-    render json: params
+    user = User.find(params[:id])
+    if user
+      render json: user
+    else
+      render json: user.error.full_messages, status: :unprocessable_entity
+    end
+  end
+
+  def create
+    user = User.new(params.require(:user).permit(:name, :email))
+    if user.save
+      render json: user
+    else
+      render json: user.errors.full_messages, status: :unprocessable_entity
+    end
   end
 
 end
