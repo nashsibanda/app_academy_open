@@ -3,7 +3,12 @@ class UsersController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
   def index
-    render json: User.all
+    if params[:username]
+      users = User.where('username LIKE ?', "%#{params[:username]}%")
+    else
+      users = User.all
+    end
+    render json: users
   end
 
   def show
