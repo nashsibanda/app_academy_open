@@ -12,4 +12,6 @@ class Comment < ApplicationRecord
     primary_key: :id,
     foreign_key: :commenter_id,
     class_name: :User
+
+  has_many :likes, as: :likeable
 end
