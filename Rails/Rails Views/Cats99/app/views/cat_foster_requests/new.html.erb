@@ -1,0 +1,30 @@
+<h2>Make a new Foster Request</h2>
+
+<form action="<%= cat_foster_requests_url %>" method="post">
+  <div class="request-form-row">
+    <label for="cat-name-select">Choose a cat:</label>
+    <select name="cat_foster_request[cat_id]" id="cat-name-select">
+      <% @cats.each do |this_cat| %>
+        <option value="<%= this_cat.id %>"> <%= this_cat.name %> </option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="request-form-row">
+    <label for="request-start-date">From:</label>
+    <input type="date" name="cat_foster_request[start_date]" id="request-start-date">
+    <label for="request-end-date">Until:</label>
+    <input type="date" name="cat_foster_request[end_date]" id="request-end-date">
+  </div>
+
+  <div class="request-form-row request-form-submit">
+    <input type="submit" value="Make Request!">
+  </div>
+</form>
+<% if @failed %>
+  <div class="cat-form-error">
+    Unable to save this request :( <br>
+    Error(s):
+    <%= @request.errors.full_messages.join(", \n") %>
+  </div>
+<% end %>

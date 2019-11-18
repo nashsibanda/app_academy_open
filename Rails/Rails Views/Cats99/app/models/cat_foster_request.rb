@@ -14,7 +14,7 @@ class CatFosterRequest < ApplicationRecord
 
   private
   def overlapping_requests
-    CatFosterRequest.where.not(id: id).where(cat_id: cat_id).where("start_date BETWEEN ? AND ? OR end_date BETWEEN ? AND ?", start_date, end_date, start_date, end_date)
+    CatFosterRequest.where.not(id: id).where(cat_id: cat_id).where("start_date BETWEEN ? AND ? OR (end_date IS NULL OR end_date BETWEEN ? AND ?)", start_date, end_date, start_date, end_date)
   end
 
   def overlapping_approved_requests
@@ -26,7 +26,7 @@ class CatFosterRequest < ApplicationRecord
   end
 
   def start_date_not_in_past
-    errors[:start_date] << "cannot be in the past" unless start_date > Time.now
+    errors[:start_date] << "cannot be in the past" unless !start_date || start_date > Time.now
   end
 
   def end_date_not_before_start

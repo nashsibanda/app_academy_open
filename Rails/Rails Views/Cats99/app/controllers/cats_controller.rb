@@ -56,7 +56,7 @@ class CatsController < ApplicationController
   end
 
   def handle_record_not_found
-    render plain: "User not found", status: :unprocessable_entity
+    render plain: "Cat not found", status: :unprocessable_entity
   end
 
 end

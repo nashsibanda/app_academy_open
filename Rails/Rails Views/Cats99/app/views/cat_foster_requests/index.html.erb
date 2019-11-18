@@ -1,0 +1,9 @@
+<h1>Foster Requests Index!</h1>
+<%= link_to  "Add a Request", new_cat_foster_request_url %>
+
+<h3>Requests currently in the database:</h3>
+<table>
+  <% @requests.each do |request| %>
+    <%= render  "request", request: request %>
+  <% end %>
+</table>

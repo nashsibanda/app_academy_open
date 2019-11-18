@@ -1,0 +1,24 @@
+<tr class="request-list-header-row">
+  <td>Request No.:</td>
+  <td><%= request.id %></td>
+</tr>
+<tr>
+  <td>Cat Name:</td>
+  <td><%= request.cat.name %></td>
+</tr>
+<tr>
+  <td>Start Date:</td>
+  <td><%= request.start_date %></td>
+</tr>
+<tr>
+  <td>End Date:</td>
+  <td><%= request.end_date ? request.end_date : "Indefinitely" %></td>
+</tr>
+<tr>
+  <td>Status:</td>
+  <td class="request-list-status"><%= request.status %></td>
+</tr>
+<tr>
+  <td>Created at:</td>
+  <td><%= request.created_at %></td>
+</tr>
