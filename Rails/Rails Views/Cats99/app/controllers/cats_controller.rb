@@ -25,7 +25,8 @@ class CatsController < ApplicationController
       @this_cat = @new_cat
       render :show
     else
-      redirect_to cats_url
+      @this_cat, @failed = @new_cat, true
+      render :new
     end
   end
 
@@ -43,7 +44,8 @@ class CatsController < ApplicationController
     if @this_cat.update(cat_params)
       render :show
     else
-      redirect_to edit_cat_url
+      @failed = true
+      render :edit
     end
   end
 
