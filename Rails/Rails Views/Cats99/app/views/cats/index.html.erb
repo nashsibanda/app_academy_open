@@ -1,0 +1,8 @@
+<h2>Cats Index!</h2>
+
+<ul>
+  <% @cats_selection.each do |this_cat| %>
+    <li>
+    <%= link_to  this_cat.name, cat_url(id: this_cat.id ) %>
+  <% end %>
+</ul>

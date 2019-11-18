@@ -1,0 +1,34 @@
+<table>
+  <thead>
+    <tr>
+      <th colspan="2" > <%= @this_cat.name %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Sex:</td>
+      <td><%= this_cat.sex %></td>
+    </tr>
+    <tr>
+      <td>Age:</td>
+      <td><%= this_cat.age %></td>
+    </tr>
+    <tr>
+      <td>Date of Birth:</td>
+      <td><%= this_cat.birth_date %></td>
+    </tr>
+    <tr>
+      <td>Added to Cats99:</td>
+      <td><%= this_cat.created_at.strftime("%Y/%m/%d") %> (<%= this_cat.time_since_added_to_cats99 %> ago)</td>
+    </tr>
+    <tr>
+      <td>Colour:</td>
+      <td><%= this_cat.color.capitalize %></td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td><%= this_cat.description.capitalize %></td>
+    </tr>
+  </tbody>
+</table>
