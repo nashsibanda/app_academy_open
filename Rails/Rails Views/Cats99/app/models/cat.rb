@@ -5,6 +5,12 @@ class Cat < ApplicationRecord
   validates :color, presence: true, inclusion: { in: %w(black brown grey white tabby), message: "%{value} is not a recognised colour" }
   validate :year_not_in_future
 
+  has_many :cat_foster_requests,
+    primary_key: :id,
+    foreign_key: :cat_id,
+    class_name: :CatFosterRequest,
+    dependent: :destroy
+
   def age
     time_ago_in_words(self.birth_date, highest_measures: 3 )
   end
