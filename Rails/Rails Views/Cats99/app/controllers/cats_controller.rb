@@ -5,7 +5,7 @@ class CatsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
   
   def index
-    @cats_selection = Cat.all
+    @cats_selection = Cat.all.order(name: :asc)
     render :index
   end
 
@@ -25,6 +25,24 @@ class CatsController < ApplicationController
       render :show
     else
       redirect_to cats_url
+    end
+  end
+
+  def edit
+    @this_cat = Cat.find_by(id: params[:id])
+    if @this_cat
+      render :edit
+    else
+      redirect_to cats_url
+    end
+  end
+
+  def update
+    @this_cat = Cat.find_by(id: params[:id])
+    if @this_cat.update(cat_params)
+      render :show
+    else
+      redirect_to edit_cat_url
     end
   end
 

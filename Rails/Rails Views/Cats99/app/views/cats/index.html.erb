@@ -5,6 +5,6 @@
 <ul>
   <% @cats_selection.each do |this_cat| %>
     <li>
-    <%= link_to  this_cat.name, cat_url(id: this_cat.id ) %>
+    <%= link_to  this_cat.name, cat_url(this_cat) %>
   <% end %>
 </ul>
