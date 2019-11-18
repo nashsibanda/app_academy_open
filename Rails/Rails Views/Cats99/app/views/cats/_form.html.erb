@@ -1,0 +1,46 @@
+<form action="<%= this_cat.persisted? ? cat_url : cats_url %>" method="post">
+  <% if this_cat.persisted? %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+
+  <div class="cat-form-row">
+    <label for="cat-name-input">Name:</label>
+    <input type="text" name="cat[name]" id="cat-name-input" value=<%= this_cat.name %>>
+  </div>
+
+  <div class="cat-form-row">
+    <label for="cat-sex-input">Sex:</label>
+    <span id="cat-sex-input">
+      <input type="radio" name="cat[sex]" id="cat-male-radio" value="M" <%= this_cat.sex == "M" ? "checked" : "" %>>
+      <label for="cat-male-radio">Male</label>
+      <input type="radio" name="cat[sex]" id="cat-female-radio" value="F" <%= this_cat.sex == "F" ? "checked" : "" %>>
+      <label for="cat-female-radio">Female</label>
+    </span>
+  </div>
+
+  <div class="cat-form-row">
+    <label for="cat-color-select">Colour:</label>
+    <select name="cat[color]" id="cat-color-select">
+      <option disabled <%= this_cat.color ? "" : "selected" %> >--Choose a colour--</option>
+      <option value="black" <%= this_cat.color == "black" ? "selected" : "" %>>Black</option>
+      <option value="brown" <%= this_cat.color == "brown" ? "selected" : "" %>>Brown</option>
+      <option value="grey" <%= this_cat.color == "grey" ? "selected" : "" %>>Grey</option>
+      <option value="white" <%= this_cat.color == "white" ? "selected" : "" %>>White</option>
+      <option value="tabby" <%= this_cat.color == "tabby" ? "selected" : "" %>>Tabby</option>
+    </select>
+  </div>
+
+  <div class="cat-form-row">
+    <label for="cat-date-input">Date of Birth:</label>
+    <input type="date" name="cat[birth_date]" id="cat-date-input" value="<%= this_cat.birth_date %>">
+  </div>
+
+  <div class="cat-form-row">
+    <label for="cat-description-input">Description:</label>
+    <textarea name="cat[description]" id="cat-description-input" cols="30" rows="10"><%= this_cat.description %>
+    </textarea>
+  </div>
+  <div class="cat-form-row cat-form-submit">
+    <input type="submit" value= "<%= this_cat.persisted? ? "Update cat!" : "Add cat to Cats99!" %>" >
+  </div>
+</form>
