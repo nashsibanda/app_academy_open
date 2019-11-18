@@ -1,0 +1,43 @@
+<h2>Add a New Cat</h2>
+
+<form action="/cats" method="post">
+  <div class="cat-form-row">
+    <label for="cat-name-input">Name:</label>
+    <input type="text" name="cat[name]" id="cat-name-input">
+  </div>
+
+  <div class="cat-form-row">
+    <label for="cat-sex-input">Sex:</label>
+    <span id="cat-sex-input">
+      <input type="radio" name="cat[sex]" id="cat-male-radio" value="M"> <label for="cat-male-radio">Male</label>
+      <input type="radio" name="cat[sex]" id="cat-female-radio" value="F"> <label for="cat-female-radio">Female</label>
+    </span>
+  </div>
+
+  <div class="cat-form-row">
+    <label for="cat-color-select">Colour:</label>
+    <select name="cat[color]" id="cat-color-select">
+      <option disabled selected>--Choose a colour--</option>
+      <option value="black">Black</option>
+      <option value="brown">Brown</option>
+      <option value="grey">Grey</option>
+      <option value="white">White</option>
+      <option value="tabby">Tabby</option>
+    </select>
+  </div>
+
+  <div class="cat-form-row">
+    <label for="cat-date-input">Date of Birth:</label>
+    <input type="date" name="cat[birth_date]" id="cat-date-input">
+  </div>
+
+  <div class="cat-form-row">
+    <label for="cat-description-input">Description:</label>
+    <textarea name="cat[description]" id="cat-description-input" cols="30" rows="10">
+      Enter any other info about your cat here!
+    </textarea>
+  </div>
+  <div class="cat-form-row cat-form-submit">
+    <input type="submit" value="Add cat to Cats99!">
+  </div>
+</form>

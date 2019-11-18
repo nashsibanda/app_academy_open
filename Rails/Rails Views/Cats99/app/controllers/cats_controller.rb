@@ -14,10 +14,24 @@ class CatsController < ApplicationController
     render :show
   end
 
+  def new
+    render :new
+  end
+
+  def create
+    @new_cat = Cat.new(cat_params)
+    if @new_cat.save
+      @this_cat = @new_cat
+      render :show
+    else
+      redirect_to cats_url
+    end
+  end
+
   private
 
   def cat_params
-    # params.require(:cat).permit(:name)
+    params.require(:cat).permit(:name, :sex, :color, :description, :birth_date)
   end
 
   def handle_record_not_found

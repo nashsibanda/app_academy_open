@@ -1,5 +1,7 @@
-<h2>Cats Index!</h2>
+<h1>Cats Index!</h1>
+<%= link_to  "Add a Cat", new_cat_url %>
 
+<h3>Cats currently in the database:</h3>
 <ul>
   <% @cats_selection.each do |this_cat| %>
     <li>
