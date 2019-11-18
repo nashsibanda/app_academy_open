@@ -82,6 +82,9 @@ GEM
     concurrent-ruby (1.1.5)
     crass (1.0.5)
     debug_inspector (0.0.3)
+    dotiw (4.0.1)
+      actionpack (>= 4)
+      i18n
     erubi (1.9.0)
     ffi (1.11.2)
     globalid (0.4.2)
@@ -218,6 +221,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
+  dotiw
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
