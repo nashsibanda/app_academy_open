@@ -11,6 +11,19 @@ class CatFosterRequest < ApplicationRecord
     foreign_key: :cat_id,
     class_name: :Cat
 
+  def approve!
+    raise "This request has already been #{self.status.downcase}" unless self.status == "PENDING"
+    transaction do
+      self.status = "APPROVED"
+      self.save!
+      overlapping_pending_requests.each { |request| request.update!(status: "DENIED") }
+    end
+  end
+
+  def deny!
+    self.status = "DENIED"
+    self.save!
+  end
 
   private
   def overlapping_requests
@@ -21,8 +34,12 @@ class CatFosterRequest < ApplicationRecord
     overlapping_requests.where(status: "APPROVED")
   end
 
+  def overlapping_pending_requests
+    overlapping_requests.where(status: "PENDING")
+  end
+
   def does_not_overlap_approved_requests
-    errors[:start_date] << "or end date cannot overlap an existing approved request" if overlapping_approved_requests.exists?
+    errors[:start_date] << "or end date cannot overlap an existing approved request" if status != "DENIED" && overlapping_approved_requests.exists?
   end
 
   def start_date_not_in_past
