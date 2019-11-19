@@ -1,6 +1,16 @@
 <h2> <%= @this_cat.name %> </h2>
 
 <%= render "cat", this_cat: @this_cat %>
+<% if @this_cat.cat_foster_requests.exists? %>
+  <div class="requests-table-banner">---- Current Foster Requests ----</div>
+  <table class="requests-table">
+    <% @this_cat.cat_foster_requests.each do |request| %>
+      <%= render  "/cat_foster_requests/request", request: request %>
+    <% end %>
+  </table>
+<% else %>
+  <div class="no-requests-banner">---- No Current Foster Requests ----</div>
+<% end %>
 
 <%= link_to  "Edit this Cat", edit_cat_url(@this_cat) %>
 <%= link_to  "Back to Cats Index", cats_url %>
