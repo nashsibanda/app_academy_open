@@ -1,6 +1,7 @@
 <h2> <%= @this_cat.name %> </h2>
 
 <%= render "cat", this_cat: @this_cat %>
+<%= link_to "Make a Foster Request!", new_cat_foster_request_url %>
 <% if @this_cat.cat_foster_requests.exists? %>
   <div class="requests-table-banner">---- Current Foster Requests ----</div>
   <table class="requests-table">

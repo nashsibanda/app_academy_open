@@ -2,13 +2,8 @@ class CatFosterRequestsController < ApplicationController
   before_action
     rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
-  def index
-    @requests = CatFosterRequest.all.order(start_date: :desc)
-    render :index
-  end
-  
   def new
-    @cats = Cat.all
+    @cats = Cat.all.order(name: :asc)
     @request = CatFosterRequest.new
     render :new
   end
@@ -16,12 +11,24 @@ class CatFosterRequestsController < ApplicationController
   def create
     @request = CatFosterRequest.new(request_params)
     if @request.save
-      redirect_to cat_foster_requests_url
+      redirect_to cat_url(@request.cat_id)
     else
-      @cats = Cat.all
+      @cats = Cat.all.order(name: :asc)
       @failed = true
       render :new
     end
+  end
+
+  def approve
+    @request = CatFosterRequest.find_by(id: params[:id])
+    @request.approve!
+    redirect_to cat_url(@request.cat_id)
+  end
+
+  def deny
+    @request = CatFosterRequest.find_by(id: params[:id])
+    @request.deny!
+    redirect_to cat_url(@request.cat_id)
   end
 
   private

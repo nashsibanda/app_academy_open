@@ -25,6 +25,10 @@ class CatFosterRequest < ApplicationRecord
     self.save!
   end
 
+  def pending?
+    self.status == "PENDING"
+  end
+
   private
   def overlapping_requests
     CatFosterRequest.where.not(id: id).where(cat_id: cat_id).where("start_date BETWEEN ? AND ? OR (end_date IS NULL OR end_date BETWEEN ? AND ?)", start_date, end_date, start_date, end_date)

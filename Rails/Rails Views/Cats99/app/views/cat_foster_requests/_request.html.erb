@@ -15,10 +15,20 @@
   <td><%= request.end_date ? request.end_date : "Indefinitely" %></td>
 </tr>
 <tr>
-  <td>Status:</td>
-  <td class="request-list-status"><%= request.status %></td>
-</tr>
-<tr>
   <td>Created at:</td>
   <td><%= request.created_at %></td>
 </tr>
+<tr>
+  <td>Status:</td>
+  <td class="request-list-status"><%= request.status %></td>
+</tr>
+<% if request.pending? %>
+  <tr>
+    <form action=" <%= approve_cat_foster_request_url(request) %>" method="post">
+      <td><input type="submit" value="Approve"></td>
+    </form>
+    <form action=" <%= deny_cat_foster_request_url(request) %>" method="post">
+      <td><input type="submit" value="Deny"></td>
+    </form>
+  </tr>
+<% end %>
