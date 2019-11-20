@@ -21,10 +21,4 @@
     <input type="submit" value="Make Request!">
   </div>
 </form>
-<% if @failed %>
-  <div class="cat-form-error">
-    Unable to save this request :( <br>
-    Error(s):
-    <%= @request.errors.full_messages.join(", \n") %>
-  </div>
-<% end %>
+<%= render partial: 'layouts/errors' %>

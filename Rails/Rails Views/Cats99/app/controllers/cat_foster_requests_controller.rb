@@ -11,10 +11,11 @@ class CatFosterRequestsController < ApplicationController
   def create
     @request = CatFosterRequest.new(request_params)
     if @request.save
+      flash[:notice] = 'Foster request successfully made!'
       redirect_to cat_url(@request.cat_id)
     else
       @cats = Cat.all.order(name: :asc)
-      @failed = true
+      flash.now[:errors] = @request.errors.full_messages
       render :new
     end
   end
