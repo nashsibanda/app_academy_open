@@ -20,12 +20,12 @@ class CatsController < ApplicationController
   end
 
   def create
-    @new_cat = Cat.new(cat_params)
-    if @new_cat.save
-      @this_cat = @new_cat
-      render :show
+    @this_cat = Cat.new(cat_params)
+    if @this_cat.save
+      flash[:notice] = 'Cat successfully added!'
+      redirect_to cat_url(@this_cat)
     else
-      @this_cat, @failed = @new_cat, true
+      flash.now[:errors] = @this_cat.errors.full_messages
       render :new
     end
   end
@@ -42,9 +42,10 @@ class CatsController < ApplicationController
   def update
     @this_cat = Cat.find_by(id: params[:id])
     if @this_cat.update(cat_params)
-      render :show
+      flash[:notice] = 'Cat successfully edited!'
+      redirect_to cat_url(@this_cat)
     else
-      @failed = true
+      flash.now[:errors] = @this_cat.errors.full_messages
       render :edit
     end
   end

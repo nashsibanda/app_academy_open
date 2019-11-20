@@ -1,3 +1,5 @@
 <h2>Edit Cat: <%= @this_cat.name %> </h2>
 
-<%= render "form", this_cat: @this_cat, failed: @failed %>
+<%= render "form", this_cat: @this_cat %>
+<br>
+<%= render partial: 'layouts/errors' %>

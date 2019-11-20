@@ -1,4 +1,5 @@
 <h2> <%= @this_cat.name %> </h2>
+<%= render partial: 'layouts/notice' %>
 
 <%= render "cat", this_cat: @this_cat %>
 <%= link_to "Make a Foster Request!", new_cat_foster_request_url %>
