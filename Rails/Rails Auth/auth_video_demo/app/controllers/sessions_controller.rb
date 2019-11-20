@@ -12,7 +12,8 @@ class SessionsController < ApplicationController
     if user.nil?
       render json: 'Credentials were wrong'
     else
-      render json: "Welcome back, #{user.username}"
+      login!(user)
+      redirect_to user_url(user)
     end
   end
 
