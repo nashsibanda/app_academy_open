@@ -16,7 +16,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:id])
+    redirect_to new_session_url if current_user.nil?
+    @user = current_user
+    render :show
   end
 
   private
