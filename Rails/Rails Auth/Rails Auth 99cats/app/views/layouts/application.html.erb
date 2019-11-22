@@ -9,6 +9,22 @@
   </head>
 
   <body>
+
+    <div class="user-login-div">
+      <div class="user-login-welcome">
+        <%= current_user.nil? ? "Welcome!" : "Welcome back, " + current_user.username %>
+        <% if current_user.nil? %>
+          <%= link_to "Sign up!", new_user_url %>
+        <% end %>
+      </div>
+      <div class="user-login-button">
+        <form action="<%= current_user.nil? ? new_session_url : session_url %>" method="GET">
+          <input type="hidden" name="authenticity_token" value=" <%= form_authenticity_token %>">
+          <input type="hidden" name="_method" value="<%= current_user.nil? ? "GET" : "DELETE" %>">
+          <input type="submit" value="<%= current_user.nil? ? "Log in" : "Logout" %>">
+        </form>
+      </div>
+    </div>
     <%= yield %>
   </body>
 </html>
