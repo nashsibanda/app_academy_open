@@ -7,6 +7,10 @@ class User < ApplicationRecord
   validates :session_token, presence: true
   after_initialize :ensure_session_token
 
+
+  has_many :cats,
+    dependent: :destroy
+
   def self.generate_session_token
     SecureRandom::urlsafe_base64(16)
   end
