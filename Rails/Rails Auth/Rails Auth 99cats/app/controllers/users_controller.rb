@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :already_signed_in
 
   def new
     @user = User.new
@@ -22,6 +23,12 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:username, :password)
+  end
+
+  def already_signed_in
+    if !current_user.nil?
+      redirect_to cats_url
+    end
   end
 
 end

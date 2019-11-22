@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :already_signed_in, except: :destroy
   
   def new
   end
@@ -20,6 +21,13 @@ class SessionsController < ApplicationController
   def destroy
     current_user.try(:reset_session_token!)
     session[:session_token] = nil
+  end
+
+  private
+  def already_signed_in
+    if !current_user.nil?
+      redirect_to cats_url
+    end
   end
   
 end
