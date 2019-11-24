@@ -1,4 +1,7 @@
 class CatRentalRequestsController < ApplicationController
+  before_action :check_if_logged_in
+  before_action :check_if_user_owns_cat, only: [:approve, :deny]
+
   def approve
     current_cat_rental_request.approve!
     redirect_to cat_url(current_cat)
@@ -28,6 +31,10 @@ class CatRentalRequestsController < ApplicationController
   def current_cat_rental_request
     @rental_request ||=
       CatRentalRequest.includes(:cat).find(params[:id])
+  end
+
+  def check_if_user_owns_cat
+    redirect to cat_url(current_cat) unless current_cat.user_id == current_user.id
   end
 
   def current_cat
