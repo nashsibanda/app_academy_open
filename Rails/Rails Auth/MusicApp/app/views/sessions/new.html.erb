@@ -1,6 +1,6 @@
-<h2>Sign Up!</h2>
+<h2>Log in!</h2>
 
-<form action="/users" method="post" class="log_in_form">
+<form action="/session" method="post" class="log_in_form">
   <%= auth_token %>
 
   <div class="log_in_form_row">
@@ -12,6 +12,6 @@
     <label for="user_password">Password: </label>
     <input type="password" name="user[password]" id="user_password">
   </div>
-    
-  <input type="submit" value="Sign Up!">
+
+  <input type="submit" value="Log in">
 </form>
