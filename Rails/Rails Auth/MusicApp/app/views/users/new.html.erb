@@ -3,15 +3,18 @@
 <form action="/users" method="post" class="log_in_form">
   <%= auth_token %>
 
-  <div class="log_in_form_row">
-    <label for="user_email">Email: </label>
-    <input type="text" name="user[email]" id="user_email">
-  </div>
-
-  <div class="log_in_form_row">
-    <label for="user_password">Password: </label>
-    <input type="password" name="user[password]" id="user_password">
-  </div>
-    
-  <input type="submit" value="Sign Up!">
+  <table class="log_in_form_table">
+    <tr class="log_in_form_row">
+      <td><label for="user_email">Email: </label></td>
+      <td><input type="text" name="user[email]" id="user_email"></td>
+    </tr>
+  
+    <tr class="log_in_form_row">
+      <td><label for="user_password">Password: </label></td>
+      <td><input type="password" name="user[password]" id="user_password"></td>
+    </tr>
+    <tr>
+      <td colspan="2"><input type="submit" value="Sign Up!"></td>
+    </tr>
+  </table>
 </form>
