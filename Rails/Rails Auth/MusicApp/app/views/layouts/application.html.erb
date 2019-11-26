@@ -10,6 +10,19 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <% if current_user.nil? %>
+        <%= render  "layouts/logged_out_links" %>
+      <% else %>
+        <%= render  "layouts/logged_in_links" %>
+      <% end %>
+      <%= yield :header %>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      <%= yield :footer %>
+    </footer>
   </body>
 </html>
