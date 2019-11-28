@@ -24,6 +24,20 @@ class BandsController < ApplicationController
     @band = Band.find_by(id: params[:id])
   end
 
+  def update
+    @band = Band.find_by(id: params[:id])
+    if @band.update(band_params)
+      redirect_to band_url(@band)
+    else
+      redirect_to band_url(@band)
+    end
+  end
+
+  def destroy
+    Band.find_by(id: params[:id]).destroy
+    redirect_to bands_url
+  end
+
   private
 
   def band_params
