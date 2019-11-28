@@ -43,7 +43,6 @@ header {
 
 h2 {
   font-size: 1.4rem;
-  margin: 0.2rem 1rem;
 }
 
 h1 {
@@ -70,4 +69,8 @@ h1 {
   text-decoration: none;
   padding: 0.3rem;
   border-radius: 0.2rem;
+}
+
+main {
+  padding: 0.2rem 1rem;
 }
