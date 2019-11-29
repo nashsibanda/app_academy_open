@@ -4,15 +4,25 @@
     <th><%= album.title %></th>
   </tr>
   <tr class="album_info_row">
-    <th>Artist</th>
-    <th><%= album.band.name %></th>
+    <td>Artist</td>
+    <td><%= album.band.name %></td>
   </tr>
   <tr class="album_info_row">
-    <th>Year</th>
-    <th><%= album.year %></th>
+    <td>Year</td>
+    <td><%= album.year %></td>
   </tr>
   <tr class="album_info_row">
-    <th>Live / Studio</th>
-    <th><%= album.live ? "Live" : "Studio" %></th>
+    <td>Live / Studio</td>
+    <td><%= album.live ? "Live" : "Studio" %></td>
+  </tr>
+  <tr class="album_info_row edit_button_row">
+    <td><%= link_to  "[edit]", edit_album_url(album) %></td>
+    <td>
+      <form action="<%=album_url(album)%>" method="POST">
+        <%= auth_token %>
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete Album">
+      </form>
+    </td>
   </tr>
 </table>

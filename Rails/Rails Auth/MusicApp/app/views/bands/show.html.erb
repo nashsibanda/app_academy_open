@@ -9,3 +9,11 @@
 </div><br>
 <%= link_to  "Add an Album", new_band_album_url(@band) %><br>
 <%= link_to  "Back to Bands", bands_url %>
+<br><br>
+<div class="band_albums">
+  <h3>Albums</h3><br>
+  <% @band.albums.each do |album| %>
+    <%= render  "albums/album_info", album: album %>
+    <%= link_to  "See Album Info", album_url(album) %><br><br>
+  <% end %>
+</div>

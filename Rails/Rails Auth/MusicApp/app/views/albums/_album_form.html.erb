@@ -1,4 +1,4 @@
-<% action = (album.persisted? ? album_id(album) : albums_url ) %>
+<% action = (album.persisted? ? album_url(album) : albums_url ) %>
 <% method = (album.persisted? ? "PATCH" : "POST" ) %>
 
 <form action="<%= action %>" method="post">
@@ -21,7 +21,7 @@
     </tr>
     <tr class="album_form_row">
       <td><label for="album_title">Title:</label></td>
-      <td><input type="text" name="album[title]" id="album_title"></td>
+      <td><input type="text" name="album[title]" id="album_title" value="<%= album.title %>"> </td>
     </tr>
     <tr class="album_form_row">
       <td><label for="album_year">Year:</label></td>
@@ -47,7 +47,7 @@
       </td>
     </tr>
     <tr class="album_form_row">
-      <td colspan="2"><input type="submit" value="Add Album"></td>
+      <td colspan="2"><input type="submit" value=" <%= album.persisted? ? "Update Album Info" : "Add New Album" %> "></td>
     </tr>
   </table>
 

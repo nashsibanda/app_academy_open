@@ -15,6 +15,7 @@ class AlbumsController < ApplicationController
 
   def edit
     @album = Album.find_by(id: params[:id])
+    @bands = Band.all.order(name: :asc)
   end
 
   def update
