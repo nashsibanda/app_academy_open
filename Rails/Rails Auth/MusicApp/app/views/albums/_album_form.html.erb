@@ -1,0 +1,54 @@
+<% action = (album.persisted? ? album_id(album) : albums_url ) %>
+<% method = (album.persisted? ? "PATCH" : "POST" ) %>
+
+<form action="<%= action %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <%= auth_token %>
+
+  <table class="album_form_table">
+    <tr class="album_form_row">
+      <td><label for="album_artist_select">Artist:</label></td>
+      <td>
+        <select name="album[band_id]" id="album_artist_select">        
+           <option value="" disabled>--Choose a band/musician--</option>
+           <% @bands.each do |band| %>
+            <option value="<%= band.id %>" <%= band.id == album.band_id ? "selected" : "" %> > <%= band.name %> </option>
+            <%= band.id %>
+            <%= album.band_id %>
+          <% end %>
+        </select>
+      </td>
+    </tr>
+    <tr class="album_form_row">
+      <td><label for="album_title">Title:</label></td>
+      <td><input type="text" name="album[title]" id="album_title"></td>
+    </tr>
+    <tr class="album_form_row">
+      <td><label for="album_year">Year:</label></td>
+      <td>
+        <select name="album[year]" id="album_year">
+          <option value="" disabled>--Choose a Release Year--</option>
+          <% (1900..2021).to_a.reverse.each do |year| %>
+            <option value="<%= year %>" <%= year == album.year ? "selected" : "" %> ><%= year %></option>
+          <% end %>
+        </select>
+      </td>
+    </tr>
+    <tr class="album_form_row">
+      <td><label for="album_live">Live / Studio</label></td>
+      <td>
+        <span id="album_live">
+          <input type="radio" name="album[live]" id="album_live_true" value="false"
+          <%= album.live ? "" : "checked" %> >
+          <label for="album_live_true">Studio</label>
+          <input type="radio" name="album[live]" id="album_live_true" value="true"><label for="album_live_true"
+          <%= album.live ? "checked" : "" %>>Live</label>
+        </span>
+      </td>
+    </tr>
+    <tr class="album_form_row">
+      <td colspan="2"><input type="submit" value="Add Album"></td>
+    </tr>
+  </table>
+
+</form>

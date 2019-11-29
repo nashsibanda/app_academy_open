@@ -11,7 +11,7 @@
 
   <body>
     <header>
-      <h1>MusicApp</h1>
+      <h1><%= link_to  "MusicApp", bands_url %></h1>
       <% if current_user.nil? %>
         <%= render  "layouts/logged_out_links" %>
       <% else %>

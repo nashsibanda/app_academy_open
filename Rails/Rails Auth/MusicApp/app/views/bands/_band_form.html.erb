@@ -1,5 +1,5 @@
-<% action = (@band.persisted? ? band_url(@band) : bands_url ) %>
-<% method = (@band.persisted? ? "PATCH" : "POST" ) %>
+<% action = (band.persisted? ? band_url(band) : bands_url ) %>
+<% method = (band.persisted? ? "PATCH" : "POST" ) %>
 
 <form action="<%= action %>" method="POST">
   <%= auth_token %>
@@ -15,7 +15,7 @@
   </table>
 </form>
 
-<% if @band.persisted? %>
+<% if band.persisted? %>
  <form action="<%=band_url%>" method="POST">
     <%= auth_token %>
     <input type="hidden" name="_method" value="DELETE">

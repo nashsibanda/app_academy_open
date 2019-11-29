@@ -1,0 +1,18 @@
+<table class="album_info_table">
+  <tr class="album_info_row album_info_header_row">
+    <th>Title</th>
+    <th><%= album.title %></th>
+  </tr>
+  <tr class="album_info_row">
+    <th>Artist</th>
+    <th><%= album.band.name %></th>
+  </tr>
+  <tr class="album_info_row">
+    <th>Year</th>
+    <th><%= album.year %></th>
+  </tr>
+  <tr class="album_info_row">
+    <th>Live / Studio</th>
+    <th><%= album.live ? "Live" : "Studio" %></th>
+  </tr>
+</table>

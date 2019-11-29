@@ -6,6 +6,6 @@
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="Delete Band">
   </form>
-</div>
-<br>
+</div><br>
+<%= link_to  "Add an Album", new_band_album_url(@band) %><br>
 <%= link_to  "Back to Bands", bands_url %>
