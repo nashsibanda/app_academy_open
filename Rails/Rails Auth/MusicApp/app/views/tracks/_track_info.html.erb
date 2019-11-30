@@ -13,6 +13,6 @@
   </tr>
   <tr class="track_show_row">
     <td>Lyrics:</td>
-    <td><%= track.lyrics ? "Available" : "Not Available" %></td>
+    <td><%= track.lyrics.empty? ? "Not Available" : "Available" %></td>
   </tr>
 </table>
