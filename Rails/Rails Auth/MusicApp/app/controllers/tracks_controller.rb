@@ -1,4 +1,6 @@
 class TracksController < ApplicationController
+  before_action :ensure_logged_in_user
+  
   def new
     @track = Track.new(album_id: params[:album_id])
     @bands = Band.includes(:albums).order(name: :asc)

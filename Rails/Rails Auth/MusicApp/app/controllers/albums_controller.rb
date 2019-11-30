@@ -1,4 +1,6 @@
 class AlbumsController < ApplicationController
+  before_action :ensure_logged_in_user
+  
   def new
     @album = Album.new(band_id: params[:band_id])
     @bands = Band.all.order(name: :asc)

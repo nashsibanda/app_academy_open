@@ -1,4 +1,6 @@
 class BandsController < ApplicationController
+  before_action :ensure_logged_in_user
+  
   def index
     @bands = Band.all.order(name: :asc)
   end
