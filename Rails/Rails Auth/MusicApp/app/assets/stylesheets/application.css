@@ -26,7 +26,26 @@ html, body, section, article, h1, h2, h3, p, nav, main, figure, header, footer {
 }
 
 body {
+  display: flex;
+  flex-wrap: wrap;
   background-color: rgb(216, 219, 222);
+}
+
+header, footer {
+  flex-basis: 100%;
+}
+
+main, aside {
+  padding: 0.2rem 1rem;
+  box-sizing: border-box;
+}
+
+main {
+  flex-basis: 66%;
+}
+
+aside {
+  flex-basis: 33%;
 }
 
 header {
@@ -72,12 +91,15 @@ h1 {
   border-radius: 0.2rem;
 }
 
-main {
-  padding: 0.2rem 1rem;
-}
-
 /* Tracks */
 
 .track_lyrics_display p {
   margin-bottom: 1rem;
+}
+
+/* Notes */
+
+.note_byline {
+  font-style: italic;
+  font-size: .8rem;
 }

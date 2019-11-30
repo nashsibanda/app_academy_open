@@ -1,0 +1,4 @@
+<div class="note_display">
+  <%= simple_format(note.text) %>
+  <span class="note_byline">written by <%= note.user.email %> at <%= note.created_at.strftime("%l:%M%p, %D") %></span>
+</div>

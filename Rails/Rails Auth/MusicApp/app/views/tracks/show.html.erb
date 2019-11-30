@@ -18,3 +18,10 @@
     <td class="track_lyrics_display"><%= @track.lyrics.empty? ? "Not Available" : simple_format(@track.lyrics) %></td>
   </tr>
 </table>
+
+<% content_for :aside do %>
+  <%= render  "notes/note_form", track: @track %>
+  <% @track.notes.order(created_at: :desc).each do |note| %>
+    <%= render  "notes/note_display", note: note %>
+  <% end %>
+<% end %>
