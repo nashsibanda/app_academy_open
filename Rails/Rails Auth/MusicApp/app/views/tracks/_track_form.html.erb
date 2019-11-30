@@ -1,0 +1,61 @@
+<% action = (track.persisted? ? track_url(track) : tracks_url ) %>
+<% method = (track.persisted? ? "PATCH" : "POST" ) %>
+<% submit = (track.persisted? ? "Update Track" : "Add Track") %>
+
+<form action="<%= action %>" method="POST">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="<%= method%>">
+  <table class="track_form_table">
+    <tr class="track_form_row">
+      <td><label for="track_album">Album:</label></td>
+      <td>
+        <select name="track[album_id]" id="track_album">
+          <% @bands.each do |band| %>
+            <optgroup label="<%= band.name %>">
+              <% band.albums.order(title: :asc).each do |album| %>
+                <option value="<%= album.id %>" <%= track.album_id == album.id ? "selected" : "" %>><%= album.title %></option>
+              <% end %>
+            </optgroup>
+          <% end %>
+        </select>
+      </td>
+    </tr>
+    <tr class="track_form_row">
+      <td><label for="track_title">Title:</label></td>
+      <td><input type="text" name="track[title]" id="track_title" value="<%= track.title %>"></td>
+    </tr>
+    <tr class="track_form_row">
+      <td><label for="track_order">Track No.:</label></td>
+      <td>
+        <select name="track[ord]" id="track_order">
+          <% (1..100).to_a.each do |num| %>
+            <option value="<%= num %>" <%= track.ord == num ? "selected" : "" %> ><%= num %></option>
+          <% end %>
+        </select>
+      </td>
+    </tr>
+    <tr class="track_form_row">
+      <td><label for="track_bonus">Bonus Track?:</label></td>
+      <td>
+        <span id="track_bonus">
+          <input type="checkbox" name="track[bonus]" id="track_bonus_true" value="true"><label for="track_bonus_true" <%= track.bonus ? "checked" : "" %>>Bonus</label>
+        </span>
+      </td>
+    </tr>
+    <tr class="track_form_row">
+      <td><label for="track_lyrics">Lyrics:</label></td>
+      <td><textarea name="track[lyrics]" id="track_lyrics" cols="30" rows="10"><%= track.lyrics %></textarea></td>
+    </tr>
+    <tr class="track_form_row">
+      <td colspan="2"><input type="submit" value="<%= submit %>"></td>
+    </tr>
+  </table>
+</form>
+
+<% if track.persisted? %>
+  <form action="<%=track_url(track)%>" method="POST">
+    <%= auth_token %>
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Track">
+  </form>
+<% end %>

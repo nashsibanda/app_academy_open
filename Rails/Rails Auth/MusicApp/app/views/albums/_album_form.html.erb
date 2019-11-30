@@ -52,3 +52,11 @@
   </table>
 
 </form>
+
+<% if album.persisted? %>
+  <form action="<%=album_url(album)%>" method="POST">
+    <%= auth_token %>
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Album">
+  </form>
+<% end %>

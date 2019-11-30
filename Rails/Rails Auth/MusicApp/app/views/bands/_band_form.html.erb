@@ -16,7 +16,7 @@
 </form>
 
 <% if band.persisted? %>
- <form action="<%=band_url%>" method="POST">
+ <form action="<%=band_url(band)%>" method="POST">
     <%= auth_token %>
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="Delete Band">
