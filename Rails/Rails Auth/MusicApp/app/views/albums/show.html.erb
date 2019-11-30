@@ -1,4 +1,35 @@
 <h2><%= @album.title %></h2>
 
-<%= render  "album_info", album: @album %>
-<%= link_to  "Back to #{@album.band.name}", band_url(@album.band) %>
+<table class="album_info_table">
+  <tr class="album_info_row">
+    <td>Artist</td>
+    <td><%= @album.band.name %></td>
+  </tr>
+  <tr class="album_info_row">
+    <td>Year</td>
+    <td><%= @album.year %></td>
+  </tr>
+  <tr class="album_info_row">
+    <td>Type</td>
+    <td><%= @album.live ? "Live" : "Studio" %></td>
+  </tr>
+  <tr class="album_info_row edit_button_row">
+    <td><%= link_to  "[edit]", edit_album_url(@album) %></td>
+    <td>
+      <form action="<%=album_url(@album)%>" method="POST">
+        <%= auth_token %>
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete Album">
+      </form>
+    </td>
+  </tr>
+</table>
+<%= link_to  "Back to #{@album.band.name}", band_url(@album.band) %><br>
+<%= link_to  "Add Track", new_album_track_url(@album) %>
+<div class="album_tracks">
+  <h3>Tracks</h3><br>
+  <% @album.tracks.order(ord: :asc).each do |track| %>
+    <%= render  "tracks/track_info", track: track %>
+    <%= link_to  "See Track Info", track_url(track) %><br><br>
+  <% end %>
+</div>

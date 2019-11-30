@@ -1,0 +1,18 @@
+<table class="track_show_table track_info">
+  <tr class="track_show_row">
+    <th><%= track.ord %>:</th>
+    <th><%= track.title %></th>
+  </tr>
+  <tr class="track_show_row">
+    <td>Album:</td>
+    <td><%= track.album.title %></td>
+  </tr>
+  <tr class="track_show_row">
+    <td>Track No.:</td>
+    <td><%= track.ord %><%= track.bonus ? " - Bonus Track" : "" %></td>
+  </tr>
+  <tr class="track_show_row">
+    <td>Lyrics:</td>
+    <td><%= track.lyrics ? "Available" : "Not Available" %></td>
+  </tr>
+</table>

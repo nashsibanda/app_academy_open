@@ -14,7 +14,7 @@ class TracksController < ApplicationController
   end
 
   def show
-    @track = Track.find_by(id: params[:id])
+    @track = Track.includes(:album).find_by(id: params[:id])
   end
 
   private
