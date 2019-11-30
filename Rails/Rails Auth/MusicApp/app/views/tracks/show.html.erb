@@ -2,8 +2,12 @@
 
 <table class="track_show_table track_info">
   <tr class="track_show_row">
+    <td>Artist:</td>
+    <td> <%= link_to @track.band.name, band_url(@track.band) %></td>
+  </tr>
+  <tr class="track_show_row">
     <td>Album:</td>
-    <td><%= @track.album.title %></td>
+    <td> <%= link_to @track.album.title, album_url(@track.album) %></td>
   </tr>
   <tr class="track_show_row">
     <td>Track No.:</td>
