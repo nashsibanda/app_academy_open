@@ -103,3 +103,17 @@ h1 {
   font-style: italic;
   font-size: .8rem;
 }
+
+/* Flash notices and errors */
+
+.flash-errors, .flash-notice {
+  font-weight: bold;
+}
+
+.flash-errors {
+  color: orangered;
+}
+
+.flash-notice {
+  color: green;
+}

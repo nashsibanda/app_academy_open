@@ -16,8 +16,10 @@ class BandsController < ApplicationController
   def create
     @band = Band.new(band_params)
     if @band.save
+      flash[:notice] = "#{@band.name} successfully added to artists!"
       redirect_to band_url(@band)
     else
+      flash[:errors] = @band.errors.full_messages
       redirect_to bands_url
     end
   end

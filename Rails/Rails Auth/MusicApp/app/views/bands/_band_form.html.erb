@@ -14,6 +14,7 @@
     </tr>
   </table>
 </form>
+<%= render  "layouts/errors" %>
 
 <% if band.persisted? %>
  <form action="<%=band_url(band)%>" method="POST">

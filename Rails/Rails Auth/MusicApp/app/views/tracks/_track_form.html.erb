@@ -51,6 +51,7 @@
     </tr>
   </table>
 </form>
+<%= render  "layouts/errors" %>
 
 <% if track.persisted? %>
   <form action="<%=track_url(track)%>" method="POST">

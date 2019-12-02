@@ -52,6 +52,7 @@
   </table>
 
 </form>
+<%= render  "layouts/errors" %>
 
 <% if album.persisted? %>
   <form action="<%=album_url(album)%>" method="POST">
@@ -60,3 +61,6 @@
     <input type="submit" value="Delete Album">
   </form>
 <% end %>
+<div class="back-to-link">
+  <%= link_to  "Back to #{album.band.name}", band_url(album.band_id) %>
+</div>

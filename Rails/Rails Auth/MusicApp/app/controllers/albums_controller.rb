@@ -8,10 +8,12 @@ class AlbumsController < ApplicationController
 
   def create
     @album = Album.new(album_params)
-    if @album.save!
+    if @album.save
+      flash[:notice] = "#{@album.title} successfully added to #{@album.band.name} albums!"
       redirect_to album_url(@album)
     else
-      redirect_to bands_url
+      flash[:errors] = @album.errors.full_messages
+      redirect_to new_band_album_url(@album.band_id)
     end
   end
 

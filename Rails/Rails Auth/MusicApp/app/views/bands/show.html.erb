@@ -1,4 +1,5 @@
 <h2><%= @band.name %></h2>
+<%= render  "layouts/notice" %>
 <br>
 <div class="delete_band_form">
   <form action="<%=band_url%>" method="POST">
@@ -12,7 +13,7 @@
 <br><br>
 <div class="band_albums">
   <h3>Albums</h3><br>
-  <% @band.albums.each do |album| %>
+  <% @band.albums.order(year: :asc).each do |album| %>
     <%= render  "albums/album_info", album: album %>
     <%= link_to  "See Album Info", album_url(album) %><br><br>
   <% end %>

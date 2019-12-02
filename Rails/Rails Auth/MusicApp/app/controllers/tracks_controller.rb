@@ -9,8 +9,10 @@ class TracksController < ApplicationController
   def create
     @track = Track.new(track_params)
     if @track.save
+      flash[:notice] = "#{@track.title} successfully added to #{@track.album.title}!"
       redirect_to track_url(@track)
     else
+      flash[:errors] = @track.errors.full_messages
       redirect_to bands_url
     end
   end

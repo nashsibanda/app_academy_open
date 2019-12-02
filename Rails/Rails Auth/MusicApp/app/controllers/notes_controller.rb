@@ -7,6 +7,7 @@ class NotesController < ApplicationController
     if @note.save
       redirect_to track_url(@note.track)
     else
+      flash[:errors] = @note.errors.full_messages
       redirect_to track_url(@note.track)
     end
   end
