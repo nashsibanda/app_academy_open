@@ -1,4 +1,11 @@
 <div class="note_display">
   <%= simple_format(note.text) %>
   <span class="note_byline">written by <%= note.user.email %> at <%= note.created_at.strftime("%l:%M%p, %D") %></span>
+  <%# if note.user_id == current_user.id %>
+    <form action="<%= note_url(note) %>" method="post">
+      <%= auth_token %>
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete Note">
+    </form>
+  <%# end %>
 </div>
