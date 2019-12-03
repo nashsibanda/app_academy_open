@@ -18,6 +18,10 @@ class User < ApplicationRecord
     SecureRandom.urlsafe_base64
   end
 
+  def generate_activation_token!
+    self.activation_token = SecureRandom.urlsafe_base64
+  end
+
   def reset_session_token!
     self.session_token = self.class.generate_session_token
   end
