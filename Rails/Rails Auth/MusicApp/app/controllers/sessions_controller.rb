@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
         redirect_to user_url(@user)
       else
         flash[:errors] = Array.new
-        flash[:errors] << "User '#{@user.email}' is not yet activated. Please click activation link in email"
+        flash[:errors] << "User '#{@user.email}' is not yet activated. Please click activation link in email."
         redirect_to new_session_url
       end
     else
