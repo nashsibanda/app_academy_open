@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :user do
-    email { "MyString" }
-    password_digest { "MyString" }
-    session_token { "MyString" }
-    activation_token { "MyString" }
-    activated { false }
+    email {"test"}
+    password_digest {"passdigest"}
+    session_token {"sessiontoken"}
+    activation_token {"activationtoken"}
+    activated { true }
   end
 end
