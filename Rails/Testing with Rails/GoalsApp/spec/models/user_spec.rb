@@ -1,14 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:test_user) { User.create(email: "test", password: "testpass") } 
+  let(:test_user) { FactoryBot.create(:user) } 
 
   describe "validations" do
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:password_digest) }
     it { should validate_presence_of(:session_token) }
     it { should validate_length_of(:password) }
-    # it { should validate_uniqueness_of(:email) }
   end
 
   describe "associations" do
@@ -18,22 +17,22 @@ RSpec.describe User, type: :model do
   describe "::find_by_credentials" do
     context "with non-existent user" do
       it "should return nil" do
-        result = User.find_by_credentials(email: "missingemail", password: "missingpass")
+        result = User.find_by_credentials("missingemail", "missingpass")
         expect(result).to be nil
       end
     end
     
     context "with invalid credentials" do
       it "should return nil" do
-        result = User.find_by_credentials(email: "test", password: "wrongpass")
+        result = User.find_by_credentials("test", "wrongpass")
         expect(result).to be nil
       end
     end
     
     context "with valid credentials" do
       it "should return user with those credentials" do
-        result = User.find_by_credentials(email: "test", password: "testpass")
-        expect(result).to eq(test_user)
+        result = User.find_by_credentials("test", "testpass")
+        expect(result).to eq(User.last)
       end
     end
 
@@ -72,8 +71,8 @@ RSpec.describe User, type: :model do
   describe "#generate_activation_token!" do
     it "should assign activation token to user" do
       expect(test_user.activation_token).to be nil
-      test_user.generate_activation_token
-      expect(test_user.activation_token).to exist
+      test_user.generate_activation_token!
+      expect(test_user.activation_token).not_to be nil
     end
   end
   
