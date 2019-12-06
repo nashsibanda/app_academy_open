@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :user do
-    email { "test" }
+    email { "test-username" }
     # password_digest { BCrypt::Password.create("testpass") }
-    password { "testpass" }
+    password { "test-password" }
     activated { true }
   end
 end

@@ -31,7 +31,7 @@ RSpec.describe User, type: :model do
     
     context "with valid credentials" do
       it "should return user with those credentials" do
-        result = User.find_by_credentials("test", "testpass")
+        result = User.find_by_credentials("test-username", "test-password")
         expect(result).to eq(User.last)
       end
     end
@@ -54,7 +54,7 @@ RSpec.describe User, type: :model do
     
     context "with correct password" do
       it "should return true" do
-        expect(test_user.is_password?("testpass")).to be true
+        expect(test_user.is_password?("test-password")).to be true
       end
     end
     
