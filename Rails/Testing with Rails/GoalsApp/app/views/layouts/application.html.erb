@@ -10,6 +10,23 @@
   </head>
 
   <body>
+    <header>
+      <h3><%= link_to  "GoalsApp", root_url %></h3>
+      <div class="session-controls">
+        <div class="session-controls-message">
+          <% if current_user %>
+          <p>Welcome <%= current_user.email %> </p>
+          <form class="session-log-out" action="<%= session_url %>" method="post">
+            <%= auth_token %>
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Log Out">
+          </form>
+          <% else %>
+          <p>Please <%= link_to  "log in", new_session_url %> or <%= link_to  "sign up", new_user_url %>. </p>
+          <% end %>
+        </div>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>

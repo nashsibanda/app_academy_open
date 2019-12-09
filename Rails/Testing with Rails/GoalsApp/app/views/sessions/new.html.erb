@@ -1,0 +1,18 @@
+<h2>Log In</h2>
+
+<form action="<%= session_url %>" method="post">
+  <%= auth_token %>
+  <table class="session-form">
+    <tr class="session-form-row">
+      <td><label for="session-email">Email:</label></td>
+      <td><input type="text" name="user[email]" id="session-email"></td>
+    </tr>
+    <tr class="session-form-row">
+      <td><label for="session-password">Password:</label></td>
+      <td><input type="password" name="user[password]" id="session-password"></td>
+    </tr>
+    <tr class="session-form-row">
+      <td colspan="2"><input type="submit" value="Log In"></td>
+    </tr>
+  </table>
+</form>

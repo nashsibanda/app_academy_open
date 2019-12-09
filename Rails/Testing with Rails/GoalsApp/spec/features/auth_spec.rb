@@ -21,6 +21,10 @@ feature 'the signup process' do
 end
 
 feature 'logging in' do
+  before(:each) do
+    sign_up_as("test-username")
+  end
+  
   scenario 'shows username on the homepage after login' do
     log_in_as("test-username")
     visit root_url
@@ -31,12 +35,12 @@ end
 
 feature 'logging out' do
   before(:each) do
-    FactoryBot.create(:user)
+    sign_up_as("test-username")
   end
   
   scenario 'begins with a logged out state' do
     visit root_url
-    expect(page).to have_content "Log In"
+    expect(page).to have_content "log in or sign up"
   end
 
   scenario 'doesn\'t show username on the homepage after logout' do

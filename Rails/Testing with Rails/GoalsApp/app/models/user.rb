@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   validates :email, :password_digest, :session_token, presence: true
   validates :email, uniqueness: true
-  validates_length_of :password, minimum: 6, message: "must be at least 6 characters"
+  validates_length_of :password, minimum: 6, message: "must be at least 6 characters", allow_nil: true
   after_initialize :ensure_session_token
 
   def self.generate_session_token

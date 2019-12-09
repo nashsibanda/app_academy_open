@@ -8,8 +8,8 @@ module AuthFeaturesHelper
 
   def log_in_as(username = "test-username")
     visit new_session_url
-    fill_in "user-email",	with: username
-    fill_in "user-password",	with: "test-password"
+    fill_in "session-email",	with: username
+    fill_in "session-password",	with: "test-password"
     click_on "Log In"
   end
 end
