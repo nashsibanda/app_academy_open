@@ -6,5 +6,10 @@ FactoryBot.define do
     private { false }
     completed { false }
     deadline { "2020-12-10" }
+
+    trait :deadline_passed do
+      deadline { "2019-11-01" }
+      to_create { |instance| instance.save(validate: false) }
+    end
   end
 end

@@ -21,12 +21,17 @@ RSpec.describe Goal, type: :model do
   end
 
   describe "#overdue?" do
-    context "with past deadline" do
-      it "should return true"
+    context "with passed deadline" do
+      it "should return true" do
+        passed_goal = FactoryBot.create(:goal, :deadline_passed)
+        expect(passed_goal.overdue?).to be true 
+      end
     end
 
     context "with deadline of today or in the future" do
-      it "should return false"
+      it "should return false" do
+        expect(FactoryBot.create(:goal).overdue?).to be false  
+      end
     end
     
   end
