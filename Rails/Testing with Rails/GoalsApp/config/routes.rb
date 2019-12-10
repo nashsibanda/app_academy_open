@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :goals
   resources :users, only: [:index, :new, :create, :show, :destroy]
   resource :session, only: [:new, :create, :destroy]
   get "/pages/:page" => "pages#show"
