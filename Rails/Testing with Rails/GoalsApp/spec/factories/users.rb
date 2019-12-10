@@ -5,4 +5,10 @@ FactoryBot.define do
     password { "test-password" }
     activated { true }
   end
+
+  factory :random_user, class: User do
+    email { Faker::Internet.email }
+    password { Faker::Internet.password }
+    activated { true }
+  end
 end

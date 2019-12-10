@@ -6,6 +6,8 @@ class User < ApplicationRecord
   validates_length_of :password, minimum: 6, message: "must be at least 6 characters", allow_nil: true
   after_initialize :ensure_session_token
 
+  has_many :goals
+
   def self.generate_session_token
     SecureRandom.urlsafe_base64
   end
