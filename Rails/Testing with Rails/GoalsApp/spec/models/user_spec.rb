@@ -76,6 +76,13 @@ RSpec.describe User, type: :model do
     end
   end
   
+  describe "#public_goals" do
+    it "should only return non-private goals" do
+      user = FactoryBot.create(:random_user_with_goals)
+      public_goals = user.goals.reject { |goal| goal.private }
+      expect(user.public_goals).to eq(public_goals) 
+    end
+  end
   
   
 end

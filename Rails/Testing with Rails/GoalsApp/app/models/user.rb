@@ -35,6 +35,10 @@ class User < ApplicationRecord
     self.activation_token = SecureRandom.urlsafe_base64
   end
 
+  def public_goals
+    self.goals.where(private: false)
+  end
+
   private
   def ensure_session_token
     self.session_token = self.class.generate_session_token

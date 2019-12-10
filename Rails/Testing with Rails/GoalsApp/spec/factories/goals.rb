@@ -12,4 +12,13 @@ FactoryBot.define do
       to_create { |instance| instance.save(validate: false) }
     end
   end
+
+  factory :random_goal, class: Goal do
+    association :user, factory: :random_user
+    title { Faker::Lorem.sentence }
+    details { Faker::Lorem.paragraph }
+    private { Faker::Boolean.boolean }
+    completed { Faker::Boolean.boolean }
+    deadline { Faker::Date.between(from: Date.today, to: 1.year.from_now) }
+  end
 end
