@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :goals
-  resources :users, only: [:index, :new, :create, :show, :destroy]
+  resources :users, only: [:index, :new, :create, :show, :destroy] do
+    resources :goals, only: [:new]
+  end
+  resources :goals, only: [:create, :edit, :update, :show, :destroy]
   resource :session, only: [:new, :create, :destroy]
   get "/pages/:page" => "pages#show"
 

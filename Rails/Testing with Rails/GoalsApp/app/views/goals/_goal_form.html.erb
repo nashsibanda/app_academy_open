@@ -1,0 +1,34 @@
+<% action = (goal.persisted? ? goal_url : goals_url ) %>
+<% method = (goal.persisted? ? "PATCH" : "POST" ) %>
+<% submit = (goal.persisted? ? "Update Goal" : "Add Goal" ) %>
+
+<form action="<%= action %>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="<%= method %>">
+  <table class="goal-form">
+    <tr class="goal-form-row">
+      <td><label for="goal-title">Title:</label></td>
+      <td><input type="text" name="goal[title]" id="goal-title" value="<%= goal.title %>"></td>
+    </tr>
+    <tr class="goal-form-row">
+      <td><label for="goal-details">Details:</label></td>
+      <td><textarea name="goal[details]" id="goal-details" cols="30" rows="10"><%= goal.details %></textarea></td>
+    </tr>
+    <tr class="goal-form-row">
+      <td><label for="goal-deadline">Deadline</label></td>
+      <td><input type="date" name="goal[deadline]" id="goal-deadline" value="<%= goal.deadline %>"></td>
+    </tr>
+    <tr class="goal-form-row">
+      <td><label for="goal-private">Private?</label></td>
+      <td><input type="checkbox" name="goal[private]" id="goal-private" <%= goal.private ? "checked" : "" %>></td>
+    </tr>
+    <tr>
+      <td><label for="goal-completed?">Completed?</label></td>
+      <td><input type="checkbox" name="goal[completed]" id="goal-completed" <%= goal.completed ? "checked" : "" %> ></td>
+    </tr>
+    <tr class="goal-form-row">
+      <td colspan="2"><input type="submit" value="<%= submit %>"></td>
+    </tr>
+  </table>
+</form>
+<%= render  "layouts/errors" %>

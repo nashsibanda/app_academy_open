@@ -1,0 +1,31 @@
+<h2>Goal</h2>
+
+<table class="goal-show-info">
+  <tr class="goal-show-info-row">
+    <td>Title</td>
+    <td><%= @goal.title %></td>
+  </tr>
+  <tr class="goal-show-info-row">
+    <td>Details</td>
+    <td><%= @goal.details %></td>
+  </tr>
+  <tr class="goal-show-info-row">
+    <td>Deadline</td>
+    <td>
+      <% if @goal.deadline %>
+      <%= "#{@goal.deadline} // #{(@goal.deadline.mjd - Date.today.mjd)} days left" %>
+      <% else %>
+      <% end %>
+    </td>
+  </tr>
+  <tr class="goal-show-info-row">
+    <td>Visibility</td>
+    <td><%= @goal.private ? "Private" : "Public" %></td>
+  </tr>
+  <tr class="goal-show-info-row">
+    <td>Status</td>
+    <td><%= @goal.completed ? "Completed!" : "Incomplete" %><%= @goal.overdue? ? " // Overdue!" : "" %></td>
+  </tr>
+</table>
+
+<%= link_to  "Back to user: #{@goal.user.email}", user_url(@goal.user) %>

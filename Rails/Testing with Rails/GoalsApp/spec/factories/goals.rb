@@ -19,6 +19,6 @@ FactoryBot.define do
     details { Faker::Lorem.paragraph }
     private { Faker::Boolean.boolean }
     completed { Faker::Boolean.boolean }
-    deadline { Faker::Date.between(from: Date.today, to: 1.year.from_now) }
+    deadline { Random.rand(2).even? ? Faker::Date.between(from: Date.today, to: 1.year.from_now) : nil }
   end
 end
