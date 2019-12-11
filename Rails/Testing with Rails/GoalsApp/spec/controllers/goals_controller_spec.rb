@@ -52,7 +52,7 @@ RSpec.describe GoalsController, type: :controller do
         test_goal = FactoryBot.create(:random_goal)
         allow(controller).to receive(:current_user).and_return(@test_user)
         get :edit, params: { id: test_goal.id }
-        expect(response).to redirect_to user_url(@test_user)
+        expect(response).to redirect_to user_url(test_goal.user)
         expect(flash[:errors]).to be_present
       end
     end

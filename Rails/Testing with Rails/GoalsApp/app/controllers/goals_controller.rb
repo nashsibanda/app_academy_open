@@ -21,7 +21,13 @@ class GoalsController < ApplicationController
   end
 
   def edit
-  
+    @goal = Goal.find_by(id: params[:id])
+    if @goal.user == current_user
+      render :edit
+    else
+      flash[:errors] = ["Only the author of a goal can edit it"]
+      redirect_to user_url(@goal.user)
+    end
   end
 
   def update
