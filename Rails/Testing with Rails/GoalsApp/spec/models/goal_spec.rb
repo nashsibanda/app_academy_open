@@ -18,6 +18,7 @@ RSpec.describe Goal, type: :model do
 
   describe "associations" do
     it { should belong_to(:user) } 
+    it_behaves_like "commentable"
   end
 
   describe "#overdue?" do

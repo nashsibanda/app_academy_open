@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it { should have_db_column(:commentable_id).of_type(:integer) }
+  it { should have_db_column(:commentable_type).of_type(:string) }
+  it { should belong_to(:commentable) }
+
+
 end

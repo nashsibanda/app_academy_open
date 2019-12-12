@@ -12,6 +12,7 @@ RSpec.describe User, type: :model do
 
   describe "associations" do
     it { should have_many(:goals) } 
+    it_behaves_like "commentable"
   end
 
   describe "::find_by_credentials" do

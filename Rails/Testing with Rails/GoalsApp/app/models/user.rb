@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Commentable
   attr_reader :password
 
   validates :email, :password_digest, :session_token, presence: true
