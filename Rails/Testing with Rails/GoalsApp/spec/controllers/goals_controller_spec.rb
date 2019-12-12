@@ -68,16 +68,6 @@ RSpec.describe GoalsController, type: :controller do
     
   end
 
-  describe "PATCH #update" do
-    context "with incorrect current user" do
-      it "behaves like" do
-        
-      end
-    end
-  end
-  
-  
-
   describe "DELETE #delete" do
     context "with an existing goal" do
       it "renders the goal index page" do
