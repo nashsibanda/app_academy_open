@@ -1,1 +1,16 @@
 <h2><%= @user.email %>'s Page</h2>
+<%= link_to  "Back to Homepage", root_url %>
+
+<div class="user-goals-list">
+  <h3>Goals</h3>
+  <% if @user.goals.empty? %>
+    <% if @user == current_user %>
+      Add your first <%= link_to  "goal", new_user_goal_url(@user) %>
+    <% else %>
+      No goals yet :(
+    <% end %>
+  <% end %>
+  <% @user.goals.each do |goal| %>
+    <div class="goal-info user-goal-info"><%= render  "goals/goal_info", goal: goal %></div>
+  <% end %>
+</div>

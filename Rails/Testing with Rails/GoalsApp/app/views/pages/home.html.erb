@@ -1,3 +1,12 @@
 <h2>GoalsApp Homepage</h2>
 
 <p>This is the static homepage for GoalsApp!</p>
+
+<div class="homepage-users-list">
+  <h3>Users</h3>
+  <ul>
+    <% User.all.order(email: :asc).each do |user| %>
+      <li><%= link_to  "#{user.email}", user_url(user) %></li>
+    <% end %>
+  </ul>
+</div>
