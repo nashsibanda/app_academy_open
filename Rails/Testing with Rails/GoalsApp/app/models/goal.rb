@@ -6,7 +6,9 @@ class Goal < ApplicationRecord
   belongs_to :user
 
   def overdue?
-    return true if self.deadline < Date.today
+    unless self.deadline.nil?
+      return true if self.deadline < Date.today
+    end
     false
   end
 
