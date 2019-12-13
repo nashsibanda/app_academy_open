@@ -1,6 +1,11 @@
 <table class="goal-info-table">
   <tr class="goal-info-table-row">
-    <td colspan="2" class="goal-info-table-header"><%= link_to  "#{goal.title}", goal_url(goal) %></td>
+    <td colspan="2" class="goal-info-table-header">
+      <%= link_to  "#{goal.title}", goal_url(goal) %>
+      <% if goal.user == current_user %>
+         - <%= link_to  "Edit", edit_goal_url(goal) %>
+      <% end %>
+    </td>
   </tr>
   <tr class="goal-info-table-row">
     <td>User</td>
@@ -14,8 +19,9 @@
     <td>Deadline</td>
     <td>
       <% if goal.deadline %>
-      <%= "#{goal.deadline} // #{(goal.deadline.mjd - Date.today.mjd)} days left" %>
+        <%= "#{goal.deadline} // #{(goal.deadline.mjd - Date.today.mjd)} days left" %>
       <% else %>
+        None
       <% end %>
     </td>
   </tr>
@@ -25,7 +31,7 @@
   </tr>
   <tr class="goal-info-table-row">
     <td>Status</td>
-    <td><%= goal.completed ? "Completed!" : "Incomplete" %><%= goal.overdue? ? " // <strong>Overdue!</strong>" : "" %></td>
+    <td><%= goal.completed ? "Completed!" : "Incomplete" %><%= goal.overdue? ? " // <strong>Overdue!</strong>".html_safe : "" %></td>
   </tr>
 </table>
   </tr>

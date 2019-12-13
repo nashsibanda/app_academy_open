@@ -17,9 +17,9 @@
     <td>Deadline</td>
     <td>
       <% if @goal.deadline %>
-      <%= "#{@goal.deadline} // #{(@goal.deadline.mjd - Date.today.mjd)} days left" %>
+        <%= "#{@goal.deadline} // #{(@goal.deadline.mjd - Date.today.mjd)} days left" %>
       <% else %>
-        None
+        <em>None</em>
       <% end %>
     </td>
   </tr>

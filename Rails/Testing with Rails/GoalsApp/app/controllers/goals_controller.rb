@@ -31,11 +31,18 @@ class GoalsController < ApplicationController
   end
 
   def update
-  
+    @goal = Goal.find_by(id: params[:id])
+    if @goal.update(goal_params)
+      flash[:notice] = "Goal '#{@goal.title}' successfully updated!"
+      redirect_to goal_url(@goal)
+    else
+      flash[:errors] = @goal.errors.full_messages
+      redirect_to edit_goal(@goal)
+    end
   end
 
   def delete
-  
+    Goal.find_by(id: params[:id])
   end
 
   private
