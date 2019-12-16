@@ -1,0 +1,15 @@
+<% method = (comment.persisted? ? "Patch" : "Post") %>
+<% submit = (comment.persisted? ? "Update comment" : "Post comment") %>
+
+<form action="<%= polymorphic_url([parent, Comment]) %>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="<%= method %>">
+  <table class="comment-form-table">
+    <tr class="comment-form-table-row">
+      <td><textarea name="comment[text]" id="comment-text" cols="30" rows="4" placeholder="Write your comment here..."></textarea></td>
+    </tr>
+    <tr class="comment-form-table-row">
+      <td><input type="submit" value="<%= submit %>"></td>
+    </tr>
+  </table>
+</form>

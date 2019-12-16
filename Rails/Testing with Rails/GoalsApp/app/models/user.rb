@@ -8,6 +8,7 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
 
   has_many :goals
+  has_many :written_comments, class_name: "Comment", foreign_key: "commenter_id"
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64

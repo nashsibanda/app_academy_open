@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
   def create
     if params[:user_id]
-      parent = User.find_by(params[:user_id])
+      parent = User.find_by(id: params[:user_id])
     elsif params[:goal_id]
-      parent = Goal.find_by(params[:goal_id])
+      parent = Goal.find_by(id: params[:goal_id])
     else
       flash[:errors] = ["Commentable parent object not found."]
       redirect_back(fallback_location: root_url)
@@ -49,7 +49,7 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params[:note][:commenter_id] = current_user.id
+    params[:comment][:commenter_id] = current_user.id
     params.require(:comment).permit(:text, :commenter_id)
   end
 end

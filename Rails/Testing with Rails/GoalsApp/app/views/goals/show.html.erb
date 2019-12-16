@@ -34,3 +34,11 @@
 </table>
 
 <%= link_to  "Back to user: #{@goal.user.email}", user_url(@goal.user) %>
+
+<% content_for :sidebar do %>
+  <h3 class="comments-header">Comments</h3>
+  <%= render  "comments/comment_form", parent: @goal, comment: Comment.new %>
+  <% @goal.comments.order(created_at: :desc).each do |comment| %>
+    <%= render  "comments/comment_display", comment: comment %>
+  <% end %>
+<% end %>

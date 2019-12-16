@@ -1,0 +1,15 @@
+<% commenter = (comment.commenter == current_user ? "you" : comment.commenter.email ) %>
+
+<table class="comment-display-table">
+  <tr class="comment-display-table-row">
+    <td><%= comment.text %></td>
+  </tr>
+  <tr class="comment-display-table-row">
+    <td>
+      Posted by <%= commenter %> at: <%= comment.created_at %>.
+      <% if comment.commenter == current_user %>
+        <%= button_to "Delete", comment_url(comment), method: :delete %>
+      <% end %>
+    </td>
+  </tr>
+</table>

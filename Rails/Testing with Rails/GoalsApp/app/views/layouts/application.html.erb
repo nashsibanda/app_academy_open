@@ -22,12 +22,20 @@
             <input type="submit" value="Log Out">
           </form>
           <% else %>
-          <p>Please <%= link_to  "log in", new_session_url %> or <%= link_to  "sign up", new_user_url %>. </p>
+            <p>Please <%= link_to  "log in", new_session_url %> or <%= link_to  "sign up", new_user_url %>. </p>
           <% end %>
         </div>
       </div>
       <%= render  "layouts/notice" %>
     </header>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
+    <aside>
+      <%= yield :sidebar %>
+    </aside>
+    <footer>
+      <%= yield :footer %>
+    </footer>
   </body>
 </html>

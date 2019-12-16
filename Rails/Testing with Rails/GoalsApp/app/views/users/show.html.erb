@@ -19,3 +19,11 @@
     <div class="goal-info user-goal-info"><%= render  "goals/goal_info", goal: goal %></div>
   <% end %>
 </div>
+
+<% content_for :sidebar do %>
+  <h3 class="comments-header">Comments</h3>
+  <%= render  "comments/comment_form", parent: @user, comment: Comment.new %>
+  <% @user.comments.order(created_at: :desc).each do |comment| %>
+    <%= render  "comments/comment_display", comment: comment %>
+  <% end %>
+<% end %>
