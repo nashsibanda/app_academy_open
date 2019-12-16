@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include Commentable
+  include Cheerable
   attr_reader :password
 
   validates :email, :password_digest, :session_token, presence: true
@@ -9,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :goals
   has_many :written_comments, class_name: "Comment", foreign_key: "commenter_id"
+  has_many :given_cheers, class_name: "Cheer", foreign_key: "cheerer_id"
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64

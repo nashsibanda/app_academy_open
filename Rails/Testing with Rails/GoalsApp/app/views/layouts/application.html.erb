@@ -4,18 +4,19 @@
     <title>GoalsApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
+  
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <h3><%= link_to  "GoalsApp", root_url %></h3>
+      <h3 class="application-title"><%= link_to  "GoalsApp", root_url %></h3>
       <div class="session-controls">
         <div class="session-controls-message">
           <% if current_user %>
-          <p>Welcome <%= current_user.email %> </p>
+          Welcome <%= current_user.email %>
           <form class="session-log-out" action="<%= session_url %>" method="post">
             <%= auth_token %>
             <input type="hidden" name="_method" value="delete">

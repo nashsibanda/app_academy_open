@@ -1,4 +1,5 @@
 class Comment < ApplicationRecord
+  include Cheerable
   validates :text, :commenter_id, presence: true
   
   belongs_to :commentable, polymorphic: true

@@ -1,12 +1,26 @@
 <% commenter = (comment.commenter == current_user ? "you" : comment.commenter.email ) %>
 
+
 <table class="comment-display-table">
   <tr class="comment-display-table-row">
-    <td><%= comment.text %></td>
+    <td colspan="2"><%= comment.text %></td>
+  </tr>
+  <tr class="comment-display-table-row">
+    <td colspan="2">
+      Posted by <%= commenter %> at: <%= comment.created_at %>.
+    </td>
   </tr>
   <tr class="comment-display-table-row">
     <td>
-      Posted by <%= commenter %> at: <%= comment.created_at %>.
+      <%= comment.cheer_count %><%= comment.cheer_count == 1 ? " cheer" : " cheers" %>
+      <% existing_cheer = comment.cheers.where(cheerer_id: current_user.id).first %>
+      <% if existing_cheer %>
+        <%= button_to "Uncheer!", cheer_url(existing_cheer), method: :delete %>
+      <% else %>
+        <%= button_to "Cheer!", comment_cheers_url(comment) %>
+      <% end %>
+    </td>
+    <td>
       <% if comment.commenter == current_user %>
         <%= button_to "Delete", comment_url(comment), method: :delete %>
       <% end %>

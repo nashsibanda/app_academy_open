@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_12_052217) do
+ActiveRecord::Schema.define(version: 2019_12_16_042705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cheers", force: :cascade do |t|
+    t.integer "cheerer_id", null: false
+    t.string "cheerable_type"
+    t.bigint "cheerable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cheerable_type", "cheerable_id"], name: "index_cheers_on_cheerable_type_and_cheerable_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text "text", null: false

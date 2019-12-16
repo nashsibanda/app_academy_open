@@ -14,6 +14,8 @@
  *= require_self
  */
 
+
+
  body {
    display: flex;
    flex-wrap: wrap;
@@ -21,17 +23,34 @@
 
  header, footer {
    flex-basis: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0 2rem;
+ }
+
+ header {
+   height: 5rem;
  }
 
 main, aside {
-  padding: 0.2rem 1rem;
+  padding: 0.2rem 2rem;
   box-sizing: border-box;
 }
 
 main {
-  flex-basis: 69%;
+  flex-basis: 65%;
 }
 
  aside {
    flex-basis: 30%;
+   text-align: right;
+ }
+
+ .application-title {
+   font-size: 1.4em;
+ }
+
+ .button_to, .session-log-out {
+  display: inline;
  }
