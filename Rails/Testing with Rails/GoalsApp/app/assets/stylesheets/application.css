@@ -23,14 +23,27 @@
 
  header, footer {
    flex-basis: 100%;
+   flex-wrap: wrap;
    display: flex;
    justify-content: space-between;
    align-items: center;
    padding: 0 2rem;
+  }
+  
+  .main-header {
+  display: flex;
+  height: 5rem;
+  flex-basis: 100%;
+  justify-content: space-between;
+  align-items: center;
  }
 
- header {
-   height: 5rem;
+ .flash-notice {
+   flex-basis: 100%;
+   background-color: #70500a;
+   color: antiquewhite;
+   box-sizing: border-box;
+   padding: 0.2rem 0.5rem;
  }
 
 main, aside {
@@ -45,6 +58,12 @@ main {
  aside {
    flex-basis: 30%;
    text-align: right;
+ }
+
+ h2 {
+   font-size: 2rem;
+   font-weight: bold;
+   margin-bottom: 1rem;
  }
 
  .application-title {

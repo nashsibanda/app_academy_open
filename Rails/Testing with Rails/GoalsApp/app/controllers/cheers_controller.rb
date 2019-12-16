@@ -14,7 +14,7 @@ class CheersController < ApplicationController
     @cheer = Cheer.new(cheer_params)
     @cheer.cheerable = parent
     if @cheer.save
-      flash[:notice] = "Cheer successfully added!"
+      flash[:notice] = "Cheer successfully added for #{parent.class.name.downcase}!"
       redirect_back(fallback_location: root_url)
     else
       flash[:errors] = @cheer.errors.full_messages
@@ -25,8 +25,9 @@ class CheersController < ApplicationController
   def destroy
     @cheer = Cheer.find_by(id: params[:id])
     if @cheer.cheerer_id == current_user.id
+      type = @cheer.cheerable_type.downcase
       @cheer.destroy
-      flash[:notice] = "Cheer successfully deleted!"
+      flash[:notice] = "Cheer successfully deleted from #{type}!"
       redirect_back(fallback_location: root_url)
     else
       flash[:errors] = ["Can't delete a cheer written by another user."]
