@@ -81,7 +81,8 @@ nav ul li a {
 
 body {
   margin: 0 auto;
-    width: 60%;
+  width: 60%;
+  transition: ease all .3s;
 }
 
 aside {
@@ -110,3 +111,8 @@ label {
     display: block;
 }
 
+@media (max-width: 1280px) {
+  body {
+    width: 85%;
+  }
+}
