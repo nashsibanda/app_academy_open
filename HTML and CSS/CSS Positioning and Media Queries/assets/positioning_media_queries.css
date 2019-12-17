@@ -79,6 +79,10 @@ nav ul li a {
     display: block;
 }
 
+.hamburger-dropdown {
+  display: none;
+}
+
 body {
   margin: 0 auto;
   width: 60%;
@@ -115,4 +119,39 @@ label {
   body {
     width: 85%;
   }
+}
+
+@media (max-width: 700px) {
+  nav > ul {
+    display: none;
+  }
+
+  .hamburger-dropdown {
+    display: block;
+    position: relative;
+  }
+
+  .hamburger-dropdown > li {
+    display: block;
+    background-image: url("/assets/hamburger.png");
+    height: 50px;
+    width: 50px;
+    background-size: 50px 50px;
+    background-position: right;
+    background-repeat: no-repeat;
+  }
+
+  .hamburger-dropdown > li > ul {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: rgb(197, 217, 228);
+    box-shadow: 0px 2px 6px 1px #777;
+  }
+
+  .hamburger-dropdown:hover ul {
+    display: flex;
+  }
+
 }
