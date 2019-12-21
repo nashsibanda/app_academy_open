@@ -14,6 +14,53 @@
   margin-bottom: 5px;
 }
 
+.newsletter-form {
+  padding: 0.3rem 0;
+}
+
 .newsletter-form > input[type="text"] {
   width: calc(100% - 100px);
+  border: 1px solid $gray;
+  padding: 7px;
+  border-radius: 3px;
+  font-family: sans-serif;
+}
+
+.newsletter-form-disclaimer {
+  color: $gray;
+  text-align: center;
+}
+
+.article-byline {
+  color: $gray;
+  padding-bottom: 0.3rem;
+}
+
+.article-comments-link {
+  color: $blue;
+  font-family: sans-serif;
+  font-size: 10px;
+}
+
+.article ul > li {
+  list-style: square;
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.op-ed-headlines-list > li {
+  list-style: square;
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+.section-title {
+  text-transform: uppercase;
+  color: $darkest-gray;
+  font-size: 10px;
+}
+
+.column-group-heading {
+  text-align: center;
+  padding: 0.5rem 0;
 }

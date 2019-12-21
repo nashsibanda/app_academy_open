@@ -10,6 +10,7 @@ body {
   margin: auto;
   font-family: $serif;
   font-size: 12px;
+  line-height: 1rem;
 }
 
 button, .button {
@@ -31,6 +32,19 @@ button:hover, .button:hover {
 	border-color: $darkest-blue;
 }
 
+h2 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-style: italic;
+  padding-bottom: 0.2rem;
+  line-height: 1.5rem;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 14px;
+}
+
 a:hover {
   text-decoration: underline;
 }
@@ -39,14 +53,23 @@ a:hover {
   display: none !important;
 }
 
+article {
+  padding-bottom: 0.4rem;
+}
+
 /*
 	Header Rules
 */
 
+header {
+  padding-bottom: 1rem;
+}
+
 hr {
 	border: 0;
 	height: 1px;
-	background-color: $light-gray;
+  background-color: $light-gray;
+  width: 60%;
 }
 
 .hr-top, .hr-bottom {

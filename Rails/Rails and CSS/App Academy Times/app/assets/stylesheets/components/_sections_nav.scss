@@ -19,3 +19,9 @@
   background-color: $light-gray;
   cursor: pointer;
 }
+
+@media all and (max-width: 1000px) {
+  .sections-nav {
+    display: none;;
+  }
+}
