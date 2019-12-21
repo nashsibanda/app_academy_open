@@ -57,6 +57,13 @@ article {
   padding-bottom: 0.4rem;
 }
 
+input[type="text"] {
+  border: 1px solid $gray;
+  padding: 7px;
+  border-radius: 3px;
+  font-family: sans-serif;
+}
+
 /*
 	Header Rules
 */
