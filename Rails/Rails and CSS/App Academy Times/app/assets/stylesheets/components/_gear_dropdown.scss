@@ -2,14 +2,14 @@
 .gear-dropdown {
   position: absolute;
   display: block;
-  top: 2.5rem;
-  right: 6.4rem;
+  top: 4.5em;
+  right: 0em;
   background-color: #fff;
   width: 150px;
   padding: 5px 10px;
   border: 1px solid $light-gray;
   box-shadow: 5px 5px 5px $lightest-gray;
-  z-index: 1;
+  z-index: 3;
   color: $dark-gray;
   font-weight: normal;
   // padding: 20px;

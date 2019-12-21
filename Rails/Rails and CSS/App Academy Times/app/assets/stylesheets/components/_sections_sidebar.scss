@@ -3,12 +3,13 @@
   position: absolute;
   z-index: -1;
   background-color: #fff;
-  top: 1.7rem;
+  top: 1.9rem;
   width: 7rem;
   box-sizing: border-box;
   padding: 0 0px 10px 10px;
   box-shadow: 5px 5px 5px $light-gray;
   text-transform: capitalize;
+  line-height: 1.3rem;
 }
 
 .sections-sidebar li:hover {
@@ -65,4 +66,10 @@
   width: 0px;
   // background-color: #000;
   right: 100%;
+}
+
+@media all and (max-width: 1000px) {
+  .sections-sidebar {
+    line-height: 1.3rem;
+  }
 }

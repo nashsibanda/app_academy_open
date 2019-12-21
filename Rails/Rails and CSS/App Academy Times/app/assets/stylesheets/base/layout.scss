@@ -11,6 +11,7 @@ body {
   font-family: $serif;
   font-size: 12px;
   line-height: 1rem;
+  overflow: visible;
 }
 
 button, .button {
@@ -64,12 +65,23 @@ input[type="text"] {
   font-family: sans-serif;
 }
 
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
 /*
 	Header Rules
 */
 
 header {
   padding-bottom: 1rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: -31%;
+  z-index: 2;
 }
 
 hr {
@@ -87,4 +99,11 @@ hr {
 .hr-top {
 	height: 2px;
 	margin-bottom: 1px;
+}
+
+@media all and (max-width: 1000px) {
+  header {
+    position: unset;
+    overflow: visible;
+  }
 }
