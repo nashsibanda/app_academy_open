@@ -12,7 +12,7 @@ body {
   font-size: 12px;
 }
 
-button {
+button, .button {
 	background-color: $light-blue;
 	border-color: $blue;
 	color: white;
@@ -26,7 +26,7 @@ button {
 	// text-align:
 }
 
-button:hover {
+button:hover, .button:hover {
 	background-color: $dark-blue;
 	border-color: $darkest-blue;
 }
@@ -36,7 +36,7 @@ a:hover {
 }
 
 .hidden {
-  
+  display: none !important;
 }
 
 /*
