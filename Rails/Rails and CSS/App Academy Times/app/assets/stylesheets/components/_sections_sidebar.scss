@@ -1,7 +1,7 @@
 .sections-sidebar {
-  opacity: 0;
+  z-index: 2;
   position: absolute;
-  z-index: -1;
+  display: none;
   background-color: #fff;
   top: 1.9rem;
   width: 7rem;
@@ -20,6 +20,7 @@
 .sections-sidebar.expand {
   opacity: 1;
   z-index: 2;
+  display: inherit;
   height: auto;
 }
 
