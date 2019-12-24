@@ -5,6 +5,9 @@ class User < ApplicationRecord
   validates_length_of :password, minimum: 6, message: "music be at least 6 characters", allow_nil: true
   after_initialize :ensure_session_token
 
+  has_many :moderator_moderated_subs, foreign_key: :moderator_id
+  has_many :moderated_subs, through: :moderator_moderated_subs, source: :sub
+
   def self.generate_session_token
     SecureRandom.urlsafe_base64
   end

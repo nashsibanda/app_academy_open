@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_24_090735) do
+ActiveRecord::Schema.define(version: 2019_12_24_123114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "moderator_moderated_subs", force: :cascade do |t|
+    t.bigint "moderator_id"
+    t.bigint "sub_id"
+    t.index ["moderator_id"], name: "index_moderator_moderated_subs_on_moderator_id"
+    t.index ["sub_id"], name: "index_moderator_moderated_subs_on_sub_id"
+  end
+
+  create_table "subs", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_subs_on_name", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
@@ -24,4 +39,6 @@ ActiveRecord::Schema.define(version: 2019_12_24_090735) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
+  add_foreign_key "moderator_moderated_subs", "subs"
+  add_foreign_key "moderator_moderated_subs", "users", column: "moderator_id"
 end
