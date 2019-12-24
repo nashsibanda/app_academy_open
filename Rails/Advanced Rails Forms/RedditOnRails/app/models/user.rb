@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   attr_reader :password
   validates :name, :session_token, :password_digest, presence: true
+  validates_uniqueness_of :name, on: :create, message: "is already taken"
   validates_length_of :password, minimum: 6, message: "music be at least 6 characters", allow_nil: true
   after_initialize :ensure_session_token
 
