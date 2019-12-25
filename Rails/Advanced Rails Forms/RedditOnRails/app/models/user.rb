@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :moderator_moderated_subs, foreign_key: :moderator_id, dependent: :destroy
   has_many :moderated_subs, through: :moderator_moderated_subs, source: :sub
+  has_many :posts, foreign_key: :author_id, dependent: :destroy
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64

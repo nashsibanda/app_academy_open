@@ -4,5 +4,6 @@ class Sub < ApplicationRecord
 
   has_many :moderator_moderated_subs, dependent: :destroy
   has_many :moderators, through: :moderator_moderated_subs, source: :moderator
+  has_many :posts, dependent: :destroy
   
 end

@@ -1,6 +1,6 @@
 class SubsController < ApplicationController
   before_action :set_sub, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_logged_in
+  before_action :ensure_logged_in, except: [:index, :show]
   before_action :require_moderator_access, only: [:edit, :update, :destroy]
 
   # GET /subs

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_24_123114) do
+ActiveRecord::Schema.define(version: 2019_12_25_085948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,19 @@ ActiveRecord::Schema.define(version: 2019_12_24_123114) do
     t.bigint "sub_id"
     t.index ["moderator_id"], name: "index_moderator_moderated_subs_on_moderator_id"
     t.index ["sub_id"], name: "index_moderator_moderated_subs_on_sub_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "url"
+    t.text "content"
+    t.bigint "sub_id"
+    t.bigint "author_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_posts_on_author_id"
+    t.index ["sub_id"], name: "index_posts_on_sub_id"
+    t.index ["title"], name: "index_posts_on_title"
   end
 
   create_table "subs", force: :cascade do |t|
@@ -41,4 +54,6 @@ ActiveRecord::Schema.define(version: 2019_12_24_123114) do
 
   add_foreign_key "moderator_moderated_subs", "subs"
   add_foreign_key "moderator_moderated_subs", "users", column: "moderator_id"
+  add_foreign_key "posts", "subs"
+  add_foreign_key "posts", "users", column: "author_id"
 end
