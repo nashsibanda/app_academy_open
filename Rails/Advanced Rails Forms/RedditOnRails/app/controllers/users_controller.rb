@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :ensure_logged_in
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  skip_before_action :ensure_logged_in, only: [:new, :create]
   
   def index
     @users = User.all
@@ -21,15 +24,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:id])
   end
   
   def edit
-    @user = User.find_by(id: params[:id])
   end
 
   def update
-    @user = User.find_by(id: params[:id])
     if @user
       if @user.update(user_params)
         flash[:notice] = "User information successfully updated"
@@ -45,7 +45,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find_by(id: params[:id])
     if @user
       @user.destroy
       flash[:notice] = "User #{@user.name} successfully deleted."
@@ -56,6 +55,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.find_by(id: params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:name, :password)
