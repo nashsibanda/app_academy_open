@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :ensure_logged_in, except: %i[index new create]
+  before_action :ensure_logged_in, except: %i[index new create show]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_action :ensure_logged_in, only: [:new, :create]
   
