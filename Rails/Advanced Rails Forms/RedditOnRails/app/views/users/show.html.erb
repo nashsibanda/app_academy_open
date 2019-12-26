@@ -1,3 +1,11 @@
 <h2><%= @user.name %>'s page</h2>
 
+<h3>Posts</h3>
+
+<section class="posts-list">
+  <% @user.posts.includes(:sub, :author).each do |post| %>
+    <%= render  "layouts/multi_sub_post_oneliner", post: post, blank_author: true %>
+  <% end %>
+</section>
+
 <%= link_to  "Back to Users", users_url %>

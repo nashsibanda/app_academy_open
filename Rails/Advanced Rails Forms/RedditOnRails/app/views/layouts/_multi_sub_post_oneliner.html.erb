@@ -1,13 +1,23 @@
+<% blank_author ||= false %>
+<% blank_sub ||= false %>
+
 <section class="post-oneliner multi-sub">
   <div class="post-oneliner-title">
     <%= link_to  post.title, post %>
   </div>
   <div class="post-oneliner-info">
-    <div class="post-oneliner-info-sub">
-      <span class="post-oneliner-info-label">sub: </span><%= link_to  post.sub.name, sub_url(post.sub) %>
-    </div>
-    <div class="post-oneliner-info-author">
-      <span class="post-oneliner-info-label">posted by: </span><%= link_to  post.author.name, user_url(post.author) %>
+    <% unless blank_author %>
+      <div class="post-oneliner-info-author">
+        <span class="post-oneliner-info-label">posted by: </span><%= link_to  post.author.name, user_url(post.author) %>
+      </div>
+    <% end %>
+    <% unless blank_sub %>
+      <div class="post-oneliner-info-sub">
+        <span class="post-oneliner-info-label">sub: </span><%= link_to  post.sub.name, sub_url(post.sub) %>
+      </div>
+    <% end %>
+    <div class="post-oneliner-info-created">
+      <span class="post-oneliner-info-label">posted at: </span><%= post.tidy_created_at %>
     </div>
   </div>
 </section>

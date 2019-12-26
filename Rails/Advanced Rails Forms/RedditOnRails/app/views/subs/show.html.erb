@@ -1,9 +1,7 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @sub.name %></h2>
 
-<p>
-  <strong>Name:</strong>
-  <%= @sub.name %>
-</p>
-
-<%= link_to 'Edit', edit_sub_path(@sub) %> |
-<%= link_to 'Back', subs_path %>
+<section class="posts-list">
+  <% @sub.posts.includes(:sub, :author).each do |post| %>
+    <%= render  "layouts/multi_sub_post_oneliner", post: post, blank_sub: true %>
+  <% end %>
+</section>

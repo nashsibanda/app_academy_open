@@ -11,7 +11,7 @@
 
   <body>
     <header>
-      <h3 class="" >RedditOnRails</h2>
+      <h3 class="site-header-title"><%= link_to  "RedditOnRails", root_url %></h2>
       <section class="session-div">
         <% if current_user %>
           <%= render  "layouts/session_info" %>
