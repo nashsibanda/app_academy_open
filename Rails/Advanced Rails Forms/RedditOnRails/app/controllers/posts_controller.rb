@@ -10,7 +10,8 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    parent_sub = Sub.find_by(id: params[:sub_id])
+    @post = Post.new(sub: parent_sub)
   end
 
   # GET /posts/1/edit

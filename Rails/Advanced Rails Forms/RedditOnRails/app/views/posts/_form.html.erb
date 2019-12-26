@@ -1,17 +1,12 @@
-<%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<% action = (post.persisted? ? post_path(post) : posts_url ) %>
+<% method = (post.persisted? ? "update" : "post" ) %>
+<% submit = (post.persisted? ? "Update Post" : "Create Post") %>
 
-      <ul>
-        <% post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+<form action=<%= action %> method="post" class="new-post-form">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value=<%= method %>>
+  <input type="text" name="post[title]" id="post-title" placeholder="Post title (required)...">
+  <input type="text" name="post[url]" id="post-url" placeholder="Add a link to external content (optional)...">
+  <textarea name="post[content]" id="post-content" cols="30" rows="10" placeholder="Enter any text content for your post (optional)..."></textarea>
+  <input type="submit" value="<%= submit %>" class="button">
+</form>

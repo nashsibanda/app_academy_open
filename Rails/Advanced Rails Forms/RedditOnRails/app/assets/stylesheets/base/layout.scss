@@ -19,7 +19,6 @@ button, .button, .button_to {
   background-color: $light-blue;
   border: 1px solid $blue;
   padding: 0.3rem;
-  margin-left: 0.3rem;
 }
 
 button:hover, .button:hover, .button_to:hover {
@@ -28,11 +27,22 @@ button:hover, .button:hover, .button_to:hover {
   color: $lightest-blue;
 }
 
+.log-in-form-submit {
+  width: 100%;
+}
+
 h2 {
   font-size: large;
   font-weight: bold;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], textarea {
   border: 1px solid $gray;
+  border-radius: 5px;
+  width: 100%;
+  padding: 0.3rem;
 }
+
+// textarea {
+//   width: 100%;
+// }

@@ -1,22 +1,11 @@
-<%= form_with(model: sub, local: true) do |form| %>
-  <% if sub.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(sub.errors.count, "error") %> prohibited this sub from being saved:</h2>
+<% action = (sub.persisted? ? sub_path(sub) : subs_url ) %>
+<% method = (sub.persisted? ? "update" : "post" ) %>
+<% submit = (sub.persisted? ? "Update Sub" : "Create Sub") %>
 
-      <ul>
-        <% sub.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+<form action=<%= action %> method="post" class="new-sub-form">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value=<%= method %>>
+  <input type="text" name="sub[name]" id="sub-name" placeholder="Sub name...">
+  <input type="text" name="sub[description]" id="sub-description" placeholder="Write a short description of what this sub is for...">
+  <input type="submit" value="<%= submit %>" class="button">
+</form>

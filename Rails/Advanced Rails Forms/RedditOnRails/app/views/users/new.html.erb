@@ -1,0 +1,18 @@
+<h2>Sign Up</h2>
+
+<form action="/users" method="post">
+  <%= auth_token %>
+  <table class="sign-up-form">
+    <tr class="sign-up-form-row">
+      <td><label for="sign-up-name">Username:</label></td>
+      <td><input type="text" name="user[name]" id="sign-up-name"></td>
+    </tr>
+    <tr class="sign-up-form-row">
+      <td><label for="sign-up-password">Password:</label></td>
+      <td><input type="password" name="user[password]" id="sign-up-password"></td>
+    </tr>
+    <tr class="sign-up-form-row">
+      <td colspan="2"><input type="submit" value="Sign Up" class="button"></td>
+    </tr>
+  </table>
+</form>

@@ -1,5 +1,7 @@
 <h2>Front Page</h2>
 
+<%= link_to  "New Sub", new_sub_url, class: "button" %>
+
 <section class="posts-list">
   <% @posts.includes(:sub, :author).each do |post| %>
     <%= render  "layouts/multi_sub_post_oneliner", post: post %>
