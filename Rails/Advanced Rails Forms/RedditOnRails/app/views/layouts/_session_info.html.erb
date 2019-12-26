@@ -1,0 +1,9 @@
+<div class="session-info-welcome">
+  Welcome <%= link_to  current_user.name, user_url(current_user) %>
+  <form action="/session" method="post">
+    <%= auth_token %>
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Log Out">
+  </form>
+</div>
+<div class="session-info-links">Put Some Links To <%= current_user.name %>'s stuff here.</div>

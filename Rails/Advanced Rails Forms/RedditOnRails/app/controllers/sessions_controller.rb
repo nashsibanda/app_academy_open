@@ -6,20 +6,21 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by_credentials(params[:user][:email], params[:user][:password])
+    @user = User.find_by_credentials(params[:login][:name], params[:login][:password])
     if @user
       log_in_user!(@user)
-      redirect_to root_url
+      flash[:notice] = "Successfully logged in!"
+      redirect_back(fallback_location: root_path)
     else
       flash[:notice] = "User not found"
-      redirect_to root_url
+      redirect_back(fallback_location: root_path)
     end
   end
 
   def destroy
     log_out!
     flash[:notice] = "Successfully logged out!"
-    redirect_to root_url
+    redirect_back(fallback_location: root_path)
   end
   
 end
