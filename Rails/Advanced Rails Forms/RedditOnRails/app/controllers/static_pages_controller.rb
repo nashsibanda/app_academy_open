@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
-  def index  
+  def front_page
+    @posts = Post.all
   end
 end

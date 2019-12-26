@@ -1,4 +1,16 @@
 <p id="notice"><%= notice %></p>
 
+<article class="post-display">
+  <section class="post-display-title">
+    <h2><%= @post.title %></h2>
+  </section>
+  <section class="post-display-content">
+    <%= @post.content %>
+  </section>
+  <section class="post-display-info">
+    <span>posted by <%= link_to  @post.author.name, @post.author %> at <%= @post.tidy_created_at %></span>
+  </section>
+</article>
+
 <%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+Back to <%= link_to "r/#{@post.sub.name}", sub_url(@post.sub) %>

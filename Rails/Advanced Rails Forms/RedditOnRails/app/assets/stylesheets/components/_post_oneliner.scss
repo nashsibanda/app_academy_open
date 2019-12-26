@@ -1,0 +1,36 @@
+.post-oneliner {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+  background-color: $lightest-blue;
+  border: 1px solid $gray;
+}
+
+.post-oneliner-info {
+  display: flex;
+}
+
+.post-oneliner-info-label {
+  color: $gray;
+  font-size: small;
+}
+
+.post-oneliner-info div {
+  display: inline-block;
+  padding-right: 0.5rem;
+}
+
+.post-oneliner-title {
+  flex-basis: 100%;
+  font-weight: bold;
+  padding-bottom: 0.3rem;
+}
+
+.posts-list {
+  padding: 1rem 0;
+}
+
+// h3 {
+//   font-weight: bold;
+//   font-size: 40px;
+// }

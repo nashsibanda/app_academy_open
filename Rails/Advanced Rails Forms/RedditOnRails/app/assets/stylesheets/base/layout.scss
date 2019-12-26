@@ -1,0 +1,33 @@
+html {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  width: 90%;
+  margin: auto;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+}
+
+button, .button, .button_to {
+  background-color: $light-blue;
+  border: 1px solid $blue;
+  padding: 0.3rem;
+}
+
+button:hover, .button:hover, .button_to:hover {
+  cursor: pointer;
+  background-color: $dark-blue;
+  color: $lightest-blue;
+}
+
+h2 {
+  font-size: large;
+  font-weight: bold;
+}

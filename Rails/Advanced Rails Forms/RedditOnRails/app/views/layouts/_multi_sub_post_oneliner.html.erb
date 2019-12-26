@@ -1,0 +1,13 @@
+<section class="post-oneliner multi-sub">
+  <div class="post-oneliner-title">
+    <%= link_to  post.title, post %>
+  </div>
+  <div class="post-oneliner-info">
+    <div class="post-oneliner-info-sub">
+      <span class="post-oneliner-info-label">sub: </span><%= link_to  post.sub.name, sub_url(post.sub) %>
+    </div>
+    <div class="post-oneliner-info-author">
+      <span class="post-oneliner-info-label">posted by: </span><%= link_to  post.author.name, user_url(post.author) %>
+    </div>
+  </div>
+</section>

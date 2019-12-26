@@ -1,0 +1,7 @@
+<h2>Front Page</h2>
+
+<section class="posts-list">
+  <% @posts.includes(:sub, :author).each do |post| %>
+    <%= render  "layouts/multi_sub_post_oneliner", post: post %>
+  <% end %>
+</section>

@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   end
   resources :users
   resource :session, only: [:new, :create, :destroy]
-  root to: 'static_pages#index'
+  root to: 'static_pages#front_page'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
