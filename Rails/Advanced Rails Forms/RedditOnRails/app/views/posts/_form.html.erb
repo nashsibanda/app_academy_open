@@ -1,4 +1,4 @@
-<% action = (post.persisted? ? post_path(post) : posts_url ) %>
+<% action = (post.persisted? ? post_path(post) : sub_posts_url(post.sub) ) %>
 <% method = (post.persisted? ? "update" : "post" ) %>
 <% submit = (post.persisted? ? "Update Post" : "Create Post") %>
 
