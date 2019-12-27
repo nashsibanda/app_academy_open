@@ -25,6 +25,14 @@
         <%= render  "layouts/flash_banner" %>
       </div>
     </header>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
+    <aside>
+      <%= yield :sidebar %>
+    </aside>
+    <footer>
+      <%= yield :footer %>
+    </footer>
   </body>
 </html>

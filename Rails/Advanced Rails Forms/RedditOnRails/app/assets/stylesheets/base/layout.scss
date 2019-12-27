@@ -7,13 +7,27 @@ body {
   width: 90%;
   margin: auto;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 header {
+  flex-basis: 100%;
   display: flex;
   justify-content: space-between;
   padding-bottom: 1rem;
   flex-wrap: wrap;
+}
+
+main {
+  box-sizing: border-box;
+  flex-basis: 75%;
+}
+
+aside {
+  box-sizing: border-box;
+  flex-basis: 25%;
+  padding-left: 2rem;
 }
 
 .page-title-row {
@@ -22,10 +36,16 @@ header {
   align-items: center;
 }
 
+.page-description {
+  color: $gray;
+  font-size: small;
+}
+
 button, .button, .button_to {
   background-color: $light-blue;
   border: 1px solid $blue;
   padding: 0.3rem;
+  box-sizing: border-box;
 }
 
 button:hover, .button:hover, .button_to:hover {

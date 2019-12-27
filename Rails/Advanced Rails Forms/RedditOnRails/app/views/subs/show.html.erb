@@ -1,5 +1,8 @@
 <div class="page-title-row">
-  <h2><%= @sub.name %></h2>
+  <div class="page-title-desc">
+    <h2><%= @sub.name %></h2>
+    <p class="page-description"><%= @sub.description %></p>
+  </div>
   <%= link_to  "New Post", new_sub_post_url(@sub), class: "button" %>
 </div>
 
@@ -8,3 +11,7 @@
     <%= render  "layouts/multi_sub_post_oneliner", post: post, blank_sub: true %>
   <% end %>
 </section>
+
+<% content_for :sidebar do %>
+  <%= render  "layouts/sidebar", parent_sub: @sub %>
+<% end %>

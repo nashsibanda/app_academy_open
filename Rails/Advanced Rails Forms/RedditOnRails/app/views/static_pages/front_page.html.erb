@@ -1,5 +1,8 @@
 <div class="page-title-row">
-  <h2>Front Page</h2>
+  <div class="page-title-desc">
+    <h2>Front Page</h2>
+    <p class="page-description">The (other, lesser) front page of the Internet.</p>
+  </div>
   <%= link_to  "New Sub", new_sub_url, class: "button" %>
 </div>
 
@@ -8,3 +11,7 @@
     <%= render  "layouts/multi_sub_post_oneliner", post: post %>
   <% end %>
 </section>
+
+<% content_for :sidebar do %>
+  <%= render  "layouts/sidebar", parent_sub: nil %>
+<% end %>
