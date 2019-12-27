@@ -1,0 +1,18 @@
+.flash-banner-div {
+  flex-basis: 100%;
+}
+
+.flash-banner {
+  padding: 5px;
+  color: white;
+  border-bottom: 1px solid $gray;
+  font-weight: bold;
+}
+
+.flash-error {
+  background-color: $red;
+}
+
+.flash-notice {
+  background-color: $green;
+}

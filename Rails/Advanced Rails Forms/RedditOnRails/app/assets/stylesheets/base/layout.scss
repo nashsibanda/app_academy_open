@@ -13,6 +13,13 @@ header {
   display: flex;
   justify-content: space-between;
   padding-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.page-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 button, .button, .button_to {

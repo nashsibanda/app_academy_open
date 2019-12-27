@@ -1,4 +1,5 @@
-header {
+.main-header {
+  flex-basis: 100%;
   display: flex;
   justify-content: space-between;
   padding-top: 1rem;
@@ -6,13 +7,13 @@ header {
   font-size: small;
 }
 
-header > h3 {
+.main-header > h3 {
   font-weight: bold;
   font-size: x-large;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-header .session-div {
+.main-header .session-div {
   flex-basis: 30%;
 }
 

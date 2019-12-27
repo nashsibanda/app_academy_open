@@ -11,14 +11,19 @@
 
   <body>
     <header>
-      <h3 class="site-header-title"><%= link_to  "RedditOnRails", root_url %></h2>
-      <section class="session-div">
-        <% if current_user %>
-          <%= render  "layouts/session_info" %>
-        <% else %>
-          <%= render  "layouts/header_log_in" %>
-        <% end %>
-      </section>
+      <div class="main-header">
+        <h3 class="site-header-title"><%= link_to  "RedditOnRails", root_url %></h2>
+        <section class="session-div">
+          <% if current_user %>
+            <%= render  "layouts/session_info" %>
+          <% else %>
+            <%= render  "layouts/header_log_in" %>
+          <% end %>
+        </section>
+      </div>
+      <div class="flash-banner-div">
+        <%= render  "layouts/flash_banner" %>
+      </div>
     </header>
     <%= yield %>
   </body>
