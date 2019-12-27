@@ -1,6 +1,7 @@
-<h2><%= @sub.name %></h2>
-
-<%= link_to  "New Post", new_sub_post_url(@sub), class: "button" %>
+<div class="page-title-row">
+  <h2><%= @sub.name %></h2>
+  <%= link_to  "New Post", new_sub_post_url(@sub), class: "button" %>
+</div>
 
 <section class="posts-list">
   <% @sub.posts.includes(:sub, :author).each do |post| %>
