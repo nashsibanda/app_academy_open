@@ -1,13 +1,15 @@
 .sidebar-block {
   margin-bottom: 0.3rem;
   background-color: $lightest-blue;
+  font-size: smaller;
 }
 
 .sidebar-block h3 {
   font-weight: bold;
+  font-size: medium;
 }
 
 .sidebar-block li {
-  list-style: square;
+  list-style: circle;
   list-style-position: inside;
 }

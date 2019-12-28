@@ -7,7 +7,7 @@
 </div>
 
 <section class="posts-list">
-  <% @posts.includes(:sub, :author).each do |post| %>
+  <% @posts.includes(:sub, :author).order(created_at: :desc).each do |post| %>
     <%= render  "layouts/multi_sub_post_oneliner", post: post %>
   <% end %>
 </section>

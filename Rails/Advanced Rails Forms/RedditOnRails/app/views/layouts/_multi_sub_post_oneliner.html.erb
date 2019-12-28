@@ -20,4 +20,14 @@
       <span class="post-oneliner-info-label">posted: </span><%= post.tidy_created_at %>
     </div>
   </div>
+  <% if post.crosspost_parent %>
+    <div class="post-oneliner-crosspost post-oneliner-info">
+      <div class="post-oneliner-crosspost-parent-sub">
+        <span class="post-oneliner-info-label"> <%= link_to  "crossposted", post.crosspost_parent %> from: </span><%= link_to  post.crosspost_parent.sub.name, post.crosspost_parent.sub %>
+      </div>
+      <div class="post-oneliner-crosspost-original-poster">
+        <span class="post-oneliner-info-label">original poster: </span><%= link_to  post.crosspost_parent.author.name, post.crosspost_parent.author %>
+      </div>
+    </div>
+  <% end %>
 </section>
