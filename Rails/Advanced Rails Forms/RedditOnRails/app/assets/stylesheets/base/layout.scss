@@ -78,6 +78,20 @@ input[type="text"], input[type="password"], textarea {
   padding: 0.3rem;
 }
 
+.custom-select {
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid black;
+  background: transparent;
+  // border: none;
+  font-size: 14px;
+  height: 35px;
+  padding: 5px; /* If you add too much padding here, the options won't show in IE */
+  width: 268px;
+  background-color: $dark-blue;
+  color: white;
+}
+
 .block {
   box-sizing: border-box;
   border: 1px solid $gray;

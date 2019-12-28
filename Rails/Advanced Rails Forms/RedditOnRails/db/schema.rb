@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_27_123442) do
+ActiveRecord::Schema.define(version: 2019_12_28_115922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,9 @@ ActiveRecord::Schema.define(version: 2019_12_27_123442) do
     t.bigint "author_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "crosspost_parent_id"
     t.index ["author_id"], name: "index_posts_on_author_id"
+    t.index ["crosspost_parent_id"], name: "index_posts_on_crosspost_parent_id"
     t.index ["sub_id"], name: "index_posts_on_sub_id"
     t.index ["title"], name: "index_posts_on_title"
   end

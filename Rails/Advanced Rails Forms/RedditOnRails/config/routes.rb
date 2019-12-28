@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :posts, only: [:show, :edit, :update, :destroy]
+  resources :posts, only: [:show, :edit, :update, :destroy] do
+    resources :crossposts, only: [:create]
+  end
   resources :subs do
     resources :posts, only: [:new, :create]
   end

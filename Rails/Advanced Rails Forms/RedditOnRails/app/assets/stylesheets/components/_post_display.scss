@@ -17,8 +17,17 @@
   margin-bottom: 5px;
 }
 
-.post-display-info {
+.post-display-info, .post-display-title-crosspost {
   color: $gray;
   font-size: small;
   text-align: right;
+}
+
+.post-display-title-crosspost {
+  font-style: italic;
+}
+
+.post-display-crosspost-form {
+  text-align: right;
+  margin-top: 10px;
 }

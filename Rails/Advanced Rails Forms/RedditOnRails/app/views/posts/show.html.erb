@@ -10,11 +10,27 @@
       <% end %>
     </div>
   </section>
+  <% if @post.crosspost_parent %>
+    <section class="post-display-title-crosspost">
+      <%= link_to  "crossposted from r/#{@post.crosspost_parent.sub.name}", @post.crosspost_parent %>
+    </section>
+  <% end %>
   <section class="post-display-content">
     <%= @post.content %>
   </section>
   <section class="post-display-info">
     <span>posted by <%= link_to  @post.author.name, @post.author %> at <%= @post.tidy_created_at %></span>
+  </section>
+  <section class="post-display-crosspost-form">
+    <form action=<%= post_crossposts_url(@post.id) %> method="post">
+      <%= auth_token %>
+      <select name="crosspost[sub_id]" id="crosspost-sub-select" class="custom-select">
+        <% Sub.all.order(name: :asc).each do |sub| %>
+          <option value="<%= sub.id %>"><%= sub.name %></option>
+        <% end %>
+      </select>
+      <input type="submit" value="Crosspost" class="button">
+    </form>
   </section>
 </article>
 
