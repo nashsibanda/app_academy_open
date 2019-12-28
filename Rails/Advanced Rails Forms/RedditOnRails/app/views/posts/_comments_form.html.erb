@@ -1,4 +1,4 @@
-<% action = (comment.persisted? ? comment_path(comment) : comments_url ) %>
+<% action = (comment.persisted? ? comment_path(comment) : post_comments_url(post) ) %>
 <% method = (comment.persisted? ? "update" : "comment" ) %>
 <% submit = (comment.persisted? ? "Update Comment" : "Add Comment") %>
 
