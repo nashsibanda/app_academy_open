@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  resources :comments, only: [:create, :show]
   resources :posts, only: [:show, :edit, :update, :destroy] do
     resources :crossposts, only: [:create]
+    resources :comments, only: [:new]
   end
   resources :subs do
-    resources :posts, only: [:new, :create]
+    resources :posts, only: [:new]
   end
   resources :users
   resource :session, only: [:new, :create, :destroy]

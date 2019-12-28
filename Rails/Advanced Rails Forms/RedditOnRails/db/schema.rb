@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_28_115922) do
+ActiveRecord::Schema.define(version: 2019_12_28_125009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "author_id"
+    t.bigint "post_id"
+    t.integer "parent_comment_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["parent_comment_id"], name: "index_comments_on_parent_comment_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
+  end
 
   create_table "moderator_moderated_subs", force: :cascade do |t|
     t.bigint "moderator_id"
@@ -55,6 +67,8 @@ ActiveRecord::Schema.define(version: 2019_12_28_115922) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "moderator_moderated_subs", "subs"
   add_foreign_key "moderator_moderated_subs", "users", column: "moderator_id"
   add_foreign_key "posts", "subs"
