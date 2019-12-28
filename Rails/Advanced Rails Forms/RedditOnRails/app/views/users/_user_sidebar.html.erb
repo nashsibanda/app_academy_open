@@ -1,0 +1,13 @@
+<div class="sidebar-block block sidebar-user-stats">
+  <h3><%= user.name %></h3>
+  Joined: <%= user.tidy_created_at %>
+  Posts: <%= user.posts.count %>
+</div>
+<% unless user.moderated_subs.empty? %>
+  <div class="sidebar-block block sidebar-user-stats">
+    <h3>Moderated Subs</h3>
+    <% user.moderated_subs.each do |sub| %>
+      <li><%= link_to  sub.name, sub %></li>
+    <% end %>
+  </div>
+<% end %>

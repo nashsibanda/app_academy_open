@@ -9,3 +9,7 @@
 </section>
 
 <%= link_to  "Back to Users", users_url %>
+
+<% content_for :sidebar do %>
+  <%= render  "user_sidebar", user: @user %>
+<% end %>

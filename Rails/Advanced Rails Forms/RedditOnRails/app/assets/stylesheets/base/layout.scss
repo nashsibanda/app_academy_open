@@ -27,7 +27,7 @@ main {
 aside {
   box-sizing: border-box;
   flex-basis: 25%;
-  padding-left: 2rem;
+  padding-left: 1rem;
 }
 
 .page-title-row {
@@ -68,6 +68,13 @@ input[type="text"], input[type="password"], textarea {
   border-radius: 5px;
   width: 100%;
   padding: 0.3rem;
+}
+
+.block {
+  box-sizing: border-box;
+  border: 1px solid $gray;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 // textarea {
