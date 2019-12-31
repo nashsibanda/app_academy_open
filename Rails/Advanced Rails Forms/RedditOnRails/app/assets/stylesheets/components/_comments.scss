@@ -13,8 +13,27 @@
   text-align: right;
   font-size: small;
   font-weight: 300;
+  border-bottom: 1px solid $light-gray;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
 }
 
 .comment-byline-author {
   font-weight: 700;
+}
+
+.sub-comment-indenter {
+  display: flex;
+}
+
+.indent-div {
+  flex-basis: 1.5%;
+  border-left: 1px solid $lightest-blue;
+}
+.sub-comment-div {
+  flex-basis: 98.5%;
+}
+
+.comment-display-reply {
+  margin-bottom: 1rem;
 }

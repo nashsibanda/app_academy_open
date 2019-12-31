@@ -1,6 +1,12 @@
 <h2>Replying to...</h2>
 <br>
-<%= render  "comment_display", comment: @parent_comment %>
+<div class="comment-display-reply">
+  <div class="comment-byline">
+    <div class="comment-byline-author"><%= link_to  @parent_comment.author.name, @parent_comment.author %></div>
+    <div class="comment-byline-time"><%= @parent_comment.tidy_age %></div>
+  </div>
+  <div class="comment-content"><%= @parent_comment.content %></div>
+</div>
 <%= render 'form', comment: @comment, parent_comment: @parent_comment %>
 
-<%= link_to 'Back to Post', @parent_comment.post %>
+<%= link_to "Back to Post: #{@parent_comment.post.short_title}", @parent_comment.post %>

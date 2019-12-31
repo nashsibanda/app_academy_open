@@ -1,10 +1,10 @@
-<% action = (comment.persisted? ? comment_path(comment) : comments_url ) %>
+<% action = (comment.persisted? ? comment_path(comment) : comment_comments_url(parent_comment) ) %>
 <% method = (comment.persisted? ? "update" : "comment" ) %>
 <% submit = (comment.persisted? ? "Update Comment" : "Add Comment") %>
 
 <form action=<%= action %> method="post" class="new-comment-form">
   <%= auth_token %>
   <input type="hidden" name="_method" value=<%= method %>>
-  <textarea name="comment[content]" id="comment-content" cols="30" rows="5" placeholder="Enter a comment..."></textarea>
+  <textarea name="comment[content]" id="comment-content" cols="30" rows="5" placeholder="Enter a comment..."><%= comment.persisted? ? comment.content : "" %></textarea>
   <input type="submit" value="<%= submit %>" class="button">
 </form>

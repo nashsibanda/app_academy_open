@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :comments, only: [:create, :show]
+  resources :comments, only: [:create, :show, :edit, :update, :destroy] do
+    resources :comments, only: [:new, :create]
+  end
   resources :posts, only: [:show, :edit, :update, :destroy] do
     resources :crossposts, only: [:create]
     resources :comments, only: [:new, :create]

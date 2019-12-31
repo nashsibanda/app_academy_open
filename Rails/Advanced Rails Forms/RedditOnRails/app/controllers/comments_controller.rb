@@ -15,6 +15,9 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = Comment.new
+    if params[:comment_id]
+      @parent_comment = Comment.find_by(id: params[:comment_id])
+    end
   end
 
   # GET /comments/1/edit
@@ -26,7 +29,12 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.author = current_user
-    if params[:post_id]
+    if params[:comment_id]
+      parent_comment = Comment.find_by(id: params[:comment_id])
+      parent_post = parent_comment.post
+      @comment.parent_comment = parent_comment
+      @comment.post = parent_post
+    elsif params[:post_id]
       parent_post = Post.find_by(id: params[:post_id])
       @comment.post = parent_post
     end

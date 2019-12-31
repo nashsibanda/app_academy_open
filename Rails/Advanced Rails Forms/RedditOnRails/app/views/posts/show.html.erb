@@ -39,14 +39,7 @@
     <%= render  "comments_form", comment: Comment.new, post: @post %>
   </section>
   <section class="comments-display-list">
-    <% @post.comments.order(created_at: :desc).each do |comment| %>
-      <%
-=begin%>
- <div class="post-parent-comment">
-        <%= comment.content %>
-      </div> 
-<%
-=end%>
+    <% @post.comments.where(parent_comment_id: nil).order(created_at: :desc).each do |comment| %>
       <div class="post-parent-comment">
         <%= render  "comments/comment_display", comment: comment %>
       </div>
