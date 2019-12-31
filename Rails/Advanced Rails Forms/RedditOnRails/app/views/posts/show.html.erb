@@ -19,7 +19,7 @@
     <%= @post.content %>
   </section>
   <section class="post-display-info">
-    <span>posted by <%= link_to  @post.author.name, @post.author %> at <%= @post.tidy_created_at %></span>
+    <span>posted by <%= link_to  @post.author.name, @post.author %> <%= @post.tidy_age %> ago</span>
   </section>
   <section class="post-display-crosspost-form">
     <form action=<%= post_crossposts_url(@post.id) %> method="post">
@@ -40,8 +40,15 @@
   </section>
   <section class="comments-display-list">
     <% @post.comments.order(created_at: :desc).each do |comment| %>
-      <div class="post-parent-comment">
+      <%
+=begin%>
+ <div class="post-parent-comment">
         <%= comment.content %>
+      </div> 
+<%
+=end%>
+      <div class="post-parent-comment">
+        <%= render  "comments/comment_display", comment: comment %>
       </div>
     <% end %>
   </section>

@@ -1,0 +1,16 @@
+<div class="comment-byline">
+  <div class="comment-byline-author"><%= link_to  comment.author.name, comment.author %></div>
+  <div class="comment-byline-time"><%= comment.tidy_age %></div>
+</div>
+<div class="comment-content"><%= comment.content %></div>
+<div class="comment-links">
+  <% if comment.author == current_user %>
+    <%= link_to  "Edit", edit_comment_url(comment) %> | 
+    <form action="/comments" method="post" class="inline-form">
+      <%= auth_token %>
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete" class="form-link">
+    </form> | 
+  <% end %>
+  <%= link_to  "Reply", new_comment_comment_url(comment), comment: Comment.new, parent_comment: comment %>
+</div>

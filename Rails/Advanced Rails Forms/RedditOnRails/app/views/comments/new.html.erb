@@ -1,5 +1,6 @@
-<h1>New Comment</h1>
+<h2>Replying to...</h2>
+<br>
+<%= render  "comment_display", comment: @parent_comment %>
+<%= render 'form', comment: @comment, parent_comment: @parent_comment %>
 
-<%= render 'form', comment: @comment %>
-
-<%= link_to 'Back', comments_path %>
+<%= link_to 'Back to Post', @parent_comment.post %>
