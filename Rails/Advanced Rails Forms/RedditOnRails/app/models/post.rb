@@ -6,4 +6,13 @@ class Post < ApplicationRecord
   has_many :crossposts, class_name: "Post", foreign_key: :crosspost_parent_id
   has_many :comments
   belongs_to :author, class_name: "User", foreign_key: :author_id
+
+  def short_title
+    case
+    when self.title.length <= 20
+      return self.title
+    when self.title.length > 20
+      return "#{self.title[0..19]}..."
+    end
+  end
 end
