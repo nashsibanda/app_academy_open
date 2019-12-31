@@ -6,7 +6,7 @@ html {
 body {
   width: 90%;
   margin: auto;
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   display: flex;
   flex-wrap: wrap;
 }
@@ -41,11 +41,11 @@ aside {
   font-size: small;
 }
 
-a {
+a, .form-link {
   color: $darkest-blue;
 }
 
-a:hover {
+a:hover, .form-link:hover {
   text-decoration: underline;
 }
 
@@ -64,6 +64,10 @@ button:hover, .button:hover, .button_to:hover {
 
 .log-in-form-submit {
   width: 100%;
+}
+
+.inline-form {
+  display: inline;
 }
 
 h2 {
