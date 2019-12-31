@@ -15,17 +15,25 @@
   <%= link_to  "Permalink", comment %> | 
   <%= link_to  "Reply", new_comment_comment_url(comment), comment: Comment.new, parent_comment: comment %>
 </div>
-<% unless comment_hash[comment.id].empty? %>
+<% unless comment.child_comments.empty? %>
   <div class="sub-comment-indenter">
     <div class="indent-div"></div>
     <div class="sub-comment-div">
       <ul>
-        <% comment_hash[comment.id].each do |comment| %>
-          <div class="post-parent-comment">
-            <%= render  "comments/comment_display", comment: comment, comment_hash: comment_hash %>
-          </div>
-    <% end %>
+        <% comment.child_comments.order(created_at: :desc).each do |child| %>
+          <li><%= render  "comments/comment_display", comment: child %></li>
+        <% end %>
       </ul>
     </div>
   </div>
 <% end %>
+
+<!-- SHOW PAGE STUFF -->
+
+<section class="comments-display-list">
+    <% @all_comments.where(parent_comment_id: nil).order(created_at: :desc).each do |comment| %>
+      <div class="post-parent-comment">
+        <%= render  "comments/comment_display", comment: comment %>
+      </div>
+    <% end %>
+  </section>

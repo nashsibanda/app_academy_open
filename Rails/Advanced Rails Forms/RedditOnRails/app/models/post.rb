@@ -15,4 +15,12 @@ class Post < ApplicationRecord
       return "#{self.title[0..19]}..."
     end
   end
+
+  def comments_by_parent_id
+    output_hash = Hash.new { |h, k| h[k] = []  }
+    self.comments.includes(:author).each do |comment|
+      output_hash[comment.parent_comment_id] << comment
+    end
+    output_hash
+  end
 end

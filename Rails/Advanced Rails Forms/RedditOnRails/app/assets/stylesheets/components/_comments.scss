@@ -9,6 +9,12 @@
   font-weight: 300;
 }
 
+.new-comment-form {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $light-gray;
+}
+
 .comment-links {
   text-align: right;
   font-size: small;
@@ -36,4 +42,9 @@
 
 .comment-display-reply {
   margin-bottom: 1rem;
+}
+
+.comment-show-page-parent {
+  background-color: $light-blue;
+  padding: 10px 10px 0 10px;
 }
