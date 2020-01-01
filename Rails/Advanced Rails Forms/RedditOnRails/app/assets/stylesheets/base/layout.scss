@@ -19,6 +19,11 @@ header {
   flex-wrap: wrap;
 }
 
+.wide-page-title {
+  flex-basis: 100%;
+  padding-bottom: 1rem;
+}
+
 main {
   box-sizing: border-box;
   flex-basis: 75%;

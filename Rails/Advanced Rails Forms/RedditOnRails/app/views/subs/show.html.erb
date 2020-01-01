@@ -1,3 +1,4 @@
+<% content_for :wide_title do %>
 <div class="page-title-row">
   <div class="page-title-desc">
     <h2><%= @sub.name %></h2>
@@ -5,6 +6,7 @@
   </div>
   <%= link_to  "New Post", new_sub_post_url(@sub), class: "button" %>
 </div>
+<% end %>
 
 <section class="posts-list">
   <% @sub.posts.includes(:sub, :author).order(created_at: :desc).each do |post| %>

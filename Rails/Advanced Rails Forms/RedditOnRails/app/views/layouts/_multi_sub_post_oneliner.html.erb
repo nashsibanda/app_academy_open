@@ -1,9 +1,10 @@
 <% blank_author ||= false %>
 <% blank_sub ||= false %>
+<% post_vote = post.votes.select { |vote| vote.voter == current_user }.first %>
 
 <section class="post-oneliner multi-sub">
   <div class="post-oneliner-title">
-    <%= link_to  post.title, post %>
+    <%= render  "layouts/vote_arrows", parent: post, vote: post_vote %> <%= link_to  post.title, post %>
   </div>
   <div class="post-oneliner-info">
     <% unless blank_author %>

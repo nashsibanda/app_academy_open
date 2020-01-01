@@ -1,10 +1,12 @@
-<div class="page-title-row">
-  <div class="page-title-desc">
-    <h2>Front Page</h2>
-    <p class="page-description">The (other, lesser) front page of the Internet.</p>
+<% content_for :wide_title do %>
+  <div class="page-title-row">
+    <div class="page-title-desc">
+      <h2>Front Page</h2>
+      <p class="page-description">The (other, lesser) front page of the Internet.</p>
+    </div>
+    <%= link_to  "New Sub", new_sub_url, class: "button" %>
   </div>
-  <%= link_to  "New Sub", new_sub_url, class: "button" %>
-</div>
+<% end %>
 
 <section class="posts-list">
   <% @posts.includes(:sub, :author).order(created_at: :desc).each do |post| %>
