@@ -1,24 +1,11 @@
-# README
+# REDDITONRAILS
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Things to add to this project:
 
-Things you may want to cover:
+* Subscriptions
 
-* Ruby version
+* Paginate posts on Show pages
 
-* System dependencies
+* Add more seed data with Faker
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Add moderator privileges
