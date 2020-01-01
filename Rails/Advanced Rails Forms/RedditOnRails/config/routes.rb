@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :votes, only: [:create]
   end
   resources :subs do
-    resources :posts, only: [:new]
+    resources :posts, only: [:new, :create]
   end
   resources :users
   resources :votes, only: [:destroy]

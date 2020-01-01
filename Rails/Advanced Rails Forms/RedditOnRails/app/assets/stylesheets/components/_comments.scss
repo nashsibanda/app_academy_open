@@ -48,3 +48,15 @@
   background-color: $light-blue;
   padding: 10px 10px 0 10px;
 }
+
+.comment-oneliner {
+  // display: flex;
+  // flex-wrap: wrap;
+  padding: 0.5rem;
+  background-color: $lightest-blue;
+  border: 1px solid $gray;
+}
+
+.comment-user-show-post-link {
+  font-style: italic;
+}

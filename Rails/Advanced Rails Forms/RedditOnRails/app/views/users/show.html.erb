@@ -3,8 +3,12 @@
 <h3>Posts</h3>
 
 <section class="posts-list">
-  <% @user.posts.includes(:sub, :author).each do |post| %>
-    <%= render  "layouts/multi_sub_post_oneliner", post: post, blank_author: true %>
+  <% @user.posts_and_comments.each do |item| %>
+    <% if item.class.name == "Post" %>
+      <%= render  "layouts/multi_sub_post_oneliner", post: item, blank_author: true %>
+    <% elsif item.class.name == "Comment" %>
+      <div class="comment-oneliner"><%= render  "comments/comment_display", comment: item, blank_children: true %></div>
+    <% end %>
   <% end %>
 </section>
 

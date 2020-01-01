@@ -7,7 +7,7 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   def tidy_age
-    time_ago_in_words(self.created_at)
+    "#{time_ago_in_words(self.created_at)} ago"
   end
 
 end

@@ -33,6 +33,11 @@ class User < ApplicationRecord
     BCrypt::Password.new(self.password_digest) == input
   end
 
+  def posts_and_comments
+    composite = self.posts + self.comments
+    composite.sort { |a, b| b.created_at <=> a.created_at }
+  end
+
   private
   def ensure_session_token
     self.session_token ||= self.class.generate_session_token

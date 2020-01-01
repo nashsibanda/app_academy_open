@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by_credentials(params[:login][:name], params[:login][:password])
+    @user = User.find_by_credentials(params[:user][:name], params[:user][:password])
     if @user
       log_in_user!(@user)
       flash[:notice] = "Successfully logged in!"

@@ -1,7 +1,14 @@
 <% vote = comment.votes.select { |vote| vote.voter == current_user }.first %>
+<% blank_children ||= false %>
 
 <div class="comment-byline">
-  <div class="comment-byline-author"><%= link_to  comment.author.name, comment.author %></div>
+  <div class="comment-byline-author">
+    <% if blank_children %>
+      <span class="comment-user-show-post-link">comment posted to <%= link_to  comment.post.short_title, comment.post %></span>
+    <% else %>
+      <%= link_to  comment.author.name, comment.author %>
+    <% end %>
+  </div>
   <div class="comment-byline-time"> <%= render  "layouts/vote_arrows", parent: comment, vote: vote %> | <%= comment.tidy_age %></div>
 </div>
 <div class="comment-content"><%= comment.content %></div>
@@ -17,7 +24,7 @@
   <%= link_to  "Permalink", comment %> | 
   <%= link_to  "Reply", new_comment_comment_url(comment), comment: Comment.new, parent_comment: comment %>
 </div>
-<% unless comment_hash[comment.id].empty? %>
+<% unless blank_children == true || comment_hash[comment.id].empty? %>
   <div class="sub-comment-indenter">
     <div class="indent-div"></div>
     <div class="sub-comment-div">

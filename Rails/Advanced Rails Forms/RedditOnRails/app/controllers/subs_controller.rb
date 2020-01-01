@@ -59,7 +59,7 @@ class SubsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sub
-      @sub = Sub.includes(:posts).find_by(id: params[:id])
+      @sub = Sub.includes(posts: [:votes]).find_by(id: params[:id])
     end
 
     # Only moderators can edit, update or destroy subs

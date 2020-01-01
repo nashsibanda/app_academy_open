@@ -38,7 +38,11 @@
 
 <section class="comment-display block">
   <section class="comment-form-block">
-    <%= render  "comments_form", comment: Comment.new, post: @post %>
+    <% if current_user %>
+      <%= render  "comments_form", comment: Comment.new, post: @post %>
+    <% else %>
+      <%= render  "layouts/please_log_in", action: "comment" %>
+    <% end %>
   </section>
   <section class="comments-display-list">
     <% comment_hash = @post.comments_by_parent_id %>

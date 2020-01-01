@@ -9,7 +9,7 @@
   <div class="post-oneliner-info">
     <% unless blank_author %>
       <div class="post-oneliner-info-author">
-        <span class="post-oneliner-info-label">posted by: </span><%= link_to  post.author.name, user_url(post.author) %>
+        <span class="post-oneliner-info-label"> <%= post.crosspost_parent ? "crossposted" : "posted" %> by: </span><%= link_to  post.author.name, user_url(post.author) %>
       </div>
     <% end %>
     <% unless blank_sub %>

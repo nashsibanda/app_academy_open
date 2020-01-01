@@ -3,14 +3,14 @@
   <table class="header-log-in-form">
     <tr class="header-log-in-form-row">
       <td><label for="header-log-in-name">Username:</label></td>
-      <td><input type="text" name="login[name]" id="header-log-in-name"></td>
+      <td><input type="text" name="user[name]" id="header-log-in-name"></td>
     </tr>
     <tr class="header-log-in-form-row">
       <td><label for="header-log-in-password">Password:</label></td>
-      <td><input type="password" name="login[password]" id="header-log-in-password"></td>
+      <td><input type="password" name="user[password]" id="header-log-in-password"></td>
     </tr>
     <tr class="header-log-in-form-row">
-      <td colspan="2" class="log-in-form-submit"><input type="submit" value="Log In" class="button"> <span> or </span><%= link_to  "Sign Up", new_user_url, class: "button" %></td>
+      <td colspan="2" class="log-in-form-submit"><input type="submit" value="Log In" class="button"> <span> or </span><input type="submit" value="Register" class="button" formaction="/users"></td>
     </tr>
   </table>
 </form>
