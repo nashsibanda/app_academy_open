@@ -1,6 +1,6 @@
 <div class="comment-byline">
   <div class="comment-byline-author"><%= link_to  comment.author.name, comment.author %></div>
-  <div class="comment-byline-time"><%= comment.tidy_age %></div>
+  <div class="comment-byline-time"> <%= render  "layouts/vote_arrows", parent: comment, vote: Vote.new %> <%= comment.vote_value %> | <%= comment.tidy_age %></div>
 </div>
 <div class="comment-content"><%= comment.content %></div>
 <div class="comment-links">
@@ -21,9 +21,7 @@
     <div class="sub-comment-div">
       <ul>
         <% comment_hash[comment.id].each do |comment| %>
-          <div class="post-parent-comment">
             <%= render  "comments/comment_display", comment: comment, comment_hash: comment_hash %>
-          </div>
     <% end %>
       </ul>
     </div>

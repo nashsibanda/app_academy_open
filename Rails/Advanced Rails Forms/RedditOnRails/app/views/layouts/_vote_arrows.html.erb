@@ -1,0 +1,17 @@
+<% if vote.persisted? %>
+  <% action = vote_url(vote) %>
+<% elsif parent.class.name == "Post" %>
+  <% action = post_votes_url(parent) %>
+<% elsif parent.class.name == "Comment" %>
+  <% action = comment_votes_url(parent) %>
+<% end %>
+
+<% method = vote.persisted? ? "delete" : "post" %>
+<% submit = vote.persisted? ? "delete" : "vote" %>
+
+<form action= <%= action %> method="post" class="inline-form">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value=<%= method %>>
+  <input type="hidden" name="vote[value]" value="1">
+  <input type="submit" value= <%= submit %> class="vote-arrow-submit">
+</form>

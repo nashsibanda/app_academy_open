@@ -1,4 +1,5 @@
 class Comment < ApplicationRecord
+  include Votable
   validates :content, :author, :post, presence: true
 
   belongs_to :parent_comment, class_name: "Comment", foreign_key: :parent_comment_id, optional: true

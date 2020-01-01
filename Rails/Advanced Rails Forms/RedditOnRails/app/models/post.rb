@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
+  include Votable
   validates :title, :author, :sub, presence: true
-
   belongs_to :sub
   belongs_to :crosspost_parent, class_name: "Post", foreign_key: :crosspost_parent_id, optional: true
   has_many :crossposts, class_name: "Post", foreign_key: :crosspost_parent_id
