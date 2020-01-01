@@ -1,6 +1,8 @@
+<% vote = comment.votes.select { |vote| vote.voter == current_user }.first %>
+
 <div class="comment-byline">
   <div class="comment-byline-author"><%= link_to  comment.author.name, comment.author %></div>
-  <div class="comment-byline-time"> <%= render  "layouts/vote_arrows", parent: comment, vote: Vote.new %> <%= comment.vote_value %> | <%= comment.tidy_age %></div>
+  <div class="comment-byline-time"> <%= render  "layouts/vote_arrows", parent: comment, vote: vote %> | <%= comment.tidy_age %></div>
 </div>
 <div class="comment-content"><%= comment.content %></div>
 <div class="comment-links">

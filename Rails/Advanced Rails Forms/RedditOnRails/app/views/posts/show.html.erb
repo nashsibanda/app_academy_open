@@ -1,8 +1,10 @@
+<% post_vote = @post.votes.select { |vote| vote.voter == current_user }.first %>
+
 <p id="notice"><%= notice %></p>
 
 <article class="post-display block">
   <section class="post-display-title">
-    <h2><%= @post.title %></h2>
+    <h2> <%= render  "layouts/vote_arrows", parent: @post, vote: post_vote %> <%= @post.title %></h2>
     <div class="post-display-title-links">
       Back to <%= link_to "r/#{@post.sub.name}", sub_url(@post.sub) %>
       <% if @post.author == current_user %>

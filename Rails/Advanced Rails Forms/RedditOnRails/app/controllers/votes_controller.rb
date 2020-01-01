@@ -16,6 +16,13 @@ class VotesController < ApplicationController
     end
   end
 
+  def destroy
+    @vote = Vote.find_by(id: params[:id])
+    @vote.destroy
+    flash[:notice] = "Vote deleted!"
+    redirect_back(fallback_location: root_url)
+  end
+
   private
   def vote_params
     params.require(:vote).permit(:value)

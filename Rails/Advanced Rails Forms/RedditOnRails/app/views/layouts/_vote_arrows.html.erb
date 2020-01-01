@@ -1,17 +1,38 @@
+<% if vote.nil? %>
+  <% vote = Vote.new %>
+<% end %>
 <% if vote.persisted? %>
   <% action = vote_url(vote) %>
+  <% vote_value = vote.value %>
 <% elsif parent.class.name == "Post" %>
   <% action = post_votes_url(parent) %>
 <% elsif parent.class.name == "Comment" %>
   <% action = comment_votes_url(parent) %>
 <% end %>
+<% if vote_value %>
+  <% case vote_value %>
+  <% when 1 %>
+    <% downvote_class = "" %>
+    <% upvote_class = "selected" %>
+  <% when -1 %>
+    <% downvote_class = "selected" %>
+    <% upvote_class = "" %>
+  <% end %>
+<% end %>
 
 <% method = vote.persisted? ? "delete" : "post" %>
 <% submit = vote.persisted? ? "delete" : "vote" %>
 
-<form action= <%= action %> method="post" class="inline-form">
+<form action= <%= action %> method="post" class="inline-form upvote-form">
   <%= auth_token %>
   <input type="hidden" name="_method" value=<%= method %>>
   <input type="hidden" name="vote[value]" value="1">
-  <input type="submit" value= <%= submit %> class="vote-arrow-submit">
+  <button type="submit" class="vote-button upvote-button <%= upvote_class %>"><i class="feather icon-arrow-up"></i></button>
+</form>
+<%= parent.vote_value %>
+<form action= <%= action %> method="post" class="inline-form downvote-form">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value=<%= method %>>
+  <input type="hidden" name="vote[value]" value="-1">
+  <button type="submit" class="vote-button downvote-button <%= downvote_class %>"><i class="feather icon-arrow-down"></i></button>
 </form>

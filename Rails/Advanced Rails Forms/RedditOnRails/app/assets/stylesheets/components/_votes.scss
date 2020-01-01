@@ -1,0 +1,32 @@
+.vote-button {
+  border: none;
+  background-color: transparent;
+}
+
+.vote-button:hover {
+  background-color: transparent;
+}
+
+.upvote-button:hover {
+  color: orangered;
+}
+
+.upvote-button.selected {
+  color: orangered;
+}
+
+.upvote-button.selected:hover {
+  color: black;
+}
+
+.downvote-button:hover {
+  color: $dark-blue;
+}
+
+.downvote-button.selected {
+  color: $dark-blue;
+}
+
+.downvote-button.selected:hover {
+  color: black;
+}

@@ -19,10 +19,6 @@
  // Core
  @import "base/*";
  @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700&display=swap');
- @font-face {
-  font-family: "Kaushan Script Regular";
-  src: url(/assets/KaushanScript-Regular.otf) format("truetype");
- }
 
  // Components
  @import "components/*";
