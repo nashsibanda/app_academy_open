@@ -3,9 +3,9 @@ class VotesController < ApplicationController
 
   def create
     if params[:comment_id]
-      parent = Comment.find_by(id: params[:comment_id])
+      parent = Comment.friendly.find(params[:comment_id])
     elsif params[:post_id]
-      parent = Post.find_by(id: params[:post_id])
+      parent = Post.friendly.find(params[:post_id])
     end
     @vote = Vote.new(vote_params)
     @vote.voter_id = current_user.id
@@ -19,7 +19,7 @@ class VotesController < ApplicationController
   end
 
   def destroy
-    @vote = Vote.find_by(id: params[:id])
+    @vote = Vote.friendly.find(params[:id])
     @vote.destroy
     flash[:notice] = "Vote deleted!"
     redirect_back(fallback_location: root_url)

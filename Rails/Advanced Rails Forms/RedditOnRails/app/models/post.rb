@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  extend FriendlyId
   include Votable
   validates :title, :author, :sub, presence: true
   belongs_to :sub
@@ -6,6 +7,7 @@ class Post < ApplicationRecord
   has_many :crossposts, class_name: "Post", foreign_key: :crosspost_parent_id
   has_many :comments
   belongs_to :author, class_name: "User", foreign_key: :author_id
+  friendly_id :title, use: :slugged
 
   def short_title
     case

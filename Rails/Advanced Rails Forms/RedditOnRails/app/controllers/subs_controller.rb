@@ -60,12 +60,12 @@ class SubsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sub
-      @sub = Sub.includes(posts: [:votes]).find_by(id: params[:id])
+      @sub = Sub.includes(posts: [:votes]).(params[:id])
     end
 
     # Only moderators can edit, update or destroy subs
     def require_moderator_access
-      sub = Sub.find_by(id: params[:id])
+      sub = Sub.friendly.find(params[:id])
       unless sub.moderators.include?(current_user)
         flash[:error] = "Only moderators can perform this action."
         redirect_to sub_url(sub)

@@ -15,7 +15,7 @@
 <div class="comment-links">
   <% if comment.author == current_user %>
     <%= link_to  "Edit", edit_comment_url(comment) %> | 
-    <form action="/comments" method="post" class="inline-form">
+    <form action=<%= comment_url(comment) %> method="post" class="inline-form">
       <%= auth_token %>
       <input type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete" class="form-link">

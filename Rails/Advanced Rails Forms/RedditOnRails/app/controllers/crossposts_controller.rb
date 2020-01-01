@@ -1,6 +1,6 @@
 class CrosspostsController < ApplicationController
   def create
-    parent = Post.find_by(id: params[:post_id])
+    parent = Post.friendly.find(params[:post_id])
     crosspost = parent.dup
     crosspost.crosspost_parent_id = parent.id
     crosspost.author_id = current_user.id

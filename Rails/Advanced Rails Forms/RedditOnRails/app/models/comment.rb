@@ -1,4 +1,5 @@
 class Comment < ApplicationRecord
+  extend FriendlyId
   include Votable
   validates :content, :author, :post, presence: true
 
@@ -6,4 +7,5 @@ class Comment < ApplicationRecord
   belongs_to :author, class_name: "User", foreign_key: :author_id
   belongs_to :post
   has_many :child_comments, class_name: "Comment", foreign_key: :parent_comment_id
+  friendly_id :content, use: :slugged
 end

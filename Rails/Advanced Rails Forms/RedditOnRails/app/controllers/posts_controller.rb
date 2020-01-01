@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    parent_sub = Sub.find_by(id: params[:sub_id])
+    parent_sub = Sub.friendly.find(params[:sub_id])
     @post = Post.new(sub: parent_sub)
   end
 
@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.author = current_user
-    parent = Sub.find_by(id: params[:sub_id])
+    parent = Sub.friendly.find(params[:sub_id])
     @post.sub = parent
     if @post.save
       flash[:notice] = "Post successfully created!"
@@ -61,7 +61,7 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.includes(:author).find(params[:id])
+      @post = Post.includes(:author).friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -70,7 +70,7 @@ class PostsController < ApplicationController
     end
 
     def require_author_access
-      post = Post.find(params[:id])
+      post = Post.friendly.find(params[:id])
       unless post.author == current_user || post.sub.moderators.include?(current_user)
         flash[:error] = "Only the post author or a moderator can perform this action."
         redirect_to sub_url(sub)

@@ -1,5 +1,5 @@
 <% action = (comment.persisted? ? comment_path(comment) : comment_comments_url(parent_comment) ) %>
-<% method = (comment.persisted? ? "update" : "comment" ) %>
+<% method = (comment.persisted? ? "patch" : "post" ) %>
 <% submit = (comment.persisted? ? "Update Comment" : "Add Comment") %>
 
 <form action=<%= action %> method="post" class="new-comment-form">

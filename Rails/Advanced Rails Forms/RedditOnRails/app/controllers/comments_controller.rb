@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new
     if params[:comment_id]
-      @parent_comment = Comment.find_by(id: params[:comment_id])
+      @parent_comment = Comment.friendly.find(params[:comment_id])
     end
   end
 
@@ -31,12 +31,12 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.author = current_user
     if params[:comment_id]
-      parent_comment = Comment.find_by(id: params[:comment_id])
+      parent_comment = Comment.friendly.find(params[:comment_id])
       parent_post = parent_comment.post
       @comment.parent_comment = parent_comment
       @comment.post = parent_post
     elsif params[:post_id]
-      parent_post = Post.find_by(id: params[:post_id])
+      parent_post = Post.friendly.find(params[:post_id])
       @comment.post = parent_post
     end
     if @comment.save
@@ -67,16 +67,14 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.json
   def destroy
     @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:notice] = "Comment successfully deleted!"
+    redirect_back(fallback_location: @comment.post)
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
-      @comment = Comment.find(params[:id])
+      @comment = Comment.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

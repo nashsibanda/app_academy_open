@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  extend FriendlyId
   attr_reader :password
   validates :name, :session_token, :password_digest, presence: true
   validates_uniqueness_of :name, on: :create, message: "is already taken"
@@ -9,6 +10,7 @@ class User < ApplicationRecord
   has_many :moderated_subs, through: :moderator_moderated_subs, source: :sub
   has_many :posts, foreign_key: :author_id, dependent: :destroy
   has_many :comments, foreign_key: :author_id
+  friendly_id :name, use: :slugged
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64
