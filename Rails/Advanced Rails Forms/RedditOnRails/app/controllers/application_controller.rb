@@ -17,8 +17,10 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_logged_in
-    flash[:error] = "You must be logged in to perform this action..."
-    redirect_to new_session_url if current_user.nil?
+    if current_user.nil?
+      flash[:error] = "You must be logged in to perform this action..."
+      redirect_to new_session_url
+    end
   end
 
 end
