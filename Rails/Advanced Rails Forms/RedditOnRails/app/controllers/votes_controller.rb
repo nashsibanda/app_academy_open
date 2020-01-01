@@ -1,4 +1,6 @@
 class VotesController < ApplicationController
+  before_action :ensure_logged_in
+
   def create
     if params[:comment_id]
       parent = Comment.find_by(id: params[:comment_id])

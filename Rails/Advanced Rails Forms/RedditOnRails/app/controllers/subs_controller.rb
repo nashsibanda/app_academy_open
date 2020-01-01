@@ -12,6 +12,7 @@ class SubsController < ApplicationController
   # GET /subs/1
   # GET /subs/1.json
   def show
+    @posts = @sub.posts.order(created_at: :desc).sort { |a, b| b.vote_value <=> a.vote_value }
   end
 
   # GET /subs/new
