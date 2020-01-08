@@ -1,6 +1,7 @@
 require 'rack'
 require 'controller_base'
 require 'router'
+require 'byebug'
 
 describe 'the symphony of things' do
   let(:req) { Rack::Request.new({'rack.input' => ''}) }
@@ -13,6 +14,7 @@ describe 'the symphony of things' do
       end
 
       def route_does_params
+        # debugger
         render_content("got ##{params['id']}", 'text/text')
       end
 
@@ -29,6 +31,7 @@ describe 'the symphony of things' do
       route = Route.new(Regexp.new('^/statuses/(?<id>\\d+)$'), :get, Ctrlr, :route_render)
       allow(req).to receive(:path) { '/statuses/1' }
       allow(req).to receive(:request_method) { 'GET' }
+      # debugger
       route.run(req, res)
       expect(res.body).to eq('testing')
     end
