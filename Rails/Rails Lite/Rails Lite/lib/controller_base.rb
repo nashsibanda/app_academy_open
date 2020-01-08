@@ -21,8 +21,9 @@ class ControllerBase
   # Set the response status code and header
   def redirect_to(url)
     check_if_rendered
-    res['Location'] = url
-    res.status = 302
+    @res['Location'] = url
+    @res.status = 302
+    self.session.store_session(@res)
     @already_built_response = true
   end
 
@@ -33,6 +34,7 @@ class ControllerBase
     check_if_rendered
     @res.write(content)
     @res['Content-Type'] = content_type
+    self.session.store_session(@res)
     @already_built_response = true
   end
 
@@ -48,6 +50,7 @@ class ControllerBase
 
   # method exposing a `Session` object
   def session
+    @session ||= Session.new(@req)
   end
 
   # use this with the router to call action_name (:index, :show, :create...)
