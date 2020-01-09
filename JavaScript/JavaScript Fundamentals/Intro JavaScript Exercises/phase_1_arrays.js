@@ -21,3 +21,16 @@ Array.prototype.twoSum = function () {
   }
   return output;
 }
+
+Array.prototype.transpose = function () {
+  let output = [];
+  for (let i = 0; i < this[0].length; i++) {
+    const transArray = this[i];
+    output.push([])
+    for (let j = 0; j < this.length; j++) {
+      const transElement = this[j][i];
+      output[i].push(transElement)
+    }
+  }
+  return output;
+}
