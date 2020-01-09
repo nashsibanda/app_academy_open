@@ -86,3 +86,17 @@ Elephant.prototype.play = function () {
   let i = Math.floor(Math.random() * this.tricks.length);
   console.log(`${this.name} is ${this.tricks[i]}!`);
 }
+
+Elephant.paradeHelper = function (elephant) {
+  console.log(`${elephant.name} is trotting by!`);
+}
+
+function dinerBreakfast() {
+  let order = "I'd like cheesy scrambled eggs please.";
+  console.log(order);
+
+  return function (food) {
+    order = `${order.slice(0, order.length - 8)} and ${food} please.`;
+    console.log(order);
+  };
+};
