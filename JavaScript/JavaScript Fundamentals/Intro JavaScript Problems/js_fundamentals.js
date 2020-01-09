@@ -34,3 +34,21 @@ function isPrime(num) {
   }
   return true;
 }
+
+function firstNPrimes(num) {
+  let output = [];
+  let i = 2;
+  while (output.length < num) {
+    if (isPrime(i)) {
+      output.push(i);
+    }
+    i++
+  }
+  return output;
+}
+
+function sumOfPrimes(num) {
+  sum = 0
+  firstNPrimes(num).forEach(el => sum += el);
+  return sum;
+}
