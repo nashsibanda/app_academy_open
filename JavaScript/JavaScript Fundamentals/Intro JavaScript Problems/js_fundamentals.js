@@ -52,3 +52,37 @@ function sumOfPrimes(num) {
   firstNPrimes(num).forEach(el => sum += el);
   return sum;
 }
+
+function printNames(array) {
+  array.forEach(element => {
+    console.log(element);
+  });
+}
+
+function titleize(array, cb) {
+  let titledArray = array.map(x => `Mx. ${x} Jingleheimer Schmidt`);
+  cb(titledArray);
+}
+
+function Elephant(name, height, tricks) {
+  this.name = name;
+  this.height = height;
+  this.tricks = tricks;
+}
+
+Elephant.prototype.trumpet = function () {
+  console.log(`${this.name} the elephant goes 'phrRRRRRRRRRRR!!!!!!'`);
+}
+
+Elephant.prototype.grow = function () {
+  this.height += 12;
+}
+
+Elephant.prototype.addTrick = function (trick) {
+  this.tricks.push(trick);
+}
+
+Elephant.prototype.play = function () {
+  let i = Math.floor(Math.random() * this.tricks.length);
+  console.log(`${this.name} is ${this.tricks[i]}!`);
+}
