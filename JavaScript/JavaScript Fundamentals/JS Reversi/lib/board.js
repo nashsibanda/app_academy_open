@@ -44,18 +44,55 @@ Board.prototype.myPieces = function(myColor) {
     let row = grid[i];
     for (let j = 0; j < row.length; j++) {
       let piece = row[j];
-      if (piece.color == myColor) {
+      if (piece == undefined) {
+        continue;
+      } else if (piece.color == myColor) {
         myPieces.push([i, j])
       }
     }
   }
+  return myPieces;
 }
 
 /**
  * Checks if there are any valid moves for the given color.
  */
-Board.prototype.hasMove = function (color) {
+Board.prototype.hasMove = function (myColor) {
+  let board = this;
+  let hasMove = false;
+  function expand(pos, dir) {
+    let expPos = [(dir[0] + pos[0]), (dir[1] + pos[1])];
+    if (!board.isValidPos(expPos)) {
+      return false;
+    }
+    let expPiece = board.grid[expPos[0]][expPos[1]];
+    if (expPiece == undefined) {
+      return true;
+    } else if (expPiece.color != myColor) {
+      expand(expPos, dir);
+    }
+  }
 
+  if (board.myPieces(myColor).length == 0) {
+    return hasMove;
+  }
+
+  board.myPieces(myColor).forEach(rootPos => {
+    // let rootPiece = board.grid[pos[0]][pos[1]];
+    Board.DIRS.forEach(dirPos => {
+      let newPos = [(dirPos[0] + rootPos[0]), (dirPos[1] + rootPos[1])];
+      if (!board.isValidPos(newPos)) {
+        return;
+      }
+      let newPiece = board.grid[newPos[0]][newPos[1]];
+      if (newPiece == undefined || newPiece.color == myColor) {
+        return;
+      } else if (expand(newPos, dirPos)) {
+        hasMove = true;
+      }
+    })
+  });
+  return hasMove
 };
 
 /**
@@ -86,6 +123,11 @@ Board.prototype.isOccupied = function (pos) {
  * the black player are out of moves.
  */
 Board.prototype.isOver = function () {
+  if (this.hasMove("black") || this.hasMove("white")) {
+    return false;
+  } else {
+    return true;
+  }
 };
 
 /**
