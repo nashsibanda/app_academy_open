@@ -162,6 +162,20 @@ Board.prototype.placePiece = function (pos, color) {
  * Prints a string representation of the Board to the console.
  */
 Board.prototype.print = function () {
+  console.log("  0 1 2 3 4 5 6 7")
+  for (let r = 0; r < this.grid.length; r++) {
+    const row = this.grid[r];
+    printRow = `${r}`
+    for (let i = 0; i < row.length; i++) {
+      const spot = row[i];
+      if (spot == undefined) {
+        printRow += " ·";
+      } else {
+        printRow += (" " + spot.toString());
+      }
+    }
+    console.log(printRow);
+  }
 };
 
 /**
