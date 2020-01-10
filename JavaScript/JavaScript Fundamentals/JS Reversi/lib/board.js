@@ -58,41 +58,7 @@ Board.prototype.myPieces = function(myColor) {
  * Checks if there are any valid moves for the given color.
  */
 Board.prototype.hasMove = function (myColor) {
-  let board = this;
-  let hasMove = false;
-  function expand(pos, dir) {
-    let expPos = [(dir[0] + pos[0]), (dir[1] + pos[1])];
-    if (!board.isValidPos(expPos)) {
-      return false;
-    }
-    let expPiece = board.grid[expPos[0]][expPos[1]];
-    if (expPiece == undefined) {
-      return true;
-    } else if (expPiece.color != myColor) {
-      expand(expPos, dir);
-    }
-  }
-
-  if (board.myPieces(myColor).length == 0) {
-    return hasMove;
-  }
-
-  board.myPieces(myColor).forEach(rootPos => {
-    // let rootPiece = board.grid[pos[0]][pos[1]];
-    Board.DIRS.forEach(dirPos => {
-      let newPos = [(dirPos[0] + rootPos[0]), (dirPos[1] + rootPos[1])];
-      if (!board.isValidPos(newPos)) {
-        return;
-      }
-      let newPiece = board.grid[newPos[0]][newPos[1]];
-      if (newPiece == undefined || newPiece.color == myColor) {
-        return;
-      } else if (expand(newPos, dirPos)) {
-        hasMove = true;
-      }
-    })
-  });
-  return hasMove
+  return (this.validMoves(myColor).length > 0 ? true : false);
 };
 
 /**
@@ -177,13 +143,49 @@ Board.prototype.print = function () {
  * color being flipped.
  */
 Board.prototype.validMove = function (pos, color) {
+  return (this.validMoves(color).filter(el => el[0] == pos[0] && el[1] == pos[1]).length > 0 ? true : false);
 };
 
 /**
  * Produces an array of all valid positions on
  * the Board for a given color.
  */
-Board.prototype.validMoves = function (color) {
+Board.prototype.validMoves = function (myColor) {
+  let board = this;
+  let validMoves = [];
+  function expand(pos, dir) {
+    let expPos = [(dir[0] + pos[0]), (dir[1] + pos[1])];
+    if (!board.isValidPos(expPos)) {
+      return false;
+    }
+    let expPiece = board.grid[expPos[0]][expPos[1]];
+    if (expPiece == undefined) {
+      return expPos;
+    } else if (expPiece.color != myColor) {
+      expand(expPos, dir);
+    }
+  }
+
+  if (board.myPieces(myColor).length == 0) {
+    return validMoves;
+  }
+
+  board.myPieces(myColor).forEach(rootPos => {
+    // let rootPiece = board.grid[pos[0]][pos[1]];
+    Board.DIRS.forEach(dirPos => {
+      let newPos = [(dirPos[0] + rootPos[0]), (dirPos[1] + rootPos[1])];
+      if (!board.isValidPos(newPos)) {
+        return;
+      }
+      let newPiece = board.grid[newPos[0]][newPos[1]];
+      if (newPiece == undefined || newPiece.color == myColor) {
+        return;
+      } else if (expand(newPos, dirPos)) {
+        validMoves.push(expand(newPos, dirPos));
+      }
+    })
+  });
+  return validMoves.sort();
 };
 
 module.exports = Board;
