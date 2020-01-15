@@ -46,7 +46,7 @@ class Game {
     return (this.towers[1].length == 3 || this.towers[2].length == 3)
   }
 
-  run (completionCallback) {
+  run (reader, completionCallback) {
     this.promptMove(reader, (startTowerIdx, endTowerIdx) => {
       if (!this.move(startTowerIdx, endTowerIdx)) {
         console.log("This is not a valid move");
@@ -55,11 +55,16 @@ class Game {
       if (this.isWon()) {
         this.print();
         console.log("Game complete!")
-        completionCallback(startTowerIdx, endTowerIdx);
+        completionCallback(this);
       } else {
-        this.run(completionCallback);
+        this.run(reader, completionCallback);
       }
     })
+  }
+
+  reset() {
+    this.towers = [[1, 2, 3], [], []];
+    return true;
   }
 
 }
