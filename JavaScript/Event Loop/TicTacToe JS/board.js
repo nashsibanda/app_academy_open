@@ -1,6 +1,6 @@
 class Board {
   constructor() {
-    this.grid = [["X", "", ""], ["", "X", ""], ["", "", "X"]];
+    this.grid = [["", "", ""], ["", "", ""], ["", "", ""]];
     this.current_player = "X"
   }
 
@@ -53,8 +53,30 @@ class Board {
     return false;
   }
 
+  empty(pos) {
+    const position = this.grid[pos[0]][pos[1]];
+    return position === "";
+  }
+
+  placeMark(pos, mark) {
+    if (this.validPos(pos) && this.empty(pos)) {
+      this.grid[pos[0]][pos[1]] = mark;
+    } else {
+      console.log("This is not a valid move!")
+    }
+  }
+
+  validPos(pos) {
+    return pos[0] >= 0
+      && pos[0] < 3
+      && pos[1] >= 0
+      && pos[1] < 3;
+  }
+
 }
 
 const board = new Board;
+board.print();
+board.placeMark([0,3], "X");
 board.print();
 console.log(board.won());
