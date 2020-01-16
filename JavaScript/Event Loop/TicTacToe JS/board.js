@@ -1,13 +1,30 @@
 class Board {
   constructor() {
     this.grid = [["", "", ""], ["", "", ""], ["", "", ""]];
-    this.current_player = "X"
+    this.currentPlayer = "X";
   }
 
   print(){
+    console.log(" ");
     console.log(this.grid[0]);
     console.log(this.grid[1]);
     console.log(this.grid[2]);
+    console.log(" ");
+    console.log(`Current Player: "${this.currentPlayer}"`);
+  }
+
+  reset() {
+    this.grid = [["", "", ""], ["", "", ""], ["", "", ""]];
+    this.currentPlayer = "X";
+    return true;
+  }
+
+  switchPlayer() {
+    if (this.currentPlayer === "X") {
+      this.currentPlayer = "O";
+    } else {
+      this.currentPlayer = "X";
+    }
   }
 
   won() {
@@ -58,11 +75,23 @@ class Board {
     return position === "";
   }
 
+  promptMove(reader, callback) {
+    this.print();
+    const currentPlayer = this.currentPlayer;
+    let board = this;
+    reader.question(`Please choose a position to add a mark. \n For example, to choose row 0, position 2, enter "0 2" without quote marks. \n Type here: `, 
+    function (response) {
+      const pos = response.split(" ");
+      callback(pos, currentPlayer);
+    })
+  }
+
   placeMark(pos, mark) {
     if (this.validPos(pos) && this.empty(pos)) {
       this.grid[pos[0]][pos[1]] = mark;
+      return true;
     } else {
-      console.log("This is not a valid move!")
+      return false;
     }
   }
 
@@ -75,8 +104,11 @@ class Board {
 
 }
 
-const board = new Board;
-board.print();
-board.placeMark([0,3], "X");
-board.print();
-console.log(board.won());
+module.exports = Board;
+
+// const board = new Board;
+// // board.print();
+// // board.placeMark([0,2], board.currentPlayer);
+// board.promptMove(reader, board.placeMark)
+// // board.print();
+// // console.log(board.won());
