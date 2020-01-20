@@ -15,12 +15,12 @@
 
 .thumb:hover:before {
   display: block;
-  width: 50px;
-  padding: 3px 0;
+  padding: 3px;
   background-color: #000;
   position: absolute;
   top: -30px;
-  left: 5px;
+  left: 50%;
+  transform: translateX(-50%);
   content: attr(title);
   color: #fff;
   z-index: 2;
