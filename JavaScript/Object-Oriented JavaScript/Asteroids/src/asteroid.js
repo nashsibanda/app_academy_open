@@ -9,7 +9,7 @@ const DEFAULTS = {
 
 function Asteroid(options) {
   options = options || {};
-  options.color = DEFAULTS.COLOR;
+  options.color = options.color || DEFAULTS.COLOR;
   options.radius = DEFAULTS.RADIUS;
   options.pos = options.pos;
   options.vel = Utils.randomVec(DEFAULTS.SPEED);

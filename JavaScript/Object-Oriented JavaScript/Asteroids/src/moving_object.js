@@ -1,3 +1,5 @@
+const Utils = require("./utils");
+
 function MovingObject(options) {
   this.pos = options.pos;
   this.vel = options.vel;
@@ -16,6 +18,12 @@ MovingObject.prototype.draw = function (ctx) {
 MovingObject.prototype.move = function () {
   let newPos = [(this.pos[0] + this.vel[0]), (this.pos[1] + this.vel[1])];
   this.pos = this.game.wrap(newPos);
+}
+
+MovingObject.prototype.isCollidedWith = function (otherObject) {
+  let distBetween = Utils.dist(this.pos, otherObject.pos);
+  let sumOfRadii = this.radius + otherObject.radius;
+  return sumOfRadii > distBetween; 
 }
 
 module.exports = MovingObject;

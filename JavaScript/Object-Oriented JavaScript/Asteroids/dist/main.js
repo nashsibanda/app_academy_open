@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Utils = __webpack_require__(/*! ./utils.js */ \"./src/utils.js\");\nconst MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\")\n\nconst DEFAULTS = {\n  COLOR: \"#554935\",\n  RADIUS: 30,\n  SPEED: 3\n}\n\nfunction Asteroid(options) {\n  options = options || {};\n  options.color = DEFAULTS.COLOR;\n  options.radius = DEFAULTS.RADIUS;\n  options.pos = options.pos;\n  options.vel = Utils.randomVec(DEFAULTS.SPEED);\n  options.game = options.game\n\n  MovingObject.call(this, options);\n}\n\nUtils.inherits(Asteroid, MovingObject);\n\nmodule.exports = Asteroid;\n\n//# sourceURL=webpack:///./src/asteroid.js?");
+eval("const Utils = __webpack_require__(/*! ./utils.js */ \"./src/utils.js\");\nconst MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\")\n\nconst DEFAULTS = {\n  COLOR: \"#554935\",\n  RADIUS: 30,\n  SPEED: 3\n}\n\nfunction Asteroid(options) {\n  options = options || {};\n  options.color = options.color || DEFAULTS.COLOR;\n  options.radius = DEFAULTS.RADIUS;\n  options.pos = options.pos;\n  options.vel = Utils.randomVec(DEFAULTS.SPEED);\n  options.game = options.game\n\n  MovingObject.call(this, options);\n}\n\nUtils.inherits(Asteroid, MovingObject);\n\nmodule.exports = Asteroid;\n\n//# sourceURL=webpack:///./src/asteroid.js?");
 
 /***/ }),
 
@@ -126,7 +126,7 @@ eval("const Game = __webpack_require__(/*! ./game */ \"./src/game.js\");\n\nfunc
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Game = __webpack_require__(/*! ./game */ \"./src/game.js\");\nconst GameView = __webpack_require__(/*! ./game_view */ \"./src/game_view.js\");\nwindow.GameView = GameView;\nwindow.Game = Game;\n\nwindow.addEventListener('DOMContentLoaded', (event) => {\n  window.ctx = document.getElementById('game-canvas').getContext(\"2d\");\n  window.game = new Game();\n  window.gview = new GameView(game, ctx);\n  window.gview.start();\n})\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const Game = __webpack_require__(/*! ./game */ \"./src/game.js\");\nconst Asteroid = __webpack_require__(/*! ./asteroid */ \"./src/asteroid.js\");\nconst GameView = __webpack_require__(/*! ./game_view */ \"./src/game_view.js\");\nwindow.GameView = GameView;\nwindow.Game = Game;\nwindow.Asteroid = Asteroid;\n\nwindow.addEventListener('DOMContentLoaded', (event) => {\n  window.ctx = document.getElementById('game-canvas').getContext(\"2d\");\n  window.game = new Game();\n  window.gview = new GameView(game, ctx);\n  window.ast1 = new Asteroid ({pos: [100, 100], game: window.game });\n  window.ast2 = new Asteroid({ pos: [140, 140], game: window.game, color: \"#4b8d6c\" });\n  window.ast1.draw(window.ctx);\n  window.ast2.draw(window.ctx);\n  console.log(ast1.isCollidedWith(ast2))\n  // window.gview.start();\n})\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -135,9 +135,9 @@ eval("const Game = __webpack_require__(/*! ./game */ \"./src/game.js\");\nconst 
   !*** ./src/moving_object.js ***!
   \******************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("function MovingObject(options) {\n  this.pos = options.pos;\n  this.vel = options.vel;\n  this.radius = options.radius;\n  this.color = options.color;\n  this.game = options.game;\n}\n\nMovingObject.prototype.draw = function (ctx) {\n  ctx.beginPath();\n  ctx.arc(...this.pos, this.radius, 0, Math.PI * 2);\n  ctx.fillStyle = this.color;\n  ctx.fill();\n}\n\nMovingObject.prototype.move = function () {\n  let newPos = [(this.pos[0] + this.vel[0]), (this.pos[1] + this.vel[1])];\n  this.pos = this.game.wrap(newPos);\n}\n\nmodule.exports = MovingObject;\n\n//# sourceURL=webpack:///./src/moving_object.js?");
+eval("const Utils = __webpack_require__(/*! ./utils */ \"./src/utils.js\");\n\nfunction MovingObject(options) {\n  this.pos = options.pos;\n  this.vel = options.vel;\n  this.radius = options.radius;\n  this.color = options.color;\n  this.game = options.game;\n}\n\nMovingObject.prototype.draw = function (ctx) {\n  ctx.beginPath();\n  ctx.arc(...this.pos, this.radius, 0, Math.PI * 2);\n  ctx.fillStyle = this.color;\n  ctx.fill();\n}\n\nMovingObject.prototype.move = function () {\n  let newPos = [(this.pos[0] + this.vel[0]), (this.pos[1] + this.vel[1])];\n  this.pos = this.game.wrap(newPos);\n}\n\nMovingObject.prototype.isCollidedWith = function (otherObject) {\n  let distBetween = Utils.dist(this.pos, otherObject.pos);\n  let sumOfRadii = this.radius + otherObject.radius;\n  return sumOfRadii > distBetween; \n}\n\nmodule.exports = MovingObject;\n\n//# sourceURL=webpack:///./src/moving_object.js?");
 
 /***/ }),
 
@@ -148,7 +148,7 @@ eval("function MovingObject(options) {\n  this.pos = options.pos;\n  this.vel = 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("const Util = {\n  inherits(childClass, parentClass) {\n    childClass.prototype = Object.create(parentClass.prototype);\n    childClass.prototype.constructor = childClass;\n  },\n  randomVec(length) {\n    const deg = 2 * Math.PI * Math.random();\n    return Util.scale([Math.sin(deg), Math.cos(deg)], length);\n  },\n  scale(vec, scaleAmount) {\n    return [vec[0] * scaleAmount, vec[1] * scaleAmount]\n  }\n}\n\nmodule.exports = Util;\n\n//# sourceURL=webpack:///./src/utils.js?");
+eval("const Util = {\n  inherits(childClass, parentClass) {\n    childClass.prototype = Object.create(parentClass.prototype);\n    childClass.prototype.constructor = childClass;\n  },\n  randomVec(length) {\n    const deg = 2 * Math.PI * Math.random();\n    return Util.scale([Math.sin(deg), Math.cos(deg)], length);\n  },\n  scale(vec, scaleAmount) {\n    return [vec[0] * scaleAmount, vec[1] * scaleAmount]\n  },\n  dist(point1, point2) {\n    return Math.sqrt(((point1[0] - point2[0]) ** 2) + ((point1[1] - point2[1]) ** 2))\n  }\n}\n\nmodule.exports = Util;\n\n//# sourceURL=webpack:///./src/utils.js?");
 
 /***/ })
 
