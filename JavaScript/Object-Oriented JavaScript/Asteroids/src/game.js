@@ -18,9 +18,15 @@ Game.prototype.checkCollisions = function () {
       const compAst = this.asteroids[j];
       if (rootAst !== compAst && rootAst.isCollidedWith(compAst)) {
         console.log("Collision!");
+        rootAst.collideWith(compAst);
       }
     }
   }
+}
+
+Game.prototype.remove = function (asteroid) {
+  let arrIndex = this.asteroids.indexOf(asteroid);
+  let removedAsteroid = this.asteroids.splice(arrIndex, 1);
 }
 
 Game.prototype.step = function () {
