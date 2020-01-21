@@ -1,5 +1,7 @@
-const MovingObject = require("./moving_object.js")
-const Asteroid = require("./asteroid")
+const MovingObject = require("./moving_object.js");
+const Asteroid = require("./asteroid");
+const Game = require("./game");
+window.Game = Game;
 window.MovingObject = MovingObject;
 window.Asteroid = Asteroid;
 
