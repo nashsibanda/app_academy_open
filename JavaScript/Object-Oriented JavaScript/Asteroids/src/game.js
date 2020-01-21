@@ -24,13 +24,6 @@ Game.prototype.randomPosition = function () {
   return [randX, randY]
 }
 
-Game.prototype.drawAsteroids = function (ctx) {
-  for (let i = 0; i < this.asteroids.length; i++) {
-    const element = this.asteroids[i];
-    element.draw(ctx);
-  }
-}
-
 Game.prototype.moveObjects = function () {
   for (let i = 0; i < this.asteroids.length; i++) {
     const element = this.asteroids[i];
