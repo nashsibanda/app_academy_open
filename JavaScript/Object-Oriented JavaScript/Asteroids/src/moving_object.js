@@ -12,12 +12,9 @@ MovingObject.prototype.draw = function (ctx) {
   ctx.fill();
 }
 
-MovingObject.prototype.move = function (ctx) {
+MovingObject.prototype.move = function () {
   let newPos = [(this.pos[0] + this.vel[0]), (this.pos[1] + this.vel[1])];
-  ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
-  ctx.beginPath();
-  ctx.arc(...newPos, this.radius, 0, Math.PI * 2);
-  ctx.fill();
+  this.pos = newPos;
 }
 
 module.exports = MovingObject;
