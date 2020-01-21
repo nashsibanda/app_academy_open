@@ -11,12 +11,18 @@ function Ship(options) {
 
   MovingObject.call(this, options);
 }
+Utils.inherits(Ship, MovingObject)
 
 const DEFAULTS = {
   COLOR: "#4e85b0",
   RADIUS: 10
 }
 
-Utils.inherits(Ship, MovingObject)
+Ship.prototype.relocate = function () {
+  console.log("Relocating...");
+  this.pos = this.game.randomPosition();
+  this.vel = [0, 0];
+}
+
 
 module.exports = Ship;

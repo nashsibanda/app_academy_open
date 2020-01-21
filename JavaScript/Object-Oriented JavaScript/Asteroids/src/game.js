@@ -10,7 +10,7 @@ function Game () {
 
 Game.DIM_X = 500;
 Game.DIM_Y = 500;
-Game.NUM_ASTEROIDS = 4;
+Game.NUM_ASTEROIDS = 10;
 
 Game.prototype.addShip = function () {
   this.ship = new Ship({
@@ -29,7 +29,7 @@ Game.prototype.checkCollisions = function () {
     for (let j = 0; j < this.allObjects().length; j++) {
       const compAst = this.allObjects()[j];
       if (rootAst !== compAst && rootAst.isCollidedWith(compAst)) {
-        console.log("Collision!");
+        // console.log("Collision!");
         rootAst.collideWith(compAst);
       }
     }
