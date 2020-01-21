@@ -9,7 +9,24 @@ function Game () {
 
 Game.DIM_X = 500;
 Game.DIM_Y = 500;
-Game.NUM_ASTEROIDS = 30;
+Game.NUM_ASTEROIDS = 4;
+
+Game.prototype.checkCollisions = function () {
+  for (let i = 0; i < this.asteroids.length; i++) {
+    const rootAst = this.asteroids[i];
+    for (let j = 0; j < this.asteroids.length; j++) {
+      const compAst = this.asteroids[j];
+      if (rootAst !== compAst && rootAst.isCollidedWith(compAst)) {
+        console.log("Collision!");
+      }
+    }
+  }
+}
+
+Game.prototype.step = function () {
+  this.moveObjects();
+  this.checkCollisions();
+}
 
 Game.prototype.addAsteroids = function () {
   for (let i = 0; i < Game.NUM_ASTEROIDS; i++) {

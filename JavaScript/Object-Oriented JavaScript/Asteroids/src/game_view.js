@@ -12,7 +12,7 @@ GameView.prototype.start = function () {
 
 GameView.prototype.render = function () {
   console.log("Iterating...")
-  this.game.moveObjects();
+  this.game.step();
   this.game.draw(this.ctx);
 }
 
