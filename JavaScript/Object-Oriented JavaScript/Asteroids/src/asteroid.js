@@ -13,6 +13,7 @@ function Asteroid(options) {
   options.radius = DEFAULTS.RADIUS;
   options.pos = options.pos;
   options.vel = Utils.randomVec(DEFAULTS.SPEED);
+  options.game = options.game
 
   MovingObject.call(this, options);
 }

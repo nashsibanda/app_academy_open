@@ -13,7 +13,10 @@ Game.NUM_ASTEROIDS = 30;
 
 Game.prototype.addAsteroids = function () {
   for (let i = 0; i < Game.NUM_ASTEROIDS; i++) {
-    let newAsteroid = new Asteroid( {pos: this.randomPosition() } )
+    let newAsteroid = new Asteroid( {
+      pos: this.randomPosition(),
+      game: this,
+    } )
     this.asteroids.push(newAsteroid);
   }
 }
@@ -39,5 +42,19 @@ Game.prototype.draw = function (ctx) {
   }
 }
 
+Game.prototype.wrap = function (pos) {
+  let bleed = 30;
+  if (pos[0] < (0 - bleed)) {
+    return [(Game.DIM_X + bleed), pos[1]];
+  } else if (pos[1] < (0 - bleed)) {
+    return [pos[0], (Game.DIM_Y + bleed)];
+  } else if (pos[0] > (Game.DIM_X + bleed)) {
+    return [(0 - bleed), pos[1]];
+  } else if (pos[1] > (Game.DIM_Y + bleed)) {
+    return [pos[0], (0 - bleed)];
+  } else {
+    return pos;
+  }
+}
 
 module.exports = Game;
