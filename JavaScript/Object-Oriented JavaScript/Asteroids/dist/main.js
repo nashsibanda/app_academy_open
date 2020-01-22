@@ -86,6 +86,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "../../../../../../../.nvm/versions/node/v12.14.1/lib/node_modules/webpack/buildin/global.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn this;\n})();\n\ntry {\n\t// This works if eval is allowed (see CSP)\n\tg = g || new Function(\"return this\")();\n} catch (e) {\n\t// This works if the window reference is available\n\tif (typeof window === \"object\") g = window;\n}\n\n// g can still be undefined, but nothing to do about it...\n// We return undefined, instead of nothing here, so it's\n// easier to handle this case. if(!global) { ...}\n\nmodule.exports = g;\n\n\n//# sourceURL=webpack:///(webpack)/buildin/global.js?");
+
+/***/ }),
+
 /***/ "./src/asteroid.js":
 /*!*************************!*\
   !*** ./src/asteroid.js ***!
@@ -115,7 +126,7 @@ eval("const Asteroid = __webpack_require__(/*! ./asteroid */ \"./src/asteroid.js
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Game = __webpack_require__(/*! ./game */ \"./src/game.js\");\n\nfunction GameView(game, ctx) {\n  this.game = game;\n  this.ctx = ctx;\n}\n\nGameView.prototype.start = function () {\n  // let that = this;\n  const renderInterval = window.setInterval(this.render, 20);\n}\n\nGameView.prototype.render = function () {\n  console.log(\"Iterating...\")\n  this.game.step();\n  this.game.draw(this.ctx);\n}\n\nmodule.exports = GameView;\n\n//# sourceURL=webpack:///./src/game_view.js?");
+eval("/* WEBPACK VAR INJECTION */(function(global) {function GameView(game, ctx) {\n  this.game = game;\n  this.ctx = ctx;\n  this.ship = this.game.ship;\n}\n\nGameView.MOVES = {\n  \"w\": [0, -1],\n  \"a\": [-1, 0],\n  \"s\": [0, 1],\n  \"d\": [1, 0]\n}\n\nGameView.prototype.start = function () {\n  this.bindKeyHandlers();\n  const renderInterval = window.setInterval(this.render, 20);\n}\n\nGameView.prototype.render = function () {\n  console.log(\"Iterating...\")\n  this.game.step();\n  this.game.draw(this.ctx);\n}\n\nGameView.prototype.bindKeyHandlers = function () {\n  const ship = this.ship;\n  Object.keys(GameView.MOVES).forEach(key => {\n    const dir = GameView.MOVES[key];\n    global.key(key, function () { ship.power(dir); })\n  });\n}\n\nmodule.exports = GameView;\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../.nvm/versions/node/v12.14.1/lib/node_modules/webpack/buildin/global.js */ \"../../../../../../../.nvm/versions/node/v12.14.1/lib/node_modules/webpack/buildin/global.js\")))\n\n//# sourceURL=webpack:///./src/game_view.js?");
 
 /***/ }),
 
@@ -148,7 +159,7 @@ eval("const Utils = __webpack_require__(/*! ./utils */ \"./src/utils.js\");\n\nf
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Utils = __webpack_require__(/*! ./utils.js */ \"./src/utils.js\");\nconst MovingObject = __webpack_require__(/*! ./moving_object */ \"./src/moving_object.js\");\n\nfunction Ship(options) {\n  options = options || {};\n  options.color = options.color || DEFAULTS.COLOR;\n  options.radius = options.radius || DEFAULTS.RADIUS;\n  options.pos = options.pos;\n  options.vel = [0, 0];\n  options.game = options.game;\n\n  MovingObject.call(this, options);\n}\nUtils.inherits(Ship, MovingObject)\n\nconst DEFAULTS = {\n  COLOR: \"#4e85b0\",\n  RADIUS: 10\n}\n\nShip.prototype.relocate = function () {\n  console.log(\"Relocating...\");\n  this.pos = this.game.randomPosition();\n  this.vel = [0, 0];\n}\n\n\nmodule.exports = Ship;\n\n//# sourceURL=webpack:///./src/ship.js?");
+eval("const Utils = __webpack_require__(/*! ./utils.js */ \"./src/utils.js\");\nconst MovingObject = __webpack_require__(/*! ./moving_object */ \"./src/moving_object.js\");\n\nfunction Ship(options) {\n  options = options || {};\n  options.color = options.color || DEFAULTS.COLOR;\n  options.radius = options.radius || DEFAULTS.RADIUS;\n  options.pos = options.pos;\n  options.vel = [0, 0];\n  options.game = options.game;\n\n  MovingObject.call(this, options);\n}\nUtils.inherits(Ship, MovingObject)\n\nconst DEFAULTS = {\n  COLOR: \"#4e85b0\",\n  RADIUS: 10\n}\n\nShip.prototype.relocate = function () {\n  console.log(\"Relocating...\");\n  this.pos = this.game.randomPosition();\n  this.vel = [0, 0];\n}\n\nShip.prototype.power = function (impulse) {\n  this.vel = [(this.vel[0] + impulse[0]), (this.vel[1] + impulse[1])];\n}\n\n\nmodule.exports = Ship;\n\n//# sourceURL=webpack:///./src/ship.js?");
 
 /***/ }),
 
