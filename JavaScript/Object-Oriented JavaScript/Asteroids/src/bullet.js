@@ -13,6 +13,8 @@ function Bullet(options) {
 }
 Utils.inherits(Bullet, MovingObject)
 
+Bullet.prototype.isWrappable = false;
+
 
 const DEFAULTS = {
   COLOR: "#aaaaaa",

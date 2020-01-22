@@ -17,7 +17,6 @@ GameView.prototype.start = function () {
 }
 
 GameView.prototype.render = function () {
-  console.log("Iterating...")
   this.game.step();
   this.game.draw(this.ctx);
 }

@@ -12,6 +12,7 @@ function Game () {
 Game.DIM_X = 500;
 Game.DIM_Y = 500;
 Game.NUM_ASTEROIDS = 10;
+Game.EDGE_BLEED = 30;
 
 Game.prototype.addShip = function () {
   this.ship = new Ship({
@@ -30,12 +31,11 @@ Game.prototype.allObjects = function () {
 
 Game.prototype.checkCollisions = function () {
   for (let i = 0; i < this.allObjects().length; i++) {
-    const rootAst = this.allObjects()[i];
+    const rootObj = this.allObjects()[i];
     for (let j = 0; j < this.allObjects().length; j++) {
-      const compAst = this.allObjects()[j];
-      if (rootAst !== compAst && rootAst.isCollidedWith(compAst)) {
-        // console.log("Collision!");
-        rootAst.collideWith(compAst);
+      const compObj = this.allObjects()[j];
+      if (rootObj !== compObj && rootObj.isCollidedWith(compObj)) {
+        rootObj.collideWith(compObj);
       }
     }
   }
@@ -88,17 +88,29 @@ Game.prototype.draw = function (ctx) {
 }
 
 Game.prototype.wrap = function (pos) {
-  let bleed = 30;
-  if (pos[0] < (0 - bleed)) {
-    return [(Game.DIM_X + bleed), pos[1]];
-  } else if (pos[1] < (0 - bleed)) {
-    return [pos[0], (Game.DIM_Y + bleed)];
-  } else if (pos[0] > (Game.DIM_X + bleed)) {
-    return [(0 - bleed), pos[1]];
-  } else if (pos[1] > (Game.DIM_Y + bleed)) {
-    return [pos[0], (0 - bleed)];
+  if (pos[0] < (0 - Game.EDGE_BLEED)) {
+    return [(Game.DIM_X + Game.EDGE_BLEED), pos[1]];
+  } else if (pos[1] < (0 - Game.EDGE_BLEED)) {
+    return [pos[0], (Game.DIM_Y + Game.EDGE_BLEED)];
+  } else if (pos[0] > (Game.DIM_X + Game.EDGE_BLEED)) {
+    return [(0 - Game.EDGE_BLEED), pos[1]];
+  } else if (pos[1] > (Game.DIM_Y + Game.EDGE_BLEED)) {
+    return [pos[0], (0 - Game.EDGE_BLEED)];
   } else {
     return pos;
+  }
+}
+
+Game.prototype.isOutOfBounds = function (pos) {
+  if (
+    pos[0] < (0 - Game.EDGE_BLEED)
+    || pos[1] < (0 - Game.EDGE_BLEED)
+    || pos[0] > (Game.DIM_X + Game.EDGE_BLEED)
+    || pos[1] > (Game.DIM_Y + Game.EDGE_BLEED)
+  ) {
+    return true;
+  } else {
+    return false;
   }
 }
 
