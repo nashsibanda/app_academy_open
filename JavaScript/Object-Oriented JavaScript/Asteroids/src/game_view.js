@@ -28,6 +28,7 @@ GameView.prototype.bindKeyHandlers = function () {
     const dir = GameView.MOVES[key];
     global.key(key, function () { ship.power(dir); })
   });
+  global.key("space", function () { ship.fireBullet(); })
 }
 
 module.exports = GameView;

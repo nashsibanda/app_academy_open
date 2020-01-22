@@ -1,5 +1,6 @@
 const Asteroid = require("./asteroid");
 const Ship = require("./ship");
+const Bullet = require("./bullet");
 
 function Game () {
   this.asteroids = [];
@@ -19,8 +20,12 @@ Game.prototype.addShip = function () {
   })
 }
 
+Game.prototype.addBullet = function (bullet) {
+  this.bullets.push(bullet);
+}
+
 Game.prototype.allObjects = function () {
-  return this.asteroids.concat(this.ship);
+  return this.asteroids.concat(this.ship, this.bullets);
 }
 
 Game.prototype.checkCollisions = function () {
@@ -36,9 +41,14 @@ Game.prototype.checkCollisions = function () {
   }
 }
 
-Game.prototype.remove = function (asteroid) {
-  let arrIndex = this.asteroids.indexOf(asteroid);
-  let removedAsteroid = this.asteroids.splice(arrIndex, 1);
+Game.prototype.remove = function (object) {
+  if (object instanceof Bullet) {
+    let arrIndex = this.bullets.indexOf(object);
+    this.bullets.splice(arrIndex, 1);
+  } else if (object instanceof Asteroid) {
+    let arrIndex = this.asteroids.indexOf(object);
+    this.asteroids.splice(arrIndex, 1);
+  }
 }
 
 Game.prototype.step = function () {

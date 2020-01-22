@@ -1,5 +1,6 @@
 const Utils = require("./utils.js");
 const MovingObject = require("./moving_object");
+const Bullet = require("./bullet");
 
 function Ship(options) {
   options = options || {};
@@ -26,6 +27,32 @@ Ship.prototype.relocate = function () {
 
 Ship.prototype.power = function (impulse) {
   this.vel = [(this.vel[0] + impulse[0]), (this.vel[1] + impulse[1])];
+}
+
+Ship.prototype.fireBullet = function () {
+  
+  const shipVel = this.vel;
+  function bulletVel() {
+    let newVel = [0, 0]
+    if (shipVel[0] > 0) {
+      newVel[0] = Math.max(8, (shipVel[0] * 1.5) );
+    } else if (shipVel[0] < 0) {
+      newVel[0] = Math.min(-8, (shipVel[0] * 1.5));
+    }
+    if (shipVel[1] > 0) {
+      newVel[1] = Math.max(8, (shipVel[1] * 1.5) );
+    } else if (shipVel[1] < 0) {
+      newVel[1] = Math.min(-8, (shipVel[1] * 1.5));
+    }
+    return newVel;
+  }
+  const bulletOptions = {
+    pos: this.pos,
+    vel: bulletVel(),
+    game: this.game
+  }
+  const bullet = new Bullet (bulletOptions);
+  this.game.addBullet(bullet);
 }
 
 
