@@ -9,8 +9,8 @@ function Game () {
   this.addShip();
 }
 
-Game.DIM_X = 500;
-Game.DIM_Y = 500;
+Game.DIM_X = 900;
+Game.DIM_Y = 900;
 Game.NUM_ASTEROIDS = 10;
 Game.EDGE_BLEED = 30;
 
