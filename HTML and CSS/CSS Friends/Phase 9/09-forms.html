@@ -97,10 +97,27 @@
           <img src="./images/cat.jpg" alt="">
         </a></li>
       </ul>
-
+      
     </section>
     <section class="content-main">
-
+      <section class="post-form-container">
+        <a href="#" class="thumb" title="Sennacy">
+          <img src="./images/cat.jpg" alt="">
+        </a>
+        <form action="#" method="post" class="post-form">
+          <div class="input">
+            <label for="post-title">Post Title</label>
+            <input type="text" name="post[title]" id="post-title" placeholder="Enter your post's title here...">
+          </div>
+          <div class="input">
+            <label for="post-body">Post Body</label>
+            <textarea name="post[body]" id="post-body" cols="30" rows="10" placeholder="Enter the text of your post here..."></textarea>
+          </div>
+          <div class="submit">
+            <button type="submit">Post to Wall</button> or <a href="#">Cancel</a>
+          </div>
+        </form>
+      </section>
     </section>
   </main>
 
