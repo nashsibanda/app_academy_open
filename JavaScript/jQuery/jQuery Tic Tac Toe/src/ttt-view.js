@@ -9,28 +9,55 @@ class View {
   bindEvents() {
     const that = this;
     this.$el.on("click", "li", function () {
-      const $square = $(this);
-      const pos = $square.data("pos");
-      console.log(pos)
-      let squareClass = "marked marked-X";
-      let squareMark = "X"
-      if (that.game.currentPlayer === "o") {
-        squareClass = "marked marked-O"
-        squareMark = "O"
-      }
-      try {
-        console.log(that.game.board)
-        that.game.playMove(pos);
-      } catch (error) {
-        alert("This is an invalid move!");
-        return
-      }
-      $square.addClass(squareClass);
-      $square.append("<span>" + squareMark + "</span>");
-    })
+      that.makeMove($(this));
+    });
   }
 
-  makeMove($square) {}
+  makeMove($square) {
+    const pos = $square.data("pos");
+    let squareClass = "marked marked-X";
+    let squareMark = "X"
+    if (this.game.currentPlayer === "o") {
+      squareClass = "marked marked-O"
+      squareMark = "O"
+    }
+    try {
+      this.game.playMove(pos);
+    } catch (error) {
+      alert("This is an invalid move!");
+      return
+    }    
+    $square.addClass(squareClass);
+    $square.append("<span>" + squareMark + "</span>");
+    this.checkForWinner();
+  }
+
+  checkForWinner() {
+    if (this.game.isOver()) {
+      if (this.game.winner()) {
+        this.win(this.game.winner())
+      } else {
+        $(".marked").addClass("game-draw");
+        alert("It's a draw! Game Over!")
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  win(winner) {
+    switch (winner) {
+      case "x":
+        $(".marked-X").addClass("winner");
+        alert("Player 'X' wins! Game Over!")
+        break;
+      case "o":
+        $(".marked-O").addClass("winner");
+        alert("Player 'O' wins! Game Over!")
+      break;
+    }
+  }
 
   setupBoard() {
     const $ul = $("<ul></ul>");

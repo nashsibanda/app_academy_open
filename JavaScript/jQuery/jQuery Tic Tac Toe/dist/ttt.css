@@ -46,6 +46,14 @@ h1 {
   background-color: white;
 }
 
+.winner {
+  background-color: rgb(17.8%, 80.4%, 17.8%);
+}
+
+.game-draw {
+  background-color: rgb(60.1%, 82.3%, 85.1%);
+}
+
 .grid-square:nth-child(-n+3) {
   border-top: 10px solid black;
 }
