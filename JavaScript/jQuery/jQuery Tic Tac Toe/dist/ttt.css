@@ -1,0 +1,36 @@
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-size: 46px;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  height: 300px;
+  margin: auto;
+  padding-inline-start: 0;
+  background-color: #ccc;
+}
+
+.grid-square {
+  width: 33%;
+  height: 34%;
+  list-style: none;
+  box-sizing: border-box;
+  border-left: 10px solid black;
+  border-bottom: 10px solid black;
+}
+
+.grid-square:hover {
+  background-color: yellow;
+}
+
+.grid-square:nth-child(-n+3) {
+  border-top: 10px solid black;
+}
+
+.grid-square:nth-child(3n) {
+  border-right: 10px solid black;
+}
