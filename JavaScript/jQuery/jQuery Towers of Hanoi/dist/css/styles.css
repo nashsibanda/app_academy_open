@@ -39,11 +39,15 @@ h1 {
 }
 
 .selected-tower::before {
-  background-color: deepskyblue;
+  background-color: transparent;
+  animation-name: selected-tower-color;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
 }
 
 .selected-tower:hover::before {
-  background-color: rgb(0%, 0%, 100%);
+  background-color: rgb(80.4%, 36.1%, 36.1%);
+  animation-name: selected-tower-color-hover;
 }
 
 .disc {
@@ -66,4 +70,27 @@ h1 {
 .disc-1 {
   background-color: darkgoldenrod;
   width: 50%;
+}
+
+@keyframes selected-tower-color {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: deepskyblue;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+@keyframes selected-tower-color-hover {
+  0% {
+    background-color: rgb(80.4%, 36.1%, 36.1%);
+  }
+  50% {
+    background-color: deepskyblue;
+  }
+  100% {
+    background-color: rgb(80.4%, 36.1%, 36.1%);
+  }
 }
