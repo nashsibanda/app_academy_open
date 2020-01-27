@@ -104,7 +104,7 @@ eval("class Game {\n  constructor() {\n    this.towers = [[3, 2, 1], [], []];\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("class View {\n  constructor(game, rootEl) {\n    this.game = game;\n    this.$element = rootEl;\n    this.setupTowers();\n  }\n\n  setupTowers() {\n    for (let i = 0; i < 3; i++) {\n      let $ul = $(\"<ul></ul>\");\n      $ul.addClass(`tower-${i}`);\n      for (let j = 0; j < 3; j++) {\n        let $li = $(\"<li></li>\");\n        $ul.append($li);\n      }\n      this.$element.append($ul);\n    }\n  }\n}\n\nmodule.exports = View;\n\n//# sourceURL=webpack:///./src/hanoi_view.js?");
+eval("class View {\n  constructor(game, rootEl) {\n    this.game = game;\n    this.$element = rootEl;\n    this.setupTowers();\n  }\n\n  setupTowers() {\n    let towerSize = this.game.towers[0].length;\n    for (let i = 0; i < towerSize; i++) {\n      let $ul = $(\"<ul></ul>\");\n      $ul.addClass(`tower tower-${i}`);\n      for (let j = 0; j < towerSize; j++) {\n        let $li = $(\"<li></li>\");\n        $ul.append($li);\n      }\n      this.$element.append($ul);\n    }\n  }\n}\n\nmodule.exports = View;\n\n//# sourceURL=webpack:///./src/hanoi_view.js?");
 
 /***/ }),
 

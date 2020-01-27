@@ -1,0 +1,35 @@
+h1 {
+  font-size: 36px;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.hanoi {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: auto;
+}
+
+.tower {
+  width: 30%;
+  list-style: none;
+  position: relative;
+}
+
+.tower::after {
+  content: "";
+  height: 2px;
+  width: 100%;
+  bottom: -10px;
+  margin: auto;
+  background-color: #555;
+  position: absolute;
+  display: block;
+}
+
+.tower li {
+  display: block;
+  height: 50px;
+  border: 1px solid black;
+}
