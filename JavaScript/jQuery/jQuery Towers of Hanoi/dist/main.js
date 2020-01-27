@@ -97,6 +97,17 @@ eval("class Game {\n  constructor() {\n    this.towers = [[3, 2, 1], [], []];\n 
 
 /***/ }),
 
+/***/ "./src/hanoi_view.js":
+/*!***************************!*\
+  !*** ./src/hanoi_view.js ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("class View {\n  constructor(game, rootEl) {\n    this.game = game;\n    this.$element = rootEl;\n    this.setupTowers();\n  }\n\n  setupTowers() {\n    for (let i = 0; i < 3; i++) {\n      let $ul = $(\"<ul></ul>\");\n      $ul.addClass(`tower-${i}`);\n      for (let j = 0; j < 3; j++) {\n        let $li = $(\"<li></li>\");\n        $ul.append($li);\n      }\n      this.$element.append($ul);\n    }\n  }\n}\n\nmodule.exports = View;\n\n//# sourceURL=webpack:///./src/hanoi_view.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -104,7 +115,7 @@ eval("class Game {\n  constructor() {\n    this.towers = [[3, 2, 1], [], []];\n 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const HanoiGame = __webpack_require__(/*! ./game/game */ \"./src/game/game.js\");\n\n$(() => {\n  const rootEl = $('.hanoi');\n  const game = new HanoiGame();\n  new HanoiView(game, rootEl);\n});\n\nconsole.log(\"All is well!\");\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const HanoiGame = __webpack_require__(/*! ./game/game */ \"./src/game/game.js\");\nconst HanoiView = __webpack_require__(/*! ./hanoi_view */ \"./src/hanoi_view.js\");\n\n$(() => {\n  const rootEl = $('.hanoi');\n  const game = new HanoiGame();\n  new HanoiView(game, rootEl);\n});\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
