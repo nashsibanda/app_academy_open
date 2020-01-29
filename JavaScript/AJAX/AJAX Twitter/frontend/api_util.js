@@ -22,6 +22,17 @@ const APIUtil = {
         console.log("Now unfollowed!")
       }
     })
+  ),
+  searchUsers: query => (
+    $.ajax({
+      type: "GET",
+      url: "/users/search",
+      dataType: "json",
+      data: {query},
+      success(response) {
+        console.log("Searched!")
+      }
+    })
   )
 }
 

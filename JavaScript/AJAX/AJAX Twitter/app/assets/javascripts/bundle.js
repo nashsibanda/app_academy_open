@@ -117,6 +117,17 @@ const APIUtil = {
         console.log("Now unfollowed!")
       }
     })
+  ),
+  searchUsers: query => (
+    $.ajax({
+      type: "GET",
+      url: "/users/search",
+      dataType: "json",
+      data: {query},
+      success(response) {
+        console.log("Searched!")
+      }
+    })
   )
 }
 
@@ -140,7 +151,6 @@ class FollowToggle {
     this.followState = this.$el.data("initial-follow-state");
     this.render();
     this.$el.on("click", this.handleClick.bind(this));
-    console.log(APIUtil.followUser)
   }
 
   render() {
@@ -161,12 +171,6 @@ class FollowToggle {
         this.$el.text("Unfollowing...");
         this.$el.prop("disabled", true);
         break;
-    }
-
-    if (this.followState === "unfollowed") {
-      this.$el.text("Follow!");
-    } else if (this.followState === "followed") {
-      this.$el.text("Unfollow!");
     }
   }
 
@@ -211,13 +215,62 @@ module.exports = FollowToggle;
 /***/ (function(module, exports, __webpack_require__) {
 
 const FollowToggle = __webpack_require__(/*! ./follow_toggle */ "./frontend/follow_toggle.js");
+const UsersSearch = __webpack_require__(/*! ./users_search */ "./frontend/users_search.js");
 
 $(() => {
   $(".follow-toggle").each(function() {
     new FollowToggle(this);
-    console.log("Constructor called");
+    console.log("Follow toggle called");
   })
+
+$(".users-search").each(function() {
+  new UsersSearch(this);
+  console.log("User search called");
+})
 });
+
+/***/ }),
+
+/***/ "./frontend/users_search.js":
+/*!**********************************!*\
+  !*** ./frontend/users_search.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const APIUtil = __webpack_require__(/*! ./api_util */ "./frontend/api_util.js")
+
+class UsersSearch {
+  constructor(el) {
+    this.$el = $(el);
+    this.$input = this.$el.find("input");
+    this.$ul = this.$el.find(".users");
+    this.$el.on("input", this.handleInput.bind(this));
+  }
+
+  handleInput() {
+    const usersSearch = this;
+    APIUtil.searchUsers(this.$input.val()).then( (response) => {
+      usersSearch.renderResults(response)
+    })
+  }
+
+  renderResults(response) {
+    this.$ul.empty();
+    const $usersSearchUl = this.$ul;
+    response.forEach(function(element) {
+      let $userListElement = $("<li>");
+      let $userLink = $("<a>");
+      $userLink.attr("href", `/users/${element.id}`);
+      $userLink.text(element.username);
+      $userListElement.append($userLink);
+      $usersSearchUl.append($userListElement);
+    })
+  }
+
+}
+
+module.exports = UsersSearch;
 
 /***/ })
 

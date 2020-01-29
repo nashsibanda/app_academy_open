@@ -7,7 +7,6 @@ class FollowToggle {
     this.followState = this.$el.data("initial-follow-state");
     this.render();
     this.$el.on("click", this.handleClick.bind(this));
-    console.log(APIUtil.followUser)
   }
 
   render() {
@@ -28,12 +27,6 @@ class FollowToggle {
         this.$el.text("Unfollowing...");
         this.$el.prop("disabled", true);
         break;
-    }
-
-    if (this.followState === "unfollowed") {
-      this.$el.text("Follow!");
-    } else if (this.followState === "followed") {
-      this.$el.text("Unfollow!");
     }
   }
 
