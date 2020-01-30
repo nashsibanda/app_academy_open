@@ -9,23 +9,31 @@
   </head>
 
   <body>
-    <ul>
-      <li><a href="<%= feed_url %>">Feed</a></li>
-      <li><a href="<%= search_users_url %>">User Search</a></li>
-    </ul>
+    <header class="site-header">
+      <h1>AjaxTwitter</h1>
+      <nav class="header-menu">
+        <ul>
+          <li><a href="<%= feed_url %>">Feed</a></li>
+          <li><a href="<%= search_users_url %>">User Search</a></li>
+          <% if current_user %>
+          <li>
+            <form action="/session" method="POST">
+              <input type="hidden" name="_method" value="DELETE">
+              <input
+                type="hidden"
+                name="authenticity_token"
+                value="<%= form_authenticity_token %>">
 
-    <% if current_user %>
-      <form action="/session" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
-        <input
-          type="hidden"
-          name="authenticity_token"
-          value="<%= form_authenticity_token %>">
+              <input type="submit" value="Logout!">
+            </form>
+          </li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
 
-        <input type="submit" value="Logout!">
-      </form>
-    <% end %>
-    
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

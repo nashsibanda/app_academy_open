@@ -1,0 +1,25 @@
+.tweet {
+  background-color: white;
+  // width: 30rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  border-bottom: 1px solid $gray;
+}
+
+.tweet-content {
+  font-size: 23px;
+  margin-bottom: 1rem;
+}
+
+.tweet-info {
+  text-align: right;
+  color: $dark-gray;
+}
+
+.tweet-info a {
+  color: $dark-bluegray;
+}
+
+.tweet-info a:hover {
+  color: $orange;
+}

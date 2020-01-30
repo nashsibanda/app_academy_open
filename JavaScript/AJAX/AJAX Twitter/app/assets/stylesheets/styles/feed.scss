@@ -1,0 +1,18 @@
+#feed {
+  @include flex;
+  flex-direction: column;
+  // margin: 0 auto;
+  // width: 70%;
+  // max-width: 35rem;
+}
+
+#feed li {
+  margin-bottom: 1rem;
+}
+
+#feed h2 {
+  margin-bottom: 1rem;
+  font-size: large;
+  font-weight: bold;
+  color: $dark-bluegray;
+}

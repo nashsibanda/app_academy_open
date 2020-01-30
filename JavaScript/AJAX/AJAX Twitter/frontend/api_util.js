@@ -5,8 +5,6 @@ const APIUtil = {
       url: `/users/${id}/follow`,
       dataType: "json",
       success(response) {
-        // that.toggleFollowState();
-        // that.render();
         console.log("Now followed!")
       }
     })
@@ -17,8 +15,6 @@ const APIUtil = {
       url: `/users/${id}/follow`,
       dataType: "json",
       success(response) {
-        // that.toggleFollowState();
-        // that.render();
         console.log("Now unfollowed!")
       }
     })

@@ -1,0 +1,29 @@
+.site-header {
+  @include flex;
+  align-items: center;
+  background-color: white;
+  border-bottom: 1px solid $dark-bluegray;
+  padding: 1rem 3rem;
+}
+
+.site-header h1 {
+  font-family: $fredoka;
+  font-size: 40px;
+  color: $blue;
+  // padding: 1rem 3rem;
+}
+
+.header-menu ul {
+ @include flex;
+ align-self: center;
+//  padding: 1.7rem 3rem;
+}
+
+.header-menu li {
+  padding-left: 2rem;
+  font-size: 20px;
+}
+
+.header-menu a:hover, .header-menu input:hover {
+  color: $orange;
+}
