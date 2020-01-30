@@ -1,0 +1,32 @@
+#users-search-input {
+  margin-bottom: 1rem;
+  box-sizing: content-box;
+}
+
+.users {
+  background-color: #fff;
+  padding: 0 1.5rem;
+  width: 100%;
+  border-radius: 0.7rem;
+  border-bottom: 1px solid $light-gray;
+  box-sizing: content-box;
+}
+
+.users li {
+  @include flex;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid $light-gray;
+}
+
+.users a {
+  font-weight: bold;
+  margin: auto 0;
+}
+
+.users a::before {
+  content: "@";
+}
+
+.users li:last-of-type {
+  border-bottom: none;
+}

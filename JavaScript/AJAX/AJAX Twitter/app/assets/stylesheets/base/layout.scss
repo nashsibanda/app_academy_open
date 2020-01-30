@@ -23,14 +23,33 @@ main h1 {
   color: $orange;
 }
 
+.username-highlight a:hover {
+  color: $blue;
+}
+
 a:hover {
   color: $orange;
 }
 
 input[type="text"] {
   background-color: #fff;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   font-size: larger;
   width: 100%;
   border-radius: 0.7rem;
+  @include light-embossed;
+}
+
+.follow-toggle {
+  background-color: $lighter-blue;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+  border-radius: 0.3rem;
+  @include light-embossed;
+}
+
+.follow-toggle:hover {
+  background-color: $light-bluegray;
+  @include light-embossed;
+  // color: $orange;
 }

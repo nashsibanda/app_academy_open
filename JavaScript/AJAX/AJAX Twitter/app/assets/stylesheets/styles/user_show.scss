@@ -1,0 +1,12 @@
+.user-show-header {
+  @include flex;
+  margin-bottom: 2rem;
+}
+
+.user-show-header h1 {
+  margin-bottom: 0;
+}
+
+.followees {
+  margin-bottom: 3rem;
+}

@@ -3,3 +3,13 @@
   display: flex;
   justify-content: space-between;
 }
+
+@mixin light-embossed {
+  border-bottom: 1px solid $light-gray;
+  border-top: 1px solid white;
+}
+
+@mixin embossed {
+  border-bottom: 1px solid $gray;
+  border-top: 1px solid white;
+}
