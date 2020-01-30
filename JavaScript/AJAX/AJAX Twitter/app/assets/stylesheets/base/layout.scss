@@ -31,7 +31,7 @@ a:hover {
   color: $orange;
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
   background-color: #fff;
   padding: 1rem 1.5rem;
   font-size: larger;
@@ -50,6 +50,21 @@ input[type="text"] {
 
 .follow-toggle:hover {
   background-color: $light-bluegray;
-  @include light-embossed;
+  @include hover-embossed;
   // color: $orange;
+}
+
+.form-button {
+  @include light-embossed;
+  padding: 0.5rem 1rem;
+  background-color: $lightest-bluegray;
+  border-radius: 0.3rem;
+  font-weight: bold;
+  color: $dark-blue;
+}
+
+.form-button:hover {
+  @include hover-embossed;
+  background-color: $lighter-bluegray;
+  color: $orange;
 }
