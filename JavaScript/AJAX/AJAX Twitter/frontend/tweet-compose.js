@@ -4,6 +4,7 @@ class TweetCompose {
   constructor(el) {
     this.$el = $(el);
     this.$el.on("submit", this.submitHandler.bind(this));
+    this.$el.on("input", "textarea", this.charsLeft.bind(this));
     this.$tweetsUl = $(this.$el.data("tweets-ul"));
   }
 
@@ -32,6 +33,19 @@ class TweetCompose {
     let tweetContent = JSON.stringify(response);
     $newTweet.append(tweetContent);
     this.$tweetsUl.prepend($newTweet);
+  }
+
+  charsLeft() {
+    let $charsLeft = $(event.currentTarget).find(".chars-left");
+    let currentLength = $(event.currentTarget).find("textarea").val().length;
+    let currentValue = 140 - currentLength;
+    $charsLeft.text(currentValue);
+    if (currentValue < 20) {
+      $charsLeft.addClass("low-remaining-characters")
+    } else if (currentValue >= 20) {
+      $charsLeft.removeClass("low-remaining-characters");
+    }
+    console.log($charsLeft);
   }
 }
 
