@@ -1,8 +1,10 @@
 .tweet-compose {
-  border-bottom: 1px solid $bluegray;
+  @include embossed;
+  border-radius: 1rem;
   margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding: 1.5rem;
   font-size: 18px;
+  background-color: white;
 }
 
 .tweet-compose-submit-row {
@@ -11,8 +13,9 @@
   align-items: center;
 }
 
-.tweet-compose textarea {
+.tweet-compose textarea, .tweet-compose select {
   margin-top: 0.5rem;
+  border: 1px solid $light-bluegray;
 }
 
 .low-remaining-characters {
