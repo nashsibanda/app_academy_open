@@ -1,12 +1,12 @@
 <h1>Welcome, <span class="username-highlight"><%= link_to  current_user.username, current_user %></span>!</h1>
 
-<article id="feed">
+<article class="feed">
   <h2>Your Feed!</h2>
-  <ul>
+  <ul id="feed-ul">
     <% @feed_tweets.each do |tweet| %>
       <li class="tweet"><%= render 'tweets/tweet', tweet: tweet %></li>
     <% end %>
   </ul>
+<%= render 'tweets/form' %>
 </article>
 
-<%= render 'tweets/form' %>

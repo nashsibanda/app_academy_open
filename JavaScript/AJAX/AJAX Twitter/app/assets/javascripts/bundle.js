@@ -124,6 +124,17 @@ const APIUtil = {
         console.log("Searched!")
       }
     })
+  ),
+  createTweet: data => (
+    $.ajax({
+      type: "POST",
+      url: "/tweets",
+      dataType: "json",
+      data: data,
+      success(response) {
+        console.log("Tweet posted!")
+      }
+    })
   )
 }
 
@@ -203,6 +214,54 @@ module.exports = FollowToggle;
 
 /***/ }),
 
+/***/ "./frontend/tweet-compose.js":
+/*!***********************************!*\
+  !*** ./frontend/tweet-compose.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const APIUtil = __webpack_require__(/*! ./api_util */ "./frontend/api_util.js");
+
+class TweetCompose {
+  constructor(el) {
+    this.$el = $(el);
+    this.$el.on("submit", this.submitHandler.bind(this));
+    this.$tweetsUl = $(this.$el.data("tweets-ul"));
+  }
+
+  submitHandler() {
+    event.preventDefault();
+    const tweetCompose = this;
+    let formData = tweetCompose.$el.serializeJSON();
+    tweetCompose.$el.find(":input").prop("disabled", true);
+    tweetCompose.$el.find(".form-button").val("Posting...");
+    APIUtil.createTweet(formData).then( (response) => {
+      tweetCompose.handleSuccess(response);
+      console.log(response);
+    });
+  }
+
+  clearInput() {
+    this.$el.find(":input").text("");
+    this.$el.find(":input").val("");
+  }
+
+  handleSuccess(response) {
+    this.clearInput();
+    this.$el.find(":input").prop("disabled", false);
+    this.$el.find(".form-button").val("Post Tweet!");
+    let $newTweet = $("<li>");
+    let tweetContent = JSON.stringify(response);
+    $newTweet.append(tweetContent);
+    this.$tweetsUl.prepend($newTweet);
+  }
+}
+
+module.exports = TweetCompose;
+
+/***/ }),
+
 /***/ "./frontend/twitter.js":
 /*!*****************************!*\
   !*** ./frontend/twitter.js ***!
@@ -212,6 +271,7 @@ module.exports = FollowToggle;
 
 const FollowToggle = __webpack_require__(/*! ./follow_toggle */ "./frontend/follow_toggle.js");
 const UsersSearch = __webpack_require__(/*! ./users_search */ "./frontend/users_search.js");
+const TweetCompose = __webpack_require__(/*! ./tweet-compose */ "./frontend/tweet-compose.js")
 
 $(() => {
   $(".follow-toggle").each(function() {
@@ -219,10 +279,15 @@ $(() => {
     console.log("Follow toggle called");
   })
 
-$(".users-search").each(function() {
-  new UsersSearch(this);
-  console.log("User search called");
-})
+  $(".users-search").each(function() {
+    new UsersSearch(this);
+    console.log("User search called");
+  })
+
+  $(".tweet-compose").each(function() {
+    new TweetCompose(this);
+    console.log("Tweet compose called")
+  })
 });
 
 /***/ }),

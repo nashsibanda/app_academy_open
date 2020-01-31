@@ -6,6 +6,7 @@
     "webpack": "webpack --mode=development --watch"
   },
   "dependencies": {
+    "jquery-serializejson": "^2.9.0",
     "webpack": "^4.6.0"
   },
   "devDependencies": {

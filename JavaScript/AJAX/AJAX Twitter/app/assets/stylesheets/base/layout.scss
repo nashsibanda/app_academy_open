@@ -31,13 +31,23 @@ a:hover {
   color: $orange;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], textarea {
   background-color: #fff;
   padding: 1rem 1.5rem;
   font-size: larger;
   width: 100%;
   border-radius: 0.7rem;
   @include light-embossed;
+}
+
+input[type="text"]:disabled, input[type="password"]:disabled, textarea:disabled {
+  background-color: $lightest-gray;
+  color: $light-gray;
+  border: 1px solid $light-gray;
+}
+
+textarea {
+  box-sizing: border-box;
 }
 
 .follow-toggle {
@@ -67,4 +77,10 @@ input[type="text"], input[type="password"] {
   @include hover-embossed;
   background-color: $lighter-bluegray;
   color: $orange;
+}
+
+.form-button:disabled {
+  background-color: $lightest-gray;
+  color: $light-gray;
+  border: 1px solid $light-gray;
 }

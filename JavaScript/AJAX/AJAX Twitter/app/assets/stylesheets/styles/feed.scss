@@ -1,4 +1,4 @@
-#feed {
+.feed {
   @include flex;
   flex-direction: column;
   // margin: 0 auto;
@@ -6,11 +6,11 @@
   // max-width: 35rem;
 }
 
-#feed li {
+.feed li {
   margin-bottom: 1rem;
 }
 
-#feed h2 {
+.feed h2 {
   margin-bottom: 1rem;
   font-size: large;
   font-weight: bold;
