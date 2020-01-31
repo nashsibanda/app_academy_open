@@ -1,5 +1,7 @@
 <h1>Welcome, <span class="username-highlight"><%= link_to  current_user.username, current_user %></span>!</h1>
 
+<%= render 'tweets/form' %>
+
 <article class="feed">
   <h2>Your Feed!</h2>
   <ul id="feed-ul">
@@ -7,6 +9,5 @@
       <li class="tweet"><%= render 'tweets/tweet', tweet: tweet %></li>
     <% end %>
   </ul>
-<%= render 'tweets/form' %>
 </article>
 

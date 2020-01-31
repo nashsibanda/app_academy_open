@@ -19,6 +19,13 @@ main h1 {
   text-shadow: 2px 2px 1px $light-blue;
 }
 
+main h2 {
+  margin-bottom: 1rem;
+  font-size: large;
+  font-weight: bold;
+  color: $dark-bluegray;
+}
+
 .username-highlight {
   color: $orange;
 }
@@ -31,7 +38,7 @@ a:hover {
   color: $orange;
 }
 
-input[type="text"], input[type="password"], textarea {
+input[type="text"], input[type="password"], textarea, select {
   background-color: #fff;
   padding: 1rem 1.5rem;
   font-size: larger;
@@ -40,9 +47,14 @@ input[type="text"], input[type="password"], textarea {
   @include light-embossed;
 }
 
-input[type="text"]:disabled, input[type="password"]:disabled, textarea:disabled {
+input[type="text"]:disabled, input[type="password"]:disabled, textarea:disabled, select:disabled {
   background-color: $lightest-gray;
   color: $light-gray;
+  border: 1px solid $light-gray;
+}
+
+select {
+  height: 2rem;
   border: 1px solid $light-gray;
 }
 

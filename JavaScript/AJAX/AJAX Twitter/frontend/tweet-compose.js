@@ -21,18 +21,25 @@ class TweetCompose {
   }
 
   clearInput() {
-    this.$el.find(":input").text("");
-    this.$el.find(":input").val("");
+    this.$el.find("textarea").val("");
+    this.$el.find("select option").first().prop("selected", true)
   }
 
   handleSuccess(response) {
     this.clearInput();
     this.$el.find(":input").prop("disabled", false);
     this.$el.find(".form-button").val("Post Tweet!");
+    let $successMessage = $("<strong>");
+    $successMessage.text("Tweet successfully posted!");
+    $successMessage.addClass("tweet-post-success-message");
+    this.$el.find(".tweet-compose-submit-row").append($successMessage);
     let $newTweet = $("<li>");
     let tweetContent = JSON.stringify(response);
     $newTweet.append(tweetContent);
     this.$tweetsUl.prepend($newTweet);
+    setTimeout(() => {
+      $(".tweet-post-success-message").remove();
+    }, 3000);
   }
 
   charsLeft() {
@@ -45,7 +52,6 @@ class TweetCompose {
     } else if (currentValue >= 20) {
       $charsLeft.removeClass("low-remaining-characters");
     }
-    console.log($charsLeft);
   }
 }
 

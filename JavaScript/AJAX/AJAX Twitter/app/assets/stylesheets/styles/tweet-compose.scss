@@ -1,0 +1,27 @@
+.tweet-compose {
+  border-bottom: 1px solid $bluegray;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  font-size: 18px;
+}
+
+.tweet-compose-submit-row {
+  @include flex;
+  margin-top: 0.5rem;
+  align-items: center;
+}
+
+.tweet-compose textarea {
+  margin-top: 0.5rem;
+}
+
+.low-remaining-characters {
+  color: $orange;
+  font-weight: bold;
+}
+
+.tweet-post-success-message {
+  text-align-last: right;
+  font-weight: bold;
+  color: $orange;
+}

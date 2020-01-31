@@ -4,9 +4,9 @@
   <%= render 'follows/form', user: @user %>
 </header>
 
-<article id="feed">
+<article class="feed">
   <h2>Tweets</h2>
-  <ul>
+  <ul id="feed-ul">
     <% @user.tweets.each do |tweet| %>
       <li class="tweet"><%= render 'tweets/tweet', tweet: tweet %></li>
     <% end %>
