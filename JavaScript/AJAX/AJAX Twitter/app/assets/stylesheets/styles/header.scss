@@ -2,7 +2,9 @@
   @include flex;
   align-items: center;
   background-color: white;
-  border-bottom: 1px solid $dark-bluegray;
+  @include embossed;
+  border-color: $dark-bluegray;
+  border-top: none;
   padding: 1rem 3rem;
 }
 

@@ -3,7 +3,7 @@
   // width: 30rem;
   padding: 2rem;
   border-radius: 1rem;
-  border-bottom: 1px solid $gray;
+  @include embossed;
 }
 
 .tweet-content {
