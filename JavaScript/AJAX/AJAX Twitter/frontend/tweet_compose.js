@@ -34,10 +34,11 @@ class TweetCompose {
     $successMessage.text("Tweet successfully posted!");
     $successMessage.addClass("tweet-post-success-message");
     this.$el.append($successMessage);
-    let $newTweet = $("<li>");
-    let tweetContent = JSON.stringify(response);
-    $newTweet.append(tweetContent);
-    this.$tweetsUl.prepend($newTweet);
+    $(".infinite-tweets").trigger("insert-tweet", response)
+    // let $newTweet = $("<li>");
+    // let tweetContent = JSON.stringify(response);
+    // $newTweet.append(tweetContent);
+    // this.$tweetsUl.prepend($newTweet);
     setTimeout(() => {
       $(".tweet-post-success-message").remove();
     }, 3000);

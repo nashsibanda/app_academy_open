@@ -7,6 +7,7 @@ class InfiniteTweets {
     this.$el.on("click", ".fetch-more-btn", this.fetchTweets.bind(this));
     this.maxCreatedAt = null;
     this.fetchTweets();
+    this.$el.on("insert-tweet", this.insertTweet.bind(this));
   }
 
   fetchTweets() {
@@ -22,6 +23,13 @@ class InfiniteTweets {
     }
     return false;
   }
+
+  insertTweet(event, tweet) {
+    this.$list.prepend(this.tweetTemplate(tweet));
+    if (!this.maxCreatedAt) {
+      this.maxCreatedAt = tweet.created_at;
+    }
+  }
   
   insertTweets(response) {
     const $tweetsList = this.$list;
@@ -32,11 +40,7 @@ class InfiniteTweets {
       }
     }
     response.forEach( (tweet) => {
-      let $newTweet = $("<li>", {
-        "class": "tweet",
-        "data-created-at": tweet.created_at
-      });
-      $newTweet.append(`ID: ${JSON.stringify(tweet.id)}, Created at: ${JSON.stringify(tweet.created_at)}<br><br>Content: ${tweet.content}`);
+      let $newTweet = this.tweetTemplate(tweet);
       if (this.$list.children().length !== 0 && tweet.created_at > this.$list.find("li:first-child").data("created-at")) {
         $tweetsList.prepend($newTweet);
       } else {
@@ -52,6 +56,41 @@ class InfiniteTweets {
     $fetchButton.removeAttr("href");
     $fetchButton.addClass("disabled-button");
     $fetchButton.removeClass("fetch-more-btn");
+  }
+
+  tweetTemplate(tweet) {
+    const mentions = tweet.mentions.map(mention => `
+      <li>
+        <a href="/users/${mention.user.id}">${mention.user.username}</a>
+      </li>
+    `).join("");
+    const tweetString = `
+      <li class="tweet">
+        <div class="tweet-content">${tweet.content}</div>
+        <div class="tweet-info">
+          posted by <a href="/users/${tweet.user.id}">@${tweet.user.username}</a>
+          on ${this.niceDate(tweet.created_at)}
+        </div>
+
+        ${(tweet.mentions.length > 0 ? `<small class="tweet-info">Mentions:</small>`: "")}
+        <ul class="tweet-mentioned-users">
+          ${mentions}
+        </ul>
+      </li>
+    `
+    return $(tweetString);
+  }
+
+  niceDate(dateString) {
+    const date = new Date(dateString);
+    const options = {
+      year: 'numeric',
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric"
+    }
+    return date.toLocaleDateString("en-US", options);
   }
 }
 
