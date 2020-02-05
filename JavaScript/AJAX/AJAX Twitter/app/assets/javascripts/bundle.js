@@ -229,6 +229,7 @@ class TweetCompose {
     this.$el.on("submit", this.submitHandler.bind(this));
     this.$el.on("input", "textarea", this.charsLeft.bind(this));
     this.$el.on("click", ".new-mention-select-btn", this.newUserSelect.bind(this));
+    this.$el.on("click", "a.remove-mentioned-user", this.removeMentionedUser.bind(this));
     this.$tweetsUl = $(this.$el.data("tweets-ul"));
   }
 
@@ -246,17 +247,17 @@ class TweetCompose {
 
   clearInput() {
     this.$el.find("textarea").val("");
-    this.$el.find("select option").first().prop("selected", true)
+    this.$el.find(".mentions-select-list").empty();
   }
 
   handleSuccess(response) {
     this.clearInput();
     this.$el.find(":input").prop("disabled", false);
     this.$el.find(".form-button").val("Post Tweet!");
-    let $successMessage = $("<strong>");
+    let $successMessage = $("<div>");
     $successMessage.text("Tweet successfully posted!");
     $successMessage.addClass("tweet-post-success-message");
-    this.$el.find(".tweet-compose-submit").before($successMessage);
+    this.$el.append($successMessage);
     let $newTweet = $("<li>");
     let tweetContent = JSON.stringify(response);
     $newTweet.append(tweetContent);
@@ -299,8 +300,19 @@ class TweetCompose {
       });
       $newSelect.append($userOption);
     }
-    $newListItem.append($newSelect);
+    let $selectRemover = $("<a>", {
+      "href": "#",
+      "class": "remove-mentioned-user form-button",
+      text: "x"
+    })
+    $newListItem.append($newSelect, $selectRemover);
     $mentionsList.append($newListItem);
+  }
+
+  removeMentionedUser() {
+    const $clickedRemover = $(event.target);
+    $clickedRemover.parent().remove();
+    return false;
   }
 }
 

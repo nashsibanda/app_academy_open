@@ -14,8 +14,11 @@
 }
 
 .tweet-compose textarea, .tweet-compose select {
-  margin-top: 0.5rem;
   border: 1px solid $light-bluegray;
+}
+
+.tweet-compose textarea {
+  margin-top: 0.5rem;
 }
 
 .low-remaining-characters {
@@ -24,8 +27,24 @@
 }
 
 .tweet-post-success-message {
+  margin-top: 0.5rem;
   display: block;
-  text-align-last: right;
+  text-align-last: center;
   font-weight: bold;
   color: $orange;
+}
+
+.mentions-select-list {
+  margin-top: 0.5rem;
+}
+
+.mentions-select-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-mention-select {
+  width: 80%;
+  margin-top: 0;
 }
