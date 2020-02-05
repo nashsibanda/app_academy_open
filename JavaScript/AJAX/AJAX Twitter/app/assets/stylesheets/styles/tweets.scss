@@ -23,3 +23,16 @@
 .tweet-info a:hover {
   color: $orange;
 }
+
+.tweet-mentioned-users {
+  @include flex;
+  justify-content: left;
+}
+
+.tweet-mentioned-users li {
+  margin-right: 0.5rem;
+}
+
+.tweet-mentioned-users a::before {
+  content: "@";
+}
