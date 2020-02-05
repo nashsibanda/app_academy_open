@@ -1,7 +1,7 @@
 <div class="tweet-content"><%= tweet.content %></div>
 <div class="tweet-info">
   posted by <a href="<%= user_url(tweet.user.id) %>">@<%= tweet.user.username %></a>
-  on <%= tweet.created_at %>
+  at <%= nice_date(tweet.created_at, "text") %>
 </div>
 
 <% if tweet.mentioned_users.length > 0 %>
