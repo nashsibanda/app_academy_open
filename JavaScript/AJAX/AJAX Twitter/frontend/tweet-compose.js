@@ -5,6 +5,7 @@ class TweetCompose {
     this.$el = $(el);
     this.$el.on("submit", this.submitHandler.bind(this));
     this.$el.on("input", "textarea", this.charsLeft.bind(this));
+    this.$el.on("click", ".new-mention-select-btn", this.newUserSelect.bind(this));
     this.$tweetsUl = $(this.$el.data("tweets-ul"));
   }
 
@@ -32,7 +33,7 @@ class TweetCompose {
     let $successMessage = $("<strong>");
     $successMessage.text("Tweet successfully posted!");
     $successMessage.addClass("tweet-post-success-message");
-    this.$el.find(".tweet-compose-submit-row").append($successMessage);
+    this.$el.find(".tweet-compose-submit").before($successMessage);
     let $newTweet = $("<li>");
     let tweetContent = JSON.stringify(response);
     $newTweet.append(tweetContent);
@@ -52,6 +53,31 @@ class TweetCompose {
     } else if (currentValue >= 20) {
       $charsLeft.removeClass("low-remaining-characters");
     }
+  }
+
+  newUserSelect() {
+    const $mentionsList = this.$el.find(".mentions-select-list");
+    let $newListItem = $("<li>");
+    let $newSelect = $("<select>", {
+      "class": "user-mention-select",
+      "name": "tweet[mentioned_user_ids][]"
+    });
+    let $defaultOption = $("<option>", {
+      "disabled": true,
+      "selected": true,
+      text: "Select a user to mention..."
+    });
+    $newSelect.append($defaultOption);
+    for (let i = 0; i < window.users.length; i++) {
+      const user = window.users[i];
+      let $userOption = $("<option>", {
+        "value": user.id,
+        text: user.username
+      });
+      $newSelect.append($userOption);
+    }
+    $newListItem.append($newSelect);
+    $mentionsList.append($newListItem);
   }
 }
 

@@ -8,8 +8,10 @@
     <strong class="chars-left">140</strong> characters remaining.
     <textarea name="tweet[content]" id="tweet-compose-content" placeholder="Enter your tweet here..."></textarea>
   <br>
-
-  <label for="tweet-compose-mentions">
+  <ul class="mentions-select-list"></ul>
+  <%
+=begin%>
+ <label for="tweet-compose-mentions">
     Mention
   </label>
     <select name="tweet[mentioned_user_ids][]" id="tweet-compose-mentions">
@@ -17,8 +19,13 @@
       <% User.all.each do |user| %>
         <option value="<%= user.id %>"><%= user.username %></option>
       <% end %>
-    </select>
+    </select> 
+<%
+=end%>
   <br>
 
-  <section class="tweet-compose-submit-row"><input type="Submit" value="Post Tweet!" class="form-button"></section>
+  <section class="tweet-compose-submit-row">
+    <button class="new-mention-select-btn form-button" type="button">Add Mention</button>
+    <input type="Submit" value="Post Tweet!" class="form-button tweet-compose-submit">
+  </section>
 </form>
