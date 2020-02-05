@@ -100,7 +100,7 @@ const APIUtil = {
       url: `/users/${id}/follow`,
       dataType: "json",
       success(response) {
-        console.log("Now followed!")
+        // console.log("Now followed!")
       }
     })
   ),
@@ -110,7 +110,7 @@ const APIUtil = {
       url: `/users/${id}/follow`,
       dataType: "json",
       success(response) {
-        console.log("Now unfollowed!")
+        // console.log("Now unfollowed!")
       }
     })
   ),
@@ -121,7 +121,7 @@ const APIUtil = {
       dataType: "json",
       data: {query},
       success(response) {
-        console.log("Searched!")
+        // console.log("Searched!")
       }
     })
   ),
@@ -132,7 +132,18 @@ const APIUtil = {
       dataType: "json",
       data: data,
       success(response) {
-        console.log("Tweet posted!")
+        // console.log("Tweet posted!")
+      }
+    })
+  ),
+  fetchTweets: max_created_at => (
+    $.ajax({
+      type: "GET",
+      url: "/feed",
+      dataType: "json",
+      data: { max_created_at },
+      success(response) {
+        // console.log("Tweets fetched!")
       }
     })
   )
@@ -214,9 +225,77 @@ module.exports = FollowToggle;
 
 /***/ }),
 
-/***/ "./frontend/tweet-compose.js":
+/***/ "./frontend/infinite_tweets.js":
+/*!*************************************!*\
+  !*** ./frontend/infinite_tweets.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const APIUtil = __webpack_require__(/*! ./api_util */ "./frontend/api_util.js");
+
+class InfiniteTweets {
+  constructor() {
+    this.$el = $(".infinite-tweets");
+    this.$list = $(this.$el.find("#feed-ul"));
+    this.$el.on("click", ".fetch-more-btn", this.fetchTweets.bind(this));
+    this.maxCreatedAt = null;
+    this.fetchTweets();
+  }
+
+  fetchTweets() {
+    const infiniteTweets = this;
+    if (this.maxCreatedAt !== null) {
+      APIUtil.fetchTweets(this.maxCreatedAt).then( (response) => {
+        infiniteTweets.insertTweets(response);
+      })
+    } else {
+        APIUtil.fetchTweets().then( (response) => {
+          infiniteTweets.insertTweets(response);
+        })
+    }
+    return false;
+  }
+  
+  insertTweets(response) {
+    const $tweetsList = this.$list;
+    if (response.length < 20) {
+      this.noMoreTweets();
+      if (response.length === 0) {
+        return false;
+      }
+    }
+    response.forEach( (tweet) => {
+      let $newTweet = $("<li>", {
+        "class": "tweet",
+        "data-created-at": tweet.created_at
+      });
+      $newTweet.append(`ID: ${JSON.stringify(tweet.id)}, Created at: ${JSON.stringify(tweet.created_at)}<br><br>Content: ${tweet.content}`);
+      if (this.$list.children().length !== 0 && tweet.created_at > this.$list.find("li:first-child").data("created-at")) {
+        $tweetsList.prepend($newTweet);
+      } else {
+        $tweetsList.append($newTweet);
+      }
+    })
+    this.maxCreatedAt = response[response.length - 1].created_at;
+  }
+
+  noMoreTweets() {
+    let $fetchButton = this.$el.find(".fetch-more-btn");
+    $fetchButton.text("No more tweets");
+    $fetchButton.removeAttr("href");
+    $fetchButton.addClass("disabled-button");
+    $fetchButton.removeClass("fetch-more-btn");
+  }
+}
+
+module.exports = InfiniteTweets;
+
+/***/ }),
+
+/***/ "./frontend/tweet_compose.js":
 /*!***********************************!*\
-  !*** ./frontend/tweet-compose.js ***!
+  !*** ./frontend/tweet_compose.js ***!
   \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -241,7 +320,6 @@ class TweetCompose {
     tweetCompose.$el.find(".form-button").val("Posting...");
     APIUtil.createTweet(formData).then( (response) => {
       tweetCompose.handleSuccess(response);
-      console.log(response);
     });
   }
 
@@ -329,22 +407,27 @@ module.exports = TweetCompose;
 
 const FollowToggle = __webpack_require__(/*! ./follow_toggle */ "./frontend/follow_toggle.js");
 const UsersSearch = __webpack_require__(/*! ./users_search */ "./frontend/users_search.js");
-const TweetCompose = __webpack_require__(/*! ./tweet-compose */ "./frontend/tweet-compose.js")
+const TweetCompose = __webpack_require__(/*! ./tweet_compose */ "./frontend/tweet_compose.js");
+const InfiniteTweets = __webpack_require__(/*! ./infinite_tweets */ "./frontend/infinite_tweets.js");
 
 $(() => {
   $(".follow-toggle").each(function() {
     new FollowToggle(this);
-    console.log("Follow toggle called");
+    // console.log("Follow toggle called");
   })
 
   $(".users-search").each(function() {
     new UsersSearch(this);
-    console.log("User search called");
+    // console.log("User search called");
   })
 
   $(".tweet-compose").each(function() {
     new TweetCompose(this);
-    console.log("Tweet compose called")
+    // console.log("Tweet compose called")
+  })
+
+  $(".infinite-tweets").each(function() {
+    new InfiniteTweets(this);
   })
 });
 

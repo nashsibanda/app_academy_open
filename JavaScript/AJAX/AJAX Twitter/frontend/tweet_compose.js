@@ -18,7 +18,6 @@ class TweetCompose {
     tweetCompose.$el.find(".form-button").val("Posting...");
     APIUtil.createTweet(formData).then( (response) => {
       tweetCompose.handleSuccess(response);
-      console.log(response);
     });
   }
 

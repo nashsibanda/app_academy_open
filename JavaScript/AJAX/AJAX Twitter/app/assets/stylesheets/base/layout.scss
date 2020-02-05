@@ -92,8 +92,9 @@ textarea {
   color: $orange;
 }
 
-.form-button:disabled {
+.form-button:disabled, .form-button.disabled-button {
   background-color: $lightest-gray;
   color: $light-gray;
   border: 1px solid $light-gray;
+  cursor: pointer;
 }

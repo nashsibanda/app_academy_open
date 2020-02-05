@@ -5,7 +5,7 @@ const APIUtil = {
       url: `/users/${id}/follow`,
       dataType: "json",
       success(response) {
-        console.log("Now followed!")
+        // console.log("Now followed!")
       }
     })
   ),
@@ -15,7 +15,7 @@ const APIUtil = {
       url: `/users/${id}/follow`,
       dataType: "json",
       success(response) {
-        console.log("Now unfollowed!")
+        // console.log("Now unfollowed!")
       }
     })
   ),
@@ -26,7 +26,7 @@ const APIUtil = {
       dataType: "json",
       data: {query},
       success(response) {
-        console.log("Searched!")
+        // console.log("Searched!")
       }
     })
   ),
@@ -37,7 +37,18 @@ const APIUtil = {
       dataType: "json",
       data: data,
       success(response) {
-        console.log("Tweet posted!")
+        // console.log("Tweet posted!")
+      }
+    })
+  ),
+  fetchTweets: max_created_at => (
+    $.ajax({
+      type: "GET",
+      url: "/feed",
+      dataType: "json",
+      data: { max_created_at },
+      success(response) {
+        // console.log("Tweets fetched!")
       }
     })
   )

@@ -4,10 +4,17 @@
 
 <article class="feed">
   <h2>Your Feed!</h2>
-  <ul id="feed-ul">
-    <% @feed_tweets.each do |tweet| %>
-      <li class="tweet"><%= render 'tweets/tweet', tweet: tweet %></li>
-    <% end %>
-  </ul>
+  <div class="infinite-tweets">
+    <ul id="feed-ul">
+      <%
+=begin%>
+ <% @feed_tweets.each do |tweet| %>
+        <li class="tweet"><%= render 'tweets/tweet', tweet: tweet %></li>
+      <% end %> 
+<%
+=end%>
+    </ul>
+    <a href="#" class="fetch-more-btn form-button">Fetch More</a>
+  </div>
 </article>
 
