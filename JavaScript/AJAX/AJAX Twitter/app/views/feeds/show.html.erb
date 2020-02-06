@@ -6,13 +6,6 @@
   <h2>Your Feed!</h2>
   <div class="infinite-tweets">
     <ul id="feed-ul">
-      <%
-=begin%>
- <% @feed_tweets.each do |tweet| %>
-        <li class="tweet"><%= render 'tweets/tweet', tweet: tweet %></li>
-      <% end %> 
-<%
-=end%>
     </ul>
     <a href="#" class="fetch-more-btn form-button">Fetch More</a>
   </div>

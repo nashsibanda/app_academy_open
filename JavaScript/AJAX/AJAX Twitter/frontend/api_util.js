@@ -41,10 +41,10 @@ const APIUtil = {
       }
     })
   ),
-  fetchTweets: max_created_at => (
+  fetchTweets: (max_created_at, url) => (
     $.ajax({
       type: "GET",
-      url: "/feed",
+      url: url,
       dataType: "json",
       data: { max_created_at },
       success(response) {

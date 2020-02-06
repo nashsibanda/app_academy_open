@@ -20,6 +20,8 @@ class UsersController < ApplicationController
     @user = User.new # dummy user object
     render :new
   end
+  
+  LIMIT = 20
 
   def show
     if current_user.nil?
@@ -29,7 +31,11 @@ class UsersController < ApplicationController
     end
 
     @user = User.includes(tweets: :mentioned_users).find(params[:id])
-    render :show
+    @user_tweets = @user.user_tweets(LIMIT, params[:max_created_at]).includes(:user).limit(LIMIT)
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render :show }
+    end
   end
 
   def search

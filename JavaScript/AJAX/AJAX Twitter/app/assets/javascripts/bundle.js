@@ -136,10 +136,10 @@ const APIUtil = {
       }
     })
   ),
-  fetchTweets: max_created_at => (
+  fetchTweets: (max_created_at, url) => (
     $.ajax({
       type: "GET",
-      url: "/feed",
+      url: url,
       dataType: "json",
       data: { max_created_at },
       success(response) {
@@ -239,6 +239,7 @@ class InfiniteTweets {
     this.$el = $(".infinite-tweets");
     this.$list = $(this.$el.find("#feed-ul"));
     this.$el.on("click", ".fetch-more-btn", this.fetchTweets.bind(this));
+    this.path = window.location.pathname;
     this.maxCreatedAt = null;
     this.fetchTweets();
     this.$el.on("insert-tweet", this.insertTweet.bind(this));
@@ -247,7 +248,7 @@ class InfiniteTweets {
   fetchTweets() {
     const infiniteTweets = this;
     if (this.maxCreatedAt !== null) {
-      APIUtil.fetchTweets(this.maxCreatedAt).then( (response) => {
+      APIUtil.fetchTweets(this.maxCreatedAt, this.path).then( (response) => {
         infiniteTweets.insertTweets(response);
       })
     } else {

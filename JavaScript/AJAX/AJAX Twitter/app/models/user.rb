@@ -67,6 +67,16 @@ class User < ApplicationRecord
     @tweets
   end
 
+  def user_tweets(limit = nil, max_created_at = nil)
+    @tweets = Tweet
+      .joins(:user)
+      .where('tweets.user_id = :id', id: self.id)
+      .order('tweets.created_at DESC')
+      .limit(limit)
+      .where('tweets.created_at < ?', (max_created_at ? max_created_at : Time.now))
+      .distinct
+  end
+
   def followed_user_ids
     @followed_user_ids ||= out_follows.pluck(:followee_id)
   end
