@@ -1,0 +1,27 @@
+.site-footer {
+  background-color: white;
+  border-top: 1px solid $dark-bluegray;
+  padding: 1rem 3rem;
+  font-size: 13px;
+  color: $dark-gray;
+  margin-top: 2rem;
+}
+
+.copyright-nav {
+  @include flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.copyright-nav ul {
+  @include flex;
+}
+
+.copyright-nav li {
+  margin-left: 0.5rem;
+  font-weight: 700;
+}
+
+.portfolio-disclaimer {
+  text-align: center;
+}

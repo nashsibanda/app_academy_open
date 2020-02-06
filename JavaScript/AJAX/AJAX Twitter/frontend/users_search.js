@@ -23,7 +23,7 @@ class UsersSearch {
       let $userListElement = $("<li>");
       let $userLink = $("<a>");
       let $userFollowButton = $("<button>");
-      $userFollowButton.addClass("follow-toggle");
+      $userFollowButton.addClass("follow-toggle form-button");
       let followToggleOptions = {
         followState: (element.followed ? "followed" : "unfollowed"),
         userId: element.id
