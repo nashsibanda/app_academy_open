@@ -94,6 +94,22 @@ class DOMNodeCollection {
       element.outerHTML = "";
     })
   }
+
+  on(trigger, callback) {
+    this.elementArray.forEach(element => {
+      element.addEventListener(trigger, callback);
+      element[trigger + "Callback"] = callback;
+    })
+  }
+
+  off(trigger) {
+    this.elementArray.forEach(element => {
+      const callback = element[trigger + "Callback"];
+      if (callback) {
+        element.removeEventListener(trigger, callback);
+      }
+    })
+  }
 }
 
 module.exports = DOMNodeCollection;

@@ -10,3 +10,7 @@ window.$1 = (argument) => {
     return new DOMNodeCollection(HTMLArray);
   }
 }
+
+window.logAThing = () => {
+  console.log("HEY MOFO");
+}
