@@ -80,6 +80,20 @@ class DOMNodeCollection {
     return new DOMNodeCollection(parentArray);
   }
 
+  find(selector) {
+    const subCollection = [];
+    this.elementArray.forEach(element => {
+      const subNodeCollection = Array.from(element.querySelectorAll(selector));
+      subCollection.push(...subNodeCollection);
+    })
+    return new DOMNodeCollection(subCollection);
+  }
+
+  remove() {
+    this.elementArray.forEach(element => {
+      element.outerHTML = "";
+    })
+  }
 }
 
 module.exports = DOMNodeCollection;
