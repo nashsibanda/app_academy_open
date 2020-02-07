@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("class DOMNodeCollection {\n  constructor(elementArray) {\n    this.elementArray = elementArray;\n  }\n\n  html(string = null) {\n    if (string === null) {\n      return this.elementArray[0].innerHTML;\n    } else {\n      this.elementArray.forEach(element => {\n        element.innerHTML = string;\n      })\n    }\n  }\n}\n\nmodule.exports = DOMNodeCollection;\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
+eval("class DOMNodeCollection {\n  constructor(elementArray) {\n    this.elementArray = elementArray;\n  }\n\n  html(string = null) {\n    if (string === null) {\n      return this.elementArray[0].innerHTML;\n    } else {\n      this.elementArray.forEach(element => {\n        element.innerHTML = string;\n      })\n    }\n  }\n\n  empty() {\n    this.elementArray.forEach(element => {\n      element.innerHTML = \"\";\n    })\n  }\n\n  append(child) {\n    if (child instanceof HTMLElement) {\n     this.elementArray.forEach(element => {\n       element.innerHTML = element.innerHTML + child.outerHTML;\n      });\n    } else if (typeof child === \"string\") {\n      this.elementArray.forEach(element => {\n        element.innerHTML = element.innerHTML + child;\n      });\n    } else if (typeof child.elementArray[Symbol.iterator] === \"function\") {\n      this.elementArray.forEach(element => {\n        child.elementArray.forEach(childElement => {\n          element.innerHTML = element.innerHTML + childElement.outerHTML;\n        });\n      })\n    }\n  }\n}\n\nmodule.exports = DOMNodeCollection;\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
 
 /***/ }),
 

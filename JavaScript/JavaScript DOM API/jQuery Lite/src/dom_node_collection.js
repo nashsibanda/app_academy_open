@@ -12,6 +12,30 @@ class DOMNodeCollection {
       })
     }
   }
+
+  empty() {
+    this.elementArray.forEach(element => {
+      element.innerHTML = "";
+    })
+  }
+
+  append(child) {
+    if (child instanceof HTMLElement) {
+     this.elementArray.forEach(element => {
+       element.innerHTML = element.innerHTML + child.outerHTML;
+      });
+    } else if (typeof child === "string") {
+      this.elementArray.forEach(element => {
+        element.innerHTML = element.innerHTML + child;
+      });
+    } else if (typeof child.elementArray[Symbol.iterator] === "function") {
+      this.elementArray.forEach(element => {
+        child.elementArray.forEach(childElement => {
+          element.innerHTML = element.innerHTML + childElement.outerHTML;
+        });
+      })
+    }
+  }
 }
 
 module.exports = DOMNodeCollection;
