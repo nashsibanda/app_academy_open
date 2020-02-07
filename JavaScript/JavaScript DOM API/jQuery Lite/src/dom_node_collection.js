@@ -58,6 +58,28 @@ class DOMNodeCollection {
       element.classList.remove(className);
     })
   }
+
+  // Traversal
+
+  children() {
+    const childrenArray = [];
+    this.elementArray.forEach(element => {
+      const elementChildren = Array.from(element.children);
+      childrenArray.push(...elementChildren);
+    })
+    return new DOMNodeCollection(childrenArray);
+  }
+
+  parent() {
+    const parentArray = [];
+    this.elementArray.forEach(element => {
+      if (!parentArray.includes(element.parentNode)) {
+        parentArray.push(element.parentNode);
+      }
+    });
+    return new DOMNodeCollection(parentArray);
+  }
+
 }
 
 module.exports = DOMNodeCollection;
