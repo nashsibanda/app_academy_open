@@ -1,4 +1,6 @@
 const DOMNodeCollection = require("./dom_node_collection");
+const ReadyFunctions = [];
+
 
 window.$1 = (argument) => {
   if (typeof argument === "string") {
@@ -8,9 +10,19 @@ window.$1 = (argument) => {
   } else if (argument instanceof HTMLElement) {
     const HTMLArray = [argument];
     return new DOMNodeCollection(HTMLArray);
+  } else if (typeof argument === "function") {
+    ReadyFunctions.push(argument);
   }
 }
 
-window.logAThing = () => {
-  console.log("HEY MOFO");
+const check = () => {
+  console.log(document.readyState);
 }
+check()
+
+$1(check)
+
+
+ReadyFunctions.forEach(func => {
+  document.addEventListener("DOMContentLoaded", func);
+});

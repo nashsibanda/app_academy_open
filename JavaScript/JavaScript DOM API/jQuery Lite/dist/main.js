@@ -104,7 +104,7 @@ eval("class DOMNodeCollection {\n  constructor(elementArray) {\n    this.element
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const DOMNodeCollection = __webpack_require__(/*! ./dom_node_collection */ \"./src/dom_node_collection.js\");\n\nwindow.$1 = (argument) => {\n  if (typeof argument === \"string\") {\n    const nodeList = document.querySelectorAll(argument);\n    const elementArray = Array.from(nodeList);\n    return new DOMNodeCollection(elementArray);\n  } else if (argument instanceof HTMLElement) {\n    const HTMLArray = [argument];\n    return new DOMNodeCollection(HTMLArray);\n  }\n}\n\nwindow.logAThing = () => {\n  console.log(\"HEY MOFO\");\n}\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const DOMNodeCollection = __webpack_require__(/*! ./dom_node_collection */ \"./src/dom_node_collection.js\");\nconst ReadyFunctions = [];\n\n\nwindow.$1 = (argument) => {\n  if (typeof argument === \"string\") {\n    const nodeList = document.querySelectorAll(argument);\n    const elementArray = Array.from(nodeList);\n    return new DOMNodeCollection(elementArray);\n  } else if (argument instanceof HTMLElement) {\n    const HTMLArray = [argument];\n    return new DOMNodeCollection(HTMLArray);\n  } else if (typeof argument === \"function\") {\n    ReadyFunctions.push(argument);\n  }\n}\n\nconst check = () => {\n  console.log(document.readyState);\n}\ncheck()\n\n$1(check)\n\n\nReadyFunctions.forEach(func => {\n  document.addEventListener(\"DOMContentLoaded\", func);\n});\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
