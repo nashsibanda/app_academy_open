@@ -86,14 +86,25 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/dom_node_collection.js":
+/*!************************************!*\
+  !*** ./src/dom_node_collection.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("class DOMNodeCollection {\n  constructor(elementArray) {\n    this.elementArray = elementArray;\n  }\n}\n\nmodule.exports = DOMNodeCollection;\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("window.$1 = (argument) => {\n  const nodeList = document.querySelectorAll(argument);\n  return Array.from(nodeList);\n}\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const DOMNodeCollection = __webpack_require__(/*! ./dom_node_collection */ \"./src/dom_node_collection.js\");\n\nwindow.$1 = (argument) => {\n  if (typeof argument === \"string\") {\n    const nodeList = document.querySelectorAll(argument);\n    const elementArray = Array.from(nodeList);\n    return new DOMNodeCollection(elementArray);\n  } else if (argument instanceof HTMLElement) {\n    const HTMLArray = [argument];\n    return new DOMNodeCollection(HTMLArray);\n  }\n}\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
