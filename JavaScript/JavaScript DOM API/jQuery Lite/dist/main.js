@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("class DOMNodeCollection {\n  constructor(elementArray) {\n    this.elementArray = elementArray;\n  }\n}\n\nmodule.exports = DOMNodeCollection;\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
+eval("class DOMNodeCollection {\n  constructor(elementArray) {\n    this.elementArray = elementArray;\n  }\n\n  html(string = null) {\n    if (string === null) {\n      return this.elementArray[0].innerHTML;\n    } else {\n      this.elementArray.forEach(element => {\n        element.innerHTML = string;\n      })\n    }\n  }\n}\n\nmodule.exports = DOMNodeCollection;\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
 
 /***/ }),
 
