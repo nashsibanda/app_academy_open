@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("console.log(\"It's working!\")\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("function setHashFragment (event) {\n  target = event.currentTarget;\n  locVar = target.innerText.toLowerCase();\n  window.location.hash = locVar;\n}\n\nfunction addSidebarLiListeners () {\n  liElements = document.querySelectorAll(\".sidebar-nav li\");\n  liElements.forEach(element => {\n    element.addEventListener(\"click\", setHashFragment);\n  })\n}\n\ndocument.addEventListener(\"DOMContentLoaded\", addSidebarLiListeners);\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
