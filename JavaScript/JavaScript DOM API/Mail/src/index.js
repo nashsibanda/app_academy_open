@@ -1,4 +1,5 @@
 const Router = require("./router");
+const Inbox = require("./inbox");
 
 function setHashFragment (event) {
   const target = event.currentTarget;
@@ -15,15 +16,15 @@ function addSidebarLiListeners () {
 
 function onLoadCallback () {
   contentNode = document.querySelector(".content")
-  window.router = new Router(contentNode);
+  window.router = new Router(contentNode, routes);
   addSidebarLiListeners();
   window.router.start();
 }
 
 document.addEventListener("DOMContentLoaded", onLoadCallback);
 
-// function checkerchanger() {
-//   console.log("chechech")
-// }
-
-// window.addEventListener("hashchange", checkerchanger);
+const routes = {
+  // "compose": ,
+  // "sent": ,
+  "inbox": Inbox
+}

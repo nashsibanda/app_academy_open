@@ -86,6 +86,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/inbox.js":
+/*!**********************!*\
+  !*** ./src/inbox.js ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("const Inbox = {\n  render () {\n    const ulContainer = document.createElement(\"ul\");\n    ulContainer.className = \"messages\";\n    ulContainer.innerHTML = \"An Inbox Message\";\n    return ulContainer;\n  }\n}\n\nmodule.exports = Inbox;\n\n//# sourceURL=webpack:///./src/inbox.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -93,7 +104,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Router = __webpack_require__(/*! ./router */ \"./src/router.js\");\n\nfunction setHashFragment (event) {\n  const target = event.currentTarget;\n  const locVar = target.innerText.toLowerCase();\n  window.location.hash = locVar;\n}\n\nfunction addSidebarLiListeners () {\n  const liElements = document.querySelectorAll(\".sidebar-nav li\");\n  liElements.forEach(element => {\n    element.addEventListener(\"click\", setHashFragment);\n  })\n}\n\nfunction onLoadCallback () {\n  contentNode = document.querySelector(\".content\")\n  window.router = new Router(contentNode);\n  addSidebarLiListeners();\n  window.router.start();\n}\n\ndocument.addEventListener(\"DOMContentLoaded\", onLoadCallback);\n\n// function checkerchanger() {\n//   console.log(\"chechech\")\n// }\n\n// window.addEventListener(\"hashchange\", checkerchanger);\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const Router = __webpack_require__(/*! ./router */ \"./src/router.js\");\nconst Inbox = __webpack_require__(/*! ./inbox */ \"./src/inbox.js\");\n\nfunction setHashFragment (event) {\n  const target = event.currentTarget;\n  const locVar = target.innerText.toLowerCase();\n  window.location.hash = locVar;\n}\n\nfunction addSidebarLiListeners () {\n  const liElements = document.querySelectorAll(\".sidebar-nav li\");\n  liElements.forEach(element => {\n    element.addEventListener(\"click\", setHashFragment);\n  })\n}\n\nfunction onLoadCallback () {\n  contentNode = document.querySelector(\".content\")\n  window.router = new Router(contentNode, routes);\n  addSidebarLiListeners();\n  window.router.start();\n}\n\ndocument.addEventListener(\"DOMContentLoaded\", onLoadCallback);\n\nconst routes = {\n  // \"compose\": ,\n  // \"sent\": ,\n  \"inbox\": Inbox\n}\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -104,7 +115,7 @@ eval("const Router = __webpack_require__(/*! ./router */ \"./src/router.js\");\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("class Router {\n  constructor(node) {\n    this.node = node;\n  }\n\n  start () {\n    this.render();\n    window.addEventListener(\"hashchange\", this.render.bind(this));\n  }\n\n  render () {\n    console.log(\"change!\");\n    this.node.innerHTML = \"\";\n    const newRouteName = this.activeRoute();\n    const newPNode = document.createElement(\"p\");\n    newPNode.innerHTML = newRouteName;\n    this.node.appendChild(newPNode);\n  }\n\n  activeRoute () {\n    const routeHashFragment = window.location.hash.slice(1);\n    return routeHashFragment;\n  }\n }\n\nmodule.exports = Router;\n\n//# sourceURL=webpack:///./src/router.js?");
+eval("class Router {\n  constructor(node, routes) {\n    this.node = node;\n    this.routes = routes;\n  }\n\n  start () {\n    this.render();\n    window.addEventListener(\"hashchange\", this.render.bind(this));\n  }\n\n  render () {\n    console.log(\"change!\");\n    // this.node.innerHTML = \"\";\n    const component = this.activeRoute();\n    if (!component) {\n      this.node.innerHTML = \"\";\n    } else {\n      this.node.innerHTML = \"\";\n      const newNode = component.render()\n      this.node.appendChild(newNode);\n    }\n    // const newPNode = document.createElement(\"p\");\n    // newPNode.innerHTML = newRouteName;\n  }\n\n  activeRoute () {\n    const routeHashFragment = window.location.hash.slice(1);\n    return this.routes[routeHashFragment];\n  }\n }\n\nmodule.exports = Router;\n\n//# sourceURL=webpack:///./src/router.js?");
 
 /***/ })
 
