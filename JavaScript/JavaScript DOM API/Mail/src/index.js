@@ -19,6 +19,7 @@ function onLoadCallback () {
   window.router = new Router(contentNode, routes);
   addSidebarLiListeners();
   window.router.start();
+  window.location.hash = "#inbox";
 }
 
 document.addEventListener("DOMContentLoaded", onLoadCallback);

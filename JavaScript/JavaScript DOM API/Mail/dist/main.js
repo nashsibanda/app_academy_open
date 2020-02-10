@@ -91,9 +91,9 @@
   !*** ./src/inbox.js ***!
   \**********************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("const Inbox = {\n  render () {\n    const ulContainer = document.createElement(\"ul\");\n    ulContainer.className = \"messages\";\n    ulContainer.innerHTML = \"An Inbox Message\";\n    return ulContainer;\n  }\n}\n\nmodule.exports = Inbox;\n\n//# sourceURL=webpack:///./src/inbox.js?");
+eval("const MessageStore = __webpack_require__(/*! ./message_store */ \"./src/message_store.js\");\n\nconst Inbox = {\n  render () {\n    const container = document.createElement(\"ul\");\n    container.className = \"messages\";\n    const messages = MessageStore.getInboxMessages();\n    messages.forEach(message => {\n      const messageNode = this.renderMessage(message);\n      container.appendChild(messageNode);\n    })\n    return container;\n  },\n  renderMessage(message) {\n    const liNode = document.createElement(\"li\");\n    liNode.className = \"message\";\n    liNode.innerHTML = `\n      <span class=\"from\">${message.from}</span>\n      <span class=\"subject\">${message.subject}</span>\n      <span class=\"body\">${message.body}</span>\n    `\n    return liNode;\n  }\n}\n\nmodule.exports = Inbox;\n\n//# sourceURL=webpack:///./src/inbox.js?");
 
 /***/ }),
 
@@ -104,7 +104,18 @@ eval("const Inbox = {\n  render () {\n    const ulContainer = document.createEle
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Router = __webpack_require__(/*! ./router */ \"./src/router.js\");\nconst Inbox = __webpack_require__(/*! ./inbox */ \"./src/inbox.js\");\n\nfunction setHashFragment (event) {\n  const target = event.currentTarget;\n  const locVar = target.innerText.toLowerCase();\n  window.location.hash = locVar;\n}\n\nfunction addSidebarLiListeners () {\n  const liElements = document.querySelectorAll(\".sidebar-nav li\");\n  liElements.forEach(element => {\n    element.addEventListener(\"click\", setHashFragment);\n  })\n}\n\nfunction onLoadCallback () {\n  contentNode = document.querySelector(\".content\")\n  window.router = new Router(contentNode, routes);\n  addSidebarLiListeners();\n  window.router.start();\n}\n\ndocument.addEventListener(\"DOMContentLoaded\", onLoadCallback);\n\nconst routes = {\n  // \"compose\": ,\n  // \"sent\": ,\n  \"inbox\": Inbox\n}\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const Router = __webpack_require__(/*! ./router */ \"./src/router.js\");\nconst Inbox = __webpack_require__(/*! ./inbox */ \"./src/inbox.js\");\n\nfunction setHashFragment (event) {\n  const target = event.currentTarget;\n  const locVar = target.innerText.toLowerCase();\n  window.location.hash = locVar;\n}\n\nfunction addSidebarLiListeners () {\n  const liElements = document.querySelectorAll(\".sidebar-nav li\");\n  liElements.forEach(element => {\n    element.addEventListener(\"click\", setHashFragment);\n  })\n}\n\nfunction onLoadCallback () {\n  contentNode = document.querySelector(\".content\")\n  window.router = new Router(contentNode, routes);\n  addSidebarLiListeners();\n  window.router.start();\n  window.location.hash = \"#inbox\";\n}\n\ndocument.addEventListener(\"DOMContentLoaded\", onLoadCallback);\n\nconst routes = {\n  // \"compose\": ,\n  // \"sent\": ,\n  \"inbox\": Inbox\n}\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/message_store.js":
+/*!******************************!*\
+  !*** ./src/message_store.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("let messages = {\n  sent: [\n    {\n      to: \"friend@mail.com\",\n      subject: \"Check this out\",\n      body: \"It's so cool\"\n    },\n    { to: \"person@mail.com\", subject: \"zzz\", body: \"so booring\" }\n  ],\n  inbox: [\n    {\n      from: \"grandma@mail.com\",\n      subject: \"Fwd: Fwd: Fwd: Check this out\",\n      body:\n        \"Stay at home mom discovers cure for leg cramps. Doctors hate her\"\n    },\n    {\n      from: \"person@mail.com\",\n      subject: \"Questionnaire\",\n      body: \"Take this free quiz win $1000 dollars\"\n    }\n  ]\n};\n\nconst MessageStore = {\n  getInboxMessages() {\n    return messages.inbox;\n  },\n  getSentMessages() {\n    return messages.sent;\n  }\n}\n\nmodule.exports = MessageStore;\n\n//# sourceURL=webpack:///./src/message_store.js?");
 
 /***/ }),
 
