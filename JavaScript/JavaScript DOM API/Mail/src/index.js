@@ -1,5 +1,6 @@
 const Router = require("./router");
 const Inbox = require("./inbox");
+const Sent = require("./sent")
 
 function setHashFragment (event) {
   const target = event.currentTarget;
@@ -26,6 +27,6 @@ document.addEventListener("DOMContentLoaded", onLoadCallback);
 
 const routes = {
   // "compose": ,
-  // "sent": ,
+  "sent": Sent,
   "inbox": Inbox
 }

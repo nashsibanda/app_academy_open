@@ -104,7 +104,7 @@ eval("const MessageStore = __webpack_require__(/*! ./message_store */ \"./src/me
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Router = __webpack_require__(/*! ./router */ \"./src/router.js\");\nconst Inbox = __webpack_require__(/*! ./inbox */ \"./src/inbox.js\");\n\nfunction setHashFragment (event) {\n  const target = event.currentTarget;\n  const locVar = target.innerText.toLowerCase();\n  window.location.hash = locVar;\n}\n\nfunction addSidebarLiListeners () {\n  const liElements = document.querySelectorAll(\".sidebar-nav li\");\n  liElements.forEach(element => {\n    element.addEventListener(\"click\", setHashFragment);\n  })\n}\n\nfunction onLoadCallback () {\n  contentNode = document.querySelector(\".content\")\n  window.router = new Router(contentNode, routes);\n  addSidebarLiListeners();\n  window.router.start();\n  window.location.hash = \"#inbox\";\n}\n\ndocument.addEventListener(\"DOMContentLoaded\", onLoadCallback);\n\nconst routes = {\n  // \"compose\": ,\n  // \"sent\": ,\n  \"inbox\": Inbox\n}\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const Router = __webpack_require__(/*! ./router */ \"./src/router.js\");\nconst Inbox = __webpack_require__(/*! ./inbox */ \"./src/inbox.js\");\nconst Sent = __webpack_require__(/*! ./sent */ \"./src/sent.js\")\n\nfunction setHashFragment (event) {\n  const target = event.currentTarget;\n  const locVar = target.innerText.toLowerCase();\n  window.location.hash = locVar;\n}\n\nfunction addSidebarLiListeners () {\n  const liElements = document.querySelectorAll(\".sidebar-nav li\");\n  liElements.forEach(element => {\n    element.addEventListener(\"click\", setHashFragment);\n  })\n}\n\nfunction onLoadCallback () {\n  contentNode = document.querySelector(\".content\")\n  window.router = new Router(contentNode, routes);\n  addSidebarLiListeners();\n  window.router.start();\n  window.location.hash = \"#inbox\";\n}\n\ndocument.addEventListener(\"DOMContentLoaded\", onLoadCallback);\n\nconst routes = {\n  // \"compose\": ,\n  \"sent\": Sent,\n  \"inbox\": Inbox\n}\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -127,6 +127,17 @@ eval("let messages = {\n  sent: [\n    {\n      to: \"friend@mail.com\",\n      
 /***/ (function(module, exports) {
 
 eval("class Router {\n  constructor(node, routes) {\n    this.node = node;\n    this.routes = routes;\n  }\n\n  start () {\n    this.render();\n    window.addEventListener(\"hashchange\", this.render.bind(this));\n  }\n\n  render () {\n    console.log(\"change!\");\n    // this.node.innerHTML = \"\";\n    const component = this.activeRoute();\n    if (!component) {\n      this.node.innerHTML = \"\";\n    } else {\n      this.node.innerHTML = \"\";\n      const newNode = component.render()\n      this.node.appendChild(newNode);\n    }\n    // const newPNode = document.createElement(\"p\");\n    // newPNode.innerHTML = newRouteName;\n  }\n\n  activeRoute () {\n    const routeHashFragment = window.location.hash.slice(1);\n    return this.routes[routeHashFragment];\n  }\n }\n\nmodule.exports = Router;\n\n//# sourceURL=webpack:///./src/router.js?");
+
+/***/ }),
+
+/***/ "./src/sent.js":
+/*!*********************!*\
+  !*** ./src/sent.js ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const MessageStore = __webpack_require__(/*! ./message_store */ \"./src/message_store.js\");\n\nconst Sent = {\n  render() {\n    const container = document.createElement(\"ul\");\n    container.className = \"messages\";\n    const messages = MessageStore.getSentMessages();\n    messages.forEach(message => {\n      const messageNode = this.renderMessage(message);\n      container.appendChild(messageNode);\n    });\n    return container;\n  },\n  renderMessage(message) {\n    const liNode = document.createElement(\"li\");\n    liNode.className = \"message\";\n    liNode.innerHTML = `\n      <span class=\"to\">${message.to}</span>\n      <span class=\"subject\">${message.subject}</span>\n      <span class=\"body\">${message.body}</span>\n    `;\n    return liNode;\n  }\n};\n\nmodule.exports = Sent;\n\n\n//# sourceURL=webpack:///./src/sent.js?");
 
 /***/ })
 
