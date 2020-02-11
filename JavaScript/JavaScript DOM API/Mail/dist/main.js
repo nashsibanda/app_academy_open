@@ -86,6 +86,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/compose.js":
+/*!************************!*\
+  !*** ./src/compose.js ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const MessageStore = __webpack_require__(/*! ./message_store */ \"./src/message_store.js\");\n\nconst Compose = {\n  render() {\n    const container = document.createElement(\"ul\");\n    container.className = \"new-message\";\n    container.innerHTML = this.renderForm();\n    return container;\n  },\n  renderForm() {\n    let currentDraft = MessageStore.getMessageDraft();\n    const composeFormHtml = `\n      <p class=\"new-message-header\">New Message</p>\n      <form class=\"compose-form\">\n        <input type=\"text\" name=\"to\" placeholder=\"Recipient\" value=\"${currentDraft.to}\">\n        <input type=\"text\" name=\"subject\" placeholder=\"Subject\" value=\"${currentDraft.subject}\">\n        <textarea name=\"body\" rows=\"10\">${currentDraft.body}</textarea>\n        <button type=\"submit\" class=\"btn btn-primary submit-message\">Send</button>\n      </form>\n    `;\n    return composeFormHtml;\n  }\n};\n\nmodule.exports = Compose;\n\n\n//# sourceURL=webpack:///./src/compose.js?");
+
+/***/ }),
+
 /***/ "./src/inbox.js":
 /*!**********************!*\
   !*** ./src/inbox.js ***!
@@ -104,7 +115,7 @@ eval("const MessageStore = __webpack_require__(/*! ./message_store */ \"./src/me
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Router = __webpack_require__(/*! ./router */ \"./src/router.js\");\nconst Inbox = __webpack_require__(/*! ./inbox */ \"./src/inbox.js\");\nconst Sent = __webpack_require__(/*! ./sent */ \"./src/sent.js\")\n\nfunction setHashFragment (event) {\n  const target = event.currentTarget;\n  const locVar = target.innerText.toLowerCase();\n  window.location.hash = locVar;\n}\n\nfunction addSidebarLiListeners () {\n  const liElements = document.querySelectorAll(\".sidebar-nav li\");\n  liElements.forEach(element => {\n    element.addEventListener(\"click\", setHashFragment);\n  })\n}\n\nfunction onLoadCallback () {\n  contentNode = document.querySelector(\".content\")\n  window.router = new Router(contentNode, routes);\n  addSidebarLiListeners();\n  window.router.start();\n  window.location.hash = \"#inbox\";\n}\n\ndocument.addEventListener(\"DOMContentLoaded\", onLoadCallback);\n\nconst routes = {\n  // \"compose\": ,\n  \"sent\": Sent,\n  \"inbox\": Inbox\n}\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const Router = __webpack_require__(/*! ./router */ \"./src/router.js\");\nconst Inbox = __webpack_require__(/*! ./inbox */ \"./src/inbox.js\");\nconst Sent = __webpack_require__(/*! ./sent */ \"./src/sent.js\");\nconst Compose = __webpack_require__(/*! ./compose */ \"./src/compose.js\");\n\nfunction setHashFragment (event) {\n  const target = event.currentTarget;\n  const locVar = target.innerText.toLowerCase();\n  window.location.hash = locVar;\n}\n\nfunction addSidebarLiListeners () {\n  const liElements = document.querySelectorAll(\".sidebar-nav li\");\n  liElements.forEach(element => {\n    element.addEventListener(\"click\", setHashFragment);\n  })\n}\n\nfunction onLoadCallback () {\n  contentNode = document.querySelector(\".content\")\n  window.router = new Router(contentNode, routes);\n  addSidebarLiListeners();\n  window.router.start();\n  window.location.hash = \"#inbox\";\n}\n\ndocument.addEventListener(\"DOMContentLoaded\", onLoadCallback);\n\nconst routes = {\n  \"compose\": Compose,\n  \"sent\": Sent,\n  \"inbox\": Inbox\n}\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -115,7 +126,7 @@ eval("const Router = __webpack_require__(/*! ./router */ \"./src/router.js\");\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("let messages = {\n  sent: [\n    {\n      to: \"friend@mail.com\",\n      subject: \"Check this out\",\n      body: \"It's so cool\"\n    },\n    { to: \"person@mail.com\", subject: \"zzz\", body: \"so booring\" }\n  ],\n  inbox: [\n    {\n      from: \"grandma@mail.com\",\n      subject: \"Fwd: Fwd: Fwd: Check this out\",\n      body:\n        \"Stay at home mom discovers cure for leg cramps. Doctors hate her\"\n    },\n    {\n      from: \"person@mail.com\",\n      subject: \"Questionnaire\",\n      body: \"Take this free quiz win $1000 dollars\"\n    }\n  ]\n};\n\nconst MessageStore = {\n  getInboxMessages() {\n    return messages.inbox;\n  },\n  getSentMessages() {\n    return messages.sent;\n  }\n}\n\nmodule.exports = MessageStore;\n\n//# sourceURL=webpack:///./src/message_store.js?");
+eval("class Message {\n  constructor(from, to, subject, body) {\n    this.from = from || \"\",\n    this.to = to || \"\",\n    this.subject = subject || \"\",\n    this.body = body || \"\"\n  }\n}\n\nlet messageDraft = new Message;\n\nlet messages = {\n  sent: [\n    {\n      to: \"friend@mail.com\",\n      subject: \"Check this out\",\n      body: \"It's so cool\"\n    },\n    { to: \"person@mail.com\", subject: \"zzz\", body: \"so booring\" }\n  ],\n  inbox: [\n    {\n      from: \"grandma@mail.com\",\n      subject: \"Fwd: Fwd: Fwd: Check this out\",\n      body:\n        \"Stay at home mom discovers cure for leg cramps. Doctors hate her\"\n    },\n    {\n      from: \"person@mail.com\",\n      subject: \"Questionnaire\",\n      body: \"Take this free quiz win $1000 dollars\"\n    }\n  ]\n};\n\nconst MessageStore = {\n  getInboxMessages() {\n    return messages.inbox;\n  },\n  getSentMessages() {\n    return messages.sent;\n  },\n  getMessageDraft() {\n    return messageDraft;\n  },\n  updateDraftField(field, value) {\n    messageDraft[field] = value;\n  },\n  sendDraft() {\n    messages.sent.push(messageDraft);\n    messageDraft = new Message;\n  }\n}\n\n\nmodule.exports = MessageStore;\n\n//# sourceURL=webpack:///./src/message_store.js?");
 
 /***/ }),
 
