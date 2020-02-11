@@ -7,7 +7,7 @@ class Message {
   }
 }
 
-let messageDraft = new Message;
+let messageDraft = new Message();
 
 let messages = {
   sent: [
@@ -47,8 +47,8 @@ const MessageStore = {
     messageDraft[field] = value;
   },
   sendDraft() {
-    messages.sent.push(messageDraft);
-    messageDraft = new Message;
+    messages.sent.unshift(messageDraft);
+    messageDraft = new Message();
   }
 }
 

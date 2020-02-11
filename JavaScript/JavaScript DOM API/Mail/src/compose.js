@@ -2,9 +2,11 @@ const MessageStore = require("./message_store");
 
 const Compose = {
   render() {
-    const container = document.createElement("ul");
+    const container = document.createElement("div");
     container.className = "new-message";
     container.innerHTML = this.renderForm();
+    container.addEventListener("change", this.updateDraft);
+    container.addEventListener("submit", this.sendMessage)
     return container;
   },
   renderForm() {
@@ -19,6 +21,15 @@ const Compose = {
       </form>
     `;
     return composeFormHtml;
+  },
+  updateDraft() {
+    event.preventDefault();
+    MessageStore.updateDraftField(event.target.name, event.target.value);
+  },
+  sendMessage() {
+    event.preventDefault();
+    MessageStore.sendDraft();
+    window.location.hash = "#inbox"
   }
 };
 
