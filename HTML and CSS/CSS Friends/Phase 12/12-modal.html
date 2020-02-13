@@ -17,6 +17,20 @@
   <link rel="stylesheet" href="css/10-posts.css" type="text/css">
   <link rel="stylesheet" href="css/11-icons.css" type="text/css">
   <link rel="stylesheet" href="css/12-modal.css" type="text/css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+    $(function(){
+      $("body").on("click", ".js-modal-open", function(e){
+        e.preventDefault();
+        $(".modal").addClass("is-open");
+      });
+
+      $("body").on("click", ".js-modal-close", function(e){
+        event.preventDefault();
+        $(".modal").removeClass("is-open");
+      })
+    })
+  </script>
 </head>
 <body>
 
@@ -38,6 +52,7 @@
         </li>
         <li><a href="#">Profile</a></li>
         <li><a href="#">Settings</a></li>
+        <li><a href="#" class="js-modal-open">Sign In</a></li>
       </ul>
 
     </nav>
@@ -231,6 +246,30 @@
     </ul>
 
   </footer>
-
+  <div class="modal">
+    <section class="modal-screen js-modal-close"></section>
+    <section class="modal-form">
+      <header class="modal-form-header">
+        <div class="modal-form-heading">
+          <h2>Welcome</h2>
+          <p>Please sign in to continue.</p>
+        </div>
+        <div class="modal-close button-alternative">
+          <strong class="js-modal-close">×</strong>
+        </div>
+      </header>
+      <form>
+        <div class="input">
+          <label for="email-input">Email</label>
+          <input type="text" name="email" id="email-input" placeholder="Type here...">
+        </div>
+        <div class="input">
+          <label for="password-input">Password</label>
+          <input type="password" name="password" id="password-input" placeholder="Password here...">
+        </div>
+        <div class="submit"><button type="submit">Sign In</button><span class="button-alternative">or <strong class="js-modal-close">Cancel</strong></span></div>
+      </form>
+    </section>
+  </div>
 </body>
 </html>
