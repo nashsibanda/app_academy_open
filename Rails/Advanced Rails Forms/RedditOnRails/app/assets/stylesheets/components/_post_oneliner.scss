@@ -1,9 +1,18 @@
 .post-oneliner {
   display: flex;
-  flex-wrap: wrap;
   padding: 0.5rem;
   background-color: $lightest-blue;
   border: 1px solid $gray;
+}
+
+.post-oneliner-text {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.post-oneliner-votes {
+  min-width: 5rem;
+  align-self: center;
 }
 
 .post-oneliner-info {
@@ -41,7 +50,12 @@
   border-radius: 5px;
 }
 
-// h3 {
-//   font-weight: bold;
-//   font-size: 40px;
-// }
+@media only screen and (max-width: 900px) {
+  .post-oneliner-info-label {
+    display: none;
+  }
+
+  .post-oneliner-info div {
+    padding-right: 1rem;
+  }
+}

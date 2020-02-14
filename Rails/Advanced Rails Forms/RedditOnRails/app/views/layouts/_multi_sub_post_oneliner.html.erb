@@ -3,32 +3,44 @@
 <% post_vote = post.votes.select { |vote| vote.voter == current_user }.first %>
 
 <section class="post-oneliner multi-sub">
-  <div class="post-oneliner-title">
-    <%= render  "layouts/vote_arrows", parent: post, vote: post_vote %> <%= link_to  post.title, post %>
-  </div>
-  <div class="post-oneliner-info">
-    <% unless blank_author %>
-      <div class="post-oneliner-info-author">
-        <span class="post-oneliner-info-label"> <%= post.crosspost_parent ? "crossposted" : "posted" %> by: </span><%= link_to  post.author.name, user_url(post.author) %>
+  <section class="post-oneliner-votes">
+    <%= render  "layouts/vote_arrows", parent: post, vote: post_vote %>
+  </section>
+  <section class="post-oneliner-text">
+    <div class="post-oneliner-title">
+      <% if post.url? %>
+        <a href="<%= post.url %>" target="_blank"><i class="feather icon-external-link"></i> <%=post.title%></a>
+      <% else %>
+        <%= link_to  post.title, post %>
+      <% end %>
+    </div>
+    <div class="post-oneliner-info">
+      <div class="post-oneliner-comments">
+        <%= link_to  "#{post.comments.count} comments", post %>
+      </div>
+      <% unless blank_sub %>
+        <div class="post-oneliner-info-sub">
+          <span class="post-oneliner-info-label">sub: </span><%= link_to  "r/#{post.sub.name}", sub_url(post.sub) %>
+        </div>
+      <% end %>
+      <% unless blank_author %>
+        <div class="post-oneliner-info-author">
+          <span class="post-oneliner-info-label"> <%= post.crosspost_parent ? "crossposted" : "posted" %> by: </span><%= link_to  "u/#{post.author.name}", user_url(post.author) %>
+        </div>
+      <% end %>
+      <div class="post-oneliner-info-created">
+        <span class="post-oneliner-info-label">posted: </span><%= post.tidy_age %>
+      </div>
+    </div>
+    <% if post.crosspost_parent %>
+      <div class="post-oneliner-crosspost post-oneliner-info">
+        <div class="post-oneliner-crosspost-parent-sub">
+          <span class="post-oneliner-info-label"> <%= link_to  "crossposted", post.crosspost_parent %> from: </span><%= link_to  post.crosspost_parent.sub.name, post.crosspost_parent.sub %>
+        </div>
+        <div class="post-oneliner-crosspost-original-poster">
+          <span class="post-oneliner-info-label">original poster: </span><%= link_to  post.crosspost_parent.author.name, post.crosspost_parent.author %>
+        </div>
       </div>
     <% end %>
-    <% unless blank_sub %>
-      <div class="post-oneliner-info-sub">
-        <span class="post-oneliner-info-label">sub: </span><%= link_to  post.sub.name, sub_url(post.sub) %>
-      </div>
-    <% end %>
-    <div class="post-oneliner-info-created">
-      <span class="post-oneliner-info-label">posted: </span><%= post.tidy_age %>
-    </div>
-  </div>
-  <% if post.crosspost_parent %>
-    <div class="post-oneliner-crosspost post-oneliner-info">
-      <div class="post-oneliner-crosspost-parent-sub">
-        <span class="post-oneliner-info-label"> <%= link_to  "crossposted", post.crosspost_parent %> from: </span><%= link_to  post.crosspost_parent.sub.name, post.crosspost_parent.sub %>
-      </div>
-      <div class="post-oneliner-crosspost-original-poster">
-        <span class="post-oneliner-info-label">original poster: </span><%= link_to  post.crosspost_parent.author.name, post.crosspost_parent.author %>
-      </div>
-    </div>
-  <% end %>
+  </section>
 </section>
