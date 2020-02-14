@@ -1,11 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from "react"
+import ReactDOM from "react-dom"
+import Clock from "./clock"
 
 function Root(props) {
-  return <div>Hello</div>;
+  return (
+    <main className="rootSection">
+      <Clock />
+    </main>
+  )
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const rootEl = document.getElementById("root");
-  ReactDOM.render(<Root />, rootEl);
-});
+  const rootEl = document.getElementById("root")
+  ReactDOM.render(<Root />, rootEl)
+})
