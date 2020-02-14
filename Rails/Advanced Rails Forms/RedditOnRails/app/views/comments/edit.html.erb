@@ -1,6 +1,8 @@
-<h1>Editing Comment</h1>
 
-<%= render 'form', comment: @comment %>
+<section class="comment-display block">
+  <h2>Editing Comment</h2>
+  <%= render 'form', comment: @comment %>
+  <%= link_to 'Permalink', @comment %> |
+  <%= link_to 'Back to parent post', @comment.post %>
+</section>
 
-<%= link_to 'Show', @comment %> |
-<%= link_to 'Back', comments_path %>

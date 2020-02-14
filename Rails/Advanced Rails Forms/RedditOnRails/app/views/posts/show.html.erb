@@ -4,7 +4,7 @@
 
 <article class="post-display block">
   <section class="post-display-title">
-    <h2> <%= render  "layouts/vote_arrows", parent: @post, vote: post_vote %> <%= @post.title %></h2>
+    <h2> <%= render  "layouts/vote_arrows", parent: @post, vote: post_vote %> <%= @post.url? ? "<a href=\"#{@post.url}\" target=\"_blank\">#{@post.title}</a>".html_safe : @post.title %></h2>
     <div class="post-display-title-links">
       Back to <%= link_to "r/#{@post.sub.name}", sub_url(@post.sub) %>
       <% if @post.author == current_user %>
@@ -18,7 +18,7 @@
     </section>
   <% end %>
   <section class="post-display-content">
-    <%= @post.content %>
+    <%= simple_format(@post.content) %>
   </section>
   <section class="post-display-info">
     <span>posted by <%= link_to  @post.author.name, @post.author %> <%= @post.tidy_age %> ago</span>

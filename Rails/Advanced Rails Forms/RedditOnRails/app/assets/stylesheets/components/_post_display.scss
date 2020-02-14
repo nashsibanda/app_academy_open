@@ -7,6 +7,10 @@
   margin-bottom: 1rem;
 }
 
+.post-display-content > * {
+  margin-bottom: 1rem;
+}
+
 .post-display-title-links {
   margin-top: 5px;
 }
@@ -18,7 +22,8 @@
   margin-bottom: 5px;
 }
 
-.post-display-info, .post-display-title-crosspost {
+.post-display-info,
+.post-display-title-crosspost {
   color: $gray;
   font-size: small;
   text-align: right;

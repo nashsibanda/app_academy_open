@@ -1,6 +1,6 @@
 <% if parent_sub %>
   <div class="sidebar-sub-description sidebar-block block">
-    <h3><%= parent_sub.name %></h3>
+    <h3><%= link_to  parent_sub.name, parent_sub %></h3>
     <div class="sidebar-dub-description-text">
       <% if parent_sub.sidebar %>
         <%= parent_sub.sidebar %>
