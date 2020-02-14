@@ -8,11 +8,12 @@
 
 .post-oneliner-info {
   display: flex;
+  font-size: smaller;
 }
 
 .post-oneliner-info-label {
   color: $gray;
-  font-size: smaller;
+  // font-size: smaller;
   font-style: italic;
   // font-weight: bold;
 }
@@ -26,10 +27,6 @@
   flex-basis: 100%;
   font-weight: bold;
   padding-bottom: 0.3rem;
-}
-
-.posts-list {
-  // padding: 1rem 0;
 }
 
 .posts-list > .post-oneliner:first-child {
