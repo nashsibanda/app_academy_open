@@ -10,7 +10,7 @@
 .main-header > h3 {
   font-weight: bold;
   font-size: x-large;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
 .main-header .session-div {
@@ -31,6 +31,25 @@
   text-align: right;
 }
 
+.site-header-title {
+  flex-shrink: 4;
+}
+
+.session-div {
+  min-width: 13rem;
+}
+
 .site-header-title > a {
   color: black;
+}
+
+@media only screen and (max-width: 500px) {
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .main-header > * {
+    width: 100%;
+  }
 }

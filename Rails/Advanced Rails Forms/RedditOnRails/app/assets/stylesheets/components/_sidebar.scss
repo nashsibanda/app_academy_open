@@ -13,3 +13,19 @@
   list-style: circle;
   list-style-position: inside;
 }
+
+.sidebar-sub-description {
+  flex-basis: 100%;
+}
+
+.sidebar-sub-list,
+.sidebar-user-stats {
+  min-width: 10rem;
+  flex-grow: 1;
+}
+
+@media only screen and (max-width: 500px) {
+  .sidebar-sub-list {
+    display: none;
+  }
+}
