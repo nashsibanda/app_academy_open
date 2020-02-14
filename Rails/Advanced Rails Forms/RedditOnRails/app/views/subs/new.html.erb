@@ -1,4 +1,11 @@
-<h1>New Sub</h1>
+<% content_for :wide_title do %>
+  <div class="page-title-row">
+    <div class="page-title-desc">
+      <h2>New Sub</h2>
+    </div>
+  </div>
+<% end %>
+
 
 <%= render 'form', sub: @sub %>
 

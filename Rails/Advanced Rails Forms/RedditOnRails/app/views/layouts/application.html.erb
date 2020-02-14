@@ -25,15 +25,15 @@
         <%= render  "layouts/flash_banner" %>
       </div>
     </header>
-    <section class="wide-page-title">
-      <%= yield :wide_title %>
-    </section>
-    <main>
-      <%= yield %>
-    </main>
-    <aside class="sidebar">
-      <%= yield :sidebar %>
-    </aside>
+    <div class="main-body-container">
+      <section class="wide-page-title"><%= yield :wide_title %></section>
+      <main>
+        <%= yield %>
+      </main>
+      <aside class="sidebar">
+        <%= yield :sidebar %>
+      </aside>
+    </div>
     <footer>
       <%= yield :footer %>
     </footer>

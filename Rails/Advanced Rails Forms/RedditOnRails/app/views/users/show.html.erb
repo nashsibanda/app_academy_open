@@ -1,6 +1,12 @@
-<h2><%= @user.name %>'s page</h2>
+<% content_for :wide_title do %>
+  <div class="page-title-row">
+    <div class="page-title-desc">
+      <h2><%= @user.name %>'s page</h2>
+      <h3>Posts</h3>
+    </div>
+  </div>
+<% end %>
 
-<h3>Posts</h3>
 
 <section class="posts-list">
   <% @user.posts_and_comments.each do |item| %>
@@ -11,8 +17,6 @@
     <% end %>
   <% end %>
 </section>
-
-<%= link_to  "Back to Users", users_url %>
 
 <% content_for :sidebar do %>
   <%= render  "user_sidebar", user: @user %>
