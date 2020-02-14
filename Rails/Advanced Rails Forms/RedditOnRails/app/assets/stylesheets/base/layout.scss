@@ -1,28 +1,39 @@
 html {
   position: relative;
   height: 100%;
+  background-color: #2b3440;
+  font-family: "Krub", sans-serif;
+  font-size: 16px;
 }
 
-body {
-  width: 90%;
+.main-body-container {
   margin: auto;
-  font-family: 'IBM Plex Sans', sans-serif;
   display: flex;
   flex-wrap: wrap;
+  width: 90%;
+  min-width: 440px;
 }
 
 header {
   flex-basis: 100%;
+  min-width: 21.1rem;
   display: flex;
   justify-content: space-between;
+  padding: 0 3.2rem;
   padding-bottom: 1rem;
   flex-wrap: wrap;
+  border-bottom: 1px solid black;
+  background-color: #fff;
+  margin-bottom: 1rem;
 }
 
 .wide-page-title {
   flex-basis: 100%;
-  padding-bottom: 1rem;
 }
+
+// .wide-page-title h2 {
+//   padding-bottom: 1rem;
+// }
 
 main {
   box-sizing: border-box;
@@ -32,13 +43,17 @@ main {
 aside {
   box-sizing: border-box;
   flex-basis: 25%;
-  padding-left: 1rem;
+  padding-left: 0.5rem;
 }
 
 .page-title-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.5rem;
+  background-color: $lightest-blue;
+  padding: 0.5rem;
+  border-radius: 5px;
 }
 
 .page-description {
@@ -46,22 +61,28 @@ aside {
   font-size: small;
 }
 
-a, .form-link {
+a,
+.form-link {
   color: $darkest-blue;
 }
 
-a:hover, .form-link:hover {
+a:hover,
+.form-link:hover {
   text-decoration: underline;
 }
 
-button, .button, .button_to {
+button,
+.button,
+.button_to {
   background-color: $light-blue;
   border: 1px solid $blue;
   padding: 0.3rem;
   box-sizing: border-box;
 }
 
-button:hover, .button:hover, .button_to:hover {
+button:hover,
+.button:hover,
+.button_to:hover {
   cursor: pointer;
   background-color: $dark-blue;
   color: $lightest-blue;
@@ -80,7 +101,9 @@ h2 {
   font-weight: bold;
 }
 
-input[type="text"], input[type="password"], textarea {
+input[type="text"],
+input[type="password"],
+textarea {
   border: 1px solid $gray;
   border-radius: 5px;
   width: 100%;
@@ -111,3 +134,16 @@ input[type="text"], input[type="password"], textarea {
 // textarea {
 //   width: 100%;
 // }
+
+@media only screen and (max-width: 800px) {
+  main {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  aside {
+    flex-basis: 100%;
+    padding-left: 0;
+    display: flex;
+  }
+}
