@@ -1,0 +1,28 @@
+body {
+  background-color: $lightest-bluegray;
+  font-family: $open-sans;
+}
+
+header {
+  padding: 1rem;
+  background-color: $light-blue;
+  margin-bottom: 1rem;
+}
+
+h1,
+h2 {
+  font-family: $squada;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+.main-container {
+  width: 90%;
+  margin: 0 auto;
+}

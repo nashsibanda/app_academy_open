@@ -1,0 +1,11 @@
+.clock-widget {
+  background-color: $light-orange;
+}
+
+.clock-widget span {
+  padding-right: 0.5rem;
+}
+
+.clock-widget span:last-child {
+  font-weight: 700;
+}

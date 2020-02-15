@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Squada+One&display=swap");
+html,
+body,
+header,
+nav,
+h1,
+a,
+ul,
+li,
+strong,
+main,
+button,
+i,
+section,
+img,
+div,
+h2,
+h3,
+p,
+form,
+fieldset,
+label,
+input,
+textarea,
+span,
+article,
+footer,
+time,
+small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+  background: inherit;
+  overflow: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+input[type="password"],
+input[type="email"],
+input[type="text"],
+input[type="submit"],
+textarea,
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button,
+input[type="submit"] {
+  cursor: pointer;
+}
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/*#region Colors*/
+/*#endregion*/
+h2 {
+  font-weight: lighter;
+}
+
+body {
+  background-color: #ebf3f7;
+  font-family: "Open Sans", sans-serif;
+}
+
+header {
+  padding: 1rem;
+  background-color: #94d5ff;
+  margin-bottom: 1rem;
+}
+
+h1,
+h2 {
+  font-family: "Squada One", sans-serif;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+.main-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.widget {
+  border: 2px solid black;
+  padding: 0.5rem;
+  background-color: #dfdfdf;
+}
+
+.clock-widget {
+  background-color: #f9d09b;
+}
+
+.clock-widget span {
+  padding-right: 0.5rem;
+}
+
+.clock-widget span:last-child {
+  font-weight: 700;
+}
+/*# sourceMappingURL=style.css.map */
