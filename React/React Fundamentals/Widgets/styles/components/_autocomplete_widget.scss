@@ -1,0 +1,40 @@
+.autocomplete-widget {
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  height: $interactive-widget-height;
+  background-color: $dark-blue;
+  color: white;
+  overflow: auto;
+  padding: 1rem;
+}
+
+.autocomplete-widget input {
+  margin-bottom: 0.5rem;
+  color: black;
+}
+
+.autocomplete-list {
+  flex-basis: 100%;
+}
+
+// .autocomplete-list ul {
+// }
+
+.autocomplete-list li {
+  padding: 0 0.5rem;
+  height: auto;
+}
+
+.autocomplete-list li:hover {
+  cursor: pointer;
+  background-color: $blue;
+}
+
+.autocomplete-list li.invalid {
+  display: none;
+}
+
+// .autocomplete-widget ul {
+//   overflow: hidden;
+// }
