@@ -46,3 +46,7 @@
   border-bottom: none;
   background-color: $light-green;
 }
+
+.tabs-widget-nav li.selected:hover {
+  color: initial;
+}
