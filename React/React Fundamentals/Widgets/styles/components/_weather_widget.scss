@@ -53,3 +53,24 @@
 .weather-temps {
   margin-bottom: 1rem;
 }
+
+@media only screen and (max-width: 650px) {
+  .weather-search form {
+    flex-wrap: wrap;
+  }
+
+  .weather-search input {
+    flex-basis: 100%;
+  }
+
+  .weather-search button {
+    flex-basis: 40%;
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .weather-search button {
+    flex-basis: 100%;
+  }
+}

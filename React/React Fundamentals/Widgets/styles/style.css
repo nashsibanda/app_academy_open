@@ -147,6 +147,13 @@ button:hover {
   }
 }
 
+@media only screen and (max-width: 700px) {
+  .interactive-widgets {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+
 .widget-container {
   padding: 1rem;
   -ms-flex-preferred-size: 100%;
@@ -351,9 +358,16 @@ button:hover {
         flex-basis: 100%;
   }
   .weather-search button {
-    -ms-flex-preferred-size: 45%;
-        flex-basis: 45%;
+    -ms-flex-preferred-size: 40%;
+        flex-basis: 40%;
     margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .weather-search button {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
   }
 }
 
