@@ -108,7 +108,7 @@ h2 {
 
 .main-container {
   width: 60%;
-  margin: 0 auto;
+  margin: 0 auto 5rem auto;
 }
 
 .interactive-widgets {
@@ -118,6 +118,7 @@ h2 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  height: 20rem;
 }
 
 input[type="text"] {
@@ -140,6 +141,12 @@ button:hover {
   border-bottom: 2px solid white;
 }
 
+@media only screen and (max-width: 900px) {
+  .main-container {
+    width: 90%;
+  }
+}
+
 .widget-container {
   padding: 1rem;
   -ms-flex-preferred-size: 100%;
@@ -148,6 +155,11 @@ button:hover {
 
 .widget-container h2 {
   margin-bottom: 0.3rem;
+}
+
+.interactive-widgets .widget-container div {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .widget {
@@ -171,6 +183,17 @@ button:hover {
 
 .clock-widget span:last-child {
   font-weight: 700;
+}
+
+.tabs-widget {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 20rem;
 }
 
 .tabs-widget-nav {
@@ -200,7 +223,8 @@ button:hover {
   background-color: #a3f99b;
   border: 2px solid #34912b;
   border-top: none;
-  height: 10rem;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -315,5 +339,62 @@ button:hover {
 
 .weather-temps {
   margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 650px) {
+  .weather-search form {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .weather-search input {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+  }
+  .weather-search button {
+    -ms-flex-preferred-size: 45%;
+        flex-basis: 45%;
+    margin-left: 0;
+  }
+}
+
+.autocomplete-widget {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 20rem;
+  background-color: #004370;
+  color: white;
+  overflow: auto;
+  padding: 1rem;
+}
+
+.autocomplete-widget input {
+  margin-bottom: 0.5rem;
+  color: black;
+}
+
+.autocomplete-list {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+}
+
+.autocomplete-list li {
+  padding: 0 0.5rem;
+  height: auto;
+}
+
+.autocomplete-list li:hover {
+  cursor: pointer;
+  background-color: #009bff;
+}
+
+.autocomplete-list li.invalid {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */

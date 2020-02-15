@@ -26,12 +26,13 @@ h2 {
 
 .main-container {
   width: 60%;
-  margin: 0 auto;
+  margin: 0 auto 5rem auto;
 }
 
 .interactive-widgets {
   display: flex;
   justify-content: space-between;
+  height: 20rem;
 }
 
 input[type="text"] {
@@ -50,4 +51,10 @@ button {
 
 button:hover {
   @include hover-embossed;
+}
+
+@media only screen and (max-width: 900px) {
+  .main-container {
+    width: 90%;
+  }
 }

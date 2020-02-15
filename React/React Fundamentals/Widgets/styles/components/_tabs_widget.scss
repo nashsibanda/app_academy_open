@@ -1,3 +1,9 @@
+.tabs-widget {
+  display: flex;
+  flex-direction: column;
+  height: $interactive-widget-height;
+}
+
 .tabs-widget-nav {
   display: flex;
   justify-content: space-between;
@@ -20,7 +26,7 @@
   background-color: $light-green;
   border: 2px solid $dark-green;
   border-top: none;
-  height: 10rem;
+  flex-basis: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
