@@ -173,7 +173,7 @@ h2 {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   margin-left: -2px;
-  background-color: #a3f99b;
+  background-color: #d3f9cf;
 }
 
 .tabs-widget-content {
@@ -199,6 +199,8 @@ h2 {
 
 .tabs-widget-nav li:hover {
   cursor: pointer;
+  background-color: #34912b;
+  color: white;
 }
 
 .tabs-widget-nav li:first-child {
@@ -208,5 +210,6 @@ h2 {
 .tabs-widget-nav li.selected {
   font-weight: 700;
   border-bottom: none;
+  background-color: #a3f99b;
 }
 /*# sourceMappingURL=style.css.map */

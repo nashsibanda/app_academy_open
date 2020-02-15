@@ -13,7 +13,7 @@
   // border-left: 0px solid transparent;
   box-sizing: border-box;
   margin-left: -2px;
-  background-color: $light-green;
+  background-color: $lightest-green;
 }
 
 .tabs-widget-content {
@@ -33,6 +33,8 @@
 
 .tabs-widget-nav li:hover {
   cursor: pointer;
+  background-color: $dark-green;
+  color: white;
 }
 
 .tabs-widget-nav li:first-child {
@@ -42,4 +44,5 @@
 .tabs-widget-nav li.selected {
   font-weight: 700;
   border-bottom: none;
+  background-color: $light-green;
 }
