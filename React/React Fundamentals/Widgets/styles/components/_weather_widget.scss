@@ -1,0 +1,55 @@
+.weather-widget {
+  background-color: $light-pink;
+}
+
+.weather-widget-title-row h3 {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.weather-search form {
+  @include flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.weather-search input {
+  flex-basis: 80%;
+}
+
+.weather-search button {
+  flex-basis: 20%;
+  text-align: center;
+  font-weight: 700;
+  color: white;
+  background-color: $pink;
+  margin-left: 1rem;
+}
+
+.weather-search button:hover {
+  background-color: $dark-pink;
+}
+
+.weather-widget-content div {
+  @include flex;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.weather-widget-content div h4 {
+  flex-basis: 100%;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.weather-widget-content div section {
+  @include flex;
+  flex-direction: column;
+  flex-grow: 2;
+}
+
+.weather-temps {
+  margin-bottom: 1rem;
+}

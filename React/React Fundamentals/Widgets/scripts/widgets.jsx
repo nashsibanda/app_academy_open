@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Clock from "./clock";
 import Tabs from "./tabs";
+import Weather from "./weather";
 
 function Root(props) {
   const tabsContent = [
@@ -25,6 +26,7 @@ function Root(props) {
   return (
     <main className="rootSection">
       <Clock />
+      <Weather />
       <div className="interactive-widgets">
         <Tabs {...tabsContent} />
       </div>
