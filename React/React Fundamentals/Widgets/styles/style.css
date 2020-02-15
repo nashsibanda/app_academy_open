@@ -84,6 +84,7 @@ h2 {
 body {
   background-color: #ebf3f7;
   font-family: "Open Sans", sans-serif;
+  font-size: 18px;
 }
 
 header {
@@ -98,16 +99,20 @@ h2 {
 }
 
 h1 {
-  font-size: 36px;
+  font-size: 40px;
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 30px;
 }
 
 .main-container {
   width: 90%;
   margin: 0 auto;
+}
+
+.widget-container h2 {
+  margin-bottom: 0.3rem;
 }
 
 .widget {
@@ -120,8 +125,13 @@ h2 {
   background-color: #f9d09b;
 }
 
-.clock-widget span {
-  padding-right: 0.5rem;
+.clock-widget section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .clock-widget span:last-child {

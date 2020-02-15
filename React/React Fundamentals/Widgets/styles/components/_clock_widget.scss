@@ -2,8 +2,9 @@
   background-color: $light-orange;
 }
 
-.clock-widget span {
-  padding-right: 0.5rem;
+.clock-widget section {
+  display: flex;
+  justify-content: space-between;
 }
 
 .clock-widget span:last-child {

@@ -22,16 +22,18 @@ class Clock extends React.Component {
   render() {
     const { date } = this.state;
     return (
-      <div className="clock-widget widget">
+      <div className="widget-container">
         <h2>Clock</h2>
-        <section className="clock-widget-time">
-          <span>Time:</span>
-          <span>{date.toTimeString().slice(0, 8)}</span>
-        </section>
-        <section className="clock-widget-date">
-          <span>Date:</span>
-          <span>{date.toDateString()}</span>
-        </section>
+        <div className="clock-widget widget">
+          <section className="clock-widget-time">
+            <span>Time:</span>
+            <span>{date.toTimeString().slice(0, 8)}</span>
+          </section>
+          <section className="clock-widget-date">
+            <span>Date:</span>
+            <span>{date.toDateString()}</span>
+          </section>
+        </div>
       </div>
     );
   }
