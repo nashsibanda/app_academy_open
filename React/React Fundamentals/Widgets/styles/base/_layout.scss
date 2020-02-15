@@ -4,10 +4,11 @@ body {
   font-size: 18px;
 }
 
-header {
+.site-header {
   padding: 1rem;
   background-color: $light-blue;
   margin-bottom: 1rem;
+  border-bottom: 4px solid $dark-blue;
 }
 
 h1,
@@ -24,11 +25,29 @@ h2 {
 }
 
 .main-container {
-  width: 90%;
+  width: 60%;
   margin: 0 auto;
 }
 
 .interactive-widgets {
   display: flex;
   justify-content: space-between;
+}
+
+input[type="text"] {
+  background-color: #fff;
+  padding: 0.5rem;
+  border: 1px solid $gray;
+  border-radius: 5px;
+}
+
+button {
+  background-color: $blue;
+  padding: 0.5rem;
+  border-radius: 5px;
+  @include embossed;
+}
+
+button:hover {
+  @include hover-embossed;
 }

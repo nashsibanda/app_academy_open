@@ -1,3 +1,19 @@
-h2 {
-  font-weight: lighter;
+@mixin embossed {
+  border-bottom: 2px solid $gray;
+  border-top: 2px solid white;
+}
+
+@mixin light-embossed {
+  border-bottom: 2px solid $light-gray;
+  border-top: 2px solid white;
+}
+
+@mixin hover-embossed {
+  border-top: 2px solid $light-gray;
+  border-bottom: 2px solid white;
+}
+
+@mixin flex {
+  display: flex;
+  justify-content: space-between;
 }
