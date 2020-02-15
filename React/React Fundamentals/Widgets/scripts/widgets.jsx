@@ -25,7 +25,9 @@ function Root(props) {
   return (
     <main className="rootSection">
       <Clock />
-      <Tabs {...tabsContent} />
+      <div className="interactive-widgets">
+        <Tabs {...tabsContent} />
+      </div>
     </main>
   );
 }
