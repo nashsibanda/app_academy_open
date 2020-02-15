@@ -103,7 +103,6 @@ class Weather extends React.Component {
       location,
       searchString
     } = this.state;
-    console.log(weather);
     return (
       <div className="widget-container">
         <h2>Weather</h2>
