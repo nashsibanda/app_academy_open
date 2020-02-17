@@ -23,7 +23,6 @@ class Autocomplete extends React.Component {
   }
 
   render() {
-    // console.log(this.state.searchString);
     const list = this.props;
     const indices = Object.keys(list);
     const { searchString } = this.state;
@@ -42,25 +41,14 @@ class Autocomplete extends React.Component {
             <ul>
               {indices.map(index => {
                 return (
-                  <li
-                    key={[index]}
-                    className={
-                      list[index].slice(0, searchLen).toLowerCase() ===
-                      searchString.toLowerCase()
-                        ? "valid"
-                        : "invalid"
-                    }
-                    onClick={this.selectName}
-                  >
-                    {list[index]}
-                  </li>
+                  list[index].slice(0, searchLen).toLowerCase() ===
+                    searchString.toLowerCase() && (
+                    <li key={[index]} onClick={this.selectName}>
+                      {list[index]}
+                    </li>
+                  )
                 );
               }, this)}
-              {/* <li>
-                {list[0].slice(0, searchLen).toLowerCase() === searchString
-                  ? "true"
-                  : "false"}
-              </li> */}
             </ul>
           </div>
         </div>
