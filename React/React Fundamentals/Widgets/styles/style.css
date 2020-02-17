@@ -411,4 +411,36 @@ button:hover {
 .autocomplete-list li.invalid {
   display: none;
 }
+
+.list-enter {
+  opacity: 0.01;
+  -webkit-transform: translateY(500%);
+          transform: translateY(500%);
+}
+
+.list-enter.list-enter-active {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition: opacity 500ms, -webkit-transform 500ms;
+  transition: opacity 500ms, -webkit-transform 500ms;
+  transition: opacity 500ms, transform 500ms;
+  transition: opacity 500ms, transform 500ms, -webkit-transform 500ms;
+}
+
+.list-leave {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.list-leave.list-leave-active {
+  opacity: 0.01;
+  -webkit-transform: translateY(500%);
+          transform: translateY(500%);
+  -webkit-transition: opacity 500ms, -webkit-transform 500ms;
+  transition: opacity 500ms, -webkit-transform 500ms;
+  transition: opacity 500ms, transform 500ms;
+  transition: opacity 500ms, transform 500ms, -webkit-transform 500ms;
+}
 /*# sourceMappingURL=style.css.map */

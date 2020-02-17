@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransitionGroup } from "react-transition-group";
 
 class Autocomplete extends React.Component {
   constructor(props) {
@@ -39,16 +40,22 @@ class Autocomplete extends React.Component {
           ></input>
           <div className="autocomplete-list">
             <ul>
-              {indices.map(index => {
-                return (
-                  list[index].slice(0, searchLen).toLowerCase() ===
-                    searchString.toLowerCase() && (
-                    <li key={[index]} onClick={this.selectName}>
-                      {list[index]}
-                    </li>
-                  )
-                );
-              }, this)}
+              <CSSTransitionGroup
+                transitionName="list"
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={500}
+              >
+                {indices.map(index => {
+                  return (
+                    list[index].slice(0, searchLen).toLowerCase() ===
+                      searchString.toLowerCase() && (
+                      <li key={[index]} onClick={this.selectName}>
+                        {list[index]}
+                      </li>
+                    )
+                  );
+                }, this)}
+              </CSSTransitionGroup>
             </ul>
           </div>
         </div>
