@@ -1,0 +1,14 @@
+//CSS Reset
+@import "./base/reset";
+
+// Base
+@import "./base/fonts";
+@import "./base/globals";
+@import "./base/mixins";
+@import "./base/layout";
+
+// Pages
+@import "./pages/splash";
+
+// Components
+@import "./components/header";

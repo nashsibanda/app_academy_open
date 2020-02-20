@@ -1,0 +1,102 @@
+.hero-splash {
+  background-image: url(./../../splash.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 120vh;
+}
+
+.hero-title,
+.hero-menu {
+  background: none;
+}
+
+.hero-splash > * {
+  position: relative;
+  top: 30vh;
+}
+
+.hero-title {
+  @include flex;
+  flex-wrap: wrap;
+  padding: 2rem 5vw;
+  margin: 0 auto;
+  justify-content: center;
+  background-color: rgba(5.2%, 5.2%, 5.2%, 0.4);
+}
+
+.hero-splash h1 {
+  font-family: $comfortaa;
+  font-size: 5rem;
+  color: $cream;
+  text-shadow: 2px 2px 1px $gray;
+  margin-left: 2rem;
+  flex-basis: 100%;
+  text-align: center;
+}
+
+.hero-splash h2 {
+  font-family: $lato;
+  font-size: 1.7rem;
+  font-weight: 300;
+  color: white;
+  // text-shadow: 2px 2px 1px $gray;
+}
+
+.hero-menu {
+  @include flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  top: 35vh;
+  width: 50vw;
+  padding-bottom: 10vh;
+  // font-weight: 300;
+}
+
+.hero-menu .button {
+  font-size: 1.3rem;
+}
+
+@media only screen and (max-width: 900px) {
+  .hero-menu {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 0;
+    top: 40vh;
+  }
+
+  .hero-menu li {
+    margin-bottom: 3rem;
+  }
+
+  .hero-menu li:last-child {
+    margin-bottom: 0;
+  }
+
+  .hero-splash h1 {
+    font-size: 3rem;
+  }
+
+  .hero-splash h2 {
+    font-size: 1.4rem;
+  }
+}
+
+@media only screen and (max-height: 500px) {
+  .hero-splash {
+    height: 150vh;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .hero-splash h1 {
+    font-size: 2rem;
+  }
+
+  .hero-splash h2 {
+    font-size: 1.3rem;
+  }
+
+  .hero-menu {
+    width: 80vw;
+  }
+}
