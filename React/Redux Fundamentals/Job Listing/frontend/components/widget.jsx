@@ -1,6 +1,11 @@
 import React from "react";
 import Job from "./job";
-import selectLocation from "./../actions";
+import { selectLocation } from "./../actions";
+import ReactHtmlParser, {
+  processNodes,
+  convertNodeToElement,
+  htmlparser2
+} from "react-html-parser";
 
 class Widget extends React.Component {
   constructor(props) {
@@ -16,8 +21,8 @@ class Widget extends React.Component {
   fetchJobListings(city) {
     $.ajax({
       crossDomain: true,
-      dataType: "jsonp",
-      url: `https://jobs.github.com/positions.json?location=${city}&markdown=true`,
+      dataType: "json",
+      url: `https://github-jobs-proxy.appspot.com/positions?description=python&location=${city}`,
       type: "GET",
       success: function(resp) {
         // tell the store to update with the new location and jobs;
@@ -51,14 +56,14 @@ class Widget extends React.Component {
         company={job.company}
         location={job.location}
         type={job.type}
-        description={job.description}
+        description={ReactHtmlParser(job.description)}
         info={job.url}
       />
     ));
 
     return (
       <div>
-        <h1>Github Job Listings</h1>
+        <h1>Github JavaScript Job Listings</h1>
         <h3>City: {city}</h3>
 
         <div className="location-selector">
