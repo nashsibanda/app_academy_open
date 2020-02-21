@@ -2,19 +2,34 @@
 <html>
   <head>
     <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="./styles/style.css" />
   </head>
   <body>
-    JotItDown: The Note-taking app with the best UX. Try it Today.
-
-    <img src="logo.png" />
-
-    <a href="#">about us</a>
-    <a href="#">careers</a>
-    <a href="#">contact</a>
-    <a href="#">edit profile</a>
-
-    current_user: octavia_octopus
+    <header>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#">about us</a></li>
+          <li><a href="#">careers</a></li>
+          <li><a href="#">contact</a></li>
+          <li><a href="index.html">home</a></li>
+        </ul>
+      </nav>
+      <div class="header-site-title">
+        <img class="header-main-logo" src="logo.png" />
+        <h1>JotItDown: The Note-taking app with the best UX. Try it Today.</h1>
+      </div>
+      <nav class="session-nav">
+        <ul>
+          <li>
+            <p>current_user: <strong>octavia_octopus</strong></p>
+          </li>
+          <li><a href="#">Edit Profile</a></li>
+          <!-- <li><a href="#">Sign Out</a></li>
+          <li><a href="#">Account Settings</a></li> -->
+        </ul>
+      </nav>
+    </header>
 
     <form action="#" onclick="">
       Enter Task You Completed<input type="text" />

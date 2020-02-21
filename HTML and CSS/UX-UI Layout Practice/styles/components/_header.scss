@@ -6,12 +6,35 @@ header nav ul {
 header {
   background-color: $green;
   border-bottom: 1px solid #1c411c;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   color: $cream;
 }
 
 header a:hover {
   color: $orange;
+}
+
+.session-nav {
+  overflow-x: auto;
+  flex-shrink: 3;
+  flex-wrap: nowrap;
+}
+
+.session-nav p,
+.session-nav a {
+  white-space: nowrap;
+}
+
+.session-nav li {
+  flex-shrink: 0;
+}
+
+.session-nav li:first-child {
+  flex-shrink: 3;
+}
+
+.session-nav p {
+  flex-shrink: 3;
 }
 
 .main-nav a,
@@ -20,6 +43,8 @@ header a:hover {
   padding: 0.7rem 1rem;
   border-left: 1px solid #8ebd8d;
   border-right: 1px solid #1c411c;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .main-nav li:first-child a,
@@ -36,21 +61,68 @@ header a:hover {
   font-weight: 700;
 }
 
-@media only screen and (max-width: 700px) {
+.session-nav p {
+  box-sizing: border-box;
+  // min-width: 318px;
+  max-width: 400px;
+}
+
+.header-site-title {
+  padding: 0.7rem 0;
+  @include flex;
+  justify-content: start;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header-main-logo {
+  width: 1.5rem;
+  margin-right: 0.3rem;
+}
+
+@media only screen and (max-width: 1350px) {
+  header {
+    flex-wrap: wrap;
+  }
+
+  .header-site-title {
+    padding-left: 1rem;
+    border-top: 1px solid $darkgreen;
+    flex: 0 0 100%;
+    order: 2;
+    background-color: #aad9d9;
+    color: darkslategrey;
+    box-sizing: border-box;
+  }
+
   .session-nav p {
-    display: none;
+    min-width: 0;
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 950px) {
+  .session-nav p,
+  .session-nav a {
+    border-right: none;
+  }
+
   .session-nav {
     border-top: 1px solid $darkgreen;
     width: 100%;
   }
 }
 
-@media only screen and (max-width: 350px) {
-  .main-nav a,
+@media only screen and (max-width: 500px) {
+  .session-nav p {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  // .session-nav p {
+  //   // display: none;
+  // }
+  // .main-nav a,
   .session-nav li > * {
     padding: 0.5rem;
   }

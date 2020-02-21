@@ -231,13 +231,41 @@ header nav ul {
 header {
   background-color: #357434;
   border-bottom: 1px solid #1c411c;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
   color: #fcfad3;
 }
 
 header a:hover {
   color: #fbb03b;
+}
+
+.session-nav {
+  overflow-x: auto;
+  -ms-flex-negative: 3;
+      flex-shrink: 3;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.session-nav p,
+.session-nav a {
+  white-space: nowrap;
+}
+
+.session-nav li {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.session-nav li:first-child {
+  -ms-flex-negative: 3;
+      flex-shrink: 3;
+}
+
+.session-nav p {
+  -ms-flex-negative: 3;
+      flex-shrink: 3;
 }
 
 .main-nav a,
@@ -246,6 +274,9 @@ header a:hover {
   padding: 0.7rem 1rem;
   border-left: 1px solid #8ebd8d;
   border-right: 1px solid #1c411c;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .main-nav li:first-child a,
@@ -262,21 +293,77 @@ header a:hover {
   font-weight: 700;
 }
 
-@media only screen and (max-width: 700px) {
+.session-nav p {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  max-width: 400px;
+}
+
+.header-site-title {
+  padding: 0.7rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.header-main-logo {
+  width: 1.5rem;
+  margin-right: 0.3rem;
+}
+
+@media only screen and (max-width: 1350px) {
+  header {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .header-site-title {
+    padding-left: 1rem;
+    border-top: 1px solid #2f682e;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    background-color: #aad9d9;
+    color: darkslategrey;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
   .session-nav p {
-    display: none;
+    min-width: 0;
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 950px) {
+  .session-nav p,
+  .session-nav a {
+    border-right: none;
+  }
   .session-nav {
     border-top: 1px solid #2f682e;
     width: 100%;
   }
 }
 
-@media only screen and (max-width: 350px) {
-  .main-nav a,
+@media only screen and (max-width: 500px) {
+  .session-nav p {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 400px) {
   .session-nav li > * {
     padding: 0.5rem;
   }
