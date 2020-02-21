@@ -82,8 +82,7 @@ html {
 }
 
 a:hover {
-  font-weight: 700;
-  text-decoration: underline;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.753);
 }
 
 .button {
@@ -91,6 +90,7 @@ a:hover {
   padding: 1rem 2rem;
   border: 1px solid darkslategray;
   border-top: 1px solid #8deaf0;
+  border-left: 1px solid #8deaf0;
   border-bottom: 1px solid #30494c;
   border-radius: 3px;
   color: #fcfad3;
@@ -100,6 +100,7 @@ a:hover {
   background-color: #b0ced0;
   color: #333;
   text-decoration: none;
+  text-shadow: none;
 }
 
 .hero-splash {
@@ -228,22 +229,23 @@ header nav ul {
 }
 
 header {
-  background-color: #4faf4e;
-  border-bottom: 1px solid #3e8a3e;
+  background-color: #357434;
+  border-bottom: 1px solid #1c411c;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  color: #fcfad3;
 }
 
 header a:hover {
-  color: #fcfad3;
+  color: #fbb03b;
 }
 
 .main-nav a,
 .session-nav li > * {
   display: block;
   padding: 0.7rem 1rem;
-  border-left: 1px solid #5dcd5b;
-  border-right: 1px solid #3e8a3e;
+  border-left: 1px solid #8ebd8d;
+  border-right: 1px solid #1c411c;
 }
 
 .main-nav li:first-child a,

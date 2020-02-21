@@ -4,21 +4,22 @@ header nav ul {
 }
 
 header {
-  background-color: #4faf4e;
-  border-bottom: 1px solid #3e8a3e;
+  background-color: $green;
+  border-bottom: 1px solid #1c411c;
   flex-wrap: wrap;
+  color: $cream;
 }
 
 header a:hover {
-  color: $cream;
+  color: $orange;
 }
 
 .main-nav a,
 .session-nav li > * {
   display: block;
   padding: 0.7rem 1rem;
-  border-left: 1px solid #5dcd5b;
-  border-right: 1px solid #3e8a3e;
+  border-left: 1px solid #8ebd8d;
+  border-right: 1px solid #1c411c;
 }
 
 .main-nav li:first-child a,

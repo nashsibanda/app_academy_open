@@ -3,8 +3,7 @@ html {
 }
 
 a:hover {
-  font-weight: 700;
-  text-decoration: underline;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.753);
 }
 
 .button {
@@ -12,6 +11,7 @@ a:hover {
   padding: 1rem 2rem;
   border: 1px solid darkslategray;
   border-top: 1px solid #8deaf0;
+  border-left: 1px solid #8deaf0;
   border-bottom: 1px solid #30494c;
   border-radius: 3px;
   color: $cream;
@@ -21,4 +21,5 @@ a:hover {
   background-color: #b0ced0;
   color: $darkgray;
   text-decoration: none;
+  text-shadow: none;
 }
