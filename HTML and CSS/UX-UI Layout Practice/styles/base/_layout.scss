@@ -4,14 +4,11 @@ html {
 }
 
 .button {
-  background-color: darkslategray;
-  padding: 1rem 2rem;
-  border: 1px solid darkslategray;
-  border-top: 1px solid #8deaf0;
-  border-left: 1px solid #8deaf0;
-  border-bottom: 1px solid #30494c;
-  border-radius: 3px;
-  color: $cream;
+  background-color: $lightblue;
+  padding: 0.4rem;
+  max-width: 8rem;
+  white-space: normal;
+  text-align: center;
 }
 
 .button:hover {
@@ -40,7 +37,14 @@ aside {
 }
 
 aside {
-  flex-basis: 33%;
+  flex-basis: 30%;
+  max-width: 30rem;
+  flex-shrink: 0;
+}
+
+.main-display {
+  padding-top: 1rem;
+  flex-grow: 2;
 }
 
 @media only screen and (max-width: 700px) {
@@ -51,5 +55,11 @@ aside {
   aside,
   main {
     flex-basis: 100%;
+    max-width: none;
+  }
+
+  .main-display {
+    position: relative;
+    top: 24vh;
   }
 }

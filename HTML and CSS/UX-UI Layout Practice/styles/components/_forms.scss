@@ -1,0 +1,18 @@
+form {
+  @include flex;
+  justify-content: space-between;
+}
+
+form .button {
+  min-width: 6rem;
+  width: 25%;
+  margin-left: 1rem;
+}
+
+form input[type="text"] {
+  flex-grow: 3;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  padding: 0.2rem;
+  padding-left: 0.4rem;
+}

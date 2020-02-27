@@ -1,0 +1,42 @@
+.sidebar {
+  background-color: white;
+  padding: 0.8rem;
+  padding-top: 2rem;
+  border-right: 4px solid $darkgreen;
+}
+
+.sidebar > * {
+  margin-bottom: 1rem;
+}
+
+.lists-list li a {
+  display: block;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.lists-list li:nth-child(even) a {
+  background-color: $lighterblue;
+}
+
+.lists-list li:last-child a {
+  border-bottom: none;
+}
+
+.lists-list li a:hover {
+  color: $green;
+  background-color: $cream;
+}
+
+@media only screen and (max-width: 700px) {
+  .sidebar {
+    height: 25vh;
+    overflow: scroll;
+    position: fixed;
+    width: 100%;
+    border-bottom: 4px solid $darkgreen;
+    border-right: none;
+    top: 130px;
+    z-index: 1;
+  }
+}

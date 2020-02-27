@@ -1,0 +1,63 @@
+.list-block {
+  background-color: white;
+  padding: 2rem;
+  width: 95%;
+  margin: auto;
+  max-width: 40rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.list-block h2 {
+  font-weight: 700;
+  font-size: 23px;
+  font-family: $comfortaa;
+  text-align: right;
+  color: $green;
+}
+
+.list-block > * {
+  margin-bottom: 1rem;
+}
+
+.list-block li {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+  @include flex;
+}
+
+.list-block li:nth-child(even) {
+  background-color: $lighterblue;
+}
+
+.list-block li:last-child {
+  border-bottom: none;
+}
+
+.list-block li p {
+  display: inline-block;
+}
+
+.task-status {
+  display: inline-block;
+  text-align: right;
+  font-weight: 700;
+}
+
+.status-complete {
+  color: $green;
+}
+
+.status-incomplete {
+  color: #c06e6e;
+}
+
+@media only screen and (max-width: 350px) {
+  .list-block li {
+    flex-wrap: wrap;
+  }
+
+  .list-block li p {
+    flex-basis: 100%;
+  }
+}

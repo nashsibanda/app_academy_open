@@ -1,6 +1,7 @@
 header,
 header nav ul {
   @include flex;
+  z-index: 2;
 }
 
 header {
@@ -8,6 +9,7 @@ header {
   border-bottom: 1px solid #1c411c;
   flex-wrap: nowrap;
   color: $cream;
+  flex: 0 0 auto;
 }
 
 header a:hover {
