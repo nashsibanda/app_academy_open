@@ -18,6 +18,16 @@ html {
   text-shadow: none;
 }
 
+a:focus,
+.button:focus {
+  border: 2px solid $darkgreen !important;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border: 1px solid $darkblue !important;
+}
+
 body {
   display: flex;
   flex-flow: column;

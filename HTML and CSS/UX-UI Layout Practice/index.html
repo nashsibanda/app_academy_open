@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title></title>
+    <title>JotItDown: My Lists</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="./styles/style.css" />
   </head>
   <body>
     <header>
-      <nav class="main-nav">
+      <nav class="main-nav" aria-label="main-nav-menu">
         <ul>
           <li><a href="#">about us</a></li>
           <li><a href="#">careers</a></li>
@@ -16,10 +16,10 @@
         </ul>
       </nav>
       <div class="header-site-title">
-        <img class="header-main-logo" src="logo.png" />
+        <img class="header-main-logo" src="logo.png" alt="JotItDown logo" />
         <h1>JotItDown: The Note-taking app with the best UX. Try it Today.</h1>
       </div>
-      <nav class="session-nav">
+      <nav class="session-nav" aria-label="user-session-menu">
         <ul>
           <li>
             <p>current_user: <strong>octavia_octopus</strong></p>
@@ -33,19 +33,27 @@
 
     <div class="main-container">
       <aside class="sidebar">
-        <form class="lists-search-form" action="#" onclick="">
+        <form
+          class="lists-search-form"
+          action="#"
+          onclick=""
+          aria-label="list-search-form"
+        >
           <input type="text" placeholder="Search lists..." />
           <input type="submit" class="button form-button" value="Search" />
         </form>
-        <section class="lists-list">
-          <ul>
-            <li><a href="#">Shopping List</a></li>
-            <li><a href="#">Places I want to Visit Someday</a></li>
-            <li><a href="#">Workout Plan</a></li>
-            <li><a href="#">Favorite Quotes</a></li>
-          </ul>
-        </section>
-        <form class="new-lists-form" action="#" onclick="">
+        <ul class="lists-list" aria-label="list-of-lists">
+          <li><a href="#">Shopping List</a></li>
+          <li><a href="#">Places I want to Visit Someday</a></li>
+          <li><a href="#">Workout Plan</a></li>
+          <li><a href="#">Favorite Quotes</a></li>
+        </ul>
+        <form
+          class="new-lists-form"
+          action="#"
+          onclick=""
+          aria-label="list-create-form"
+        >
           <input type="text" placeholder="Add a new list..." />
           <input
             type="submit"
@@ -56,9 +64,14 @@
       </aside>
 
       <main class="main-display">
-        <article class="task-list list-block">
+        <article class="task-list list-block" aria-label="list">
           <h2>Shopping List</h2>
-          <form class="new-task-form" action="#" onclick="">
+          <form
+            class="new-task-form"
+            aria-label="new-task-form"
+            action="#"
+            onclick=""
+          >
             <input type="text" placeholder="Add a new item..." />
             <input type="submit" class="button form-button" value="Add" />
           </form>
@@ -94,7 +107,12 @@
               >
             </li>
           </ul>
-          <form class="toggle-task-status-form" action="#" onclick="">
+          <form
+            class="toggle-task-status-form"
+            aria-label="toggle-task-status-form"
+            action="#"
+            onclick=""
+          >
             <input type="text" placeholder="Enter task name to toggle..." />
             <input
               type="submit"
@@ -104,9 +122,14 @@
           </form>
         </article>
 
-        <article class="task-list list-block">
+        <article class="task-list list-block" aria-label="list">
           <h2>Places I want to Visit Someday</h2>
-          <form class="new-task-form" action="#" onclick="">
+          <form
+            class="new-task-form"
+            aria-label="new-task-form"
+            action="#"
+            onclick=""
+          >
             <input type="text" placeholder="Add a new item..." />
             <input type="submit" class="button form-button" value="Add" />
           </form>
@@ -136,7 +159,12 @@
               >
             </li>
           </ul>
-          <form class="toggle-task-status-form" action="#" onclick="">
+          <form
+            class="toggle-task-status-form"
+            aria-label="toggle-task-status-form"
+            action="#"
+            onclick=""
+          >
             <input type="text" placeholder="Enter task name to toggle..." />
             <input
               type="submit"
@@ -146,9 +174,14 @@
           </form>
         </article>
 
-        <article class="task-list list-block">
+        <article class="task-list list-block" aria-label="list">
           <h2>Workout Plan</h2>
-          <form class="new-task-form" action="#" onclick="">
+          <form
+            class="new-task-form"
+            aria-label="new-task-form"
+            action="#"
+            onclick=""
+          >
             <input type="text" placeholder="Add a new item..." />
             <input type="submit" class="button form-button" value="Add" />
           </form>
@@ -180,7 +213,12 @@
               <strong class="task-status status-complete">COMPLETE</strong>
             </li>
           </ul>
-          <form class="toggle-task-status-form" action="#" onclick="">
+          <form
+            class="toggle-task-status-form"
+            aria-label="toggle-task-status-form"
+            action="#"
+            onclick=""
+          >
             <input type="text" placeholder="Enter task name to toggle..." />
             <input
               type="submit"
@@ -190,9 +228,14 @@
           </form>
         </article>
 
-        <article class="abstract-list list-block">
+        <article class="abstract-list list-block" aria-label="list">
           <h2>Favorite Quotes</h2>
-          <form class="new-task-form" action="#" onclick="">
+          <form
+            class="new-task-form"
+            aria-label="new-task-form"
+            action="#"
+            onclick=""
+          >
             <input type="text" placeholder="Add a new item..." />
             <input type="submit" class="button form-button" value="Add" />
           </form>
@@ -226,14 +269,6 @@
               </p>
             </li>
           </ul>
-          <form class="toggle-task-status-form" action="#" onclick="">
-            <input type="text" placeholder="Enter task name to toggle..." />
-            <input
-              type="submit"
-              class="button form-button"
-              value="Toggle Task Complete"
-            />
-          </form>
         </article>
       </main>
     </div>
