@@ -79,10 +79,7 @@ input[type="submit"] {
 
 html {
   font-family: "Lato", sans-serif;
-}
-
-a:hover {
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.753);
+  background-color: #666;
 }
 
 .button {
@@ -101,6 +98,50 @@ a:hover {
   color: #333;
   text-decoration: none;
   text-shadow: none;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+main,
+header,
+aside {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+header {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+}
+
+aside {
+  -ms-flex-preferred-size: 25%;
+      flex-basis: 25%;
+}
+
+@media only screen and (max-width: 900px) {
+  aside {
+    -ms-flex-preferred-size: 33%;
+        flex-basis: 33%;
+  }
+  main {
+    -ms-flex-preferred-size: 67%;
+        flex-basis: 67%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  aside,
+  main {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+  }
 }
 
 .hero-splash {
@@ -237,7 +278,8 @@ header {
 }
 
 header a:hover {
-  color: #fbb03b;
+  color: #aad9d9;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.753);
 }
 
 .session-nav {
@@ -354,6 +396,11 @@ header a:hover {
   .session-nav {
     border-top: 1px solid #2f682e;
     width: 100%;
+  }
+  .main-nav {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
   }
 }
 
