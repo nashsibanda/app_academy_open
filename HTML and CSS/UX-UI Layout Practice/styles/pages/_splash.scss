@@ -54,6 +54,17 @@
 
 .hero-menu .button {
   font-size: 1.3rem;
+  padding: 1rem 2rem;
+  display: inline-block;
+  background-color: darkslategray;
+  border: 1px solid darkslategray;
+  border-top: 1px solid #8deaf0;
+  border-left: 1px solid #8deaf0;
+  border-bottom: 1px solid #30494c;
+  border-radius: 3px;
+  color: $cream;
+  width: 10rem;
+  max-width: none;
 }
 
 @media only screen and (max-width: 900px) {
