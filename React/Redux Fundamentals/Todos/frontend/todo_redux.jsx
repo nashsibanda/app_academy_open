@@ -1,16 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import configureStore from "./store/store";
-import { receiveTodos, receiveTodo } from "./actions/todo_actions";
+import Root from "./components/root";
+import allTodos from "./reducers/selectors";
 
 document.addEventListener("DOMContentLoaded", function() {
-  ReactDOM.render(
-    <h1>Hello, it's me, React!</h1>,
-    document.getElementById("content")
-  );
+  const rootElement = document.getElementById("content");
+  ReactDOM.render(<Root store={configureStore} />, rootElement);
 });
 
-window.receiveTodo = receiveTodo;
-window.receiveTodos = receiveTodos;
-
 window.store = configureStore;
+window.allTodos = allTodos;
