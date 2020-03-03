@@ -1,22 +1,23 @@
 import React from "react";
 import TodoListItem from "./todo_list_item";
-
-// export default () => <h3>Todo list goes here!</h3>;
+import TodoForm from "./todo_form";
 
 class TodoList extends React.Component {
   constructor(props) {
     super(props);
-    this.todos = props.todos;
   }
 
   render() {
-    const todos = this.todos;
+    const { todos, receiveTodo } = this.props;
     return (
-      <ul>
-        {todos.map((todo, index) => {
-          return <TodoListItem todo={todo} key={index} />;
-        })}
-      </ul>
+      <div className="todos">
+        <TodoForm submit={receiveTodo} />
+        <ul>
+          {todos.map((todo, index) => {
+            return <TodoListItem todo={todo} key={index} />;
+          })}
+        </ul>
+      </div>
     );
   }
 }

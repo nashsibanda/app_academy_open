@@ -6,8 +6,8 @@ class TodoListItem extends React.Component {
   }
 
   render() {
-    const { todo, key } = this.props;
-    return <li key={key}>{todo.title}</li>;
+    const { todo } = this.props;
+    return <li>{todo.title}</li>;
   }
 }
 
