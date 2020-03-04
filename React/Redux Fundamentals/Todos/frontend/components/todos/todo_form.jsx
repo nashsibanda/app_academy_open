@@ -59,16 +59,14 @@ class TodoForm extends React.Component {
           placeholder="Enter more information here..."
           onChange={this.updateBody}
           value={this.state.body}
+        ></input>{" "}
+        <label htmlFor="done">Done?</label>
+        <input
+          type="checkbox"
+          name="done"
+          onChange={this.updateDone}
+          checked={this.state.done}
         ></input>
-        <div className="form-done">
-          <label htmlFor="done"></label>
-          <input
-            type="checkbox"
-            name="done"
-            onChange={this.updateDone}
-            checked={this.state.done}
-          ></input>
-        </div>
         <input type="submit"></input>
       </form>
     );
