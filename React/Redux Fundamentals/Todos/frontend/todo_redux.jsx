@@ -9,5 +9,5 @@ document.addEventListener("DOMContentLoaded", function() {
   ReactDOM.render(<Root store={configureStore} />, rootElement);
 });
 
-window.store = configureStore;
-window.allTodos = allTodos;
+// window.store = configureStore;
+// window.allTodos = allTodos;
