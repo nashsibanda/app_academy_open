@@ -1,4 +1,5 @@
 import React from "react";
+import StepListContainer from "./../step_list/step_list_container";
 
 class TodoDetailView extends React.Component {
   constructor(props) {
@@ -15,6 +16,10 @@ class TodoDetailView extends React.Component {
         <li>
           <span className="todo-details-label">Status:</span>{" "}
           {todo.done ? "Completed" : "Not Completed"}
+        </li>
+        <li>
+          <span className="todo-details-label">Steps:</span>
+          <StepListContainer todo_id={todo.id} />
         </li>
       </ul>
     );

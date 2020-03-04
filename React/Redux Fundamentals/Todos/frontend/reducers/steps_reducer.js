@@ -8,12 +8,14 @@ const initialState = {
   1: {
     id: 1,
     title: "walk to store",
+    body: "go via the park, not the main road",
     done: false,
     todo_id: 3
   },
   2: {
     id: 2,
     title: "buy soap",
+    body: "",
     done: false,
     todo_id: 3
   }
