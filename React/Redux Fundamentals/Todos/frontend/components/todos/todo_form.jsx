@@ -35,7 +35,6 @@ class TodoForm extends React.Component {
   }
 
   updateDone(e) {
-    e.preventDefault();
     this.setState({ done: e.currentTarget.checked });
   }
 
