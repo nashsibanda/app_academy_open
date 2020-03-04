@@ -16,6 +16,12 @@ const initialState = {
     title: "wash dog",
     body: "with shampoo",
     done: true
+  },
+  3: {
+    id: 3,
+    title: "take a shower",
+    body: "and be clean",
+    done: false
   }
 };
 
