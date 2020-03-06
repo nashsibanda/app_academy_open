@@ -1,3 +1,8 @@
+.todo-list-header {
+  font-family: $seriffont;
+  font-size: 1.6rem;
+}
+
 .todo-list {
   padding: 2rem;
   background-color: #fff;
@@ -25,40 +30,58 @@
   justify-content: start;
   align-items: center;
   position: relative;
+  padding: 1rem;
 }
 
 .todo-list-item-title:hover {
+  background-color: $lightestgray;
   cursor: pointer;
 }
 
 .todo-title {
-  // font-family: $seriffont;
   text-transform: capitalize;
   font-weight: 400;
   font-size: 1.5rem;
 }
 
 .todo-delete-icon {
-  position: relative;
-  right: -1rem;
-  font-size: 1.5rem;
+  align-self: flex-end;
+  margin-left: auto;
+  font-size: 2rem;
 }
 
 .todo-details {
-  margin-top: 1rem;
+  margin-top: 0;
 }
 
 .todo-details > li {
   @include flex;
   justify-content: start;
   align-items: center;
-  padding: 1.2rem 0;
+  padding: 0.6rem 0;
+  margin: 0.6rem 0;
   box-sizing: border-box;
-  height: 1rem;
+  border-bottom: 1px solid $lightergray;
+  min-height: 3.5rem;
+}
+
+.todo-details .inline-form {
+  flex-basis: 100%;
+}
+
+.todo-details > li:last-child {
+  border-bottom: none;
 }
 
 .todo-details-label {
-  width: 8rem;
+  width: 6rem;
+  flex-shrink: 0;
+  color: $keycolor;
+  font-weight: 700;
+}
+
+.todo-details-content {
+  flex-shrink: 1;
 }
 
 .todo-details .todo-steps-container {
@@ -69,4 +92,48 @@
 
 .steps-container {
   align-self: flex-start;
+  flex-grow: 1;
+}
+
+@media only screen and (max-width: 750px) {
+  .todo-title {
+    font-size: 1.2rem;
+  }
+
+  .todo-details > li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .todo-details > li > * {
+    width: 100%;
+  }
+
+  .todo-done,
+  .todo-delete-icon {
+    position: static;
+    padding: 0;
+  }
+
+  .todo-done {
+    padding-right: 1rem;
+  }
+
+  .todo-list-item {
+    padding-left: 0;
+  }
+
+  .todo-details-label {
+    margin-bottom: 0.5rem;
+  }
+
+  .todo-steps-container,
+  .steps-container {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .todo-list-item-title {
+    padding: 0;
+  }
 }

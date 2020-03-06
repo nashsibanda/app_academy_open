@@ -74,18 +74,17 @@ class TodoForm extends React.Component {
             <h2>New Todo</h2>
             <input
               type="text"
-              placeholder="Enter Todo title here..."
+              placeholder="Title"
               onChange={this.updateTitle}
               value={this.state.title}
             ></input>
             {this.state.showBodyInput ? (
               <span className="toggleable-text-input">
-                <input
-                  type="text"
-                  placeholder="Enter more information here..."
+                <textarea
+                  placeholder="Description"
                   onChange={this.updateBody}
                   value={this.state.body}
-                ></input>
+                ></textarea>
                 <i
                   className="fas fa-times icon-button"
                   onClick={this.toggleBodyInput}

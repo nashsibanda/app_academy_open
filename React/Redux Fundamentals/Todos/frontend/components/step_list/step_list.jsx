@@ -26,7 +26,7 @@ class StepList extends React.Component {
         {steps.length > 0 ? (
           this.state.showSteps ? (
             <ul className="step-list">
-              <li className="step-list-item">
+              <li className="step-list-placeholder-item">
                 <a href="#" onClick={this.toggleSteps}>
                   Hide Steps
                 </a>
@@ -44,7 +44,7 @@ class StepList extends React.Component {
             </ul>
           ) : (
             <ul className="step-list">
-              <li className="step-list-item">
+              <li className="step-list-placeholder-item">
                 <a href="#" onClick={this.toggleSteps}>
                   Show Steps
                 </a>
@@ -53,13 +53,15 @@ class StepList extends React.Component {
           )
         ) : (
           <ul className="step-list">
-            <li className="step-list-item">No steps added.</li>
+            <li className="step-list-placeholder-item">No steps added.</li>
           </ul>
         )}
-        <StepForm
-          receiveStep={this.props.receiveStep}
-          todo_id={this.props.todo_id}
-        />
+        {(steps.length === 0 || this.state.showSteps) && (
+          <StepForm
+            receiveStep={this.props.receiveStep}
+            todo_id={this.props.todo_id}
+          />
+        )}
       </div>
     );
   }

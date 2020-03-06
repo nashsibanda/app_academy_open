@@ -22,7 +22,7 @@ class StepForm extends React.Component {
       todo_id: this.props.todo_id
     });
     this.props.receiveStep(newStep);
-    this.setState({ title: "", body: "" });
+    this.setState({ title: "", body: "", showForm: false });
   }
 
   toggleForm(e) {
@@ -34,7 +34,7 @@ class StepForm extends React.Component {
     return (
       <div className="step-form-container">
         {this.state.showForm ? (
-          <form className="inline-form" onSubmit={this.handleSubmit}>
+          <form className="stacked-form" onSubmit={this.handleSubmit}>
             <input
               type="text"
               placeholder="New Step"
@@ -47,13 +47,16 @@ class StepForm extends React.Component {
               onChange={this.updateState("body")}
               value={this.state.body}
             ></input>
-            <i className="fas fa-check icon-button">
-              <input type="submit" value="" />
-            </i>
-            <i
-              className="fas fa-times icon-button"
-              onClick={this.toggleForm}
-            ></i>
+            <div className="submit-cancel-buttons">
+              <button
+                type="submit"
+                className="fas fa-check icon-button"
+              ></button>
+              <i
+                className="fas fa-times icon-button"
+                onClick={this.toggleForm}
+              ></i>
+            </div>
           </form>
         ) : (
           <a href="#" onClick={this.toggleForm}>

@@ -50,14 +50,16 @@ class TodoDetailView extends React.Component {
                 value={this.state.title}
                 onChange={this.updateProperty("title")}
               ></input>
-              <button
-                className="fas fa-check icon-button"
-                type="submit"
-              ></button>
-              <i
-                className="fas fa-undo icon-button"
-                onClick={this.toggleForm("editTitle")}
-              ></i>
+              <div className="submit-cancel-buttons">
+                <button
+                  className="fas fa-check icon-button"
+                  type="submit"
+                ></button>
+                <i
+                  className="fas fa-undo icon-button"
+                  onClick={this.toggleForm("editTitle")}
+                ></i>
+              </div>
             </form>
           ) : (
             <span className="todo-details-content">
@@ -70,7 +72,7 @@ class TodoDetailView extends React.Component {
           )}
         </li>
         <li>
-          <span className="todo-details-label">Description:</span>{" "}
+          <span className="todo-details-label">Details:</span>{" "}
           {this.state.editBody ? (
             <form
               className="inline-form"
@@ -78,20 +80,21 @@ class TodoDetailView extends React.Component {
                 this.sendTodoToParent(e, "body");
               }}
             >
-              <input
-                type="text"
-                placeholder="Enter todo body..."
+              <textarea
+                placeholder="Enter todo details..."
                 value={this.state.body}
                 onChange={this.updateProperty("body")}
-              ></input>
-              <button
-                className="fas fa-check icon-button"
-                type="submit"
-              ></button>
-              <i
-                className="fas fa-undo icon-button"
-                onClick={this.toggleForm("editBody")}
-              ></i>{" "}
+              ></textarea>
+              <div className="submit-cancel-buttons">
+                <button
+                  className="fas fa-check icon-button"
+                  type="submit"
+                ></button>
+                <i
+                  className="fas fa-undo icon-button"
+                  onClick={this.toggleForm("editBody")}
+                ></i>
+              </div>
             </form>
           ) : (
             <span className="todo-details-content">

@@ -13,6 +13,7 @@ class TodoList extends React.Component {
       <div className="todos">
         <TodoForm submit={receiveTodo} />
         <ul className="todo-list">
+          <h2 className="todo-list-header">Your Todos</h2>
           {todos.map((todo, index) => {
             return (
               <TodoListItem

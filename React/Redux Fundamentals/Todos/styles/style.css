@@ -86,16 +86,18 @@ body {
 }
 
 main {
-  margin: 0 10rem;
+  margin: 0 10vw;
 }
 
-input[type="text"] {
+input[type="text"],
+textarea {
   border: 1px solid #bbb;
   border-radius: 5px;
   padding: 0.5rem;
   background-color: #fff;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  width: 100%;
 }
 
 .form-button,
@@ -132,7 +134,7 @@ input[type="text"] {
 }
 
 .icon-button {
-  color: #ddd;
+  color: #999;
   font-size: 1rem;
 }
 
@@ -196,16 +198,18 @@ header h1 {
   border-radius: 0.5rem;
   background-color: white;
   position: absolute;
-  top: 20vh;
-  width: 80vw;
-  max-width: 40rem;
+  top: 30vh;
+  width: calc(100% - 30vw);
+  left: 15vw;
   margin: 0 auto;
   z-index: 3;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .new-todo-modal {
   background-color: #00000066;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -220,7 +224,6 @@ header h1 {
 }
 
 .new-todo-form > * {
-  max-width: 40rem;
   margin-bottom: 0.4rem;
 }
 
@@ -260,11 +263,47 @@ header h1 {
           align-items: center;
 }
 
+.stacked-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.stacked-form input {
+  margin-bottom: 0.4rem;
+}
+
+.submit-cancel-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.submit-cancel-buttons > *:first-child {
+  padding-right: 0.4rem;
+}
+
 .inline-form > * {
   margin-right: 0.4rem;
 }
 
-.inline-form .icon-button {
+.inline-form .icon-button,
+.stacked-form .icon-button {
   font-size: 1.5rem;
 }
 
@@ -284,8 +323,27 @@ header h1 {
   width: 2rem;
 }
 
-.toggleable-text-input > input {
+.toggleable-text-input > input,
+.toggleable-text-input > textarea {
   width: calc(100% - 2.5rem);
+}
+
+@media only screen and (max-width: 750px) {
+  .inline-form {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .submit-cancel-buttons {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+}
+
+.todo-list-header {
+  font-family: "Georgia", serif;
+  font-size: 1.6rem;
 }
 
 .todo-list {
@@ -324,9 +382,11 @@ header h1 {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
+  padding: 1rem;
 }
 
 .todo-list-item-title:hover {
+  background-color: #eee;
   cursor: pointer;
 }
 
@@ -337,13 +397,14 @@ header h1 {
 }
 
 .todo-delete-icon {
-  position: relative;
-  right: -1rem;
-  font-size: 1.5rem;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin-left: auto;
+  font-size: 2rem;
 }
 
 .todo-details {
-  margin-top: 1rem;
+  margin-top: 0;
 }
 
 .todo-details > li {
@@ -359,14 +420,34 @@ header h1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 1.2rem 0;
+  padding: 0.6rem 0;
+  margin: 0.6rem 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  height: 1rem;
+  border-bottom: 1px solid #ddd;
+  min-height: 3.5rem;
+}
+
+.todo-details .inline-form {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+}
+
+.todo-details > li:last-child {
+  border-bottom: none;
 }
 
 .todo-details-label {
-  width: 8rem;
+  width: 6rem;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  color: #6a5acd;
+  font-weight: 700;
+}
+
+.todo-details-content {
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
 }
 
 .todo-details .todo-steps-container {
@@ -382,23 +463,126 @@ header h1 {
 .steps-container {
   -ms-flex-item-align: start;
       align-self: flex-start;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+@media only screen and (max-width: 750px) {
+  .todo-title {
+    font-size: 1.2rem;
+  }
+  .todo-details > li {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  .todo-details > li > * {
+    width: 100%;
+  }
+  .todo-done,
+  .todo-delete-icon {
+    position: static;
+    padding: 0;
+  }
+  .todo-done {
+    padding-right: 1rem;
+  }
+  .todo-list-item {
+    padding-left: 0;
+  }
+  .todo-details-label {
+    margin-bottom: 0.5rem;
+  }
+  .todo-steps-container,
+  .steps-container {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    width: 100%;
+  }
+  .todo-list-item-title {
+    padding: 0;
+  }
 }
 
 .step-list-item {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid #988aea;
+  max-width: 40rem;
+}
+
+.step-list-item:last-child {
+  border-bottom: none;
+}
+
+.step-list-placeholder-item {
+  margin-bottom: 0.5rem;
+}
+
+.step-details > li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 3rem;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  padding-bottom: 0.5rem;
+}
+
+.step-details .inline-form {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
 }
 
 .step-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: relative;
+  text-transform: capitalize;
+  padding: 0.2rem 0.5rem;
+  font-weight: 700;
+}
+
+.step-title:hover {
+  cursor: pointer;
+  background-color: #eee;
 }
 
 .step-done {
   position: absolute;
-  left: -1.4rem;
+  left: -3.5rem;
+  font-size: 2rem;
 }
 
 .step-delete-icon {
-  padding-left: 1rem;
+  padding: 0;
+  font-size: 2rem;
+  margin-left: auto;
+  padding-left: 0.3rem;
 }
 
 .step-number {
@@ -407,8 +591,66 @@ header h1 {
   padding-right: 1rem;
 }
 
-.step-list-item > ul > li {
-  padding: 0.3rem 0;
+.step-details-label {
+  width: 5rem;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  color: #6a5acd;
+  font-weight: 700;
+  padding: 0.2rem 0;
+}
+
+@media only screen and (max-width: 750px) {
+  .step-title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .step-done {
+    position: static;
+    padding-right: 0.5rem;
+  }
+  .step-details > li {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: start;
+  }
+  .step-details > li > * {
+    width: 100%;
+  }
+  .step-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .step-list > * {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    -webkit-box-flex: 2;
+        -ms-flex-positive: 2;
+            flex-grow: 2;
+  }
+}
+
+.fas {
+  background-color: transparent;
 }
 
 .done-true {

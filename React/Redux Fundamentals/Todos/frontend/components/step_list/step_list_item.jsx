@@ -8,7 +8,8 @@ class StepListItem extends React.Component {
       body: this.props.step.body,
       editTitle: false,
       editBody: false,
-      doneHover: false
+      doneHover: false,
+      showDetails: false
     };
     this.toggleDone = this.toggleDone.bind(this);
     this.removeStep = this.removeStep.bind(this);
@@ -16,10 +17,12 @@ class StepListItem extends React.Component {
     this.toggleEdit = this.toggleEdit.bind(this);
     this.updateProperty = this.updateProperty.bind(this);
     this.toggleDoneHover = this.toggleDoneHover.bind(this);
+    this.toggleDetails = this.toggleDetails.bind(this);
   }
 
   toggleDone(e) {
     e.preventDefault();
+    e.stopPropagation();
     const toggledStep = Object.assign({}, this.props.step);
     toggledStep.done = !toggledStep.done;
     this.props.receiveStep(toggledStep);
@@ -33,8 +36,13 @@ class StepListItem extends React.Component {
     this.setState({ doneHover: !this.state.doneHover });
   }
 
+  toggleDetails(e) {
+    this.setState({ showDetails: !this.state.showDetails });
+  }
+
   removeStep(e) {
     e.preventDefault();
+    e.stopPropagation();
     this.props.removeStep(this.props.step);
   }
 
@@ -54,9 +62,7 @@ class StepListItem extends React.Component {
     const { step, stepNumber } = this.props;
     return (
       <li className="step-list-item">
-        <div className="step-title">
-          <strong className="step-number">{stepNumber}</strong>
-          {step.title}
+        <div className="step-title" onClick={this.toggleDetails}>
           <i
             className={
               "fas step-done icon-button " +
@@ -69,83 +75,94 @@ class StepListItem extends React.Component {
             onMouseEnter={this.toggleDoneHover}
             onMouseLeave={this.toggleDoneHover}
           ></i>
+          <strong className="step-number">{stepNumber}</strong>
+          <span>{step.title}</span>
           <i
             className="fas fa-times-circle icon-button step-delete-icon"
             onClick={this.removeStep}
           ></i>
         </div>
-        <ul>
-          <li>
-            <span className="step-details-label">Title:</span>{" "}
-            {this.state.editTitle ? (
-              <form
-                className="inline-form"
-                onSubmit={e => {
-                  this.sendStepToParent(e, "title");
-                }}
-              >
-                <input
-                  type="text"
-                  placeholder="Enter step title..."
-                  onChange={this.updateProperty("title")}
-                  value={this.state.title}
-                ></input>
-                <i className="fas fa-check icon-button">
-                  <input type="submit" value="" />
-                </i>
-                <i
-                  className="fas fa-undo icon-button"
-                  onClick={this.toggleEdit("editTitle")}
-                ></i>
-              </form>
-            ) : (
-              <span className="step-details-content">
-                {step.title}{" "}
-                <i
-                  className="fas fa-edit icon-button"
-                  onClick={this.toggleEdit("editTitle")}
-                ></i>
-              </span>
-            )}
-          </li>
-          <li>
-            <span className="step-details-label">Body:</span>{" "}
-            {this.state.editBody ? (
-              <form
-                className="inline-form"
-                onSubmit={e => {
-                  this.sendStepToParent(e, "body");
-                }}
-              >
-                <input
-                  type="text"
-                  placeholder="Description (optional)..."
-                  onChange={this.updateProperty("body")}
-                  value={this.state.body}
-                ></input>
-                <input type="submit" value="Update" />
-                <i
-                  className="fas fa-undo icon-button"
-                  onClick={this.toggleEdit("editBody")}
-                ></i>
-              </form>
-            ) : (
-              <span className="step-details-content">
-                {step.body}{" "}
-                <i
-                  className={
-                    "fas icon-button " + (step.body ? "fa-edit" : "fa-plus")
-                  }
-                  onClick={this.toggleEdit("editBody")}
-                ></i>
-              </span>
-            )}
-          </li>
-          <li>
-            <span className="step-details-label">Status:</span>{" "}
-            {step.done ? "Done" : "Not Done"}
-          </li>
-        </ul>
+        {this.state.showDetails && (
+          <ul className="step-details">
+            <li>
+              <span className="step-details-label">Title:</span>{" "}
+              {this.state.editTitle ? (
+                <form
+                  className="inline-form"
+                  onSubmit={e => {
+                    this.sendStepToParent(e, "title");
+                  }}
+                >
+                  <input
+                    type="text"
+                    placeholder="Enter step title..."
+                    onChange={this.updateProperty("title")}
+                    value={this.state.title}
+                  ></input>
+                  <div className="submit-cancel-buttons">
+                    <button
+                      type="submit"
+                      className="fas fa-check icon-button"
+                    ></button>
+                    <i
+                      className="fas fa-undo icon-button"
+                      onClick={this.toggleEdit("editTitle")}
+                    ></i>
+                  </div>
+                </form>
+              ) : (
+                <span className="step-details-content">
+                  {step.title}{" "}
+                  <i
+                    className="fas fa-edit icon-button"
+                    onClick={this.toggleEdit("editTitle")}
+                  ></i>
+                </span>
+              )}
+            </li>
+            <li>
+              <span className="step-details-label">Details:</span>{" "}
+              {this.state.editBody ? (
+                <form
+                  className="inline-form"
+                  onSubmit={e => {
+                    this.sendStepToParent(e, "body");
+                  }}
+                >
+                  <textarea
+                    placeholder="Description (optional)..."
+                    onChange={this.updateProperty("body")}
+                    value={this.state.body}
+                  ></textarea>
+                  <div className="submit-cancel-buttons">
+                    <button
+                      type="submit"
+                      className="fas fa-check icon-button"
+                    ></button>{" "}
+                    <i
+                      className="fas fa-undo icon-button"
+                      onClick={this.toggleEdit("editBody")}
+                    ></i>
+                  </div>
+                </form>
+              ) : (
+                <span className="step-details-content">
+                  {step.body}{" "}
+                  <i
+                    className={
+                      "fas icon-button " + (step.body ? "fa-edit" : "fa-plus")
+                    }
+                    onClick={this.toggleEdit("editBody")}
+                  ></i>
+                </span>
+              )}
+            </li>
+            <li>
+              <span className="step-details-label">Status:</span>{" "}
+              {step.done ? "Done" : "Not Done"}
+            </li>
+          </ul>
+        )}
       </li>
     );
   }
