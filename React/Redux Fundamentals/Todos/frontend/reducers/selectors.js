@@ -1,5 +1,5 @@
 export const allTodos = state => {
-  const todoKeys = Object.keys(state.todos);
+  const todoKeys = Object.keys(state.todos).reverse();
   const todosArray = todoKeys.map(key => state.todos[key]);
   return todosArray;
 };

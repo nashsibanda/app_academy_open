@@ -1,0 +1,66 @@
+.todo-list-header {
+  @include flex;
+  align-items: center;
+}
+
+.todo-list-header h2 {
+  font-family: $seriffont;
+  font-size: 1.6rem;
+}
+
+.sort-toggles {
+  @include flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.sort-toggles .filter-menu-heading {
+  align-self: center;
+}
+
+.sort-toggles a {
+  font-weight: 700;
+  padding-bottom: 0.5rem;
+}
+
+.sort-toggles-menu {
+  @include flex;
+}
+
+.sort-toggles-menu > * {
+  padding-left: 1rem;
+}
+
+.sort-option:hover {
+  cursor: pointer;
+}
+
+.fa-toggle-on {
+  color: $keycolor;
+}
+
+.sort-option {
+  @include flex;
+  align-items: center;
+}
+
+.sort-option .icon-button {
+  padding-left: 0.3rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .todo-list-header,
+  .sort-toggles-menu {
+    flex-direction: column;
+  }
+
+  .sort-toggles-menu > * {
+    padding-left: 0;
+    padding-bottom: 1rem;
+  }
+
+  .sort-toggles {
+    align-items: center;
+    padding-top: 1rem;
+  }
+}

@@ -6,10 +6,12 @@ body {
 
 main {
   margin: 0 10vw;
+  margin-bottom: 4rem;
 }
 
 input[type="text"],
-textarea {
+textarea,
+input[type="date"] {
   border: 1px solid $lightgray;
   border-radius: 5px;
   padding: 0.5rem;

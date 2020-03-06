@@ -1,9 +1,6 @@
 // CSS Reset
 @import "./base/reset";
 
-// Font Awesome
-@import url("./../node_modules/@fortawesome/fontawesome-free/css/all.min.css");
-
 // Base sheets
 @import "./base/globals";
 @import "./base/mixins";
@@ -15,3 +12,4 @@
 @import "./components/todo_list";
 @import "./components/step-list";
 @import "./components/done_icons";
+@import "./components/todo_list_header";

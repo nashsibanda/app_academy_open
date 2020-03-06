@@ -1,5 +1,6 @@
 import React from "react";
 import TodoDetailViewContainer from "./todo_detail_view_container";
+import Util from "./../../util/util";
 
 class TodoListItem extends React.Component {
   constructor(props) {
@@ -20,7 +21,6 @@ class TodoListItem extends React.Component {
     e.preventDefault();
     e.stopPropagation();
     const flippedTodo = Object.assign({}, this.props.todo);
-    console.log(flippedTodo);
     flippedTodo.done = !flippedTodo.done;
     this.props.receiveTodo(flippedTodo);
   }
@@ -57,7 +57,23 @@ class TodoListItem extends React.Component {
             onMouseEnter={this.toggleDoneHover}
             onMouseLeave={this.toggleDoneHover}
           ></i>
-          <span className="todo-title">{todo.title}</span>
+          <div className="todo-title-and-due">
+            <span className="todo-title">{todo.title}</span>
+            <span
+              className={
+                "friendly-due-string " +
+                (todo.done
+                  ? "friendly-done"
+                  : Util.friendlyDueString(todo.due) === "Overdue!"
+                  ? "overdue"
+                  : Util.friendlyDueString(todo.due) === "Due this week"
+                  ? "due-this-week"
+                  : "not-due")
+              }
+            >
+              {todo.done ? "Completed!" : Util.friendlyDueString(todo.due)}
+            </span>
+          </div>
           <i
             className="fas fa-times-circle icon-button todo-delete-icon"
             onClick={this.removeSelf}

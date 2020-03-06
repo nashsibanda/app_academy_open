@@ -1,5 +1,6 @@
 import React from "react";
 import StepListContainer from "./../step_list/step_list_container";
+import Util from "./../../util/util";
 
 class TodoDetailView extends React.Component {
   constructor(props) {
@@ -7,8 +8,10 @@ class TodoDetailView extends React.Component {
     this.state = {
       editTitle: false,
       editBody: false,
+      editDue: false,
       title: this.props.todo.title,
-      body: this.props.todo.body
+      body: this.props.todo.body,
+      due: this.props.todo.due
     };
     this.sendTodoToParent = this.sendTodoToParent.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
@@ -20,7 +23,7 @@ class TodoDetailView extends React.Component {
     const updatedTodo = Object.assign({}, this.props.todo);
     updatedTodo[property] = this.state[property];
     this.props.updateTodo(updatedTodo);
-    this.setState({ editBody: false, editTitle: false });
+    this.setState({ editBody: false, editTitle: false, editDue: false });
   }
 
   updateProperty(property) {
@@ -108,9 +111,55 @@ class TodoDetailView extends React.Component {
             </span>
           )}
         </li>
-        <li>
-          <span className="todo-details-label">Status:</span>{" "}
-          {todo.done ? "Completed" : "Not Completed"}
+        <li className="todo-details-status-row">
+          <span>
+            <span className="todo-details-label">Status:</span>
+            <span className="todo-details-content">
+              {todo.done
+                ? "Completed"
+                : Util.overdueCheck(todo.due)
+                ? "Overdue"
+                : "Not Completed"}
+            </span>
+          </span>
+          <span>
+            <span className="todo-details-label">Due:</span>
+            {this.state.editDue ? (
+              <form
+                className="stacked-form"
+                onSubmit={e => {
+                  this.sendTodoToParent(e, "due");
+                }}
+              >
+                <input
+                  type="date"
+                  placeholder="Enter todo details..."
+                  value={this.state.due}
+                  onChange={this.updateProperty("due")}
+                ></input>
+                <div className="submit-cancel-buttons">
+                  <button
+                    className="fas fa-check icon-button"
+                    type="submit"
+                  ></button>
+                  <i
+                    className="fas fa-undo icon-button"
+                    onClick={this.toggleForm("editDue")}
+                  ></i>
+                </div>
+              </form>
+            ) : (
+              <span className="todo-details-content">
+                {(todo.due ? todo.due : "No Deadline") + " "}
+                <i
+                  className={
+                    "fas icon-button " + (todo.due ? "fa-edit" : "fa-plus")
+                  }
+                  onClick={this.toggleForm("editDue")}
+                ></i>
+              </span>
+            )}
+          </span>
         </li>
         <li className="todo-steps-container">
           <span className="todo-details-label">Steps:</span>

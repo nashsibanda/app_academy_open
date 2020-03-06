@@ -76,7 +76,14 @@ class StepListItem extends React.Component {
             onMouseLeave={this.toggleDoneHover}
           ></i>
           <strong className="step-number">{stepNumber}</strong>
-          <span>{step.title}</span>
+          <span
+            className={
+              "step-title " +
+              (step.done ? "step-title-done" : "step-title-not-done")
+            }
+          >
+            {step.title}
+          </span>
           <i
             className="fas fa-times-circle icon-button step-delete-icon"
             onClick={this.removeStep}
