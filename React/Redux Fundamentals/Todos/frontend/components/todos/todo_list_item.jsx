@@ -7,6 +7,7 @@ class TodoListItem extends React.Component {
     this.state = { detail: false };
     this.toggleDetail = this.toggleDetail.bind(this);
     this.toggleDone = this.toggleDone.bind(this);
+    this.updateTodo = this.updateTodo.bind(this);
   }
 
   toggleDetail(e) {
@@ -21,6 +22,10 @@ class TodoListItem extends React.Component {
     this.props.receiveTodo(flippedTodo);
   }
 
+  updateTodo(newTodo) {
+    this.props.receiveTodo(newTodo);
+  }
+
   render() {
     const { todo } = this.props;
     return (
@@ -31,7 +36,13 @@ class TodoListItem extends React.Component {
         <button onClick={this.toggleDone}>
           {this.props.todo.done ? "Undo" : "Done"}
         </button>
-        {this.state.detail && <TodoDetailViewContainer todo={todo} />}
+        {this.state.detail && (
+          <TodoDetailViewContainer
+            todo={todo}
+            updateTodo={this.updateTodo}
+            receiveStep={this.props.receiveStep}
+          />
+        )}
       </li>
     );
   }

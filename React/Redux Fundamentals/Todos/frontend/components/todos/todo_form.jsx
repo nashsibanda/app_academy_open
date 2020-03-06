@@ -13,7 +13,6 @@ class TodoForm extends React.Component {
     this.updateTitle = this.updateTitle.bind(this);
     this.updateBody = this.updateBody.bind(this);
     this.submitForm = this.submitForm.bind(this);
-    // this.submit = this.props.receiveTodo;
   }
 
   updateTitle(e) {

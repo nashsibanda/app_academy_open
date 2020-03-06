@@ -5,6 +5,11 @@ import StepForm from "./step_form";
 class StepList extends React.Component {
   constructor(props) {
     super(props);
+    this.updateStep = this.updateStep.bind(this);
+  }
+
+  updateStep(updatedStep) {
+    this.props.receiveStep(updatedStep);
   }
 
   render() {
@@ -18,6 +23,7 @@ class StepList extends React.Component {
                 step={step}
                 key={step.id}
                 stepNumber={index}
+                handleUpdate={this.updateStep}
               />
             );
           })}
