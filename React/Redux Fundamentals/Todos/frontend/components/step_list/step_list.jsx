@@ -22,7 +22,7 @@ class StepList extends React.Component {
               <StepListItemContainer
                 step={step}
                 key={step.id}
-                stepNumber={index}
+                stepNumber={index + 1}
                 handleUpdate={this.updateStep}
               />
             );

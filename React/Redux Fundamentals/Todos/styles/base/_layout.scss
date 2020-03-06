@@ -12,6 +12,7 @@ input[type="text"] {
   border-radius: 5px;
   padding: 0.5rem;
   background-color: #fff;
+  box-sizing: border-box;
 }
 
 .form-button,
@@ -22,6 +23,7 @@ button,
   border-radius: 0.3rem;
   background-color: $keycolorlight;
   color: white;
+  box-sizing: border-box;
 }
 
 .form-button:hover,
@@ -33,10 +35,33 @@ button:hover,
 .form-button {
   padding: 1rem;
   font-weight: 700;
-  width: 6rem;
+  width: fit-content;
 }
 
 button,
 .button {
   padding: 0.3rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.icon-button {
+  color: $darkgray;
+  font-size: 1.5rem;
+}
+
+.icon-button:hover {
+  color: $accentcolor;
+  cursor: pointer;
+}
+
+.left-padded-icon {
+  padding-left: 0.7rem;
+}
+
+a:hover {
+  color: $accentcolor;
+  font-weight: 700;
 }

@@ -1,3 +1,4 @@
+@import url("./../node_modules/@fortawesome/fontawesome-free/css/all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Spartan:300,400,700,900&display=swap");
 html,
 body,
@@ -92,6 +93,8 @@ input[type="text"] {
   border-radius: 5px;
   padding: 0.5rem;
   background-color: #fff;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .form-button,
@@ -103,6 +106,8 @@ button,
   border-radius: 0.3rem;
   background-color: #988aea;
   color: white;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .form-button:hover,
@@ -114,12 +119,37 @@ button:hover,
 .form-button {
   padding: 1rem;
   font-weight: 700;
-  width: 6rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 button,
 .button {
   padding: 0.3rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.icon-button {
+  color: #999;
+  font-size: 1.5rem;
+}
+
+.icon-button:hover {
+  color: #f4a460ff;
+  cursor: pointer;
+}
+
+.left-padded-icon {
+  padding-left: 0.7rem;
+}
+
+a:hover {
+  color: #f4a460ff;
+  font-weight: 700;
 }
 
 header {
@@ -156,9 +186,25 @@ header h1 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 1rem;
+  padding: 3rem;
   border-radius: 0.5rem;
   background-color: white;
+  position: absolute;
+  top: 20vh;
+  width: 80vw;
+  max-width: 40rem;
+  margin: 0 auto;
+  z-index: 3;
+}
+
+.new-todo-modal {
+  background-color: #00000066;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 
 .new-todo-form h2 {
@@ -172,6 +218,10 @@ header h1 {
   margin-bottom: 0.4rem;
 }
 
+.new-todo-form > *:last-child {
+  margin-bottom: 0;
+}
+
 .new-todo-form .done-selector {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -182,6 +232,7 @@ header h1 {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: start;
+  margin-bottom: 1rem;
 }
 
 .new-todo-form .done-selector label {
@@ -198,5 +249,25 @@ header h1 {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: start;
+}
+
+.toggleable-text-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.toggleable-text-input > button {
+  width: 2rem;
+}
+
+.toggleable-text-input > input {
+  width: calc(100% - 2.5rem);
 }
 /*# sourceMappingURL=style.css.map */

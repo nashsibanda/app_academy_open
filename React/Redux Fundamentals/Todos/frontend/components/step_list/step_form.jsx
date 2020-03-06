@@ -4,9 +4,10 @@ import Util from "../../util/util";
 class StepForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { title: "", body: "" };
+    this.state = { title: "", body: "", showForm: false };
     this.updateState = this.updateState.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleForm = this.toggleForm.bind(this);
   }
 
   updateState(property) {
@@ -24,23 +25,42 @@ class StepForm extends React.Component {
     this.setState({ title: "", body: "" });
   }
 
+  toggleForm(e) {
+    e.preventDefault();
+    this.setState({ showForm: !this.state.showForm });
+  }
+
   render() {
     return (
-      <form className="inline-form" onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          placeholder="New Step"
-          onChange={this.updateState("title")}
-          value={this.state.title}
-        ></input>
-        <input
-          type="text"
-          placeholder="Description (optional)"
-          onChange={this.updateState("body")}
-          value={this.state.body}
-        ></input>
-        <input className="button" type="submit" value="Add Step"></input>
-      </form>
+      <div className="step-form-container">
+        {this.state.showForm ? (
+          <form className="inline-form" onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              placeholder="New Step"
+              onChange={this.updateState("title")}
+              value={this.state.title}
+            ></input>
+            <input
+              type="text"
+              placeholder="Description (optional)"
+              onChange={this.updateState("body")}
+              value={this.state.body}
+            ></input>
+            <i className="fas fa-check icon-button">
+              <input type="submit" value="" />
+            </i>
+            <i
+              className="fas fa-times icon-button"
+              onClick={this.toggleForm}
+            ></i>
+          </form>
+        ) : (
+          <a href="#" onClick={this.toggleForm}>
+            Add Step...
+          </a>
+        )}
+      </div>
     );
   }
 }

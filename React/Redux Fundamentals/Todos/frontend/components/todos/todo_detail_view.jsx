@@ -50,13 +50,21 @@ class TodoDetailView extends React.Component {
                 value={this.state.title}
                 onChange={this.updateProperty("title")}
               ></input>
-              <input type="submit" value="Update" />
-              <button onClick={this.toggleForm("editTitle")}>Cancel</button>
+              <i className="fas fa-check icon-button">
+                <input type="submit" value="" />
+              </i>
+              <i
+                className="fas fa-undo icon-button"
+                onClick={this.toggleForm("editTitle")}
+              ></i>
             </form>
           ) : (
             <span className="todo-details-content">
               {todo.title}{" "}
-              <button onClick={this.toggleForm("editTitle")}>Edit</button>
+              <i
+                className="fas fa-edit icon-button"
+                onClick={this.toggleForm("editTitle")}
+              ></i>
             </span>
           )}
         </li>
@@ -75,15 +83,21 @@ class TodoDetailView extends React.Component {
                 value={this.state.body}
                 onChange={this.updateProperty("body")}
               ></input>
-              <input type="submit" value="Update" />
-              <button onClick={this.toggleForm("editBody")}>Cancel</button>
+              <i className="fas fa-check icon-button">
+                <input type="submit" value="" />
+              </i>
+              <i
+                className="fas fa-undo icon-button"
+                onClick={this.toggleForm("editBody")}
+              ></i>{" "}
             </form>
           ) : (
             <span className="todo-details-content">
               {todo.body}{" "}
-              <button onClick={this.toggleForm("editBody")}>
-                {this.state.body ? "Update" : "Add"}
-              </button>
+              <i
+                className="fas fa-edit icon-button"
+                onClick={this.toggleForm("editBody")}
+              ></i>
             </span>
           )}
         </li>
