@@ -82,6 +82,7 @@ input[type="submit"] {
 body {
   font-family: "Spartan", sans-serif;
   background-color: #eee;
+  font-size: 16px;
 }
 
 main {
@@ -98,7 +99,6 @@ input[type="text"] {
 }
 
 .form-button,
-button,
 .button {
   border-top: 1px solid #eee;
   border-bottom: 1px solid #666;
@@ -111,7 +111,6 @@ button,
 }
 
 .form-button:hover,
-button:hover,
 .button:hover {
   background-color: #6a5acd;
 }
@@ -124,7 +123,6 @@ button:hover,
   width: fit-content;
 }
 
-button,
 .button {
   padding: 0.3rem;
 }
@@ -134,13 +132,17 @@ button,
 }
 
 .icon-button {
-  color: #999;
-  font-size: 1.5rem;
+  color: #ddd;
+  font-size: 1rem;
 }
 
 .icon-button:hover {
   color: #f4a460ff;
   cursor: pointer;
+}
+
+.fa-times-circle:hover {
+  color: #cd5c5cff;
 }
 
 .left-padded-icon {
@@ -162,7 +164,7 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #6a5acd;
+  background-color: #988aea;
   color: white;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -170,9 +172,13 @@ header {
 }
 
 header h1 {
-  font-family: "Georgia", serif;
+  font-family: "Spartan", sans-serif;
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 300;
+}
+
+.new-todo-form-container {
+  margin-bottom: 1rem;
 }
 
 .new-todo-form {
@@ -249,6 +255,17 @@ header h1 {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.inline-form > * {
+  margin-right: 0.4rem;
+}
+
+.inline-form .icon-button {
+  font-size: 1.5rem;
 }
 
 .toggleable-text-input {
@@ -269,5 +286,140 @@ header h1 {
 
 .toggleable-text-input > input {
   width: calc(100% - 2.5rem);
+}
+
+.todo-list {
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.todo-list-item {
+  padding: 1.5rem 1rem;
+  padding-left: 4rem;
+  border-bottom: 1px solid #bbb;
+}
+
+.todo-list-item:last-child {
+  border-bottom: none;
+}
+
+.todo-done {
+  position: absolute;
+  left: -3rem;
+  font-size: 2rem;
+}
+
+.todo-list-item-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.todo-list-item-title:hover {
+  cursor: pointer;
+}
+
+.todo-title {
+  text-transform: capitalize;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.todo-delete-icon {
+  position: relative;
+  right: -1rem;
+  font-size: 1.5rem;
+}
+
+.todo-details {
+  margin-top: 1rem;
+}
+
+.todo-details > li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1.2rem 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 1rem;
+}
+
+.todo-details-label {
+  width: 8rem;
+}
+
+.todo-details .todo-steps-container {
+  padding: 1rem 0;
+  -webkit-box-align: normal;
+      -ms-flex-align: normal;
+          align-items: normal;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+
+.steps-container {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+.step-list-item {
+  margin-bottom: 1rem;
+}
+
+.step-title {
+  position: relative;
+}
+
+.step-done {
+  position: absolute;
+  left: -1.4rem;
+}
+
+.step-delete-icon {
+  padding-left: 1rem;
+}
+
+.step-number {
+  font-weight: 700;
+  color: #988aea;
+  padding-right: 1rem;
+}
+
+.step-list-item > ul > li {
+  padding: 0.3rem 0;
+}
+
+.done-true {
+  color: #80d879ff;
+}
+
+.done-false {
+  color: #bad7eeff;
+}
+
+.fa-check-circle.done-true:hover {
+  color: #cd5c5cff;
 }
 /*# sourceMappingURL=style.css.map */

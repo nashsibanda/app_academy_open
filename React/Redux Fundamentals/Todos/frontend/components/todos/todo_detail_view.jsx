@@ -50,9 +50,10 @@ class TodoDetailView extends React.Component {
                 value={this.state.title}
                 onChange={this.updateProperty("title")}
               ></input>
-              <i className="fas fa-check icon-button">
-                <input type="submit" value="" />
-              </i>
+              <button
+                className="fas fa-check icon-button"
+                type="submit"
+              ></button>
               <i
                 className="fas fa-undo icon-button"
                 onClick={this.toggleForm("editTitle")}
@@ -69,7 +70,7 @@ class TodoDetailView extends React.Component {
           )}
         </li>
         <li>
-          <span className="todo-details-label">Body:</span>{" "}
+          <span className="todo-details-label">Description:</span>{" "}
           {this.state.editBody ? (
             <form
               className="inline-form"
@@ -83,9 +84,10 @@ class TodoDetailView extends React.Component {
                 value={this.state.body}
                 onChange={this.updateProperty("body")}
               ></input>
-              <i className="fas fa-check icon-button">
-                <input type="submit" value="" />
-              </i>
+              <button
+                className="fas fa-check icon-button"
+                type="submit"
+              ></button>
               <i
                 className="fas fa-undo icon-button"
                 onClick={this.toggleForm("editBody")}
@@ -95,7 +97,9 @@ class TodoDetailView extends React.Component {
             <span className="todo-details-content">
               {todo.body}{" "}
               <i
-                className="fas fa-edit icon-button"
+                className={
+                  "fas icon-button " + (todo.body ? "fa-edit" : "fa-plus")
+                }
                 onClick={this.toggleForm("editBody")}
               ></i>
             </span>

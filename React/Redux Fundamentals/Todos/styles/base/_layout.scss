@@ -1,6 +1,7 @@
 body {
   font-family: $sansfont;
   background-color: $lightestgray;
+  font-size: 16px;
 }
 
 main {
@@ -16,7 +17,6 @@ input[type="text"] {
 }
 
 .form-button,
-button,
 .button {
   @include embossed-effect;
   text-align: center;
@@ -27,7 +27,6 @@ button,
 }
 
 .form-button:hover,
-button:hover,
 .button:hover {
   background-color: $keycolor;
 }
@@ -38,7 +37,6 @@ button:hover,
   width: fit-content;
 }
 
-button,
 .button {
   padding: 0.3rem;
 }
@@ -48,13 +46,17 @@ button,
 }
 
 .icon-button {
-  color: $darkgray;
-  font-size: 1.5rem;
+  color: $lightergray;
+  font-size: 1rem;
 }
 
 .icon-button:hover {
   color: $accentcolor;
   cursor: pointer;
+}
+
+.fa-times-circle:hover {
+  color: $deselectcolor;
 }
 
 .left-padded-icon {

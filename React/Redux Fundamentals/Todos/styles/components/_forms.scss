@@ -1,3 +1,7 @@
+.new-todo-form-container {
+  margin-bottom: 1rem;
+}
+
 .new-todo-form {
   @include flex;
   flex-direction: column;
@@ -50,6 +54,15 @@
 .inline-form {
   @include flex;
   justify-content: start;
+  align-items: center;
+}
+
+.inline-form > * {
+  margin-right: 0.4rem;
+}
+
+.inline-form .icon-button {
+  font-size: 1.5rem;
 }
 
 .toggleable-text-input {

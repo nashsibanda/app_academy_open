@@ -1,0 +1,72 @@
+.todo-list {
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.todo-list-item {
+  padding: 1.5rem 1rem;
+  padding-left: 4rem;
+  border-bottom: 1px solid $lightgray;
+}
+
+.todo-list-item:last-child {
+  border-bottom: none;
+}
+
+.todo-done {
+  position: absolute;
+  left: -3rem;
+  font-size: 2rem;
+}
+
+.todo-list-item-title {
+  @include flex;
+  justify-content: start;
+  align-items: center;
+  position: relative;
+}
+
+.todo-list-item-title:hover {
+  cursor: pointer;
+}
+
+.todo-title {
+  // font-family: $seriffont;
+  text-transform: capitalize;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.todo-delete-icon {
+  position: relative;
+  right: -1rem;
+  font-size: 1.5rem;
+}
+
+.todo-details {
+  margin-top: 1rem;
+}
+
+.todo-details > li {
+  @include flex;
+  justify-content: start;
+  align-items: center;
+  padding: 1.2rem 0;
+  box-sizing: border-box;
+  height: 1rem;
+}
+
+.todo-details-label {
+  width: 8rem;
+}
+
+.todo-details .todo-steps-container {
+  padding: 1rem 0;
+  align-items: normal;
+  height: max-content;
+}
+
+.steps-container {
+  align-self: flex-start;
+}

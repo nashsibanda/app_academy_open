@@ -4,7 +4,7 @@ import TodoDetailViewContainer from "./todo_detail_view_container";
 class TodoListItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { detail: true, doneHover: false };
+    this.state = { detail: false, doneHover: false };
     this.toggleDetail = this.toggleDetail.bind(this);
     this.toggleDone = this.toggleDone.bind(this);
     this.updateTodo = this.updateTodo.bind(this);
@@ -18,6 +18,7 @@ class TodoListItem extends React.Component {
 
   toggleDone(e) {
     e.preventDefault();
+    e.stopPropagation();
     const flippedTodo = Object.assign({}, this.props.todo);
     console.log(flippedTodo);
     flippedTodo.done = !flippedTodo.done;
@@ -25,11 +26,13 @@ class TodoListItem extends React.Component {
   }
 
   toggleDoneHover(e) {
+    e.stopPropagation();
     this.setState({ doneHover: !this.state.doneHover });
   }
 
   removeSelf(e) {
     e.preventDefault();
+    e.stopPropagation();
     this.props.removeTodo(this.props.todo);
   }
 
@@ -40,30 +43,26 @@ class TodoListItem extends React.Component {
   render() {
     const { todo } = this.props;
     return (
-      <li>
-        <span className="todo-title" onClick={this.toggleDetail}>
-          {todo.title}
-        </span>{" "}
-        {/* <button onClick={this.toggleDone}>
-          {this.props.todo.done ? "Undo" : "Done"}
-        </button> */}
-        <i
-          className={
-            "fas icon-button " +
-            (todo.done
-              ? "done-true " +
-                (this.state.doneHover ? "fa-circle" : "fa-check-circle")
-              : "done-false " +
-                (this.state.doneHover ? "fa-check-circle" : "fa-circle"))
-          }
-          onClick={this.toggleDone}
-          onMouseEnter={this.toggleDoneHover}
-          onMouseLeave={this.toggleDoneHover}
-        ></i>
-        <i
-          className="fas fa-times-circle icon-button"
-          onClick={this.removeSelf}
-        ></i>
+      <li className="todo-list-item">
+        <div className="todo-list-item-title" onClick={this.toggleDetail}>
+          <i
+            className={
+              "fas icon-button todo-done " +
+              (todo.done
+                ? "done-true fa-check-circle"
+                : "done-false " +
+                  (this.state.doneHover ? "fa-check-circle" : "fa-circle"))
+            }
+            onClick={this.toggleDone}
+            onMouseEnter={this.toggleDoneHover}
+            onMouseLeave={this.toggleDoneHover}
+          ></i>
+          <span className="todo-title">{todo.title}</span>
+          <i
+            className="fas fa-times-circle icon-button todo-delete-icon"
+            onClick={this.removeSelf}
+          ></i>
+        </div>
         {this.state.detail && (
           <TodoDetailViewContainer
             todo={todo}

@@ -54,24 +54,26 @@ class StepListItem extends React.Component {
     const { step, stepNumber } = this.props;
     return (
       <li className="step-list-item">
-        Step {stepNumber}:{" "}
-        <i
-          className={
-            "fas icon-button " +
-            (step.done
-              ? "done-true " +
-                (this.state.doneHover ? "fa-circle" : "fa-check-circle")
-              : "done-false " +
-                (this.state.doneHover ? "fa-check-circle" : "fa-circle"))
-          }
-          onClick={this.toggleDone}
-          onMouseEnter={this.toggleDoneHover}
-          onMouseLeave={this.toggleDoneHover}
-        ></i>
-        <i
-          className="fas fa-times-circle icon-button"
-          onClick={this.removeStep}
-        ></i>
+        <div className="step-title">
+          <strong className="step-number">{stepNumber}</strong>
+          {step.title}
+          <i
+            className={
+              "fas step-done icon-button " +
+              (step.done
+                ? "done-true fa-check-circle"
+                : "done-false " +
+                  (this.state.doneHover ? "fa-check-circle" : "fa-circle"))
+            }
+            onClick={this.toggleDone}
+            onMouseEnter={this.toggleDoneHover}
+            onMouseLeave={this.toggleDoneHover}
+          ></i>
+          <i
+            className="fas fa-times-circle icon-button step-delete-icon"
+            onClick={this.removeStep}
+          ></i>
+        </div>
         <ul>
           <li>
             <span className="step-details-label">Title:</span>{" "}
@@ -131,7 +133,9 @@ class StepListItem extends React.Component {
               <span className="step-details-content">
                 {step.body}{" "}
                 <i
-                  className={"fas fa-edit icon-button"}
+                  className={
+                    "fas icon-button " + (step.body ? "fa-edit" : "fa-plus")
+                  }
                   onClick={this.toggleEdit("editBody")}
                 ></i>
               </span>

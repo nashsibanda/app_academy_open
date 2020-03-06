@@ -1,0 +1,28 @@
+.step-list-item {
+  margin-bottom: 1rem;
+}
+
+.step-title {
+  position: relative;
+}
+
+.step-done {
+  position: absolute;
+  left: -1.4rem;
+}
+
+.step-delete-icon {
+  // position: absolute;
+  // left: 5rem;
+  padding-left: 1rem;
+}
+
+.step-number {
+  font-weight: 700;
+  color: $keycolorlight;
+  padding-right: 1rem;
+}
+
+.step-list-item > ul > li {
+  padding: 0.3rem 0;
+}
