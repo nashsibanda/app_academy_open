@@ -26,7 +26,7 @@ class StepForm extends React.Component {
 
   render() {
     return (
-      <form className="step-form" onSubmit={this.handleSubmit}>
+      <form className="inline-form" onSubmit={this.handleSubmit}>
         <input
           type="text"
           placeholder="New Step"
@@ -39,7 +39,7 @@ class StepForm extends React.Component {
           onChange={this.updateState("body")}
           value={this.state.body}
         ></input>
-        <input type="submit" value="Add Step"></input>
+        <input className="button" type="submit" value="Add Step"></input>
       </form>
     );
   }

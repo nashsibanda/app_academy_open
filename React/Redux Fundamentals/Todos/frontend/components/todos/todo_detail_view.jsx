@@ -39,7 +39,7 @@ class TodoDetailView extends React.Component {
           <span className="todo-details-label">Title:</span>{" "}
           {this.state.editTitle ? (
             <form
-              className="todo-details-edit-form"
+              className="inline-form"
               onSubmit={e => {
                 this.sendTodoToParent(e, "title");
               }}
@@ -64,7 +64,7 @@ class TodoDetailView extends React.Component {
           <span className="todo-details-label">Body:</span>{" "}
           {this.state.editBody ? (
             <form
-              className="todo-details-edit-form"
+              className="inline-form"
               onSubmit={e => {
                 this.sendTodoToParent(e, "body");
               }}
@@ -91,7 +91,7 @@ class TodoDetailView extends React.Component {
           <span className="todo-details-label">Status:</span>{" "}
           {todo.done ? "Completed" : "Not Completed"}
         </li>
-        <li>
+        <li className="todo-steps-container">
           <span className="todo-details-label">Steps:</span>
           <StepListContainer
             todo_id={todo.id}

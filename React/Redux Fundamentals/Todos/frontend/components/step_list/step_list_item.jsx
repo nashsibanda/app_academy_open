@@ -56,6 +56,7 @@ class StepListItem extends React.Component {
             <span className="step-details-label">Title:</span>{" "}
             {this.state.editTitle ? (
               <form
+                className="inline-form"
                 onSubmit={e => {
                   this.sendStepToParent(e, "title");
                 }}
@@ -80,6 +81,7 @@ class StepListItem extends React.Component {
             <span className="step-details-label">Body:</span>{" "}
             {this.state.editBody ? (
               <form
+                className="inline-form"
                 onSubmit={e => {
                   this.sendStepToParent(e, "body");
                 }}

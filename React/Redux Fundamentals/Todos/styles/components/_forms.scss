@@ -1,0 +1,32 @@
+.new-todo-form {
+  @include flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: white;
+}
+
+.new-todo-form h2 {
+  font-family: $seriffont;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.new-todo-form > * {
+  max-width: 40rem;
+  margin-bottom: 0.4rem;
+}
+
+.new-todo-form .done-selector {
+  @include flex;
+  justify-content: start;
+}
+
+.new-todo-form .done-selector label {
+  margin-right: 0.5rem;
+}
+
+.inline-form {
+  @include flex;
+  justify-content: start;
+}

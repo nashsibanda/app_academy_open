@@ -5,7 +5,7 @@ import Root from "./components/root";
 import { allTodos, stepsByTodoId } from "./reducers/selectors";
 
 document.addEventListener("DOMContentLoaded", function() {
-  const rootElement = document.getElementById("content");
+  const rootElement = document.getElementById("main-app-container");
   ReactDOM.render(<Root store={configureStore} />, rootElement);
 });
 

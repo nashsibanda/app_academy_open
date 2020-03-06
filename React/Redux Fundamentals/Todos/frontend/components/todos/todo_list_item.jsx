@@ -4,10 +4,11 @@ import TodoDetailViewContainer from "./todo_detail_view_container";
 class TodoListItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { detail: false };
+    this.state = { detail: true };
     this.toggleDetail = this.toggleDetail.bind(this);
     this.toggleDone = this.toggleDone.bind(this);
     this.updateTodo = this.updateTodo.bind(this);
+    this.removeSelf = this.removeSelf.bind(this);
   }
 
   toggleDetail(e) {
@@ -20,6 +21,11 @@ class TodoListItem extends React.Component {
     console.log(flippedTodo);
     flippedTodo.done = !flippedTodo.done;
     this.props.receiveTodo(flippedTodo);
+  }
+
+  removeSelf(e) {
+    e.preventDefault();
+    this.props.removeTodo(this.props.todo);
   }
 
   updateTodo(newTodo) {
@@ -36,6 +42,7 @@ class TodoListItem extends React.Component {
         <button onClick={this.toggleDone}>
           {this.props.todo.done ? "Undo" : "Done"}
         </button>
+        <button onClick={this.removeSelf}>Delete</button>
         {this.state.detail && (
           <TodoDetailViewContainer
             todo={todo}

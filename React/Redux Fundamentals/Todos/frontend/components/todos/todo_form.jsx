@@ -46,7 +46,8 @@ class TodoForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.submitForm}>
+      <form onSubmit={this.submitForm} className="new-todo-form">
+        <h2>New Todo</h2>
         <input
           type="text"
           placeholder="Enter Todo title here..."
@@ -59,14 +60,16 @@ class TodoForm extends React.Component {
           onChange={this.updateBody}
           value={this.state.body}
         ></input>{" "}
-        <label htmlFor="done">Done?</label>
-        <input
-          type="checkbox"
-          name="done"
-          onChange={this.updateDone}
-          checked={this.state.done}
-        ></input>
-        <input type="submit"></input>
+        <div className="done-selector">
+          <label htmlFor="done">Done?</label>
+          <input
+            type="checkbox"
+            name="done"
+            onChange={this.updateDone}
+            checked={this.state.done}
+          ></input>
+        </div>
+        <input className="form-button" type="submit"></input>
       </form>
     );
   }

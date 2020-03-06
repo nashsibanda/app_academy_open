@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css?family=Spartan:300,400,700,900&display=swap");
+html,
+body,
+header,
+nav,
+h1,
+a,
+ul,
+li,
+strong,
+main,
+button,
+i,
+section,
+img,
+div,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+form,
+fieldset,
+label,
+input,
+textarea,
+span,
+article,
+footer,
+time,
+small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+  background: inherit;
+  overflow: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+input[type="password"],
+input[type="email"],
+input[type="text"],
+input[type="submit"],
+textarea,
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button,
+input[type="submit"] {
+  cursor: pointer;
+}
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+body {
+  font-family: "Spartan", sans-serif;
+  background-color: #eee;
+}
+
+main {
+  margin: 0 10rem;
+}
+
+input[type="text"] {
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  padding: 0.5rem;
+  background-color: #fff;
+}
+
+.form-button,
+button,
+.button {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #666;
+  text-align: center;
+  border-radius: 0.3rem;
+  background-color: #988aea;
+  color: white;
+}
+
+.form-button:hover,
+button:hover,
+.button:hover {
+  background-color: #6a5acd;
+}
+
+.form-button {
+  padding: 1rem;
+  font-weight: 700;
+  width: 6rem;
+}
+
+button,
+.button {
+  padding: 0.3rem;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #6a5acd;
+  color: white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #333;
+}
+
+header h1 {
+  font-family: "Georgia", serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.new-todo-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: white;
+}
+
+.new-todo-form h2 {
+  font-family: "Georgia", serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.new-todo-form > * {
+  max-width: 40rem;
+  margin-bottom: 0.4rem;
+}
+
+.new-todo-form .done-selector {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
+.new-todo-form .done-selector label {
+  margin-right: 0.5rem;
+}
+
+.inline-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+/*# sourceMappingURL=style.css.map */
