@@ -1,4 +1,5 @@
 .DS_Store
+.vscode
 .byebug_history
 .yml
 Ruby/Reference/Memory Puzzle/plan.txt
