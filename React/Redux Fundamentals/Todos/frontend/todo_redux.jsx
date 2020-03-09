@@ -8,7 +8,3 @@ document.addEventListener("DOMContentLoaded", function() {
   const rootElement = document.getElementById("main-app-container");
   ReactDOM.render(<Root store={configureStore} />, rootElement);
 });
-
-window.store = configureStore;
-window.allTodos = allTodos;
-window.stepsByTodoId = stepsByTodoId;
