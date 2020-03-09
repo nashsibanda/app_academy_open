@@ -52,6 +52,7 @@ class TodoDetailView extends React.Component {
                 placeholder="Enter todo title..."
                 value={this.state.title}
                 onChange={this.updateProperty("title")}
+                required
               ></input>
               <div className="submit-cancel-buttons">
                 <button

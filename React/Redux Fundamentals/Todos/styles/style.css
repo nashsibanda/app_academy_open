@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Spartan:300,400,700,900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Nanum+Myeongjo:400,700|Bungee+Shade|Spartan:300,400,700,900&display=swap");
 html,
 body,
 header,
@@ -175,8 +175,9 @@ a:hover {
 }
 
 .site-header h1 {
-  font-family: "Spartan", sans-serif;
-  font-size: 2rem;
+  font-family: "Bungee Shade", sans-serif;
+  color: white;
+  font-size: 3rem;
   font-weight: 300;
   padding-right: 2rem;
 }
@@ -224,7 +225,7 @@ a:hover {
 }
 
 .new-todo-form h2 {
-  font-family: "Georgia", serif;
+  font-family: "Nanum Myeongjo", "Georgia", serif;
   font-size: 1.3rem;
   font-weight: 700;
 }
@@ -389,12 +390,14 @@ a:hover {
 .todo-list-item-title:hover {
   background-color: #eee;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .todo-title {
   text-transform: capitalize;
   font-weight: 400;
-  font-size: 1.5rem;
+  font-size: 1.9rem;
+  font-family: "Nanum Myeongjo", "Georgia", serif;
 }
 
 .todo-title-and-due {
@@ -624,13 +627,14 @@ a:hover {
           align-items: center;
   position: relative;
   text-transform: capitalize;
-  padding: 0.2rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   font-weight: 700;
 }
 
 .step-title:hover {
   cursor: pointer;
   background-color: #eee;
+  border-radius: 8px;
 }
 
 .step-done {
@@ -743,7 +747,7 @@ a:hover {
 }
 
 .todo-list-header h2 {
-  font-family: "Georgia", serif;
+  font-family: "Nanum Myeongjo", "Georgia", serif;
   font-size: 1.6rem;
 }
 

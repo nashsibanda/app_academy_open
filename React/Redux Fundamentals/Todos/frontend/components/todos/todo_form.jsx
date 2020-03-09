@@ -96,6 +96,7 @@ class TodoForm extends React.Component {
               placeholder="Title"
               onChange={this.updateTitle}
               value={this.state.title}
+              required
             ></input>
             {this.state.showBodyInput ? (
               <span className="toggleable-text-input">

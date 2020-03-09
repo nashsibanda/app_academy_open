@@ -32,13 +32,14 @@
   align-items: center;
   position: relative;
   text-transform: capitalize;
-  padding: 0.2rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   font-weight: 700;
 }
 
 .step-title:hover {
   cursor: pointer;
   background-color: $lightestgray;
+  border-radius: 8px;
 }
 
 .step-done {

@@ -40,6 +40,7 @@ class StepForm extends React.Component {
               placeholder="New Step"
               onChange={this.updateState("title")}
               value={this.state.title}
+              required
             ></input>
             <input
               type="text"
