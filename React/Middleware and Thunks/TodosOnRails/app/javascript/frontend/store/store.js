@@ -1,24 +1,12 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "../reducers/root_reducer";
+import thunk from "./../middleware/thunk";
 
-const myStorage = window.localStorage;
-
-const initialState = () => {
-  if (myStorage.getItem("localState")) {
-    return JSON.parse(myStorage.getItem("localState"));
-  } else {
-    return undefined;
-  }
-};
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const configureStore = createStore(
   rootReducer,
-  initialState(),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancers(applyMiddleware(thunk))
 );
-
-configureStore.subscribe(() => {
-  myStorage.setItem("localState", JSON.stringify(configureStore.getState()));
-});
 
 export default configureStore;

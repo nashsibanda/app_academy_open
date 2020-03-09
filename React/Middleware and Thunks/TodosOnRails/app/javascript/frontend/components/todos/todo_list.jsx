@@ -21,6 +21,10 @@ class TodoList extends React.Component {
     this.toggleFilterMenu = this.toggleFilterMenu.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchTodos();
+  }
+
   sortSwitch(toggle) {
     return e => {
       if (this.state.sortMethod === toggle) {
@@ -133,10 +137,10 @@ class TodoList extends React.Component {
   }
 
   render() {
-    const { todos, receiveTodo, removeTodo } = this.props;
+    const { todos, receiveTodo, removeTodo, createTodo } = this.props;
     return (
       <div className="todos">
-        <TodoForm submit={receiveTodo} />
+        <TodoForm submit={createTodo} />
         <ul className="todo-list">
           <header className="todo-list-header">
             <h2>Your Todos</h2>

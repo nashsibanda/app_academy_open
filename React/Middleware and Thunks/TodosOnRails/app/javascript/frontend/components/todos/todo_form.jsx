@@ -73,9 +73,27 @@ class TodoForm extends React.Component {
 
   submitForm(e) {
     e.preventDefault();
-    const newTodo = Object.assign({}, this.state, { id: Util.uniqueId() });
-    this.props.submit(newTodo);
-    this.setState({ title: "", body: "", done: false }, this.toggleForm());
+    const formValues = (({ title, body, due, done }) => ({
+      title,
+      body,
+      due,
+      done
+    }))(this.state);
+    const newTodo = { todo: formValues };
+    // const newTodo = Object.assign({}, this.state);
+    this.props.submit(newTodo).then(() =>
+      this.setState(
+        {
+          title: "",
+          body: "",
+          due: "",
+          done: false,
+          showBodyInput: false,
+          showDueInput: false
+        },
+        this.toggleForm()
+      )
+    );
   }
 
   render() {
@@ -96,7 +114,6 @@ class TodoForm extends React.Component {
               placeholder="Title"
               onChange={this.updateTitle}
               value={this.state.title}
-              required
             ></input>
             {this.state.showBodyInput ? (
               <span className="toggleable-text-input">
