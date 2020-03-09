@@ -10,6 +10,7 @@ import TodoList from "./todo_list";
 
 const mapStateToProps = state => ({
   todos: allTodos(state),
+  errors: state.errors,
   state
 });
 

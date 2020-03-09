@@ -137,10 +137,10 @@ class TodoList extends React.Component {
   }
 
   render() {
-    const { todos, receiveTodo, removeTodo, createTodo } = this.props;
+    const { todos, receiveTodo, removeTodo, createTodo, errors } = this.props;
     return (
       <div className="todos">
-        <TodoForm submit={createTodo} />
+        <TodoForm submit={createTodo} errors={errors} />
         <ul className="todo-list">
           <header className="todo-list-header">
             <h2>Your Todos</h2>

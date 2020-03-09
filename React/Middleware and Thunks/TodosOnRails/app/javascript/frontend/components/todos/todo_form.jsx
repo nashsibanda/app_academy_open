@@ -1,5 +1,5 @@
 import React from "react";
-import Util from "../../util/util";
+import ErrorList from "./error_list";
 
 class TodoForm extends React.Component {
   constructor(props) {
@@ -81,19 +81,23 @@ class TodoForm extends React.Component {
     }))(this.state);
     const newTodo = { todo: formValues };
     // const newTodo = Object.assign({}, this.state);
-    this.props.submit(newTodo).then(() =>
-      this.setState(
-        {
-          title: "",
-          body: "",
-          due: "",
-          done: false,
-          showBodyInput: false,
-          showDueInput: false
-        },
-        this.toggleForm()
-      )
-    );
+    this.props.submit(newTodo).then(() => {
+      if (this.props.errors.length > 0) {
+        console.log("Rejected!");
+      } else {
+        this.setState(
+          {
+            title: "",
+            body: "",
+            due: "",
+            done: false,
+            showBodyInput: false,
+            showDueInput: false
+          },
+          this.toggleForm()
+        );
+      }
+    });
   }
 
   render() {
@@ -158,11 +162,15 @@ class TodoForm extends React.Component {
                 checked={this.state.done}
               ></input>
             </div>
-            {/* <input className="form-button" type="submit"></input> */}
-            <button type="submit" className="form-button" value="Submit">
-              Submit
-              <i className="left-padded-icon fas fa-sticky-note"></i>
-            </button>
+            <div className="todo-form-submit-row">
+              <button type="submit" className="form-button" value="Submit">
+                Submit
+                <i className="left-padded-icon fas fa-sticky-note"></i>
+              </button>
+              {this.props.errors.length > 0 && (
+                <ErrorList errors={this.props.errors} />
+              )}
+            </div>
           </form>
         )}
       </div>
