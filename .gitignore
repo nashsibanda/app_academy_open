@@ -2,6 +2,7 @@
 .vscode
 .byebug_history
 .yml
+tmp
 Ruby/Reference/Memory Puzzle/plan.txt
 tempCodeRunnerFile.rb
 tempCodeRunnerFile.ruby
