@@ -1,0 +1,105 @@
+.step-list-item {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid $keycolorlight;
+  max-width: 40rem;
+}
+
+.step-list-item:last-child {
+  border-bottom: none;
+}
+
+.step-list-placeholder-item {
+  margin-bottom: 0.5rem;
+}
+
+.step-details > li {
+  @include flex;
+  justify-content: start;
+  align-items: center;
+  min-height: 3rem;
+  box-sizing: content-box;
+  padding-bottom: 0.5rem;
+}
+
+.step-details .inline-form {
+  flex-basis: 100%;
+}
+
+.step-title {
+  @include flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  text-transform: capitalize;
+  padding: 0.5rem 0.5rem;
+  font-weight: 700;
+}
+
+.step-title:hover {
+  cursor: pointer;
+  background-color: $lightestgray;
+  border-radius: 8px;
+}
+
+.step-done {
+  position: absolute;
+  left: -3.5rem;
+  font-size: 2rem;
+}
+
+.step-title-done {
+  color: $donecolor;
+}
+
+.step-delete-icon {
+  padding: 0;
+  font-size: 2rem;
+  margin-left: auto;
+  padding-left: 0.3rem;
+}
+
+.step-number {
+  font-weight: 700;
+  color: $keycolorlight;
+  padding-right: 1rem;
+}
+
+.step-details-label {
+  width: 5rem;
+  flex-shrink: 0;
+  color: $keycolor;
+  font-weight: 700;
+  padding: 0.2rem 0;
+}
+
+@media only screen and (max-width: 750px) {
+  .step-title {
+    @include flex;
+    justify-content: flex-start;
+  }
+
+  .step-done {
+    position: static;
+    padding-right: 0.5rem;
+  }
+
+  .step-details > li {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .step-details > li > * {
+    width: 100%;
+  }
+
+  .step-list {
+    @include flex;
+    flex-direction: column;
+  }
+
+  .step-list > * {
+    flex-basis: 100%;
+    flex-grow: 2;
+  }
+}

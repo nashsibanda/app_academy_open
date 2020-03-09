@@ -10,6 +10,21 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  */
+
+// CSS Reset
+@import "./base/reset";
+
+// Base sheets
+@import "./base/globals";
+@import "./base/mixins";
+@import "./base/layout";
+
+// Components
+@import "./components/header";
+@import "./components/forms";
+@import "./components/todo_list";
+@import "./components/step-list";
+@import "./components/done_icons";
+@import "./components/todo_list_header";

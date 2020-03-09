@@ -1,0 +1,31 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nanum+Myeongjo:400,700|Bungee+Shade|Spartan:300,400,700,900&display=swap");
+
+// Global Variables
+$sansfont: "Spartan", sans-serif;
+$seriffont: "Nanum Myeongjo", "Georgia", serif;
+$displayfont: "Bungee Shade", sans-serif;
+
+// Key Color
+$keycolorlight: #988aea;
+$keycolor: #6a5acd;
+$keycolordark: #41377d;
+$keycolordarker: #2f285aff;
+
+// Accent Color
+$accentcolorlight: #ffd6b3ff;
+$accentcolor: #f4a460ff;
+$accentcolordark: #9b5a23ff;
+
+// Grays
+$lightestgray: #eee;
+$lightergray: #ddd;
+$lightgray: #bbb;
+$darkgray: #999;
+$darkergray: #666;
+$darkestgray: #333;
+
+// Interface Colors
+$donecolor: #61a45cff;
+$notdonecolor: #bad7eeff;
+$deselectcolor: #cd5c5cff;

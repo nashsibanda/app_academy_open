@@ -1,0 +1,9 @@
+@mixin flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin embossed-effect {
+  border-top: 1px solid $lightestgray;
+  border-bottom: 1px solid $darkergray;
+}

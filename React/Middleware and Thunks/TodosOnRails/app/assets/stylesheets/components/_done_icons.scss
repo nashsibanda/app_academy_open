@@ -1,0 +1,15 @@
+.fas {
+  background-color: transparent;
+}
+
+.done-true {
+  color: $donecolor;
+}
+
+.done-false {
+  color: $notdonecolor;
+}
+
+.fa-check-circle.done-true:hover {
+  color: $deselectcolor;
+}

@@ -1,0 +1,176 @@
+.todo-list {
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.todo-list-item {
+  padding: 1.5rem 1rem;
+  padding-left: 4rem;
+  border-bottom: 1px solid $lightgray;
+}
+
+.todo-list-item:last-child {
+  border-bottom: none;
+}
+
+.todo-done {
+  position: absolute;
+  left: -3rem;
+  font-size: 2rem;
+}
+
+.todo-list-item-title {
+  @include flex;
+  justify-content: start;
+  align-items: center;
+  position: relative;
+  padding: 1rem;
+}
+
+.todo-list-item-title:hover {
+  background-color: $lightestgray;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.todo-title {
+  text-transform: capitalize;
+  font-weight: 400;
+  font-size: 1.9rem;
+  font-family: $seriffont;
+}
+
+.todo-title-and-due {
+  @include flex;
+  flex-direction: column;
+}
+
+.friendly-due-string {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding-top: 0.2rem;
+}
+
+.friendly-due-string.overdue {
+  color: $deselectcolor;
+}
+
+.friendly-due-string.due-this-week {
+  color: $accentcolordark;
+}
+
+.friendly-due-string.not-due {
+  color: $darkgray;
+}
+
+.friendly-due-string.friendly-done {
+  color: $donecolor;
+}
+
+.todo-delete-icon {
+  margin-left: auto;
+  font-size: 2rem;
+}
+
+.todo-details {
+  margin-top: 0;
+}
+
+.todo-details > li {
+  @include flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0.6rem 0;
+  margin: 0.6rem 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid $lightergray;
+  min-height: 3.5rem;
+}
+
+.todo-details .inline-form {
+  flex-basis: 100%;
+}
+
+.todo-details > li:last-child {
+  border-bottom: none;
+}
+
+.todo-details-label {
+  width: 6rem;
+  flex-shrink: 0;
+  color: $keycolor;
+  font-weight: 700;
+}
+
+.todo-details-content {
+  flex-shrink: 1;
+}
+
+.todo-details-content .icon-button {
+  padding-left: 0.5rem;
+}
+
+.todo-details .todo-steps-container {
+  padding: 1rem 0;
+  align-items: normal;
+  height: max-content;
+}
+
+.steps-container {
+  align-self: flex-start;
+  flex-grow: 1;
+}
+
+.todo-details .todo-details-status-row {
+  @include flex;
+  justify-content: space-around;
+}
+
+.todo-details-status-row > span {
+  @include flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 750px) {
+  .todo-title {
+    font-size: 1.2rem;
+  }
+
+  .todo-details > li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .todo-details > li > * {
+    width: 100%;
+  }
+
+  .todo-done,
+  .todo-delete-icon {
+    position: static;
+    padding: 0;
+  }
+
+  .todo-done {
+    padding-right: 1rem;
+  }
+
+  .todo-list-item {
+    padding-left: 0;
+  }
+
+  .todo-details-label {
+    margin-bottom: 0.5rem;
+  }
+
+  .todo-steps-container,
+  .steps-container {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .todo-list-item-title {
+    padding: 0;
+  }
+}

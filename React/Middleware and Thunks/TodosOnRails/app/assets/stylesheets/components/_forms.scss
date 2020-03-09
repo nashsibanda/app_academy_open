@@ -1,0 +1,110 @@
+.new-todo-form-container {
+  margin-bottom: 1rem;
+}
+
+.new-todo-form {
+  @include flex;
+  flex-direction: column;
+  padding: 3rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  position: absolute;
+  top: 30vh;
+  width: calc(100% - 30vw);
+  left: 15vw;
+  margin: 0 auto;
+  z-index: 3;
+  box-sizing: border-box;
+}
+
+.new-todo-modal {
+  background-color: #00000066;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.new-todo-form h2 {
+  font-family: $seriffont;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.new-todo-form > * {
+  margin-bottom: 0.4rem;
+}
+
+.new-todo-form > *:last-child {
+  margin-bottom: 0;
+}
+
+.new-todo-form .done-selector {
+  @include flex;
+  justify-content: start;
+  margin-bottom: 1rem;
+}
+
+.new-todo-form .done-selector label {
+  margin-right: 0.5rem;
+}
+
+.inline-form {
+  @include flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.stacked-form {
+  @include flex;
+  flex-direction: column;
+}
+
+.stacked-form input {
+  margin-bottom: 0.4rem;
+}
+
+.submit-cancel-buttons {
+  @include flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.submit-cancel-buttons > *:first-child {
+  padding-right: 0.4rem;
+}
+
+.inline-form > * {
+  margin-right: 0.4rem;
+}
+
+.inline-form .icon-button,
+.stacked-form .icon-button {
+  font-size: 1.5rem;
+}
+
+.toggleable-text-input {
+  @include flex;
+  align-items: center;
+}
+.toggleable-text-input > button {
+  width: 2rem;
+}
+
+.toggleable-text-input > input,
+.toggleable-text-input > textarea {
+  width: calc(100% - 2.5rem);
+}
+
+@media only screen and (max-width: 750px) {
+  .inline-form {
+    flex-direction: column;
+  }
+
+  .submit-cancel-buttons {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+}
