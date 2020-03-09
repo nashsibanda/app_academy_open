@@ -7,16 +7,20 @@ class TodoForm extends React.Component {
     this.state = {
       title: "",
       body: "",
+      due: "",
       done: false,
       showForm: false,
-      showBodyInput: false
+      showBodyInput: false,
+      showDueInput: false
     };
     this.updateDone = this.updateDone.bind(this);
+    this.updateDue = this.updateDue.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
     this.updateBody = this.updateBody.bind(this);
     this.submitForm = this.submitForm.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
     this.toggleBodyInput = this.toggleBodyInput.bind(this);
+    this.toggleDueInput = this.toggleDueInput.bind(this);
   }
 
   updateTitle(e) {
@@ -37,6 +41,15 @@ class TodoForm extends React.Component {
     }
   }
 
+  updateDue(e) {
+    e.preventDefault();
+    if (e.currentTarget.value) {
+      this.setState({ due: e.currentTarget.value });
+    } else {
+      this.setState({ due: "" });
+    }
+  }
+
   updateDone(e) {
     e.stopPropagation();
     this.setState({ done: e.currentTarget.checked });
@@ -50,6 +63,12 @@ class TodoForm extends React.Component {
     e.preventDefault();
     e.stopPropagation();
     this.setState({ showBodyInput: !this.state.showBodyInput });
+  }
+
+  toggleDueInput(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.setState({ showDueInput: !this.state.showDueInput });
   }
 
   submitForm(e) {
@@ -93,6 +112,23 @@ class TodoForm extends React.Component {
             ) : (
               <a href="#" onClick={this.toggleBodyInput}>
                 Add description...
+              </a>
+            )}
+            {this.state.showDueInput ? (
+              <span className="toggleable-text-input">
+                <input
+                  type="date"
+                  onChange={this.updateDue}
+                  value={this.state.due}
+                ></input>
+                <i
+                  className="fas fa-times icon-button"
+                  onClick={this.toggleDueInput}
+                ></i>
+              </span>
+            ) : (
+              <a href="#" onClick={this.toggleDueInput}>
+                Add due date...
               </a>
             )}
             <div className="done-selector">

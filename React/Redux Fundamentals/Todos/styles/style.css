@@ -178,6 +178,11 @@ a:hover {
   font-family: "Spartan", sans-serif;
   font-size: 2rem;
   font-weight: 300;
+  padding-right: 2rem;
+}
+
+.site-byline {
+  text-align: right;
 }
 
 .new-todo-form-container {

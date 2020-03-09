@@ -7,21 +7,31 @@ import {
 const initialState = {
   1: {
     id: 1,
-    title: "wash car",
-    body: "with soap",
-    done: false
+    title: "Wash car",
+    body: "With soap",
+    done: false,
+    due: "2020-04-02"
   },
   2: {
     id: 2,
-    title: "wash dog",
-    body: "with shampoo",
+    title: "Wash dog",
+    body: "With shampoo",
     done: true
   },
   3: {
     id: 3,
-    title: "take a shower",
-    body: "and be clean",
-    done: false
+    title: "Take a shower",
+    body: "...and be clean",
+    done: false,
+    due: "2020-03-12"
+  },
+  4: {
+    id: 4,
+    title: "Test Todos App",
+    body:
+      "Hopefully everything should be working alright on the app. It's tricky to know when to stop and when to keep adding new features!",
+    done: false,
+    due: "2020-03-09"
   }
 };
 

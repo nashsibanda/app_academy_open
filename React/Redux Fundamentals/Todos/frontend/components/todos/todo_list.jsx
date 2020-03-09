@@ -276,11 +276,11 @@ class TodoList extends React.Component {
             </div>
           </header>
 
-          {this.filterItems().map((todo, index) => {
+          {this.filterItems().map(todo => {
             return (
               <TodoListItem
                 todo={todo}
-                key={index}
+                key={todo.id}
                 receiveTodo={receiveTodo}
                 removeTodo={removeTodo}
               />
