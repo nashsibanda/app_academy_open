@@ -36,10 +36,12 @@
   font-weight: 700;
 }
 
-.step-title:hover {
-  cursor: pointer;
-  background-color: $lightestgray;
-  border-radius: 8px;
+@media (hover: hover) {
+  .step-title:hover {
+    cursor: pointer;
+    background-color: $lightestgray;
+    border-radius: 8px;
+  }
 }
 
 .step-done {

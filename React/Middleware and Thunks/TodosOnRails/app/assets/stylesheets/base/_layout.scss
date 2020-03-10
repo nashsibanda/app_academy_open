@@ -30,11 +30,6 @@ input[type="date"] {
   box-sizing: border-box;
 }
 
-.form-button:hover,
-.button:hover {
-  background-color: $keycolor;
-}
-
 .form-button {
   padding: 1rem;
   font-weight: 700;
@@ -54,20 +49,27 @@ input[type="date"] {
   font-size: 1rem;
 }
 
-.icon-button:hover {
-  color: $accentcolor;
-  cursor: pointer;
-}
-
-.fa-times-circle:hover {
-  color: $deselectcolor;
-}
-
 .left-padded-icon {
   padding-left: 0.7rem;
 }
 
-a:hover {
-  color: $accentcolor;
-  font-weight: 700;
+@media (hover: hover) {
+  .icon-button:hover {
+    color: $accentcolor;
+    cursor: pointer;
+  }
+
+  .fa-times-circle:hover {
+    color: $deselectcolor;
+  }
+
+  a:hover {
+    color: $accentcolor;
+    font-weight: 700;
+  }
+
+  .form-button:hover,
+  .button:hover {
+    background-color: $keycolor;
+  }
 }

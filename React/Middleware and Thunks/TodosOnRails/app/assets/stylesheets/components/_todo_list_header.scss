@@ -38,8 +38,10 @@
   padding-left: 1rem;
 }
 
-.sort-option:hover {
-  cursor: pointer;
+@media (hover: hover) {
+  .sort-option:hover {
+    cursor: pointer;
+  }
 }
 
 .fa-toggle-on {

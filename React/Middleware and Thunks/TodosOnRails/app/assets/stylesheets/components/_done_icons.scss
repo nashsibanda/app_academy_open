@@ -10,6 +10,8 @@
   color: $notdonecolor;
 }
 
-.fa-check-circle.done-true:hover {
-  color: $deselectcolor;
+@media (hover: hover) {
+  .fa-check-circle.done-true:hover {
+    color: $deselectcolor;
+  }
 }

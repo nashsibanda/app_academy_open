@@ -76,8 +76,10 @@
   background-color: transparent;
 }
 
-.error-list li:hover {
-  background-color: $deselectcolor;
+@media (hover: hover) {
+  .error-list li:hover {
+    background-color: $deselectcolor;
+  }
 }
 
 .error-list i {
