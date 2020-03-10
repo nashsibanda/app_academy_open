@@ -1,11 +1,18 @@
 .todo-list-header {
   @include flex;
+  flex-direction: column;
+}
+
+.pref-menus {
+  @include flex;
   align-items: center;
 }
 
 .todo-list-header h2 {
   font-family: $seriffont;
   font-size: 1.6rem;
+  text-align: center;
+  padding-bottom: 1.3rem;
 }
 
 .sort-toggles {
@@ -49,7 +56,7 @@
 }
 
 @media only screen and (max-width: 1200px) {
-  .todo-list-header,
+  .pref-menus,
   .sort-toggles-menu {
     flex-direction: column;
   }

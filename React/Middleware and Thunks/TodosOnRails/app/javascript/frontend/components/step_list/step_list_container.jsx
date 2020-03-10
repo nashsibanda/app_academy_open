@@ -10,6 +10,7 @@ import { stepsByTodoId } from "../../reducers/selectors";
 const mapStateToProps = (state, { todo_id }) => ({
   steps: stepsByTodoId(state, todo_id),
   errors: state.errors,
+  prefs: state.prefs,
   todo_id
 });
 

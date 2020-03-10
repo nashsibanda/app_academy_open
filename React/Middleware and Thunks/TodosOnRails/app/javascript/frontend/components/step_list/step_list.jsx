@@ -5,7 +5,7 @@ import StepForm from "./step_form";
 class StepList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { showSteps: false };
+    this.state = { showSteps: this.props.prefs.showSteps };
     this.updateStep = this.updateStep.bind(this);
     this.toggleSteps = this.toggleSteps.bind(this);
     this.formSubmitHandler = this.formSubmitHandler.bind(this);

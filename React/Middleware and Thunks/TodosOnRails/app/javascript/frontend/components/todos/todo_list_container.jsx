@@ -8,10 +8,12 @@ import {
 import { allTodos } from "../../reducers/selectors";
 import TodoList from "./todo_list";
 import { clearErrors } from "../../actions/error_actions";
+import { toggleSteps } from "../../actions/prefs_actions";
 
 const mapStateToProps = state => ({
   todos: allTodos(state),
   errors: state.errors,
+  prefs: state.prefs,
   state
 });
 
@@ -20,7 +22,8 @@ const mapDispatchToProps = dispatch => ({
   createTodo: todo => dispatch(createTodo(todo)),
   updateTodo: todo => dispatch(updateTodo(todo)),
   deleteTodo: todo => dispatch(deleteTodo(todo)),
-  clearErrors: () => dispatch(clearErrors())
+  clearErrors: () => dispatch(clearErrors()),
+  toggleSteps: () => dispatch(toggleSteps())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
