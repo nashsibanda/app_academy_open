@@ -49,3 +49,13 @@ export const updateStep = step => dispatch => {
     err => dispatch(receiveErrors(err.responseJSON))
   );
 };
+
+export const deleteStep = step => dispatch => {
+  StepApi.deleteStep(step).then(
+    step => {
+      dispatch(removeStep(step));
+      dispatch(clearErrors());
+    },
+    err => dispatch(receiveErrors(err.responseJSON))
+  );
+};

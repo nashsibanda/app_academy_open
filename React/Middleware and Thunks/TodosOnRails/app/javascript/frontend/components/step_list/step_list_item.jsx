@@ -13,31 +13,33 @@ class StepListItem extends React.Component {
       doneHover: false,
       showDetails: false
     };
-    this.toggleDone = this.toggleDone.bind(this);
+    this.toggleDone = this.submit.bind(this);
     this.removeStep = this.removeStep.bind(this);
-    this.sendStepToParent = this.sendStepToParent.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
     this.updateProperty = this.updateProperty.bind(this);
     this.toggleDoneHover = this.toggleDoneHover.bind(this);
     this.toggleDetails = this.toggleDetails.bind(this);
   }
 
-  toggleDone(e) {
+  submit(e, toggle = false) {
     e.preventDefault();
     e.stopPropagation();
-    let toggledStep = (({ title, body, done, id }) => ({
+    let newStep = (({ title, body, done, id }) => ({
       title,
       body,
       done,
       id
     }))(this.state);
-    toggledStep.done = !toggledStep.done;
-    toggledStep = { step: toggledStep };
-    this.props.updateStep(toggledStep);
-    this.setState({ done: toggledStep.done });
-    // const toggledStep = Object.assign({}, this.props.step);
-    // toggledStep.done = !toggledStep.done;
-    // this.props.receiveStep(toggledStep);
+    if (toggle) {
+      newStep.done = !newStep.done;
+    }
+    newStep = { step: newStep };
+    this.props.updateStep(newStep);
+    this.setState({
+      done: newStep.step.done,
+      editBody: false,
+      editTitle: false
+    });
   }
 
   toggleEdit(property) {
@@ -55,15 +57,7 @@ class StepListItem extends React.Component {
   removeStep(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.props.removeStep(this.props.step);
-  }
-
-  sendStepToParent(e, property) {
-    e.preventDefault();
-    const updatedStep = Object.assign({}, this.props.step);
-    updatedStep[property] = this.state[property];
-    this.props.handleUpdate(updatedStep);
-    this.setState({ editBody: false, editTitle: false });
+    this.props.deleteStep(this.props.step);
   }
 
   updateProperty(property) {
@@ -83,7 +77,9 @@ class StepListItem extends React.Component {
                 : "done-false " +
                   (this.state.doneHover ? "fa-check-circle" : "fa-circle"))
             }
-            onClick={this.toggleDone}
+            onClick={e => {
+              this.submit(e, true);
+            }}
             onMouseEnter={this.toggleDoneHover}
             onMouseLeave={this.toggleDoneHover}
           ></i>
@@ -109,7 +105,7 @@ class StepListItem extends React.Component {
                 <form
                   className="inline-form"
                   onSubmit={e => {
-                    this.sendStepToParent(e, "title");
+                    this.submit(e);
                   }}
                 >
                   <input
@@ -145,7 +141,7 @@ class StepListItem extends React.Component {
                 <form
                   className="inline-form"
                   onSubmit={e => {
-                    this.sendStepToParent(e, "body");
+                    this.submit(e);
                   }}
                 >
                   <textarea

@@ -37,6 +37,18 @@ const StepApi = {
       success(response) {
         console.log("Successfully updated step using updateStep!");
       }
+    }),
+  deleteStep: step =>
+    $.ajax({
+      type: "DELETE",
+      url: `api/steps/${step.id}`,
+      dataType: "json",
+      headers: {
+        "X-CSRF-Token": auth_token
+      },
+      success(response) {
+        console.log("Successfully removed step with deleteStep!");
+      }
     })
 };
 

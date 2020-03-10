@@ -6,17 +6,12 @@ class StepList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { showSteps: this.props.prefs.showSteps };
-    this.updateStep = this.updateStep.bind(this);
     this.toggleSteps = this.toggleSteps.bind(this);
     this.formSubmitHandler = this.formSubmitHandler.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchSteps(this.props.todo_id);
-  }
-
-  updateStep(updatedStep) {
-    this.props.receiveStep(updatedStep);
   }
 
   formSubmitHandler(newStep) {
@@ -47,7 +42,6 @@ class StepList extends React.Component {
                     step={step}
                     key={step.id}
                     stepNumber={index + 1}
-                    handleUpdate={this.updateStep}
                   />
                 );
               })}
