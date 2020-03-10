@@ -24,6 +24,19 @@ const StepApi = {
       success(response) {
         console.log("Successfully added step using createStep!");
       }
+    }),
+  updateStep: step =>
+    $.ajax({
+      type: "PATCH",
+      url: `api/steps/${step.step.id}`,
+      dataType: "json",
+      data: step,
+      headers: {
+        "X-CSRF-Token": auth_token
+      },
+      success(response) {
+        console.log("Successfully updated step using updateStep!");
+      }
     })
 };
 

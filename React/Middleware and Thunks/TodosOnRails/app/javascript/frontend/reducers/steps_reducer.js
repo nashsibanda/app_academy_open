@@ -26,12 +26,14 @@ const stepsReducer = (state = initialState, action) => {
     case RECEIVE_STEPS:
       const receivedSteps = {};
       action.steps.forEach((step, index) => {
-        receivedSteps[index] = step;
+        receivedSteps[step.id] = step;
       });
       return receivedSteps;
     case RECEIVE_STEP:
       const receivedStep = { [action.step.id]: action.step };
-      return Object.assign({}, state, receivedStep);
+      const newState = Object.assign({}, state, receivedStep);
+      // newState[action.step.id] = receivedStep;
+      return newState;
     case REMOVE_STEP:
       const shortenedSteps = Object.assign({}, state);
       delete shortenedSteps[action.step.id];

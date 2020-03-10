@@ -6,6 +6,8 @@ class StepListItem extends React.Component {
     this.state = {
       title: this.props.step.title,
       body: this.props.step.body,
+      done: this.props.step.done,
+      id: this.props.step.id,
       editTitle: false,
       editBody: false,
       doneHover: false,
@@ -23,9 +25,19 @@ class StepListItem extends React.Component {
   toggleDone(e) {
     e.preventDefault();
     e.stopPropagation();
-    const toggledStep = Object.assign({}, this.props.step);
+    let toggledStep = (({ title, body, done, id }) => ({
+      title,
+      body,
+      done,
+      id
+    }))(this.state);
     toggledStep.done = !toggledStep.done;
-    this.props.receiveStep(toggledStep);
+    toggledStep = { step: toggledStep };
+    this.props.updateStep(toggledStep);
+    this.setState({ done: toggledStep.done });
+    // const toggledStep = Object.assign({}, this.props.step);
+    // toggledStep.done = !toggledStep.done;
+    // this.props.receiveStep(toggledStep);
   }
 
   toggleEdit(property) {
@@ -66,7 +78,7 @@ class StepListItem extends React.Component {
           <i
             className={
               "fas step-done icon-button " +
-              (step.done
+              (this.state.done
                 ? "done-true fa-check-circle"
                 : "done-false " +
                   (this.state.doneHover ? "fa-check-circle" : "fa-circle"))

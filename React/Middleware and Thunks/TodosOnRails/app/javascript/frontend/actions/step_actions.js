@@ -39,3 +39,13 @@ export const createStep = step => dispatch => {
     err => dispatch(receiveErrors(err.responseJSON))
   );
 };
+
+export const updateStep = step => dispatch => {
+  StepApi.updateStep(step).then(
+    step => {
+      dispatch(receiveStep(step));
+      dispatch(clearErrors());
+    },
+    err => dispatch(receiveErrors(err.responseJSON))
+  );
+};
