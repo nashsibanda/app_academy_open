@@ -128,7 +128,6 @@
 
 .todo-details .todo-details-status-row {
   @include flex;
-  justify-content: space-around;
 }
 
 .todo-details-status-row > span {
