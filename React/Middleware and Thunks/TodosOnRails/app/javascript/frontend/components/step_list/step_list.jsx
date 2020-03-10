@@ -8,6 +8,7 @@ class StepList extends React.Component {
     this.state = { showSteps: false };
     this.updateStep = this.updateStep.bind(this);
     this.toggleSteps = this.toggleSteps.bind(this);
+    this.formSubmitHandler = this.formSubmitHandler.bind(this);
   }
 
   componentDidMount() {
@@ -18,13 +19,18 @@ class StepList extends React.Component {
     this.props.receiveStep(updatedStep);
   }
 
+  formSubmitHandler(newStep) {
+    this.props.createStep(newStep);
+    this.setState({ showSteps: true });
+  }
+
   toggleSteps(e) {
     e.preventDefault();
     this.setState({ showSteps: !this.state.showSteps });
   }
 
   render() {
-    const { steps } = this.props;
+    const { steps, errors, todo_id } = this.props;
     return (
       <div className="steps-container">
         {steps.length > 0 ? (
@@ -62,8 +68,9 @@ class StepList extends React.Component {
         )}
         {(steps.length === 0 || this.state.showSteps) && (
           <StepForm
-            receiveStep={this.props.receiveStep}
-            todo_id={this.props.todo_id}
+            formSubmitHandler={this.formSubmitHandler}
+            todo_id={todo_id}
+            errors={errors}
           />
         )}
       </div>

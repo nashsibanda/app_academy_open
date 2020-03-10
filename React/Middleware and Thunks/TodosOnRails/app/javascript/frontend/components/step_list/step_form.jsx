@@ -4,7 +4,12 @@ import Util from "../../util/util";
 class StepForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { title: "", body: "", showForm: false };
+    this.state = {
+      title: "",
+      body: "",
+      showForm: false,
+      todo_id: this.props.todo_id
+    };
     this.updateState = this.updateState.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
@@ -16,13 +21,25 @@ class StepForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const newStep = Object.assign({}, this.state, {
-      id: Util.uniqueId(),
-      done: false,
-      todo_id: this.props.todo_id
-    });
-    this.props.receiveStep(newStep);
-    this.setState({ title: "", body: "", showForm: false });
+    // const newStep = Object.assign({}, this.state, {
+    //   id: Util.uniqueId(),
+    //   done: false,
+    //   todo_id: this.props.todo_id
+    // });
+    const formValues = (({ title, body, todo_id }) => ({
+      title,
+      body,
+      todo_id
+    }))(this.state);
+    const newStep = { step: formValues };
+    this.props.formSubmitHandler(newStep);
+    setTimeout(() => {
+      if (this.props.errors.length > 0) {
+        console.log("Rejected!");
+      } else {
+        this.setState({ title: "", body: "" });
+      }
+    }, 300);
   }
 
   toggleForm(e) {
@@ -40,7 +57,6 @@ class StepForm extends React.Component {
               placeholder="New Step"
               onChange={this.updateState("title")}
               value={this.state.title}
-              required
             ></input>
             <input
               type="text"
