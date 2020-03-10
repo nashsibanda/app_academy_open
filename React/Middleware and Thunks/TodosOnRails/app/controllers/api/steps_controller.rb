@@ -21,7 +21,7 @@ class Api::StepsController < ApplicationController
   end
 
   def index
-    @steps = Todo.find_by(id: params[todo_id]).steps
+    @steps = Todo.find_by(id: params[:todo_id]).steps
     render json: @steps
   end
 
@@ -33,7 +33,7 @@ class Api::StepsController < ApplicationController
   private
 
   def step_params
-    params.require(:step).permit(:title, :body, :done)
+    params.require(:step).permit(:title, :body, :done, :todo_id)
   end
 
   def current_step

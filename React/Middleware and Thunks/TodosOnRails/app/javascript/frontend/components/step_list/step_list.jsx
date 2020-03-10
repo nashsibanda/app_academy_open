@@ -10,6 +10,10 @@ class StepList extends React.Component {
     this.toggleSteps = this.toggleSteps.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchSteps(this.props.todo_id);
+  }
+
   updateStep(updatedStep) {
     this.props.receiveStep(updatedStep);
   }
