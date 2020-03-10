@@ -2,6 +2,7 @@ import React from "react";
 import TodoListItem from "./todo_list_item";
 import TodoForm from "./todo_form";
 import Util from "../../util/util";
+import ErrorList from "./error_list";
 
 class TodoList extends React.Component {
   constructor(props) {
@@ -137,10 +138,23 @@ class TodoList extends React.Component {
   }
 
   render() {
-    const { todos, receiveTodo, removeTodo, createTodo, errors } = this.props;
+    const {
+      todos,
+      receiveTodo,
+      removeTodo,
+      createTodo,
+      updateTodo,
+      errors,
+      clearErrors
+    } = this.props;
     return (
       <div className="todos">
-        <TodoForm submit={createTodo} errors={errors} />
+        {errors.length > 0 && <ErrorList errors={errors} />}
+        <TodoForm
+          submit={createTodo}
+          errors={errors}
+          clearErrors={clearErrors}
+        />
         <ul className="todo-list">
           <header className="todo-list-header">
             <h2>Your Todos</h2>
@@ -287,6 +301,7 @@ class TodoList extends React.Component {
                 key={todo.id}
                 receiveTodo={receiveTodo}
                 removeTodo={removeTodo}
+                updateTodo={updateTodo}
               />
             );
           })}

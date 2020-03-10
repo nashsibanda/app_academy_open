@@ -59,17 +59,25 @@
 .error-list {
   @include flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 0.3rem;
+  background-color: transparentize($deselectcolor, $amount: 0.4);
+  z-index: 10;
 }
 
 .error-list li {
   font-weight: 700;
-  color: $deselectcolor;
+  color: white;
   padding: 0.2rem;
+  background-color: transparent;
 }
 
 .error-list li:hover {
-  background-color: $lightestgray;
+  background-color: $deselectcolor;
 }
 
 .error-list i {

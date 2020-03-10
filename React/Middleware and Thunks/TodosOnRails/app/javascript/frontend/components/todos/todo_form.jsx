@@ -1,5 +1,4 @@
 import React from "react";
-import ErrorList from "./error_list";
 
 class TodoForm extends React.Component {
   constructor(props) {
@@ -56,7 +55,25 @@ class TodoForm extends React.Component {
   }
 
   toggleForm() {
-    this.setState({ showForm: !this.state.showForm });
+    this.setState({ showForm: !this.state.showForm }, () => {
+      if (!this.state.showForm) {
+        this.setState(
+          {
+            title: "",
+            body: "",
+            due: "",
+            done: false,
+            showBodyInput: false,
+            showDueInput: false
+          },
+          () => {
+            if (this.props.errors.length > 0) {
+              this.props.clearErrors();
+            }
+          }
+        );
+      }
+    });
   }
 
   toggleBodyInput(e) {
@@ -167,9 +184,9 @@ class TodoForm extends React.Component {
                 Submit
                 <i className="left-padded-icon fas fa-sticky-note"></i>
               </button>
-              {this.props.errors.length > 0 && (
+              {/* {this.props.errors.length > 0 && (
                 <ErrorList errors={this.props.errors} />
-              )}
+              )} */}
             </div>
           </form>
         )}

@@ -24,7 +24,20 @@ const TodoApi = {
       success(response) {
         console.log("Successfully posted a Todo with createTodo!");
       }
-    })
+    }),
+  updateTodo: todo => {
+    $.ajax({
+      type: "PATCH",
+      url: `api/todos/${todo.id}`,
+      data: todo,
+      headers: {
+        "X-CSRF-Token": auth_token
+      },
+      success(response) {
+        console.log("Successfully updated a Todo with updateTodo!");
+      }
+    });
+  }
 };
 
 export default TodoApi;
