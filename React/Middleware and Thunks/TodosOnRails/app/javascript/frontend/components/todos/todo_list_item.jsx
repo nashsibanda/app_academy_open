@@ -14,7 +14,11 @@ class TodoListItem extends React.Component {
   }
 
   toggleDetail(e) {
-    this.setState({ detail: !this.state.detail });
+    this.setState({ detail: !this.state.detail }, () => {
+      if (this.props.errors.length > 0) {
+        this.props.clearErrors();
+      }
+    });
   }
 
   toggleDone(e) {

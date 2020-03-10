@@ -297,6 +297,8 @@ class TodoList extends React.Component {
               <TodoListItem
                 todo={todo}
                 key={todo.id}
+                errors={errors}
+                clearErrors={clearErrors}
                 deleteTodo={deleteTodo}
                 updateTodo={updateTodo}
               />
