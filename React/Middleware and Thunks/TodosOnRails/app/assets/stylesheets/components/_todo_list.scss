@@ -60,6 +60,10 @@
   color: $accentcolordark;
 }
 
+.friendly-due-string.due-today {
+  color: $accentcolor;
+}
+
 .friendly-due-string.not-due {
   color: $darkgray;
 }

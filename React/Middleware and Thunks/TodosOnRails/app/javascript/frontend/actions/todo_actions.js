@@ -45,3 +45,12 @@ export const updateTodo = todo => dispatch =>
     },
     err => dispatch(receiveErrors(err.responseJSON))
   );
+
+export const deleteTodo = todo => dispatch =>
+  TodoApi.deleteTodo(todo).then(
+    todo => {
+      dispatch(removeTodo(todo));
+      dispatch(clearErrors());
+    },
+    err => dispatch(receiveErrors(err.responseJSON))
+  );

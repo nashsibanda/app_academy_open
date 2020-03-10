@@ -20,9 +20,9 @@ class TodoListItem extends React.Component {
   toggleDone(e) {
     e.preventDefault();
     e.stopPropagation();
-    const flippedTodo = Object.assign({}, this.props.todo);
-    flippedTodo.done = !flippedTodo.done;
-    this.props.receiveTodo(flippedTodo);
+    const newTodo = { todo: this.props.todo };
+    newTodo.todo.done = !newTodo.todo.done;
+    this.props.updateTodo(newTodo);
   }
 
   toggleDoneHover(e) {
@@ -33,11 +33,12 @@ class TodoListItem extends React.Component {
   removeSelf(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.props.removeTodo(this.props.todo);
+    this.props.deleteTodo(this.props.todo);
   }
 
-  updateTodo(newTodo) {
-    this.props.receiveTodo(newTodo);
+  updateTodo(todo) {
+    const newTodo = { todo: todo };
+    this.props.updateTodo(newTodo);
   }
 
   render() {
@@ -66,6 +67,8 @@ class TodoListItem extends React.Component {
                   ? "friendly-done"
                   : Util.friendlyDueString(todo.due) === "Overdue!"
                   ? "overdue"
+                  : Util.friendlyDueString(todo.due) === "Due Today!"
+                  ? "due-today"
                   : Util.friendlyDueString(todo.due) === "Due this week"
                   ? "due-this-week"
                   : "not-due")

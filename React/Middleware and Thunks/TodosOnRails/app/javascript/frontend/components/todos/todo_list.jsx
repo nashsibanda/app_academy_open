@@ -139,11 +139,9 @@ class TodoList extends React.Component {
 
   render() {
     const {
-      todos,
-      receiveTodo,
-      removeTodo,
       createTodo,
       updateTodo,
+      deleteTodo,
       errors,
       clearErrors
     } = this.props;
@@ -299,8 +297,7 @@ class TodoList extends React.Component {
               <TodoListItem
                 todo={todo}
                 key={todo.id}
-                receiveTodo={receiveTodo}
-                removeTodo={removeTodo}
+                deleteTodo={deleteTodo}
                 updateTodo={updateTodo}
               />
             );

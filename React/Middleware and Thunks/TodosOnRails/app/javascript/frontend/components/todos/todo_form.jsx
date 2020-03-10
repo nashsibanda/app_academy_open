@@ -90,6 +90,7 @@ class TodoForm extends React.Component {
 
   submitForm(e) {
     e.preventDefault();
+    e.stopPropagation();
     const formValues = (({ title, body, due, done }) => ({
       title,
       body,
@@ -97,7 +98,6 @@ class TodoForm extends React.Component {
       done
     }))(this.state);
     const newTodo = { todo: formValues };
-    // const newTodo = Object.assign({}, this.state);
     this.props.submit(newTodo).then(() => {
       if (this.props.errors.length > 0) {
         console.log("Rejected!");
@@ -179,15 +179,10 @@ class TodoForm extends React.Component {
                 checked={this.state.done}
               ></input>
             </div>
-            <div className="todo-form-submit-row">
-              <button type="submit" className="form-button" value="Submit">
-                Submit
-                <i className="left-padded-icon fas fa-sticky-note"></i>
-              </button>
-              {/* {this.props.errors.length > 0 && (
-                <ErrorList errors={this.props.errors} />
-              )} */}
-            </div>
+            <button type="submit" className="form-button" value="Submit">
+              Submit
+              <i className="left-padded-icon fas fa-sticky-note"></i>
+            </button>
           </form>
         )}
       </div>

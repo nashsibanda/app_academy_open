@@ -9,9 +9,10 @@ class TodoDetailView extends React.Component {
       editTitle: false,
       editBody: false,
       editDue: false,
+      editDueTime: false,
       title: this.props.todo.title,
-      body: this.props.todo.body,
-      due: this.props.todo.due
+      body: this.props.todo.body || "",
+      due: this.props.todo.due || ""
     };
     this.sendTodoToParent = this.sendTodoToParent.bind(this);
     this.toggleForm = this.toggleForm.bind(this);

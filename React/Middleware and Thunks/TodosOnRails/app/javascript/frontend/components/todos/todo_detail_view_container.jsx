@@ -4,7 +4,6 @@ import { receiveSteps } from "../../actions/step_actions";
 import TodoDetailView from "./todo_detail_view";
 
 const mapDispatchToProps = dispatch => ({
-  removeTodo: todo => dispatch(removeTodo(todo)),
   receiveSteps: steps_array => dispatch(receiveSteps(steps_array))
 });
 

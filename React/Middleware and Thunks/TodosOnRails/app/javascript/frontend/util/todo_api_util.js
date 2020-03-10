@@ -25,10 +25,11 @@ const TodoApi = {
         console.log("Successfully posted a Todo with createTodo!");
       }
     }),
-  updateTodo: todo => {
+  updateTodo: todo =>
     $.ajax({
       type: "PATCH",
-      url: `api/todos/${todo.id}`,
+      url: `api/todos/${todo.todo.id}`,
+      dataType: "json",
       data: todo,
       headers: {
         "X-CSRF-Token": auth_token
@@ -36,8 +37,19 @@ const TodoApi = {
       success(response) {
         console.log("Successfully updated a Todo with updateTodo!");
       }
-    });
-  }
+    }),
+  deleteTodo: todo =>
+    $.ajax({
+      type: "DELETE",
+      url: `api/todos/${todo.id}`,
+      dataType: "json",
+      headers: {
+        "X-CSRF-Token": auth_token
+      },
+      success(response) {
+        console.log("Successfully deleted a Todo with deleteTodo!");
+      }
+    })
 };
 
 export default TodoApi;

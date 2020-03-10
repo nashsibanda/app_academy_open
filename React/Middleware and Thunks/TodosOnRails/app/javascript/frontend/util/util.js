@@ -6,7 +6,7 @@ const Util = {
     if (dateString) {
       const now = new Date();
       const dateToCheck = new Date(dateString);
-      return now > dateToCheck;
+      return now - dateToCheck > 86400000;
     } else {
       return false;
     }
@@ -15,7 +15,9 @@ const Util = {
     if (dateString) {
       const now = new Date();
       const dateToCheck = new Date(dateString);
-      if (now > dateToCheck) {
+      if (now - dateToCheck < 86400000 && now - dateToCheck > 0) {
+        return "Due Today!";
+      } else if (now > dateToCheck) {
         return "Overdue!";
       } else if (dateToCheck - now < 604800000) {
         return "Due this week";

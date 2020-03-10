@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Api::TodosController < ApplicationController
-  before_action :current_todo, only: [:update, :show, :destroy]
+  before_action :current_todo, only: %i[update show destroy]
 
   def show
     render json: @todo
@@ -29,9 +31,11 @@ class Api::TodosController < ApplicationController
 
   def destroy
     @todo.destroy
+    render json: @todo
   end
 
   private
+
   def todo_params
     params.require(:todo).permit(:title, :body, :done, :due)
   end
@@ -39,5 +43,4 @@ class Api::TodosController < ApplicationController
   def current_todo
     @todo = Todo.find_by(id: params[:id])
   end
-
 end
