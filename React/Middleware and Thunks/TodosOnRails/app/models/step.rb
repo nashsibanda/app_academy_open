@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Todo < ApplicationRecord
+class Step < ApplicationRecord
   validates :title, presence: true
   validates :done, inclusion: { in: [true, false] }
-  has_many :steps
+  belongs_to :todo
 end

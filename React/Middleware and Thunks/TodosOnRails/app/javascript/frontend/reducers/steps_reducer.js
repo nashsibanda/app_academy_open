@@ -10,14 +10,14 @@ const initialState = {
     title: "Walk to store",
     body: "Go via the park, not the main road",
     done: false,
-    todo_id: 3
+    todo_id: 8
   },
   2: {
     id: 2,
     title: "Buy soap",
     body: "",
     done: false,
-    todo_id: 3
+    todo_id: 8
   }
 };
 
