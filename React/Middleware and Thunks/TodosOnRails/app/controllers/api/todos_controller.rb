@@ -10,7 +10,7 @@ class Api::TodosController < ApplicationController
   def create
     @todo = Todo.new(todo_params)
     if @todo.save
-      render json: @todo
+      render json: @todo, include: :tags
     else
       render json: @todo.errors.full_messages, status: 422
     end
@@ -18,7 +18,7 @@ class Api::TodosController < ApplicationController
 
   def update
     if @todo.update(todo_params)
-      render json: @todo
+      render json: @todo, include: :tags
     else
       render json: @todo.errors.full_messages, status: 422
     end
@@ -26,18 +26,18 @@ class Api::TodosController < ApplicationController
 
   def index
     @todos = Todo.all
-    render json: @todos
+    render json: @todos, include: :tags
   end
 
   def destroy
     @todo.destroy
-    render json: @todo
+    render json: @todo, include: :tags
   end
 
   private
 
   def todo_params
-    params.require(:todo).permit(:title, :body, :done, :due)
+    params.require(:todo).permit(:title, :body, :done, :due, :tag_names)
   end
 
   def current_todo
