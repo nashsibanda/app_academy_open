@@ -4,22 +4,7 @@ import {
   REMOVE_STEP
 } from "../actions/step_actions";
 
-const initialState = {
-  1: {
-    id: 1,
-    title: "Walk to store",
-    body: "Go via the park, not the main road",
-    done: false,
-    todo_id: 8
-  },
-  2: {
-    id: 2,
-    title: "Buy soap",
-    body: "",
-    done: false,
-    todo_id: 8
-  }
-};
+const initialState = {};
 
 const stepsReducer = (state = initialState, action) => {
   switch (action.type) {

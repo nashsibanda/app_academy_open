@@ -4,36 +4,7 @@ import {
   REMOVE_TODO
 } from "../actions/todo_actions";
 
-const initialState = {
-  1: {
-    id: 1,
-    title: "Wash car",
-    body: "With soap",
-    done: false,
-    due: "2020-04-02"
-  },
-  2: {
-    id: 2,
-    title: "Wash dog",
-    body: "With shampoo",
-    done: true
-  },
-  3: {
-    id: 3,
-    title: "Take a shower",
-    body: "...and be clean",
-    done: false,
-    due: "2020-03-12"
-  },
-  4: {
-    id: 4,
-    title: "Test Todos App",
-    body:
-      "Hopefully everything should be working alright on the app. It's tricky to know when to stop and when to keep adding new features!",
-    done: false,
-    due: "2020-03-09"
-  }
-};
+const initialState = {};
 
 const todosReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -21,6 +21,11 @@ input[type="date"] {
   width: 100%;
 }
 
+input:disabled,
+textarea:disabled {
+  background-color: $lightestgray;
+}
+
 .form-button,
 .button {
   @include embossed-effect;
@@ -29,6 +34,12 @@ input[type="date"] {
   background-color: $keycolorlight;
   color: white;
   box-sizing: border-box;
+}
+
+.form-button:disabled,
+.button:disabled {
+  background-color: $lightgray;
+  cursor: default;
 }
 
 .form-button {
@@ -51,7 +62,7 @@ input[type="date"] {
 }
 
 .left-padded-icon {
-  padding-left: 0.7rem;
+  margin-left: 0.7rem;
 }
 
 @media (hover: hover) {
@@ -69,8 +80,8 @@ input[type="date"] {
     font-weight: 700;
   }
 
-  .form-button:hover,
-  .button:hover {
+  .form-button:enabled:hover,
+  .button:enabled:hover {
     background-color: $keycolor;
   }
 }

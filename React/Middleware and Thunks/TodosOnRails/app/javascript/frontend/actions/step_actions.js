@@ -1,5 +1,6 @@
 import StepApi from "../util/step_api_util";
 import { clearErrors, receiveErrors } from "./error_actions";
+import { fetchingOff, fetchingOn } from "./fetching_actions";
 
 export const RECEIVE_STEPS = "RECEIVE_STEPS";
 export const RECEIVE_STEP = "RECEIVE_STEP";
@@ -27,35 +28,54 @@ export const removeStep = step => {
 };
 
 export const fetchSteps = todo_id => dispatch => {
-  StepApi.fetchSteps(todo_id).then(steps => dispatch(receiveSteps(steps)));
+  dispatch(fetchingOn());
+  StepApi.fetchSteps(todo_id).then(steps => {
+    dispatch(fetchingOff());
+    dispatch(receiveSteps(steps));
+  });
 };
 
 export const createStep = step => dispatch => {
+  dispatch(fetchingOn());
   StepApi.createStep(step).then(
     step => {
+      dispatch(fetchingOff());
       dispatch(receiveStep(step));
       dispatch(clearErrors());
     },
-    err => dispatch(receiveErrors(err.responseJSON))
+    err => {
+      dispatch(fetchingOff());
+      dispatch(receiveErrors(err.responseJSON));
+    }
   );
 };
 
 export const updateStep = step => dispatch => {
+  dispatch(fetchingOn());
   StepApi.updateStep(step).then(
     step => {
+      dispatch(fetchingOff());
       dispatch(receiveStep(step));
       dispatch(clearErrors());
     },
-    err => dispatch(receiveErrors(err.responseJSON))
+    err => {
+      dispatch(fetchingOff());
+      dispatch(receiveErrors(err.responseJSON));
+    }
   );
 };
 
 export const deleteStep = step => dispatch => {
+  dispatch(fetchingOn());
   StepApi.deleteStep(step).then(
     step => {
+      dispatch(fetchingOff());
       dispatch(removeStep(step));
       dispatch(clearErrors());
     },
-    err => dispatch(receiveErrors(err.responseJSON))
+    err => {
+      dispatch(fetchingOff());
+      dispatch(receiveErrors(err.responseJSON));
+    }
   );
 };

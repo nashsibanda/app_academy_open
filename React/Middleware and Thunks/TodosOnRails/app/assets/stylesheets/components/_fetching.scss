@@ -1,0 +1,26 @@
+.global-fetching-spinner {
+  position: fixed;
+  top: 2rem;
+  left: 47vw;
+  font-size: 6vw;
+  background-color: transparent;
+  color: $lightestgray;
+}
+
+.fetching-wait {
+  animation: spin 1s linear infinite;
+}
+
+.todo-list-header .fetching-wait {
+  color: $fetchingcolor;
+  font-size: 2rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

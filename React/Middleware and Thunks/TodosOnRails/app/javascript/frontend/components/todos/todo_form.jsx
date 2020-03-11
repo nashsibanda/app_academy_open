@@ -13,7 +13,7 @@ class TodoForm extends React.Component {
       showForm: false,
       showBodyInput: false,
       showDueInput: false,
-      showTagInput: true
+      showTagInput: false
     };
     this.updateDone = this.updateDone.bind(this);
     this.updateDue = this.updateDue.bind(this);
@@ -27,6 +27,7 @@ class TodoForm extends React.Component {
     this.toggleTagInput = this.toggleTagInput.bind(this);
     this.addTag = this.addTag.bind(this);
     this.removeTag = this.removeTag.bind(this);
+    this.waitAndUpdate = this.waitAndUpdate.bind(this);
   }
 
   updateTitle(e) {
@@ -137,24 +138,27 @@ class TodoForm extends React.Component {
       tag_names
     }))(this.state);
     const newTodo = { todo: formValues };
-    this.props.submit(newTodo).then(() => {
-      if (this.props.errors.length > 0) {
-        console.log("Rejected!");
-      } else {
-        this.setState(
-          {
-            title: "",
-            body: "",
-            due: "",
-            tag_names: [],
-            done: false,
-            showBodyInput: false,
-            showDueInput: false
-          },
-          this.toggleForm()
-        );
-      }
-    });
+    this.props.submit(newTodo);
+    setTimeout(this.waitAndUpdate, 100);
+  }
+
+  waitAndUpdate() {
+    if (this.props.fetching) {
+      setTimeout(this.waitAndUpdate, 100);
+    } else if (this.props.errors.length === 0) {
+      this.setState(
+        {
+          title: "",
+          body: "",
+          due: "",
+          tag_names: [],
+          done: false,
+          showBodyInput: false,
+          showDueInput: false
+        },
+        this.toggleForm
+      );
+    }
   }
 
   render() {
@@ -175,6 +179,7 @@ class TodoForm extends React.Component {
               placeholder="Title"
               onChange={this.updateTitle}
               value={this.state.title}
+              disabled={this.props.fetching}
             ></input>
             {this.state.showBodyInput ? (
               <span className="toggleable-text-input">
@@ -182,6 +187,7 @@ class TodoForm extends React.Component {
                   placeholder="Description"
                   onChange={this.updateBody}
                   value={this.state.body}
+                  disabled={this.props.fetching}
                 ></textarea>
                 <i
                   className="fas fa-times icon-button"
@@ -199,6 +205,7 @@ class TodoForm extends React.Component {
                   type="date"
                   onChange={this.updateDue}
                   value={this.state.due}
+                  disabled={this.props.fetching}
                 ></input>
                 <i
                   className="fas fa-times icon-button"
@@ -218,6 +225,7 @@ class TodoForm extends React.Component {
                     onKeyPress={this.addTag}
                     onChange={this.updateCurrentTag}
                     value={this.state.current_tag}
+                    disabled={this.props.fetching}
                   ></input>
                   <i
                     className="fas fa-times icon-button"
@@ -249,11 +257,24 @@ class TodoForm extends React.Component {
                 name="done"
                 onChange={this.updateDone}
                 checked={this.state.done}
+                disabled={this.props.fetching}
               ></input>
             </div>
-            <button type="submit" className="form-button" value="Submit">
+            <button
+              type="submit"
+              className="form-button"
+              value="Submit"
+              disabled={this.props.fetching}
+            >
               Submit
-              <i className="left-padded-icon fas fa-sticky-note"></i>
+              <i
+                className={
+                  "left-padded-icon fas " +
+                  (this.props.fetching
+                    ? "fa-spinner fetching-wait"
+                    : "fa-sticky-note")
+                }
+              ></i>
             </button>
           </form>
         )}

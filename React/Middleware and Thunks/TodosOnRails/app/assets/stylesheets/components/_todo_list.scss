@@ -159,6 +159,11 @@
     width: 100%;
   }
 
+  .add-tags-container {
+    text-align: end;
+    align-items: flex-end;
+  }
+
   .todo-done,
   .todo-delete-icon {
     position: static;

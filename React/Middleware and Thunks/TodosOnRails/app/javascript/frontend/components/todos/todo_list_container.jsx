@@ -14,6 +14,7 @@ const mapStateToProps = state => ({
   todos: allTodos(state),
   errors: state.errors,
   prefs: state.prefs,
+  fetching: state.fetching.fetching,
   state
 });
 

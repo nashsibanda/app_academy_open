@@ -223,7 +223,7 @@ class TodoDetailView extends React.Component {
           )}
           {this.state.addTag ? (
             <form
-              className="inline-form"
+              className="inline-form add-tags-container"
               onSubmit={e => {
                 this.addTag(e);
               }}
@@ -233,6 +233,7 @@ class TodoDetailView extends React.Component {
                 placeholder="Enter tag name..."
                 value={this.state.currentTag}
                 onChange={this.updateProperty("currentTag")}
+                className="narrow-text-input"
               ></input>
               <div className="submit-cancel-buttons">
                 <button
@@ -246,7 +247,7 @@ class TodoDetailView extends React.Component {
               </div>
             </form>
           ) : (
-            <span className="add-tags-button-container">
+            <span className="add-tags-container">
               <button
                 className="add-tags-button"
                 onClick={this.toggleForm("addTag")}

@@ -164,15 +164,24 @@ class TodoList extends React.Component {
       updateTodo,
       deleteTodo,
       errors,
-      clearErrors
+      clearErrors,
+      fetching
     } = this.props;
     return (
       <div className="todos">
         {errors.length > 0 && <ErrorList errors={errors} />}
+        {this.props.fetching && (
+          <div className="global-fetching-spinner">
+            <h2>
+              <i className="fas fa-spinner fetching-wait"></i>
+            </h2>
+          </div>
+        )}
         <TodoForm
           submit={createTodo}
           errors={errors}
           clearErrors={clearErrors}
+          fetching={fetching}
         />
         <ul className="todo-list">
           {this.props.todos.length > 0 ? (
@@ -341,6 +350,12 @@ class TodoList extends React.Component {
                   )}
                 </div>
               </div>
+            </header>
+          ) : this.props.fetching ? (
+            <header className="todo-list-header">
+              <h2>
+                <i className="fas fa-spinner fetching-wait"></i>
+              </h2>
             </header>
           ) : (
             <header className="todo-list-header">
