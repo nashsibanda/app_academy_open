@@ -8,18 +8,25 @@ class TodoForm extends React.Component {
       body: "",
       due: "",
       done: false,
+      tag_names: [],
+      current_tag: "",
       showForm: false,
       showBodyInput: false,
-      showDueInput: false
+      showDueInput: false,
+      showTagInput: true
     };
     this.updateDone = this.updateDone.bind(this);
     this.updateDue = this.updateDue.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
+    this.updateCurrentTag = this.updateCurrentTag.bind(this);
     this.updateBody = this.updateBody.bind(this);
     this.submitForm = this.submitForm.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
     this.toggleBodyInput = this.toggleBodyInput.bind(this);
     this.toggleDueInput = this.toggleDueInput.bind(this);
+    this.toggleTagInput = this.toggleTagInput.bind(this);
+    this.addTag = this.addTag.bind(this);
+    this.removeTag = this.removeTag.bind(this);
   }
 
   updateTitle(e) {
@@ -40,6 +47,15 @@ class TodoForm extends React.Component {
     }
   }
 
+  updateCurrentTag(e) {
+    e.preventDefault();
+    if (e.currentTarget.value) {
+      this.setState({ current_tag: e.currentTarget.value });
+    } else {
+      this.setState({ current_tag: "" });
+    }
+  }
+
   updateDue(e) {
     e.preventDefault();
     if (e.currentTarget.value) {
@@ -52,6 +68,22 @@ class TodoForm extends React.Component {
   updateDone(e) {
     e.stopPropagation();
     this.setState({ done: e.currentTarget.checked });
+  }
+
+  addTag(e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      e.stopPropagation();
+      let tags = this.state.tag_names;
+      tags.push(this.state.current_tag);
+      this.setState({ tag_names: tags, current_tag: "" });
+    }
+  }
+
+  removeTag(e, tag_name) {
+    e.preventDefault();
+    let tags = this.state.tag_names.filter(element => element != tag_name);
+    this.setState({ tag_names: tags });
   }
 
   toggleForm() {
@@ -88,14 +120,21 @@ class TodoForm extends React.Component {
     this.setState({ showDueInput: !this.state.showDueInput });
   }
 
+  toggleTagInput(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.setState({ showTagInput: !this.state.showTagInput });
+  }
+
   submitForm(e) {
     e.preventDefault();
     e.stopPropagation();
-    const formValues = (({ title, body, due, done }) => ({
+    const formValues = (({ title, body, due, done, tag_names }) => ({
       title,
       body,
       due,
-      done
+      done,
+      tag_names
     }))(this.state);
     const newTodo = { todo: formValues };
     this.props.submit(newTodo).then(() => {
@@ -107,6 +146,7 @@ class TodoForm extends React.Component {
             title: "",
             body: "",
             due: "",
+            tag_names: [],
             done: false,
             showBodyInput: false,
             showDueInput: false
@@ -168,6 +208,38 @@ class TodoForm extends React.Component {
             ) : (
               <a href="#" onClick={this.toggleDueInput}>
                 Add due date...
+              </a>
+            )}
+            {this.state.showTagInput ? (
+              <div className="todo-form-tags">
+                <span className="toggleable-text-input">
+                  <input
+                    type="text"
+                    onKeyPress={this.addTag}
+                    onChange={this.updateCurrentTag}
+                    value={this.state.current_tag}
+                  ></input>
+                  <i
+                    className="fas fa-times icon-button"
+                    onClick={this.toggleTagInput}
+                  ></i>
+                </span>
+                <ul className="tag-list">
+                  {this.state.tag_names.map(tag_name => {
+                    return (
+                      <li
+                        key={tag_name}
+                        onClick={e => this.removeTag(e, tag_name)}
+                      >
+                        {tag_name} <i className="fas fa-times"></i>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ) : (
+              <a href="#" onClick={this.toggleTagInput}>
+                Add tags...
               </a>
             )}
             <div className="done-selector">

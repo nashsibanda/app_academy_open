@@ -10,13 +10,18 @@ class TodoDetailView extends React.Component {
       editBody: false,
       editDue: false,
       editDueTime: false,
+      addTag: false,
+      currentTag: "",
       title: this.props.todo.title,
       body: this.props.todo.body || "",
-      due: this.props.todo.due || ""
+      due: this.props.todo.due || "",
+      tag_names: this.props.todo.tags.map(tag => tag.name) || []
     };
     this.sendTodoToParent = this.sendTodoToParent.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
     this.updateProperty = this.updateProperty.bind(this);
+    this.removeTag = this.removeTag.bind(this);
+    this.addTag = this.addTag.bind(this);
   }
 
   sendTodoToParent(e, property) {
@@ -25,6 +30,40 @@ class TodoDetailView extends React.Component {
     updatedTodo[property] = this.state[property];
     this.props.updateTodo(updatedTodo);
     this.setState({ editBody: false, editTitle: false, editDue: false });
+  }
+
+  addTag(e) {
+    e.preventDefault();
+    const newTagNames = this.state.tag_names.concat(this.state.currentTag);
+    this.setState(
+      {
+        tag_names: newTagNames,
+        editBody: false,
+        editTitle: false,
+        editDue: false,
+        currentTag: ""
+      },
+      () => {
+        let updatedTodo = Object.assign({}, this.props.todo, {
+          tag_names: this.state.tag_names
+        });
+        this.props.updateTodo(updatedTodo);
+      }
+    );
+  }
+
+  removeTag(e, tag_name) {
+    e.preventDefault();
+    let tags = this.state.tag_names.filter(element => element != tag_name);
+    this.setState({ tag_names: tags }, () => {
+      let updatedTodo = Object.assign({}, this.props.todo, {
+        tag_names: this.state.tag_names
+      });
+      if (updatedTodo.tag_names.length === 0) {
+        updatedTodo.tag_names = ["NULLNULLNULL"];
+      }
+      this.props.updateTodo(updatedTodo);
+    });
   }
 
   updateProperty(property) {
@@ -161,6 +200,61 @@ class TodoDetailView extends React.Component {
               </span>
             )}
           </span>
+        </li>
+        <li>
+          <span className="todo-details-label">Tags:</span>{" "}
+          {this.state.tag_names.length > 0 && (
+            <span className="todo-details-content">
+              <ul className="tag-list">
+                {this.state.tag_names.map(tag_name => {
+                  return (
+                    <li
+                      key={`${todo.id}-${tag_name}`}
+                      onClick={e => this.removeTag(e, tag_name)}
+                    >
+                      {tag_name}
+                      {"  "}
+                      <i className="fas fa-times"></i>
+                    </li>
+                  );
+                })}
+              </ul>
+            </span>
+          )}
+          {this.state.addTag ? (
+            <form
+              className="inline-form"
+              onSubmit={e => {
+                this.addTag(e);
+              }}
+            >
+              <input
+                type="text"
+                placeholder="Enter tag name..."
+                value={this.state.currentTag}
+                onChange={this.updateProperty("currentTag")}
+              ></input>
+              <div className="submit-cancel-buttons">
+                <button
+                  className="fas fa-check icon-button"
+                  type="submit"
+                ></button>
+                <i
+                  className="fas fa-undo icon-button"
+                  onClick={this.toggleForm("addTag")}
+                ></i>
+              </div>
+            </form>
+          ) : (
+            <span className="add-tags-button-container">
+              <button
+                className="add-tags-button"
+                onClick={this.toggleForm("addTag")}
+              >
+                Add Tags <i className={"fas fa-plus"}></i>
+              </button>
+            </span>
+          )}
         </li>
         <li className="todo-steps-container">
           <span className="todo-details-label">Steps:</span>
