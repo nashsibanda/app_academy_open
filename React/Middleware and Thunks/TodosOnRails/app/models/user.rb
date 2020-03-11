@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates_length_of :password, minimum: 6, on: :create, message: 'must be at least 6 characters', allow_nil: true
   after_initialize :ensure_session_token
 
-  has_many :todos
+  has_many :todos, dependent: :destroy
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64

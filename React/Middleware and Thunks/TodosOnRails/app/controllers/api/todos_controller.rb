@@ -2,6 +2,7 @@
 
 class Api::TodosController < ApplicationController
   before_action :current_todo, only: %i[update show destroy]
+  before_action :ensure_logged_in
 
   def show
     render json: @todo

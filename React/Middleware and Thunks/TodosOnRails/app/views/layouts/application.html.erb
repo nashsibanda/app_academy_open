@@ -16,12 +16,24 @@
 
   <body>
     <header class="site-header">
-      <h1>Todos</h1>
-      <span class="site-byline"
-        >A work in progress by
-        <a href="http://nashsibanda.com" target="_BLANK">Nash Sibanda</a></span
+      <h1><%= link_to  "Todos", root_path %></h1>
+      <span class="site-byline">
+        <span>A work in progress by <a href="http://nashsibanda.com" target="_BLANK">Nash Sibanda</a></span>
+        <% if current_user %>
+          <form action="<%= session_url %>" method="post" class="single-button-form">
+            <%= auth_token %>
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="form-button">Log Out</button>
+          </form>
+        <% else %>
+          <span>
+            <%= link_to  "Log In", new_session_url, class: "form-button" %>
+            <%= link_to  "Sign Up", new_user_url, class: "form-button" %>
+          </span>
+        <% end %>
+      </span
       >
     </header>
-    <%= yield %>
+    <main><%= yield %></main>
   </body>
 </html>

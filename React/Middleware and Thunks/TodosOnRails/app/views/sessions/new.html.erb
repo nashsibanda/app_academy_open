@@ -1,0 +1,7 @@
+<div class="user-form">
+  <h2>Log In!</h2>
+  
+  <%= render  "/layouts/user_form", user: @user, submit_text: "Log In", action: session_url %>
+  <%= link_to  "...or click here to sign up as a new user", new_user_url, class: "form-redirect-link" %>
+
+</div>

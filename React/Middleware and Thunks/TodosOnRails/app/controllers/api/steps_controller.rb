@@ -2,6 +2,7 @@
 
 class Api::StepsController < ApplicationController
   before_action :current_step, only: %i[update destroy]
+  before_action :ensure_logged_in
 
   def create
     @step = Step.new(step_params)

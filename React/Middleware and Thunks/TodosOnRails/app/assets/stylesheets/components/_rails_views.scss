@@ -1,0 +1,28 @@
+.user-form {
+  @include flex;
+  flex-direction: column;
+  padding: 3rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  // position: absolute;
+  // top: 30vh;
+  // width: calc(100% - 30vw);
+  // left: 15vw;
+  // margin: 0 auto;
+  // z-index: 3;
+  box-sizing: border-box;
+}
+
+.user-form > *,
+.user-form > form > * {
+  margin-bottom: 0.4rem;
+}
+
+.user-form h2 {
+  font-family: $seriffont;
+  font-size: 1.5rem;
+}
+
+.user-form .form-redirect-link {
+  text-align: right;
+}

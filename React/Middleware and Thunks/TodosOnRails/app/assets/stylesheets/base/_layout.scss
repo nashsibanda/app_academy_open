@@ -10,6 +10,7 @@ main {
 }
 
 input[type="text"],
+input[type="password"],
 textarea,
 input[type="date"] {
   border: 1px solid $lightgray;
@@ -63,7 +64,7 @@ input[type="date"] {
     color: $deselectcolor;
   }
 
-  a:hover {
+  main a:hover {
     color: $accentcolor;
     font-weight: 700;
   }

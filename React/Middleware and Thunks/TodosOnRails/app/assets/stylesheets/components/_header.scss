@@ -3,7 +3,7 @@
   align-items: center;
   background-color: $keycolorlight;
   color: white;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid $darkestgray;
 }
@@ -16,6 +16,19 @@
   padding-right: 2rem;
 }
 
+@media (hover: hover) {
+  .site-header h1:hover {
+    color: white;
+    text-shadow: 2px 2px 2px $accentcolordark;
+  }
+}
+
 .site-byline {
   text-align: right;
+  @include flex;
+  flex-direction: column;
+}
+
+.site-byline > span:first-of-type {
+  margin-bottom: 2rem;
 }
