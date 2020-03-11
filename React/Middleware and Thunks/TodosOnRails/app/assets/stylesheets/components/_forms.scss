@@ -56,6 +56,56 @@
   align-items: center;
 }
 
+.tag-list {
+  @include flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 0.4rem;
+}
+
+.tag-list > li {
+  @include tag-shape;
+  background-color: $keycolorlight;
+  color: white;
+}
+
+.tag-list > li > i,
+.add-tags-button > i {
+  padding-left: 0.2rem;
+}
+
+.add-tags-button {
+  @include tag-shape;
+  background-color: $keycolorlight;
+  color: white;
+  font-weight: 700;
+  min-width: 8rem;
+  text-align: center;
+}
+
+.add-tags-button-container {
+  text-align: end;
+}
+
+@media (hover: hover) {
+  .tag-list > li:hover {
+    background-color: $deselectcolor;
+    cursor: pointer;
+  }
+
+  .tag-list > li > i:hover {
+    color: $deselectcolordark;
+  }
+
+  .add-tags-button:hover {
+    background-color: $accentcolor;
+  }
+
+  .add-tags-button:hover > i {
+    color: $keycolor;
+  }
+}
+
 .error-list {
   @include flex;
   flex-direction: column;
@@ -79,6 +129,7 @@
 @media (hover: hover) {
   .error-list li:hover {
     background-color: $deselectcolor;
+    cursor: not-allowed;
   }
 }
 
