@@ -18,10 +18,11 @@
     <header class="site-header">
       <h1><%= link_to  "Todos", root_path %></h1>
       <span class="site-byline">
-        <span>A work in progress by <a href="http://nashsibanda.com" target="_BLANK">Nash Sibanda</a></span>
+        <span>A work in progress by <a href="http://nashsibanda.com" target="_BLANK" class="portfolio-site-link">&lt;Nash Sibanda&gt;</a></span>
         <% if current_user %>
-          <form action="<%= session_url %>" method="post" class="single-button-form">
+          <form action="<%= session_url %>" method="post" class="log-out-form">
             <%= auth_token %>
+            <span>Welcome back, <strong class="header-username"><%= current_user.username %></strong></span>
             <input type="hidden" name="_method" value="delete">
             <button type="submit" class="form-button">Log Out</button>
           </form>

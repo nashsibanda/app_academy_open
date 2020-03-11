@@ -3,7 +3,7 @@
   align-items: center;
   background-color: $keycolorlight;
   color: white;
-  padding: 1.5rem 1rem;
+  padding: 0 1rem 1rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid $darkestgray;
 }
@@ -29,6 +29,25 @@
   flex-direction: column;
 }
 
-.site-byline > span:first-of-type {
-  margin-bottom: 2rem;
+.site-byline > span {
+  padding: 1rem 0;
+}
+
+.log-out-form > * {
+  margin-left: 1rem;
+}
+
+.header-username {
+  font-weight: 700;
+  color: $accentcolorlight;
+}
+
+.portfolio-site-link {
+  font-weight: 700;
+}
+
+@media (hover: hover) {
+  .portfolio-site-link:hover {
+    color: $notdonecolor;
+  }
 }

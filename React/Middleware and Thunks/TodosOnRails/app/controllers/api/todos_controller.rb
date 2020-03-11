@@ -9,7 +9,7 @@ class Api::TodosController < ApplicationController
   end
 
   def create
-    @todo = Todo.new(todo_params)
+    @todo = current_user.todos.new(todo_params)
     if @todo.save
       render json: @todo, include: :tags
     else
@@ -26,7 +26,7 @@ class Api::TodosController < ApplicationController
   end
 
   def index
-    @todos = Todo.all
+    @todos = current_user.todos.all
     render json: @todos, include: :tags
   end
 
@@ -42,6 +42,6 @@ class Api::TodosController < ApplicationController
   end
 
   def current_todo
-    @todo = Todo.find_by(id: params[:id])
+    @todo = current_user.todos.find_by(id: params[:id])
   end
 end

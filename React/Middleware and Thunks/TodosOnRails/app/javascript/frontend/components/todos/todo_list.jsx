@@ -175,172 +175,179 @@ class TodoList extends React.Component {
           clearErrors={clearErrors}
         />
         <ul className="todo-list">
-          <header className="todo-list-header">
-            <h2>Your Todos</h2>
-            <div className="pref-menus">
-              <div className="sort-toggles">
-                <a
-                  className="filter-menu-heading"
-                  href="#"
-                  onClick={this.togglePrefsMenu}
-                >
-                  Preferences
-                </a>
-                {this.state.showPrefsMenu && (
-                  <span className="sort-toggles-menu">
-                    <span
-                      className="due-soon-filter sort-option"
-                      onClick={this.toggleShowSteps}
-                    >
-                      Show Steps by Default:{" "}
-                      <i
-                        className={
-                          "fas icon-button " +
-                          (this.state.prefs.showSteps
-                            ? "fa-toggle-on"
-                            : "fa-toggle-off")
-                        }
-                      ></i>
+          {this.props.todos.length > 0 ? (
+            <header className="todo-list-header">
+              <h2>Your Todos</h2>
+              <div className="pref-menus">
+                <div className="sort-toggles">
+                  <a
+                    className="filter-menu-heading"
+                    href="#"
+                    onClick={this.togglePrefsMenu}
+                  >
+                    Preferences
+                  </a>
+                  {this.state.showPrefsMenu && (
+                    <span className="sort-toggles-menu">
+                      <span
+                        className="due-soon-filter sort-option"
+                        onClick={this.toggleShowSteps}
+                      >
+                        Show Steps by Default:{" "}
+                        <i
+                          className={
+                            "fas icon-button " +
+                            (this.state.prefs.showSteps
+                              ? "fa-toggle-on"
+                              : "fa-toggle-off")
+                          }
+                        ></i>
+                      </span>
                     </span>
-                  </span>
-                )}
+                  )}
+                </div>
+                <div className="sort-toggles">
+                  <a
+                    className="filter-menu-heading"
+                    href="#"
+                    onClick={this.toggleFilterMenu}
+                  >
+                    Filter Menu
+                  </a>
+                  {this.state.showFilterMenu && (
+                    <span className="sort-toggles-menu">
+                      <span
+                        className="due-soon-filter sort-option"
+                        onClick={this.filterSwitch("dueSoon")}
+                      >
+                        Due Soon:{" "}
+                        <i
+                          className={
+                            "fas icon-button " +
+                            (this.state.filterMethod === "dueSoon"
+                              ? "fa-toggle-on"
+                              : "fa-toggle-off")
+                          }
+                        ></i>
+                      </span>
+                      <span
+                        className="not-done-filter sort-option"
+                        onClick={this.filterSwitch("notDone")}
+                      >
+                        Not Completed:{" "}
+                        <i
+                          className={
+                            "fas icon-button " +
+                            (this.state.filterMethod === "notDone"
+                              ? "fa-toggle-on"
+                              : "fa-toggle-off")
+                          }
+                        ></i>
+                      </span>
+                      <span
+                        className="done-filter sort-option"
+                        onClick={this.filterSwitch("done")}
+                      >
+                        Completed:{" "}
+                        <i
+                          className={
+                            "fas icon-button " +
+                            (this.state.filterMethod === "done"
+                              ? "fa-toggle-on"
+                              : "fa-toggle-off")
+                          }
+                        ></i>
+                      </span>
+                      <span
+                        className="all-items-filter sort-option"
+                        onClick={this.filterSwitch("allItems")}
+                      >
+                        All Items (Default):{" "}
+                        <i
+                          className={
+                            "fas icon-button " +
+                            (this.state.filterMethod === "allItems"
+                              ? "fa-toggle-on"
+                              : "fa-toggle-off")
+                          }
+                        ></i>
+                      </span>
+                    </span>
+                  )}
+                </div>
+                <div className="sort-toggles">
+                  <a href="#" onClick={this.toggleSortMenu}>
+                    Sort Menu
+                  </a>
+                  {this.state.showSortMenu && (
+                    <span className="sort-toggles-menu">
+                      <span
+                        className="due-first-sort sort-option"
+                        onClick={this.sortSwitch("dueFirst")}
+                      >
+                        Due First:{" "}
+                        <i
+                          className={
+                            "fas icon-button " +
+                            (this.state.sortMethod === "dueFirst"
+                              ? "fa-toggle-on"
+                              : "fa-toggle-off")
+                          }
+                        ></i>
+                      </span>
+                      <span
+                        className="due-last-sort sort-option"
+                        onClick={this.sortSwitch("dueLast")}
+                      >
+                        Due Last:{" "}
+                        <i
+                          className={
+                            "fas icon-button " +
+                            (this.state.sortMethod === "dueLast"
+                              ? "fa-toggle-on"
+                              : "fa-toggle-off")
+                          }
+                        ></i>
+                      </span>
+                      <span
+                        className="oldest-sort sort-option"
+                        onClick={this.sortSwitch("oldest")}
+                      >
+                        Oldest:{" "}
+                        <i
+                          className={
+                            "fas icon-button " +
+                            (this.state.sortMethod === "oldest"
+                              ? "fa-toggle-on"
+                              : "fa-toggle-off")
+                          }
+                        ></i>
+                      </span>
+                      <span
+                        className="recently-added-sort sort-option"
+                        onClick={this.sortSwitch("recentlyAdded")}
+                      >
+                        Recently Added (Default):{" "}
+                        <i
+                          className={
+                            "fas icon-button " +
+                            (this.state.sortMethod === "recentlyAdded"
+                              ? "fa-toggle-on"
+                              : "fa-toggle-off")
+                          }
+                        ></i>
+                      </span>
+                    </span>
+                  )}
+                </div>
               </div>
-              <div className="sort-toggles">
-                <a
-                  className="filter-menu-heading"
-                  href="#"
-                  onClick={this.toggleFilterMenu}
-                >
-                  Filter Menu
-                </a>
-                {this.state.showFilterMenu && (
-                  <span className="sort-toggles-menu">
-                    <span
-                      className="due-soon-filter sort-option"
-                      onClick={this.filterSwitch("dueSoon")}
-                    >
-                      Due Soon:{" "}
-                      <i
-                        className={
-                          "fas icon-button " +
-                          (this.state.filterMethod === "dueSoon"
-                            ? "fa-toggle-on"
-                            : "fa-toggle-off")
-                        }
-                      ></i>
-                    </span>
-                    <span
-                      className="not-done-filter sort-option"
-                      onClick={this.filterSwitch("notDone")}
-                    >
-                      Not Completed:{" "}
-                      <i
-                        className={
-                          "fas icon-button " +
-                          (this.state.filterMethod === "notDone"
-                            ? "fa-toggle-on"
-                            : "fa-toggle-off")
-                        }
-                      ></i>
-                    </span>
-                    <span
-                      className="done-filter sort-option"
-                      onClick={this.filterSwitch("done")}
-                    >
-                      Completed:{" "}
-                      <i
-                        className={
-                          "fas icon-button " +
-                          (this.state.filterMethod === "done"
-                            ? "fa-toggle-on"
-                            : "fa-toggle-off")
-                        }
-                      ></i>
-                    </span>
-                    <span
-                      className="all-items-filter sort-option"
-                      onClick={this.filterSwitch("allItems")}
-                    >
-                      All Items (Default):{" "}
-                      <i
-                        className={
-                          "fas icon-button " +
-                          (this.state.filterMethod === "allItems"
-                            ? "fa-toggle-on"
-                            : "fa-toggle-off")
-                        }
-                      ></i>
-                    </span>
-                  </span>
-                )}
-              </div>
-              <div className="sort-toggles">
-                <a href="#" onClick={this.toggleSortMenu}>
-                  Sort Menu
-                </a>
-                {this.state.showSortMenu && (
-                  <span className="sort-toggles-menu">
-                    <span
-                      className="due-first-sort sort-option"
-                      onClick={this.sortSwitch("dueFirst")}
-                    >
-                      Due First:{" "}
-                      <i
-                        className={
-                          "fas icon-button " +
-                          (this.state.sortMethod === "dueFirst"
-                            ? "fa-toggle-on"
-                            : "fa-toggle-off")
-                        }
-                      ></i>
-                    </span>
-                    <span
-                      className="due-last-sort sort-option"
-                      onClick={this.sortSwitch("dueLast")}
-                    >
-                      Due Last:{" "}
-                      <i
-                        className={
-                          "fas icon-button " +
-                          (this.state.sortMethod === "dueLast"
-                            ? "fa-toggle-on"
-                            : "fa-toggle-off")
-                        }
-                      ></i>
-                    </span>
-                    <span
-                      className="oldest-sort sort-option"
-                      onClick={this.sortSwitch("oldest")}
-                    >
-                      Oldest:{" "}
-                      <i
-                        className={
-                          "fas icon-button " +
-                          (this.state.sortMethod === "oldest"
-                            ? "fa-toggle-on"
-                            : "fa-toggle-off")
-                        }
-                      ></i>
-                    </span>
-                    <span
-                      className="recently-added-sort sort-option"
-                      onClick={this.sortSwitch("recentlyAdded")}
-                    >
-                      Recently Added (Default):{" "}
-                      <i
-                        className={
-                          "fas icon-button " +
-                          (this.state.sortMethod === "recentlyAdded"
-                            ? "fa-toggle-on"
-                            : "fa-toggle-off")
-                        }
-                      ></i>
-                    </span>
-                  </span>
-                )}
-              </div>
-            </div>
-          </header>
+            </header>
+          ) : (
+            <header className="todo-list-header">
+              <h2>You don't have any Todos!</h2>
+              <p>Click "Add Todo" above to add your first Todo!</p>
+            </header>
+          )}
 
           {this.filterItems().map(todo => {
             return (
