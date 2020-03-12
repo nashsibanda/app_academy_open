@@ -272,7 +272,7 @@ class TodoList extends React.Component {
             <header className="todo-list-header">
               <h2>Your Todos</h2>
               <div className="pref-menus">
-                <div className="sort-toggles">
+                <div className="sort-toggles prefs-toggle">
                   <a
                     className="filter-menu-heading"
                     href="#"
@@ -299,7 +299,7 @@ class TodoList extends React.Component {
                     </span>
                   )}
                 </div>
-                <div className="sort-toggles">
+                <div className="sort-toggles filter-toggle">
                   <a
                     className="filter-menu-heading"
                     href="#"
@@ -368,7 +368,7 @@ class TodoList extends React.Component {
                     </span>
                   )}
                 </div>
-                <div className="sort-toggles">
+                <div className="sort-toggles sort-toggle">
                   <a
                     href="#"
                     onClick={this.toggleSortMenu}

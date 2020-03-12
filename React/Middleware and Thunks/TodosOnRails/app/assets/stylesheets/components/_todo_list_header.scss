@@ -5,7 +5,6 @@
 
 .pref-menus {
   @include flex;
-  align-items: center;
   min-height: 3rem;
 }
 
@@ -13,7 +12,7 @@
   font-family: $seriffont;
   font-size: 1.6rem;
   text-align: center;
-  padding-bottom: 1.3rem;
+  padding-bottom: 2rem;
 }
 
 .sort-toggles {
@@ -33,8 +32,19 @@
 }
 
 .sort-toggles .filter-menu-heading {
-  align-self: center;
   padding-bottom: 0.5rem;
+}
+
+.filter-toggle > * {
+  align-self: center;
+}
+
+.prefs-toggle > * {
+  align-self: flex-start;
+}
+
+.sort-toggles .sort-option:first-of-type {
+  padding-left: 0;
 }
 
 .search-toggles .filter-menu-heading {
@@ -127,6 +137,10 @@
   .sort-toggles-menu > * {
     padding-left: 0;
     padding-bottom: 1rem;
+  }
+
+  .prefs-toggle > * {
+    align-self: center;
   }
 
   .sort-toggles,
