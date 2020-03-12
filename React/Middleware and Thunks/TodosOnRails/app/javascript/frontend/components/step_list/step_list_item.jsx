@@ -120,7 +120,7 @@ class StepListItem extends React.Component {
                       className="fas fa-check icon-button"
                     ></button>
                     <i
-                      className="fas fa-undo icon-button"
+                      className="fas fa-undo-alt icon-button"
                       onClick={this.toggleEdit("editTitle")}
                     ></i>
                   </div>
@@ -155,7 +155,7 @@ class StepListItem extends React.Component {
                       className="fas fa-check icon-button"
                     ></button>{" "}
                     <i
-                      className="fas fa-undo icon-button"
+                      className="fas fa-undo-alt icon-button"
                       onClick={this.toggleEdit("editBody")}
                     ></i>
                   </div>

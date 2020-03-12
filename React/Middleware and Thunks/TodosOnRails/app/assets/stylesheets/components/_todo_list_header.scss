@@ -25,7 +25,11 @@
 .search-toggles {
   @include flex;
   align-items: center;
-  width: 50%;
+  width: 38%;
+}
+
+.tags-filter-toggle {
+  justify-content: flex-end;
 }
 
 .sort-toggles .filter-menu-heading {
@@ -35,6 +39,15 @@
 
 .search-toggles .filter-menu-heading {
   margin-right: 1rem;
+}
+
+.tags-filter-toggle .filter-menu-heading {
+  margin-right: 0;
+  margin-left: 1rem;
+}
+
+.clear-tags-button {
+  margin-right: 0.4rem;
 }
 
 .filter-menu-heading {
@@ -47,6 +60,17 @@
 
 .search-bar {
   flex-grow: 1;
+  @include flex;
+  align-items: center;
+}
+
+.tags-filter-toggle {
+  flex-grow: 2;
+}
+
+.search-bar .tag-list {
+  flex-basis: 100%;
+  margin: 0 1rem;
 }
 
 .sort-toggles-menu > * {
@@ -75,8 +99,29 @@
 @media only screen and (max-width: 1200px) {
   .pref-menus,
   .search-toggles,
-  .sort-toggles-menu {
+  .sort-toggles-menu,
+  .search-bar {
     flex-direction: column;
+  }
+
+  .search-toggles {
+    width: auto;
+  }
+
+  .search-toggles .filter-menu-heading {
+    padding-bottom: 0.5rem;
+    text-align: center;
+    margin: 0;
+  }
+
+  .search-bar .tag-list {
+    margin: 0;
+    order: 10;
+    margin-top: 0.2rem;
+  }
+
+  .tags-filter-toggle .search-bar {
+    order: 10;
   }
 
   .sort-toggles-menu > * {

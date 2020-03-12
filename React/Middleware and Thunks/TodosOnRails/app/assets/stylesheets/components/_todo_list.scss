@@ -127,6 +127,10 @@
   height: max-content;
 }
 
+.inline-form.add-tags-container {
+  flex-basis: auto;
+}
+
 .steps-container {
   align-self: flex-start;
   flex-grow: 1;

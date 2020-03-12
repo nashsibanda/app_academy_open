@@ -14,9 +14,13 @@ class TodoList extends React.Component {
       showSortMenu: false,
       showFilterMenu: false,
       showPrefsMenu: false,
-      showSearchBar: true,
+      showSearchBar: false,
+      showTagsFilter: false,
+      exclusiveTagFilter: false,
       prefs: { showSteps: this.props.prefs.showSteps },
-      searchString: ""
+      searchString: "",
+      tag_names: [],
+      current_tag: ""
     };
     this.todosToRender = this.todosToRender.bind(this);
     this.sortSwitch = this.sortSwitch.bind(this);
@@ -26,9 +30,14 @@ class TodoList extends React.Component {
     this.toggleFilterMenu = this.toggleFilterMenu.bind(this);
     this.togglePrefsMenu = this.togglePrefsMenu.bind(this);
     this.toggleSearchBar = this.toggleSearchBar.bind(this);
+    this.toggleTagsFilter = this.toggleTagsFilter.bind(this);
     this.toggleShowSteps = this.toggleShowSteps.bind(this);
     this.searchedFilterItems = this.searchedFilterItems.bind(this);
     this.updateSearchString = this.updateSearchString.bind(this);
+    this.addTag = this.addTag.bind(this);
+    this.removeTag = this.removeTag.bind(this);
+    this.updateCurrentTag = this.updateCurrentTag.bind(this);
+    this.toggleExclusiveTag = this.toggleExclusiveTag.bind(this);
   }
 
   componentDidMount() {
@@ -81,6 +90,16 @@ class TodoList extends React.Component {
   toggleSearchBar(e) {
     e.preventDefault();
     this.setState({ showSearchBar: !this.state.showSearchBar });
+  }
+
+  toggleTagsFilter(e) {
+    e.preventDefault();
+    this.setState({ showTagsFilter: !this.state.showTagsFilter });
+  }
+
+  toggleExclusiveTag(e) {
+    e.preventDefault();
+    this.setState({ exclusiveTagFilter: !this.state.exclusiveTagFilter });
   }
 
   togglePrefsMenu(e) {
@@ -170,7 +189,24 @@ class TodoList extends React.Component {
     const searchedList = todoList.filter(todo =>
       todo.title.toLowerCase().includes(this.state.searchString)
     );
-    return searchedList;
+    if (this.state.tag_names.length > 0) {
+      const tag_names = this.state.tag_names;
+      const tagFilteredList = searchedList.filter(todo => {
+        let thisTodoTags = Object.assign({}, todo).tags.map(tag => tag.name);
+        if (this.state.exclusiveTagFilter) {
+          return tag_names.every(tagName => {
+            return thisTodoTags.includes(tagName);
+          });
+        } else {
+          return tag_names.some(tagName => {
+            return thisTodoTags.includes(tagName);
+          });
+        }
+      });
+      return tagFilteredList;
+    } else {
+      return searchedList;
+    }
   }
 
   toggleShowSteps(e) {
@@ -179,6 +215,31 @@ class TodoList extends React.Component {
     this.setState({
       prefs: { ...this.state.prefs, showSteps: !this.state.prefs.showSteps }
     });
+  }
+
+  addTag(e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      e.stopPropagation();
+      let tags = this.state.tag_names;
+      tags.push(this.state.current_tag);
+      this.setState({ tag_names: tags, current_tag: "" });
+    }
+  }
+
+  removeTag(e, tag_name) {
+    e.preventDefault();
+    let tags = this.state.tag_names.filter(element => element != tag_name);
+    this.setState({ tag_names: tags });
+  }
+
+  updateCurrentTag(e) {
+    e.preventDefault();
+    if (e.currentTarget.value) {
+      this.setState({ current_tag: e.currentTarget.value });
+    } else {
+      this.setState({ current_tag: "" });
+    }
   }
 
   render() {
@@ -391,10 +452,64 @@ class TodoList extends React.Component {
                       <input
                         type="text"
                         onChange={this.updateSearchString}
-                        placeholder="Enter some text to search your todos..."
+                        placeholder="Search your todos..."
                       ></input>
                     </span>
                   )}
+                </div>
+                <div className="search-toggles tags-filter-toggle">
+                  {this.state.showTagsFilter && (
+                    <span className="search-bar">
+                      <ul className="tag-list">
+                        {this.state.tag_names.map(tag_name => {
+                          return (
+                            <li
+                              key={tag_name}
+                              onClick={e => this.removeTag(e, tag_name)}
+                            >
+                              {tag_name} <i className="fas fa-times"></i>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                      {this.state.tag_names.length > 0 && (
+                        <i
+                          className="fas fa-undo-alt icon-button clear-tags-button"
+                          onClick={e => this.setState({ tag_names: [] })}
+                        ></i>
+                      )}
+                      <input
+                        type="text"
+                        onKeyPress={this.addTag}
+                        onChange={this.updateCurrentTag}
+                        value={this.state.current_tag}
+                        placeholder="Enter tags..."
+                      ></input>
+                      <span className="sort-toggles-menu">
+                        <span
+                          className="due-soon-filter sort-option"
+                          onClick={this.toggleExclusiveTag}
+                        >
+                          {this.state.exclusiveTagFilter ? "All: " : "Any: "}
+                          <i
+                            className={
+                              "fas icon-button " +
+                              (this.state.exclusiveTagFilter
+                                ? "fa-toggle-on"
+                                : "fa-toggle-off")
+                            }
+                          ></i>
+                        </span>
+                      </span>
+                    </span>
+                  )}
+                  <a
+                    href="#"
+                    className="filter-menu-heading"
+                    onClick={this.toggleTagsFilter}
+                  >
+                    Filter by Tags
+                  </a>
                 </div>
               </div>
             </header>

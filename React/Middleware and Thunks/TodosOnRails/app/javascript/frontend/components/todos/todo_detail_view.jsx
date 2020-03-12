@@ -99,7 +99,7 @@ class TodoDetailView extends React.Component {
                   type="submit"
                 ></button>
                 <i
-                  className="fas fa-undo icon-button"
+                  className="fas fa-undo-alt icon-button"
                   onClick={this.toggleForm("editTitle")}
                 ></i>
               </div>
@@ -134,7 +134,7 @@ class TodoDetailView extends React.Component {
                   type="submit"
                 ></button>
                 <i
-                  className="fas fa-undo icon-button"
+                  className="fas fa-undo-alt icon-button"
                   onClick={this.toggleForm("editBody")}
                 ></i>
               </div>
@@ -183,7 +183,7 @@ class TodoDetailView extends React.Component {
                     type="submit"
                   ></button>
                   <i
-                    className="fas fa-undo icon-button"
+                    className="fas fa-undo-alt icon-button"
                     onClick={this.toggleForm("editDue")}
                   ></i>
                 </div>
@@ -241,7 +241,7 @@ class TodoDetailView extends React.Component {
                   type="submit"
                 ></button>
                 <i
-                  className="fas fa-undo icon-button"
+                  className="fas fa-undo-alt icon-button"
                   onClick={this.toggleForm("addTag")}
                 ></i>
               </div>
