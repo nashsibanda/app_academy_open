@@ -14,7 +14,9 @@ class TodoList extends React.Component {
       showSortMenu: false,
       showFilterMenu: false,
       showPrefsMenu: false,
-      prefs: { showSteps: this.props.prefs.showSteps }
+      showSearchBar: true,
+      prefs: { showSteps: this.props.prefs.showSteps },
+      searchString: ""
     };
     this.todosToRender = this.todosToRender.bind(this);
     this.sortSwitch = this.sortSwitch.bind(this);
@@ -23,7 +25,10 @@ class TodoList extends React.Component {
     this.filterSwitch = this.filterSwitch.bind(this);
     this.toggleFilterMenu = this.toggleFilterMenu.bind(this);
     this.togglePrefsMenu = this.togglePrefsMenu.bind(this);
+    this.toggleSearchBar = this.toggleSearchBar.bind(this);
     this.toggleShowSteps = this.toggleShowSteps.bind(this);
+    this.searchedFilterItems = this.searchedFilterItems.bind(this);
+    this.updateSearchString = this.updateSearchString.bind(this);
   }
 
   componentDidMount() {
@@ -66,6 +71,16 @@ class TodoList extends React.Component {
         this.setState({ showSortMenu: false, showPrefsMenu: false });
       }
     });
+  }
+
+  updateSearchString(e) {
+    e.preventDefault();
+    this.setState({ searchString: e.currentTarget.value.toLowerCase() || "" });
+  }
+
+  toggleSearchBar(e) {
+    e.preventDefault();
+    this.setState({ showSearchBar: !this.state.showSearchBar });
   }
 
   togglePrefsMenu(e) {
@@ -148,6 +163,14 @@ class TodoList extends React.Component {
       default:
         return filteredList;
     }
+  }
+
+  searchedFilterItems() {
+    const todoList = this.filterItems();
+    const searchedList = todoList.filter(todo =>
+      todo.title.toLowerCase().includes(this.state.searchString)
+    );
+    return searchedList;
   }
 
   toggleShowSteps(e) {
@@ -285,7 +308,11 @@ class TodoList extends React.Component {
                   )}
                 </div>
                 <div className="sort-toggles">
-                  <a href="#" onClick={this.toggleSortMenu}>
+                  <a
+                    href="#"
+                    onClick={this.toggleSortMenu}
+                    className="filter-menu-heading"
+                  >
                     Sort Menu
                   </a>
                   {this.state.showSortMenu && (
@@ -350,6 +377,26 @@ class TodoList extends React.Component {
                   )}
                 </div>
               </div>
+              <div className="pref-menus">
+                <div className="search-toggles">
+                  <a
+                    href="#"
+                    className="filter-menu-heading"
+                    onClick={this.toggleSearchBar}
+                  >
+                    Search Todos
+                  </a>
+                  {this.state.showSearchBar && (
+                    <span className="search-bar">
+                      <input
+                        type="text"
+                        onChange={this.updateSearchString}
+                        placeholder="Enter some text to search your todos..."
+                      ></input>
+                    </span>
+                  )}
+                </div>
+              </div>
             </header>
           ) : this.props.fetching ? (
             <header className="todo-list-header">
@@ -364,7 +411,7 @@ class TodoList extends React.Component {
             </header>
           )}
 
-          {this.filterItems().map(todo => {
+          {this.searchedFilterItems().map(todo => {
             return (
               <TodoListItem
                 todo={todo}

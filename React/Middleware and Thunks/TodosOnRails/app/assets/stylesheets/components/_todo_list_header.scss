@@ -6,6 +6,7 @@
 .pref-menus {
   @include flex;
   align-items: center;
+  min-height: 3rem;
 }
 
 .todo-list-header h2 {
@@ -21,17 +22,31 @@
   align-items: flex-end;
 }
 
-.sort-toggles .filter-menu-heading {
-  align-self: center;
+.search-toggles {
+  @include flex;
+  align-items: center;
+  width: 50%;
 }
 
-.sort-toggles a {
-  font-weight: 700;
+.sort-toggles .filter-menu-heading {
+  align-self: center;
   padding-bottom: 0.5rem;
+}
+
+.search-toggles .filter-menu-heading {
+  margin-right: 1rem;
+}
+
+.filter-menu-heading {
+  font-weight: 700;
 }
 
 .sort-toggles-menu {
   @include flex;
+}
+
+.search-bar {
+  flex-grow: 1;
 }
 
 .sort-toggles-menu > * {
@@ -59,6 +74,7 @@
 
 @media only screen and (max-width: 1200px) {
   .pref-menus,
+  .search-toggles,
   .sort-toggles-menu {
     flex-direction: column;
   }
@@ -68,8 +84,13 @@
     padding-bottom: 1rem;
   }
 
-  .sort-toggles {
+  .sort-toggles,
+  .search-toggles {
     align-items: center;
     padding-top: 1rem;
+  }
+
+  .filter-menu-heading {
+    align-self: center;
   }
 }
