@@ -535,6 +535,7 @@ class TodoList extends React.Component {
                 clearErrors={clearErrors}
                 deleteTodo={deleteTodo}
                 updateTodo={updateTodo}
+                fetching={fetching}
               />
             );
           })}

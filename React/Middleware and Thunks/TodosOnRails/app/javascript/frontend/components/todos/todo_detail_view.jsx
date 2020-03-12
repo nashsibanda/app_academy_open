@@ -92,8 +92,15 @@ class TodoDetailView extends React.Component {
                 placeholder="Enter todo title..."
                 value={this.state.title}
                 onChange={this.updateProperty("title")}
+                disabled={this.props.fetching}
               ></input>
-              <div className="submit-cancel-buttons">
+              <div
+                className={
+                  "submit-cancel-buttons " + this.props.fetching
+                    ? "disabled"
+                    : ""
+                }
+              >
                 <button
                   className="fas fa-check icon-button"
                   type="submit"
@@ -128,7 +135,13 @@ class TodoDetailView extends React.Component {
                 value={this.state.body}
                 onChange={this.updateProperty("body")}
               ></textarea>
-              <div className="submit-cancel-buttons">
+              <div
+                className={
+                  "submit-cancel-buttons " + this.props.fetching
+                    ? "disabled"
+                    : ""
+                }
+              >
                 <button
                   className="fas fa-check icon-button"
                   type="submit"
@@ -176,8 +189,15 @@ class TodoDetailView extends React.Component {
                   placeholder="Enter todo details..."
                   value={this.state.due}
                   onChange={this.updateProperty("due")}
+                  disabled={this.props.fetching}
                 ></input>
-                <div className="submit-cancel-buttons">
+                <div
+                  className={
+                    "submit-cancel-buttons " + this.props.fetching
+                      ? "disabled"
+                      : ""
+                  }
+                >
                   <button
                     className="fas fa-check icon-button"
                     type="submit"
@@ -234,8 +254,15 @@ class TodoDetailView extends React.Component {
                 value={this.state.currentTag}
                 onChange={this.updateProperty("currentTag")}
                 className="narrow-text-input"
+                disabled={this.props.fetching}
               ></input>
-              <div className="submit-cancel-buttons">
+              <div
+                className={
+                  "submit-cancel-buttons " + this.props.fetching
+                    ? "disabled"
+                    : ""
+                }
+              >
                 <button
                   className="fas fa-check icon-button"
                   type="submit"

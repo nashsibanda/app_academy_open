@@ -162,6 +162,10 @@
   align-items: center;
 }
 
+.submit-cancel-buttons.disabled {
+  visibility: hidden;
+}
+
 .submit-cancel-buttons > *:first-child {
   padding-right: 0.4rem;
 }
