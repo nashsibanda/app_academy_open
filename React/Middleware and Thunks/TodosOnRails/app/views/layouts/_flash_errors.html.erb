@@ -1,0 +1,11 @@
+<% if flash[:errors] %>
+  <ul class="error-list">
+    <% flash[:errors].each do |error| %>
+      <li><i class="fas fa-exclamation-triangle"></i><%= error %></li>
+    <% end %>
+  </ul>
+<% elsif flash[:notice] %>
+  <ul class="error-list notices-banner">
+    <li><i class="fas fa-star"></i><%= flash[:notice] %></li>
+  </ul>
+<% end %>

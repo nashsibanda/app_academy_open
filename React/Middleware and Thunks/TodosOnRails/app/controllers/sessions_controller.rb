@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       flash[:notice] = 'Succesfully logged in!'
       redirect_to root_path
     else
-      flash[:notice] = 'User not found'
+      flash[:errors] = ['Username or password is incorrect']
       redirect_to new_session_url
     end
   end
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
       flash[:notice] = 'Succesfully logged in!'
       redirect_to root_path
     else
-      flash[:notice] = 'User not found'
+      flash[:errors] = ['Username or password is incorrect']
       redirect_to new_session_url
     end
   end

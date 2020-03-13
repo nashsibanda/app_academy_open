@@ -21,25 +21,30 @@
   </head>
 
   <body>
-    <header class="site-header">
-      <h1><%= link_to  "Todos", root_path %></h1>
-      <span class="site-byline">
-        <span>A work in progress by <a href="http://nashsibanda.com" target="_BLANK" class="portfolio-site-link">&lt;Nash Sibanda&gt;</a></span>
-        <% if current_user %>
-          <form action="<%= session_url %>" method="post" class="log-out-form">
-            <%= auth_token %>
-            <span>Welcome back, <strong class="header-username"><%= current_user.username %></strong></span>
-            <input type="hidden" name="_method" value="delete">
-            <button type="submit" class="form-button">Log Out</button>
-          </form>
-        <% else %>
-          <span>
-            <%= link_to  "Log In", new_session_url, class: "form-button" %>
-            <%= link_to  "Sign Up", new_user_url, class: "form-button" %>
-          </span>
-        <% end %>
-      </span
-      >
+    <header>
+      <div class="site-header">
+        <h1><%= link_to  "Todos", root_path %></h1>
+        <span class="site-byline">
+          <span>A work in progress by <a href="http://nashsibanda.com" target="_BLANK" class="portfolio-site-link">&lt;Nash Sibanda&gt;</a></span>
+          <% if current_user %>
+            <form action="<%= session_url %>" method="post" class="log-out-form">
+              <%= auth_token %>
+              <span>Welcome back, <strong class="header-username"><%= current_user.username %></strong></span>
+              <input type="hidden" name="_method" value="delete">
+              <button type="submit" class="form-button">Log Out</button>
+            </form>
+          <% else %>
+            <span>
+              <%= link_to  "Log In", new_session_url, class: "form-button" %>
+              <%= link_to  "Sign Up", new_user_url, class: "form-button" %>
+            </span>
+          <% end %>
+        </span
+        >
+      </div>
+      <div class="flash-errors">
+        <%= render  "layouts/flash_errors" %>
+      </div>
     </header>
     <main><%= yield %></main>
   </body>

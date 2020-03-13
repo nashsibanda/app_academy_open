@@ -123,6 +123,10 @@
   z-index: 10;
 }
 
+.error-list.notices-banner {
+  background-color: transparentize($donecolor, $amount: 0.4);
+}
+
 .error-list li {
   font-weight: 700;
   color: white;
@@ -134,6 +138,10 @@
   .error-list li:hover {
     background-color: $deselectcolor;
     cursor: not-allowed;
+  }
+
+  .error-list.notices-banner li:hover {
+    background-color: $donecolor;
   }
 }
 

@@ -5,6 +5,10 @@ import Root from "../frontend/components/root";
 import { fetchTodos } from "./../frontend/actions/todo_actions";
 
 document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(() => {
+    $(".flash-errors").addClass("hidden");
+  }, 3000);
+
   const rootElement = document.getElementById("main-app-container");
   ReactDOM.render(<Root store={configureStore} />, rootElement);
 });

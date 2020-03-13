@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       flash[:notice] = "User #{@user.username} successfully deleted."
       redirect_to new_session_url
     else
-      flash[:notice] = 'User not found'
+      flash[:errors] = ['User not found']
       redirect_to new_session_url
     end
   end
