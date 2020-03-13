@@ -9,7 +9,7 @@ const StepApi = {
       url: `api/todos/${todo_id}/steps`,
       dataType: "json",
       success(response) {
-        console.log("Successfully fetched Steps with fetchSteps!");
+        // console.log("Successfully fetched Steps with fetchSteps!");
       }
     }),
   createStep: step =>
@@ -22,7 +22,7 @@ const StepApi = {
         "X-CSRF-Token": auth_token
       },
       success(response) {
-        console.log("Successfully added step using createStep!");
+        // console.log("Successfully added step using createStep!");
       }
     }),
   updateStep: step =>
@@ -35,7 +35,7 @@ const StepApi = {
         "X-CSRF-Token": auth_token
       },
       success(response) {
-        console.log("Successfully updated step using updateStep!");
+        // console.log("Successfully updated step using updateStep!");
       }
     }),
   deleteStep: step =>
@@ -47,7 +47,7 @@ const StepApi = {
         "X-CSRF-Token": auth_token
       },
       success(response) {
-        console.log("Successfully removed step with deleteStep!");
+        // console.log("Successfully removed step with deleteStep!");
       }
     })
 };

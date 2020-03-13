@@ -29,9 +29,7 @@ class StepForm extends React.Component {
     const newStep = { step: formValues };
     this.props.formSubmitHandler(newStep);
     setTimeout(() => {
-      if (this.props.errors.length > 0) {
-        console.log("Rejected!");
-      } else {
+      if (this.props.errors.length < 1) {
         this.setState({ title: "", body: "" });
       }
     }, 300);

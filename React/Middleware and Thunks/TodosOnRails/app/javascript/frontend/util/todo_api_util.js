@@ -9,7 +9,7 @@ const TodoApi = {
       url: "api/todos",
       dataType: "json",
       success(response) {
-        console.log("Successfully run fetchTodos on load!");
+        // console.log("Successfully run fetchTodos on load!");
       }
     }),
   createTodo: todo =>
@@ -22,7 +22,7 @@ const TodoApi = {
         "X-CSRF-Token": auth_token
       },
       success(response) {
-        console.log("Successfully posted a Todo with createTodo!");
+        // console.log("Successfully posted a Todo with createTodo!");
       }
     }),
   updateTodo: todo =>
@@ -35,7 +35,7 @@ const TodoApi = {
         "X-CSRF-Token": auth_token
       },
       success(response) {
-        console.log("Successfully updated a Todo with updateTodo!");
+        // console.log("Successfully updated a Todo with updateTodo!");
       }
     }),
   deleteTodo: todo =>
@@ -47,7 +47,7 @@ const TodoApi = {
         "X-CSRF-Token": auth_token
       },
       success(response) {
-        console.log("Successfully deleted a Todo with deleteTodo!");
+        // console.log("Successfully deleted a Todo with deleteTodo!");
       }
     })
 };
