@@ -35,7 +35,9 @@ class TodoDetailView extends React.Component {
   addTag(e) {
     e.preventDefault();
     const newTagNames = [
-      ...new Set(this.state.tag_names.concat(this.state.currentTag.trim()))
+      ...new Set(
+        this.state.tag_names.concat(this.state.currentTag.trim().toLowerCase())
+      )
     ];
     this.setState(
       {

@@ -80,7 +80,7 @@ class TodoForm extends React.Component {
       e.preventDefault();
       e.stopPropagation();
       let tags = this.state.tag_names;
-      tags.push(this.state.current_tag.trim());
+      tags.push(this.state.current_tag.trim().toLowerCase());
       let uniqTags = [...new Set(tags)];
       this.setState({ tag_names: uniqTags, current_tag: "" });
     }
