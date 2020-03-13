@@ -51,7 +51,11 @@ class TodoForm extends React.Component {
   updateCurrentTag(e) {
     e.preventDefault();
     if (e.currentTarget.value) {
-      this.setState({ current_tag: e.currentTarget.value });
+      if (e.currentTarget.value[0] === "#") {
+        this.setState({ current_tag: e.currentTarget.value.substring(1) });
+      } else {
+        this.setState({ current_tag: e.currentTarget.value });
+      }
     } else {
       this.setState({ current_tag: "" });
     }
@@ -77,7 +81,8 @@ class TodoForm extends React.Component {
       e.stopPropagation();
       let tags = this.state.tag_names;
       tags.push(this.state.current_tag.trim());
-      this.setState({ tag_names: tags, current_tag: "" });
+      let uniqTags = [...new Set(tags)];
+      this.setState({ tag_names: uniqTags, current_tag: "" });
     }
   }
 

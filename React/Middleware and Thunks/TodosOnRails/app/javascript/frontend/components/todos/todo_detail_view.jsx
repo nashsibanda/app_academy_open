@@ -34,7 +34,9 @@ class TodoDetailView extends React.Component {
 
   addTag(e) {
     e.preventDefault();
-    const newTagNames = this.state.tag_names.concat(this.state.currentTag);
+    const newTagNames = [
+      ...new Set(this.state.tag_names.concat(this.state.currentTag.trim()))
+    ];
     this.setState(
       {
         tag_names: newTagNames,
@@ -67,7 +69,17 @@ class TodoDetailView extends React.Component {
   }
 
   updateProperty(property) {
-    return e => this.setState({ [property]: e.currentTarget.value });
+    if (property == "currentTag") {
+      return e =>
+        this.setState({
+          [property]:
+            e.currentTarget.value[0] === "#"
+              ? e.currentTarget.value.substring(1)
+              : e.currentTarget.value
+        });
+    } else {
+      return e => this.setState({ [property]: e.currentTarget.value });
+    }
   }
 
   toggleForm(property) {
