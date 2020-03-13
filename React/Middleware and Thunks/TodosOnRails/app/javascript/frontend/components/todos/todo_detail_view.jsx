@@ -96,9 +96,8 @@ class TodoDetailView extends React.Component {
               ></input>
               <div
                 className={
-                  "submit-cancel-buttons " + this.props.fetching
-                    ? "disabled"
-                    : ""
+                  "submit-cancel-buttons " +
+                  (this.props.fetching ? "disabled" : "")
                 }
               >
                 <button
@@ -137,9 +136,8 @@ class TodoDetailView extends React.Component {
               ></textarea>
               <div
                 className={
-                  "submit-cancel-buttons " + this.props.fetching
-                    ? "disabled"
-                    : ""
+                  "submit-cancel-buttons " +
+                  (this.props.fetching ? "disabled" : "")
                 }
               >
                 <button
@@ -193,9 +191,8 @@ class TodoDetailView extends React.Component {
                 ></input>
                 <div
                   className={
-                    "submit-cancel-buttons " + this.props.fetching
-                      ? "disabled"
-                      : ""
+                    "submit-cancel-buttons " +
+                    (this.props.fetching ? "disabled" : "")
                   }
                 >
                   <button
@@ -258,9 +255,8 @@ class TodoDetailView extends React.Component {
               ></input>
               <div
                 className={
-                  "submit-cancel-buttons " + this.props.fetching
-                    ? "disabled"
-                    : ""
+                  "submit-cancel-buttons " +
+                  (this.props.fetching ? "disabled" : "")
                 }
               >
                 <button
@@ -276,7 +272,7 @@ class TodoDetailView extends React.Component {
           ) : (
             <span className="add-tags-container">
               <button
-                className="add-tags-button"
+                className="todo-details-button"
                 onClick={this.toggleForm("addTag")}
               >
                 Add Tags <i className={"fas fa-plus"}></i>

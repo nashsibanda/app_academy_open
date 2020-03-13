@@ -4,12 +4,6 @@
   padding: 3rem;
   border-radius: 0.5rem;
   background-color: white;
-  // position: absolute;
-  // top: 30vh;
-  // width: calc(100% - 30vw);
-  // left: 15vw;
-  // margin: 0 auto;
-  // z-index: 3;
   box-sizing: border-box;
 }
 
@@ -26,4 +20,15 @@
 .user-form .form-redirect-link {
   text-align: right;
   margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 500px) {
+  .user-form {
+    padding: 2rem 1rem;
+    align-items: center;
+  }
+
+  .user-form > form {
+    text-align: center;
+  }
 }

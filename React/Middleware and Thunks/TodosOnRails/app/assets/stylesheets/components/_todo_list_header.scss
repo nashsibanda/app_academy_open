@@ -12,7 +12,7 @@
   font-family: $seriffont;
   font-size: 1.6rem;
   text-align: center;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
 }
 
 .sort-toggles {
@@ -62,6 +62,14 @@
 
 .filter-menu-heading {
   font-weight: 700;
+}
+
+.main-menu-heading {
+  padding-bottom: 1rem;
+}
+
+.filter-menu-heading.active-heading {
+  color: $keycolor;
 }
 
 .sort-toggles-menu {

@@ -69,7 +69,7 @@
 }
 
 .tag-list > li > i,
-.add-tags-button > i {
+.todo-details-button > i {
   padding-left: 0.2rem;
 }
 
@@ -77,12 +77,12 @@
   max-width: 15rem;
 }
 
-.add-tags-button {
+.todo-details-button {
   @include tag-shape;
   background-color: $keycolorlight;
   color: white;
   font-weight: 700;
-  min-width: 8rem;
+  min-width: 9rem;
   text-align: center;
 }
 
@@ -101,11 +101,11 @@
     color: $deselectcolordark;
   }
 
-  .add-tags-button:hover {
+  .todo-details-button:hover {
     background-color: $accentcolor;
   }
 
-  .add-tags-button:hover > i {
+  .todo-details-button:hover > i {
     color: $keycolor;
   }
 }
@@ -209,5 +209,18 @@
     margin-top: 0.5rem;
     width: 100%;
     max-width: 15rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .new-todo-form {
+    padding: 2rem;
+    width: calc(100% - 10vw);
+    top: 20vh;
+    left: 5vw;
+  }
+
+  .new-todo-form > * {
+    margin-bottom: 1rem;
   }
 }

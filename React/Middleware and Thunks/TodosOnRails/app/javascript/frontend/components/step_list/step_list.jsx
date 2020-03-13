@@ -32,9 +32,12 @@ class StepList extends React.Component {
           this.state.showSteps ? (
             <ul className="step-list">
               <li className="step-list-placeholder-item">
-                <a href="#" onClick={this.toggleSteps}>
+                <button
+                  className="todo-details-button"
+                  onClick={this.toggleSteps}
+                >
                   Hide Steps
-                </a>
+                </button>
               </li>
               {steps.map((step, index) => {
                 return (
@@ -49,9 +52,15 @@ class StepList extends React.Component {
           ) : (
             <ul className="step-list">
               <li className="step-list-placeholder-item">
-                <a href="#" onClick={this.toggleSteps}>
-                  Show Steps
-                </a>
+                <button
+                  className="todo-details-button"
+                  onClick={this.toggleSteps}
+                >
+                  {"Show " +
+                    steps.length +
+                    " Step" +
+                    (steps.length > 1 ? "s" : "")}
+                </button>
               </li>
             </ul>
           )

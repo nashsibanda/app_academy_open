@@ -127,6 +127,10 @@
   height: max-content;
 }
 
+.todo-steps-container > .todo-details-label {
+  padding-top: 0.4rem;
+}
+
 .inline-form.add-tags-container {
   flex-basis: auto;
 }
