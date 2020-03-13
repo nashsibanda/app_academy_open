@@ -10,7 +10,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
+    if !User.where('lower(username) = ?', @user.username.downcase).empty?
+      flash[:errors] = ['User already exists']
+      redirect_to new_user_url
+    elsif @user.save
       log_in_user!(@user)
       flash[:notice] = "User #{@user.username} successfully logged in!"
       redirect_to root_path

@@ -14,7 +14,7 @@ class User < ApplicationRecord
   end
 
   def self.find_by_credentials(username, password)
-    user = User.find_by(username: username)
+    user = User.where('lower(username) = ?', username.downcase).first
     return user if user&.is_password?(password)
   end
 
