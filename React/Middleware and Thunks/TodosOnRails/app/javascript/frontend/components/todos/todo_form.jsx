@@ -76,7 +76,7 @@ class TodoForm extends React.Component {
       e.preventDefault();
       e.stopPropagation();
       let tags = this.state.tag_names;
-      tags.push(this.state.current_tag);
+      tags.push(this.state.current_tag.trim());
       this.setState({ tag_names: tags, current_tag: "" });
     }
   }
@@ -232,7 +232,7 @@ class TodoForm extends React.Component {
                     onClick={this.toggleTagInput}
                   ></i>
                 </span>
-                <ul className="tag-list">
+                <ul className="tag-list form-tag-list">
                   {this.state.tag_names.map(tag_name => {
                     return (
                       <li

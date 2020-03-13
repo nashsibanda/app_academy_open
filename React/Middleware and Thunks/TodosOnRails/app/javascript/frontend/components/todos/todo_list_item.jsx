@@ -11,6 +11,7 @@ class TodoListItem extends React.Component {
     this.updateTodo = this.updateTodo.bind(this);
     this.removeSelf = this.removeSelf.bind(this);
     this.toggleDoneHover = this.toggleDoneHover.bind(this);
+    this.tagNames = this.tagNames.bind(this);
   }
 
   toggleDetail(e) {
@@ -43,6 +44,16 @@ class TodoListItem extends React.Component {
   updateTodo(todo) {
     const newTodo = { todo: todo };
     this.props.updateTodo(newTodo);
+  }
+
+  tagNames() {
+    let tagNames = this.props.todo.tags.map(tag => tag.name) || [];
+    if (tagNames.length > 4) {
+      let shorterTagNames = tagNames.slice(0, 4);
+      shorterTagNames.push("...");
+      return shorterTagNames;
+    }
+    return tagNames;
   }
 
   render() {
@@ -81,6 +92,11 @@ class TodoListItem extends React.Component {
               {todo.done ? "Completed!" : Util.friendlyDueString(todo.due)}
             </span>
           </div>
+          <ul className="todo-title-tag-list tag-list">
+            {this.tagNames().map(tag => {
+              return <li key={todo.created_at + tag}>{tag}</li>;
+            })}
+          </ul>
           <i
             className="fas fa-times-circle icon-button todo-delete-icon"
             onClick={this.removeSelf}

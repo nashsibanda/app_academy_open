@@ -222,7 +222,7 @@ class TodoDetailView extends React.Component {
           <span className="todo-details-label">Tags:</span>{" "}
           {this.state.tag_names.length > 0 && (
             <span className="todo-details-content">
-              <ul className="tag-list">
+              <ul className="tag-list form-tag-list">
                 {this.state.tag_names.map(tag_name => {
                   return (
                     <li

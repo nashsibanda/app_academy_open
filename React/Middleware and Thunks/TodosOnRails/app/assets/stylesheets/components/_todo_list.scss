@@ -49,6 +49,7 @@
 .todo-title-and-due {
   @include flex;
   flex-direction: column;
+  flex-grow: 2;
 }
 
 .friendly-due-string {

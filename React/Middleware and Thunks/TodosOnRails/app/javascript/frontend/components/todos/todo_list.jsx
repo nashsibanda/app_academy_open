@@ -491,7 +491,7 @@ class TodoList extends React.Component {
                     <div className="search-toggles tags-filter-toggle">
                       {this.state.showTagsFilter && (
                         <span className="search-bar">
-                          <ul className="tag-list">
+                          <ul className="tag-list form-tag-list">
                             {this.state.tag_names.map(tag_name => {
                               return (
                                 <li
