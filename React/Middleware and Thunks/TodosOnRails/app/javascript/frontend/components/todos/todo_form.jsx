@@ -255,16 +255,7 @@ class TodoForm extends React.Component {
                 Add tags...
               </a>
             )}
-            <div className="done-selector">
-              <label htmlFor="done">Done?</label>
-              <input
-                type="checkbox"
-                name="done"
-                onChange={this.updateDone}
-                checked={this.state.done}
-                disabled={this.props.fetching}
-              ></input>
-            </div>
+
             <button
               type="submit"
               className="form-button"
