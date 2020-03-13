@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :steps, only: %i[update create destroy]
   end
   resources :users, only: %i[new create destroy]
-  resource :session, only: %i[new create destroy]
+  resource :session, only: %i[new create destroy] do
+    get '/alice', to: 'sessions#log_in_alice'
+  end
   root to: 'static_pages#root'
 end

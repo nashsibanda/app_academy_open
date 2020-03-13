@@ -19,6 +19,18 @@ class SessionsController < ApplicationController
     end
   end
 
+  def log_in_alice
+    @user = User.find_by_credentials('alice', 'alicealice')
+    if @user
+      log_in_user!(@user)
+      flash[:notice] = 'Succesfully logged in!'
+      redirect_to root_path
+    else
+      flash[:notice] = 'User not found'
+      redirect_to new_session_url
+    end
+  end
+
   def destroy
     log_out!
     flash[:notice] = 'Successfully logged out!'
