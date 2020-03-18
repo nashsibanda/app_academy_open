@@ -10,8 +10,10 @@ import {
 
 document.addEventListener("DOMContentLoaded", () => {
   const store = configureStore();
-  window.store = store;
-  window.APIUtil = APIUtil;
-  window.receiveSearchGiphys = receiveSearchGiphys;
-  window.fetchSearchGiphys = fetchSearchGiphys;
+  const root = document.getElementById("root");
+  ReactDOM.render(<Root store={store} />, root);
+  // window.store = store;
+  // window.APIUtil = APIUtil;
+  // window.receiveSearchGiphys = receiveSearchGiphys;
+  // window.fetchSearchGiphys = fetchSearchGiphys;
 });

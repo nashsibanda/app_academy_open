@@ -7,8 +7,13 @@ ul {
   padding-left: 0;
 }
 
-.giphy-li {
-  display: inline;
+.giphys-index-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.giphys-index-list li {
   padding-right: 10px;
 }
 
@@ -24,7 +29,7 @@ input {
   width: 200px;
   height: 21px;
   font-size: 15px;
-  font-family: 'Helvetica';
+  font-family: "Helvetica";
   margin-right: 2px;
   padding: 0;
   border: 1px solid lightgray;
