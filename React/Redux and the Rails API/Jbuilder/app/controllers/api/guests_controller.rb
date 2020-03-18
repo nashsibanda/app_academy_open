@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::GuestsController < ApplicationController
   def index
     @guests = Guest.all
@@ -5,7 +7,7 @@ class Api::GuestsController < ApplicationController
   end
 
   def show
-    @guest = Guest.find_by(id: params[:id])
+    @guest = Guest.find_by(id: params[:id]).includes(:gifts)
     render :show
   end
 end
