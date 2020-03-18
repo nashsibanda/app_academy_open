@@ -6,4 +6,4 @@
 #   json.favorite_color guest.favorite_color
 # end
 
-json.partial! 'api/partials/guest', collection: @guests, as: :guest, gift_display: false
+json.partial! 'api/partials/guest', collection: @guests, as: :guest, gift_display: false, age_limit: true
