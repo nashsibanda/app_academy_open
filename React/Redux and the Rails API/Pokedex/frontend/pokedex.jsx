@@ -2,7 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import configureStore from "./store/store";
 import APIUtil from "./util/api_util";
-import { receiveAllPokemon } from "./actions/pokemon_actions";
+import {
+  receiveAllPokemon,
+  requestAllPokemon
+} from "./actions/pokemon_actions";
+import { selectAllPokemon } from "./reducers/selectors";
 
 class Tester extends React.Component {
   render() {
@@ -20,3 +24,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.APIUtil = APIUtil;
 window.receiveAllPokemon = receiveAllPokemon;
+window.requestAllPokemon = requestAllPokemon;
+window.selectAllPokemon = selectAllPokemon;
