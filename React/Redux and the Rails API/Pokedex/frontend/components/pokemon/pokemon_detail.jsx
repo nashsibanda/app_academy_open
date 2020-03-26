@@ -10,8 +10,6 @@ class PokemonDetail extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("update!!");
-    console.log("prev-id = " + prevProps.match.params.pokemonId);
     if (
       prevProps.match.params.pokemonId !== this.props.match.params.pokemonId
     ) {
@@ -20,8 +18,6 @@ class PokemonDetail extends React.Component {
   }
 
   render() {
-    console.log("Render called");
-
     if (!this.props.pokemon) {
       console.log("no pokemon yet");
       return null;
@@ -35,7 +31,7 @@ class PokemonDetail extends React.Component {
       defense,
       moves
     } = this.props.pokemon;
-    // console.log(this.props.pokemon);
+    console.log(this.props.items);
     return (
       <section className="pokemon-detail">
         <img src={image_url}></img>
@@ -44,7 +40,17 @@ class PokemonDetail extends React.Component {
           <li>Type: {poke_type}</li>
           <li>Attack: {attack}</li>
           <li>Defense: {defense}</li>
-          <li>Moves: {moves}</li>
+          <li>Moves: {moves.join(", ")}</li>
+        </ul>
+        <ul className="pokemon-items">
+          {this.props.items.map(item => {
+            return (
+              <li key={item.id + item.name}>
+                <img src={item.image_url}></img>
+                <div>{item.name}</div>
+              </li>
+            );
+          })}
         </ul>
       </section>
     );

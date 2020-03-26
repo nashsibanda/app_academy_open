@@ -6,7 +6,7 @@ import {
 const pokemonReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_ALL_POKEMON:
-      return Object.assign({}, state, action.pokemon);
+      return Object.assign({}, action.pokemon, state);
     case RECEIVE_ONE_POKEMON:
       const receivedPokemon = action.pokemonAndItems.pokemon;
       return Object.assign({}, state, {

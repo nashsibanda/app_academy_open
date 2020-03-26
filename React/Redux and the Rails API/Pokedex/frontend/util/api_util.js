@@ -15,8 +15,7 @@ const APIUtil = {
       dataType: "json",
       success: function(response) {
         console.log(
-          // "Successfully fetched single Pokemon with fetchOnePokemon!"
-          response
+          "Successfully fetched single Pokemon with fetchOnePokemon!"
         );
       }
     })
