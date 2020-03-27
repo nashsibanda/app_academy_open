@@ -18,6 +18,16 @@ const APIUtil = {
           "Successfully fetched single Pokemon with fetchOnePokemon!"
         );
       }
+    }),
+  postNewPokemon: pokemon =>
+    $.ajax({
+      type: "post",
+      url: "api/pokemon",
+      dataType: "json",
+      data: pokemon,
+      success: function(response) {
+        console.log("Successfully added a Pokemon with postNewPokemon!");
+      }
     })
 };
 

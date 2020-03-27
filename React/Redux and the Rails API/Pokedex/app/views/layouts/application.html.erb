@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Pokedex</title>
-    <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+<head>
+  <title>Pokedex</title>
+  <%= csrf_meta_tags %>
 
-    <script type="text/javascript">
-      window.POKEMON_TYPES = <%=raw Pokemon::TYPES %>
-    </script>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
 
-  <body>
-    <header>
-      <img src="./assets/pokeball.svg" alt="pokedex">
-    </header>
+  <script type="text/javascript">
+    window.POKEMON_TYPES = < %= raw Pokemon::TYPES % >
+  </script>
+</head>
 
-    <%= yield %>
-  </body>
+<body>
+  <header>
+    <a href=<%=root_url%>><img src="./assets/pokeball.svg" alt="pokedex"></a>
+  </header>
+
+  <%= yield %>
+</body>
+
 </html>

@@ -20,7 +20,7 @@ class PokemonDetail extends React.Component {
   }
 
   render() {
-    if (!this.props.pokemon) {
+    if (!this.props.pokemon.moves) {
       console.log("no pokemon yet");
       return null;
     }
@@ -43,7 +43,7 @@ class PokemonDetail extends React.Component {
           <li>Type: {poke_type}</li>
           <li>Attack: {attack}</li>
           <li>Defense: {defense}</li>
-          <li>Moves: {moves}</li>
+          <li>Moves: {moves.join(", ")}</li>
         </ul>
         <ul className="pokemon-items">
           {this.props.items.map(item => {

@@ -1,6 +1,7 @@
 import {
   RECEIVE_ALL_POKEMON,
-  RECEIVE_ONE_POKEMON
+  RECEIVE_ONE_POKEMON,
+  RECEIVE_NEW_POKEMON
 } from "../actions/pokemon_actions.js";
 
 const pokemonReducer = (state = {}, action) => {
@@ -12,6 +13,9 @@ const pokemonReducer = (state = {}, action) => {
       return Object.assign({}, state, {
         [receivedPokemon.id]: receivedPokemon
       });
+    case RECEIVE_NEW_POKEMON:
+      const newPokemon = { [action.pokemon.id]: action.pokemon };
+      return Object.assign({}, state, newPokemon);
     default:
       return state;
   }
