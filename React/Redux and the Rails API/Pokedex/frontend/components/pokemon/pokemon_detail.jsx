@@ -34,7 +34,6 @@ class PokemonDetail extends React.Component {
       moves,
       id
     } = this.props.pokemon;
-    console.log(this.props.items);
     return (
       <section className="pokemon-detail">
         <img src={image_url}></img>
