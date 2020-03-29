@@ -69,7 +69,7 @@ class PokemonForm extends React.Component {
       "rock",
       "steel"
     ].sort();
-
+    console.log(this.props.errors);
     return (
       <form className="pokemon-form" onSubmit={this.handleSubmit}>
         <input
@@ -120,6 +120,13 @@ class PokemonForm extends React.Component {
           value={this.state.move_2}
         ></input>
         <button type="submit">Add Pokemon!</button>
+        {this.props.errors.length > 0 && (
+          <ul className="errors-list">
+            {this.props.errors.map(error => {
+              return <li key={error}>{error}</li>;
+            })}
+          </ul>
+        )}
       </form>
     );
   }
