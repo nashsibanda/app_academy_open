@@ -71,63 +71,67 @@ class PokemonForm extends React.Component {
     ].sort();
     console.log(this.props.errors);
     return (
-      <form className="pokemon-form" onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          placeholder="Pokemon Name"
-          onChange={this.update("name")}
-          value={this.state.name}
-        ></input>
-        <input
-          type="text"
-          placeholder="Image URL"
-          onChange={this.update("image_url")}
-          value={this.state.image_url}
-        ></input>
-        <select
-          onChange={this.update("poke_type")}
-          value={
-            this.state.poke_type ? this.state.poke_type : "Select Pokemon Type"
-          }
-        >
-          <option disabled={true}>Select Pokemon Type</option>
-          {pokemonTypes.map(type => {
-            return <option key={type}>{type}</option>;
-          })}
-        </select>
-        <input
-          type="number"
-          placeholder="Attack"
-          onChange={this.update("attack")}
-          value={this.state.attack}
-        ></input>
-        <input
-          type="number"
-          placeholder="Defense"
-          onChange={this.update("defense")}
-          value={this.state.defense}
-        ></input>
-        <input
-          type="text"
-          placeholder="Move 1"
-          onChange={this.update("move_1")}
-          value={this.state.move_1}
-        ></input>
-        <input
-          type="text"
-          placeholder="Move 2"
-          onChange={this.update("move_2")}
-          value={this.state.move_2}
-        ></input>
-        <button type="submit">Add Pokemon!</button>
-        {this.props.errors.length > 0 && (
-          <ul className="errors-list">
-            {this.props.errors.map(error => {
-              return <li key={error}>{error}</li>;
+      <main>
+        <form className="pokemon-form" onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            placeholder="Pokemon Name"
+            onChange={this.update("name")}
+            value={this.state.name}
+          ></input>
+          <input
+            type="text"
+            placeholder="Image URL"
+            onChange={this.update("image_url")}
+            value={this.state.image_url}
+          ></input>
+          <select
+            onChange={this.update("poke_type")}
+            value={
+              this.state.poke_type
+                ? this.state.poke_type
+                : "Select Pokemon Type"
+            }
+          >
+            <option disabled={true}>Select Pokemon Type</option>
+            {pokemonTypes.map(type => {
+              return <option key={type}>{type}</option>;
             })}
-          </ul>
-        )}
-      </form>
+          </select>
+          <input
+            type="number"
+            placeholder="Attack"
+            onChange={this.update("attack")}
+            value={this.state.attack}
+          ></input>
+          <input
+            type="number"
+            placeholder="Defense"
+            onChange={this.update("defense")}
+            value={this.state.defense}
+          ></input>
+          <input
+            type="text"
+            placeholder="Move 1"
+            onChange={this.update("move_1")}
+            value={this.state.move_1}
+          ></input>
+          <input
+            type="text"
+            placeholder="Move 2"
+            onChange={this.update("move_2")}
+            value={this.state.move_2}
+          ></input>
+          <button type="submit">Add Pokemon!</button>
+          {this.props.errors.length > 0 && (
+            <ul className="errors-list">
+              {this.props.errors.map(error => {
+                return <li key={error}>{error}</li>;
+              })}
+            </ul>
+          )}
+        </form>
+      </main>
     );
   }
 }

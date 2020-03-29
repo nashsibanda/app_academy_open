@@ -35,32 +35,34 @@ class PokemonDetail extends React.Component {
       id
     } = this.props.pokemon;
     return (
-      <section className="pokemon-detail">
-        <img src={image_url}></img>
-        <h2>{name}</h2>
-        <ul>
-          <li>Type: {poke_type}</li>
-          <li>Attack: {attack}</li>
-          <li>Defense: {defense}</li>
-          <li>Moves: {moves.join(", ")}</li>
-        </ul>
-        <ul className="pokemon-items">
-          {this.props.items.map(item => {
-            return (
-              <li key={item.id + item.name}>
-                <Link to={`/pokemon/${id}/item/${item.id}`}>
-                  <img src={item.image_url}></img>
-                  <div>{item.name}</div>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-        <Route
-          path="/pokemon/:pokemonId/item/:itemId"
-          component={ItemDetailContainer}
-        />
-      </section>
+      <main className="pokemon-detail">
+        <section className="pokemon-detail">
+          <img src={image_url}></img>
+          <h2>{name}</h2>
+          <ul>
+            <li>Type: {poke_type}</li>
+            <li>Attack: {attack}</li>
+            <li>Defense: {defense}</li>
+            <li>Moves: {moves.join(", ")}</li>
+          </ul>
+          <ul className="pokemon-items">
+            {this.props.items.map(item => {
+              return (
+                <li key={item.id + item.name}>
+                  <Link to={`/pokemon/${id}/item/${item.id}`}>
+                    <img src={item.image_url}></img>
+                    <div>{item.name}</div>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          <Route
+            path="/pokemon/:pokemonId/item/:itemId"
+            component={ItemDetailContainer}
+          />
+        </section>
+      </main>
     );
   }
 }
