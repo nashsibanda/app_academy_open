@@ -20,7 +20,7 @@ class PokemonDetail extends React.Component {
   }
 
   render() {
-    if (!this.props.pokemon.moves) {
+    if (!this.props.pokemon || !this.props.pokemon.moves) {
       console.log("no pokemon yet");
       return null;
     }
@@ -37,21 +37,34 @@ class PokemonDetail extends React.Component {
     return (
       <main className="pokemon-detail">
         <section className="pokemon-detail">
-          <img src={image_url}></img>
+          <img className="pokemon-main-image" src={image_url}></img>
           <h2>{name}</h2>
-          <ul>
-            <li>Type: {poke_type}</li>
-            <li>Attack: {attack}</li>
-            <li>Defense: {defense}</li>
-            <li>Moves: {moves.join(", ")}</li>
+          <ul className="pokemon-stats">
+            <li>
+              <span className="stats-label">Type:</span>
+              <span className="stats-value">{poke_type}</span>
+            </li>
+            <li>
+              <span className="stats-label">Attack:</span>
+              <span className="stats-value">{attack}</span>
+            </li>
+            <li>
+              <span className="stats-label">Defense:</span>
+              <span className="stats-value">{defense}</span>
+            </li>
+            <li>
+              <span className="stats-label">Moves:</span>
+              <span className="stats-value">{moves.join(", ")}</span>
+            </li>
           </ul>
+          <h3>Items</h3>
           <ul className="pokemon-items">
             {this.props.items.map(item => {
               return (
                 <li key={item.id + item.name}>
                   <Link to={`/pokemon/${id}/item/${item.id}`}>
                     <img src={item.image_url}></img>
-                    <div>{item.name}</div>
+                    <div className="pokemon-item-name">{item.name}</div>
                   </Link>
                 </li>
               );

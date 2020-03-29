@@ -1,0 +1,60 @@
+input[type="text"],
+input[type="number"] {
+  background-color: white;
+  border: 1px solid lightgray;
+}
+
+.pokemon-form-container {
+  background-color: white;
+  margin: 0 auto;
+  width: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  padding: 4rem 0;
+
+  .pokemon-logo {
+    width: 20rem;
+  }
+}
+
+.pokemon-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20rem;
+  margin: 2rem 0;
+
+  input,
+  select {
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+  }
+
+  input {
+    padding: 1rem;
+  }
+
+  select {
+    height: 3rem;
+  }
+
+  button {
+    border: 1px solid grey;
+    background-color: lightgray;
+    padding: 1rem;
+    border-radius: 4px;
+    width: 10rem;
+    text-align: center;
+
+    &:hover {
+      background-color: darkslategrey;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
+}

@@ -9,9 +9,18 @@ const mapStateToProps = (state, ownProps) => ({
 const ItemDetail = props => {
   return (
     <ul className="item-details">
-      <li>Name: {props.item.name}</li>
-      <li>Price: {props.item.price}</li>
-      <li>Happiness: {props.item.happiness}</li>
+      <li>
+        <span className="item-label">Name:</span>
+        <span className="item-value">{props.item.name}</span>
+      </li>
+      <li>
+        <span className="item-label">Price:</span>
+        <span className="item-value">{props.item.price}</span>
+      </li>
+      <li>
+        <span className="item-label">Happiness:</span>
+        <span className="item-value">{props.item.happiness}</span>
+      </li>
     </ul>
   );
 };

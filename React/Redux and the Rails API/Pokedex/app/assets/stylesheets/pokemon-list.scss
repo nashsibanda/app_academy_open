@@ -1,0 +1,31 @@
+.pokemon-list {
+  li {
+    &:first-child {
+      a {
+        padding-top: 0.4rem;
+        border-top: none;
+      }
+    }
+    a {
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      border-top: 1px solid darkgrey;
+
+      > * {
+        padding-right: 1rem;
+      }
+      &:hover {
+        background-color: gray;
+        color: white;
+      }
+    }
+  }
+
+  img {
+    display: inline-block;
+    height: 2rem;
+    max-width: 2rem;
+  }
+}
