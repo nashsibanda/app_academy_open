@@ -8,7 +8,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     pokemon,
     items: selectPokemonItems(state),
-    ui: state.ui
+    ui: state.ui,
+    loading: state.ui.loading.detailLoading
   };
 };
 

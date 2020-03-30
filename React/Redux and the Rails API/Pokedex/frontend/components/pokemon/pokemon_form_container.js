@@ -3,7 +3,8 @@ import { createPokemon } from "./../../actions/pokemon_actions.js";
 import PokemonForm from "./pokemon_form.jsx";
 
 const mapStateToProps = state => ({
-  errors: state.ui.errors
+  errors: state.ui.errors,
+  loading: state.ui.loading.detailLoading
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -3,6 +3,7 @@ import PokemonIndexItem from "./pokemon_index_item";
 import { Route } from "react-router-dom";
 import PokemonDetailContainer from "./pokemon_detail_container";
 import PokemonFormContainer from "./pokemon_form_container";
+import LoadingContainer from "../ui/loading";
 
 class PokemonIndex extends React.Component {
   constructor(props) {
@@ -23,8 +24,19 @@ class PokemonIndex extends React.Component {
   render() {
     return (
       <section className="pokedex">
-        <Route path="/pokemon/:pokemonId" component={PokemonDetailContainer} />
-        <Route exact path="/" component={PokemonFormContainer} />
+        {this.props.loading ? (
+          <main>
+            <LoadingContainer />
+          </main>
+        ) : (
+          <main>
+            <Route
+              path="/pokemon/:pokemonId"
+              component={PokemonDetailContainer}
+            />
+            <Route exact path="/" component={PokemonFormContainer} />
+          </main>
+        )}
         <aside>
           <ul className="pokemon-list">{this.pokemonItems()}</ul>
         </aside>
