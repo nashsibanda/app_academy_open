@@ -58,3 +58,32 @@ input[type="number"] {
     }
   }
 }
+
+.errors-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  li {
+    background-color: darkred;
+    color: white;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    width: 15rem;
+    text-align: center;
+    border-bottom: 1px solid #000;
+
+    &:nth-child(even) {
+      background-color: darkmagenta;
+    }
+
+    &:first-of-type {
+      border-radius: 4px 4px 0 0;
+    }
+
+    &:last-of-type {
+      border-radius: 0 0 4px 4px;
+      border-bottom: none;
+    }
+  }
+}

@@ -52,25 +52,6 @@ class PokemonForm extends React.Component {
   }
 
   render() {
-    const pokemonTypes = [
-      "fire",
-      "electric",
-      "normal",
-      "ghost",
-      "psychic",
-      "water",
-      "bug",
-      "dragon",
-      "grass",
-      "fighting",
-      "ice",
-      "flying",
-      "poison",
-      "ground",
-      "rock",
-      "steel"
-    ].sort();
-    console.log(this.props.errors);
     return (
       <div>
         {this.props.loading ? (
@@ -100,7 +81,7 @@ class PokemonForm extends React.Component {
                 }
               >
                 <option disabled={true}>Select Pokemon Type</option>
-                {pokemonTypes.map(type => {
+                {window.POKEMON_TYPES.map(type => {
                   return <option key={type}>{type}</option>;
                 })}
               </select>
