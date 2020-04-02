@@ -1,10 +1,10 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
   context: __dirname,
-  entry: './frontend/storage_test.jsx',
+  entry: "./frontend/storage_test.jsx",
   output: {
-    path: path.resolve(__dirname),
+    path: path.resolve(__dirname, "app", "assets", "javascripts"),
     filename: "bundle.js"
   },
   module: {
@@ -13,15 +13,15 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           query: {
-            presets: ['@babel/env', '@babel/react']
+            presets: ["@babel/env", "@babel/react"]
           }
-        },
+        }
       }
     ]
   },
-  devtool: 'source-map',
+  devtool: "source-map",
   resolve: {
     extensions: [".js", ".jsx", "*"]
   }
