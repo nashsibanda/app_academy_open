@@ -27,12 +27,9 @@ export const login = user => dispatch => {
 };
 
 export const logout = () => dispatch => {
-  SessionAPIUtil.logout().then(
-    () => {
-      dispatch(logoutCurrentUser());
-    },
-    errors => dispatch(receiveSessionErrors(errors.responseJSON))
-  );
+  SessionAPIUtil.logout().then(() => {
+    dispatch(logoutCurrentUser());
+  });
 };
 
 export const signup = formUser => dispatch => {
