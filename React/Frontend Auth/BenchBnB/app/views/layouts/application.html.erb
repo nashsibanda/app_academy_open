@@ -12,10 +12,6 @@
 </head>
 
 <body>
-  <%= link_to "home", root_url %>
-  <% if current_user %>
-  <h2>Hello <%= current_user.username %>!</h2>
-  <% end %>
   <%= yield %>
 </body>
 
