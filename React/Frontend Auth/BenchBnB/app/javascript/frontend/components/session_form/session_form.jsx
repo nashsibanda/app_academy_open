@@ -57,7 +57,6 @@ class SessionForm extends React.Component {
 
     return (
       <div className="session-form-container">
-        {loggedIn && <Redirect to="/" />}
         <form
           className={"session-form " + formType}
           onSubmit={this.handleSubmit}
