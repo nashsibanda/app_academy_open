@@ -4,6 +4,7 @@ import { Route } from "react-router-dom";
 import LoginFormContainer from "./session_form/login_form_container";
 import SignupFormContainer from "./session_form/signup_form_container";
 import { AuthRoute } from "../util/route_util";
+import BenchIndexContainer from "./benches/bench_index_container";
 
 const App = () => (
   <div>
@@ -11,7 +12,7 @@ const App = () => (
       <h1>Welcome To BenchBnB</h1>
       <GreetingContainer />
     </header>
-
+    <Route exact path="/" component={BenchIndexContainer} />
     <AuthRoute path="/login" component={LoginFormContainer} />
     <AuthRoute path="/signup" component={SignupFormContainer} />
   </div>
