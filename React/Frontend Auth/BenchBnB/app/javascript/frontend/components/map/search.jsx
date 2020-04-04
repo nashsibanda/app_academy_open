@@ -6,7 +6,7 @@ export default function Search(props) {
   const { benches, fetchBenches } = props;
   return (
     <div className="bench-search">
-      <BenchMap />
+      <BenchMap benches={benches} />
       <BenchIndex benches={benches} fetchBenches={fetchBenches} />
     </div>
   );
