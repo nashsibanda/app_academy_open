@@ -12,6 +12,11 @@ export default class MarkerManager {
         this.createMarkerFromBench(benches[benchId]);
       }
     });
+    Object.keys(markers).forEach(markerId => {
+      if (!benches[markerId]) {
+        this.removeMarker(markers[markerId], markerId);
+      }
+    });
   }
 
   createMarkerFromBench(bench) {
@@ -21,5 +26,10 @@ export default class MarkerManager {
     });
     marker.setMap(this.map);
     this.markers[bench.id] = marker;
+  }
+
+  removeMarker(marker, markerId) {
+    marker.setMap(null);
+    delete this.markers[markerId];
   }
 }
