@@ -3,6 +3,8 @@
 class Api::Bench < ApplicationRecord
   validates_presence_of :description, :lat, :lng, message: "can't be blank"
 
+  has_many :reviews, class_name: 'Api::Review', foreign_key: 'api_bench_id'
+
   def self.in_bounds(bounds)
     # google map bounds will be in the following format:
     # {

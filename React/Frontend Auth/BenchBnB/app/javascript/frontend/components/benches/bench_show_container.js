@@ -9,6 +9,7 @@ const mapStateToProps = (state, { match }) => {
     benches: { [benchId]: bench },
     bench,
     benchId,
+    reviews: state.entities.reviews,
   };
 };
 

@@ -4,8 +4,13 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'static_pages#root'
   namespace :api, defaults: { format: :json } do
-    resources :users, only: %i[create show]
+    resources :users, only: %i[create show] do
+      resources :reviews, only: %i[index]
+    end
     resource :session, only: %i[create destroy]
-    resources :benches, only: %i[index create show]
+    resources :benches, only: %i[index create show] do
+      resources :reviews, only: %i[index]
+    end
+    resources :reviews, only: %i[create show]
   end
 end

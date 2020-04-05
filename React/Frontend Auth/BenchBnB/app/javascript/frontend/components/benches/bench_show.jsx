@@ -1,6 +1,7 @@
 import React from "react";
 import BenchMap from "./../map/bench_map";
 import { Link } from "react-router-dom";
+import ReviewIndexContainer from "./../reviews/review_index_container";
 
 class BenchShow extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class BenchShow extends React.Component {
           fetchBench={fetchBench}
           singleBench={true}
         />
+        <ReviewIndexContainer benchId={benchId} />
       </div>
     );
   }

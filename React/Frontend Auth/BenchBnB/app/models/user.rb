@@ -8,6 +8,8 @@ class User < ApplicationRecord
   validates_length_of :password, within: 6..20, message: 'must be between 6 and 20 characters', allow_nil: true
   after_initialize :ensure_session_token
 
+  has_many :reviews, class_name: 'Api::Review', foreign_key: 'user_id'
+
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     return nil unless user
