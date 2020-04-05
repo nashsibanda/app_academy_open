@@ -21,3 +21,11 @@ export const fetchBenches = filters => dispatch => {
 export const createBench = bench => dispatch => {
   BenchesAPIUtil.postBench(bench).then(bench => dispatch(receiveBench(bench)));
 };
+
+export const fetchBench = benchId => dispatch => {
+  BenchesAPIUtil.getBench(benchId).then(bench => {
+    console.log("FROM API");
+    console.log(bench);
+    dispatch(receiveBench(bench));
+  });
+};

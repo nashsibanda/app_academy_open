@@ -6,6 +6,12 @@ export const getBenches = data =>
     error: err => console.log(err.responseText),
   });
 
+export const getBench = benchId =>
+  $.ajax({
+    type: "get",
+    url: `api/benches/${benchId}`,
+  });
+
 export const postBench = bench =>
   $.ajax({
     type: "post",

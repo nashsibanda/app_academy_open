@@ -20,6 +20,10 @@ class Api::BenchesController < ApplicationController
     end
   end
 
+  def show
+    @bench = Api::Bench.find_by(id: params[:id])
+  end
+
   private
 
   def bench_params
