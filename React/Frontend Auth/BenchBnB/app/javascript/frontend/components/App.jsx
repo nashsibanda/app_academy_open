@@ -3,7 +3,7 @@ import GreetingContainer from "./greeting_container";
 import { Route } from "react-router-dom";
 import LoginFormContainer from "./session_form/login_form_container";
 import SignupFormContainer from "./session_form/signup_form_container";
-import { AuthRoute } from "../util/route_util";
+import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import SearchContainer from "./map/search_container";
 import BenchFormContainer from "./benches/bench_form_container";
 
@@ -14,7 +14,7 @@ const App = () => (
       <GreetingContainer />
     </header>
     <Route exact path="/" component={SearchContainer} />
-    <Route path="/benches/new" component={BenchFormContainer} />
+    <ProtectedRoute exact path="/benches/new" component={BenchFormContainer} />
     <AuthRoute path="/login" component={LoginFormContainer} />
     <AuthRoute path="/signup" component={SignupFormContainer} />
   </div>
