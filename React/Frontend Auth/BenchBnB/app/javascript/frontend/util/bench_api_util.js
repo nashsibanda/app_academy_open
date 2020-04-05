@@ -7,3 +7,11 @@ export const getBenches = data => {
     error: err => console.log(err.responseText),
   });
 };
+
+export const postBench = bench =>
+  $.ajax({
+    type: "post",
+    url: "api/benches",
+    data: bench,
+    error: err => console.log(err.responseText),
+  });
