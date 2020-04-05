@@ -5,9 +5,9 @@ class BenchForm extends React.Component {
     super(props);
     this.state = {
       description: "",
-      lat: 0.0,
-      lng: 0.0,
-      seating: 0,
+      lat: this.props.lat,
+      lng: this.props.lng,
+      seating: "",
     };
     this.updateProperty = this.updateProperty.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,21 +27,27 @@ class BenchForm extends React.Component {
         <input
           type="text"
           placeholder="Bench Description..."
+          value={this.state.description}
           onChange={this.updateProperty("description")}
         ></input>
         <input
           type="number"
           placeholder="Latitude..."
+          value={this.state.lat}
           onChange={this.updateProperty("lat")}
+          disabled={true}
         ></input>
         <input
           type="number"
           placeholder="Longitude..."
+          value={this.state.lng}
           onChange={this.updateProperty("lng")}
+          disabled={true}
         ></input>
         <input
           type="number"
           placeholder="Number of seats..."
+          value={this.state.seating}
           onChange={this.updateProperty("seating")}
         ></input>
       </form>

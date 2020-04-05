@@ -1,5 +1,11 @@
 import React from "react";
 import MarkerManager from "../../util/marker_manager";
+import { withRouter } from "react-router-dom";
+
+const getCoords = latLng => ({
+  lat: latLng.lat(),
+  lng: latLng.lng(),
+});
 
 class BenchMap extends React.Component {
   constructor(props) {
@@ -11,7 +17,7 @@ class BenchMap extends React.Component {
       center: {
         lat: 36.371388,
         lng: 140.476434,
-      },
+      }, // Mito coordinates
       zoom: 13,
     };
 
@@ -25,7 +31,11 @@ class BenchMap extends React.Component {
       const sWest = boundsObj.getSouthWest().toJSON();
       const bounds = { northEast: nEast, southWest: sWest };
       this.props.updateBounds(bounds);
-      // console.log(bounds);
+    });
+
+    this.map.addListener("click", e => {
+      const coords = getCoords(e.latLng);
+      this.handleMapClick(coords);
     });
   }
 
@@ -33,9 +43,16 @@ class BenchMap extends React.Component {
     this.MarkerManager.updateMarkers(this.props.benches);
   }
 
+  handleMapClick(coords) {
+    this.props.history.push({
+      pathname: "benches/new",
+      search: `lat=${coords.lat}&lng=${coords.lng}`,
+    });
+  }
+
   render() {
     return <div id="map-container" ref={map => (this.mapNode = map)}></div>;
   }
 }
 
-export default BenchMap;
+export default withRouter(BenchMap);
