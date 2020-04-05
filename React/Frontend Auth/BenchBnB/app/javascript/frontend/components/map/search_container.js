@@ -5,6 +5,8 @@ import { updateFilter } from "../../actions/filter_actions";
 
 const mapStateToProps = state => ({
   benches: state.entities.benches,
+  minSeating: state.ui.filters.minSeating,
+  maxSeating: state.ui.filters.maxSeating,
 });
 
 const mapDispatchToProps = dispatch => ({

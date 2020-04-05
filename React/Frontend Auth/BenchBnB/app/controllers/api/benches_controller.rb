@@ -4,8 +4,8 @@ class Api::BenchesController < ApplicationController
   def index
     benches = bounds ? Api::Bench.in_bounds(bounds) : Api::Bench.all
 
-    if params[:min_seating] && params[:max_seating]
-      benches = @benches.where(seating: seating_range)
+    if params[:minSeating] && params[:maxSeating]
+      benches = benches.where(seating: seating_range)
     end
     @benches = benches
     render :index
@@ -27,7 +27,7 @@ class Api::BenchesController < ApplicationController
   end
 
   def seating_range
-    (params[:min_seating]..params[:max_seating])
+    (params[:minSeating]..params[:maxSeating])
   end
 
   def bounds
