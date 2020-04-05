@@ -3,10 +3,10 @@ import BenchMap from "./bench_map";
 import BenchIndex from "./../benches/bench_index";
 
 export default function Search(props) {
-  const { benches, fetchBenches, updateBounds } = props;
+  const { benches, fetchBenches, updateFilter } = props;
   return (
     <div className="bench-search">
-      <BenchMap benches={benches} updateBounds={updateBounds} />
+      <BenchMap benches={benches} updateFilter={updateFilter} />
       <BenchIndex benches={benches} fetchBenches={fetchBenches} />
     </div>
   );

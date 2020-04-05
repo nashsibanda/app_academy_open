@@ -30,7 +30,7 @@ class BenchMap extends React.Component {
       const nEast = boundsObj.getNorthEast().toJSON();
       const sWest = boundsObj.getSouthWest().toJSON();
       const bounds = { northEast: nEast, southWest: sWest };
-      this.props.updateBounds(bounds);
+      this.props.updateFilter("bounds", bounds);
     });
 
     this.map.addListener("click", e => {

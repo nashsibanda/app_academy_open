@@ -1,12 +1,10 @@
-export const getBenches = data => {
-  console.log(data);
-  return $.ajax({
+export const getBenches = data =>
+  $.ajax({
     type: "get",
     url: "api/benches",
     data,
     error: err => console.log(err.responseText),
   });
-};
 
 export const postBench = bench =>
   $.ajax({
