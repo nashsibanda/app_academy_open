@@ -6,11 +6,12 @@ class ReviewIndexItem extends React.Component {
   }
 
   render() {
-    const { comment, rating } = this.props.review;
+    const { comment, rating, username } = this.props.review;
     return (
       <li className="review-index-item">
         <p>Comment: {comment}</p>
         <p>Rating: {rating}</p>
+        <p>Posted by: {username}</p>
       </li>
     );
   }

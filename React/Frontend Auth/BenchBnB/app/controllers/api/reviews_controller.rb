@@ -3,7 +3,7 @@
 class Api::ReviewsController < ApplicationController
   def index
     # @reviews = Api::Review.all
-    reviews = bench_id ? Api::Review.where(api_bench_id: bench_id) : Api::Review.all
+    reviews = bench_id ? Api::Review.includes(:user).where(api_bench_id: bench_id) : Api::Review.includes(:user).all
     @reviews = reviews
     render :index
   end
@@ -18,7 +18,7 @@ class Api::ReviewsController < ApplicationController
   end
 
   def show
-    @review = Api::Review.find_by(id: params[:id])
+    @review = Api::Review.includes(:user).find_by(id: params[:id])
   end
 
   private
