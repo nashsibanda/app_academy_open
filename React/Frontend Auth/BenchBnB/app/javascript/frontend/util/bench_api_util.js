@@ -12,10 +12,14 @@ export const getBench = benchId =>
     url: `api/benches/${benchId}`,
   });
 
-export const postBench = bench =>
-  $.ajax({
+export const postBench = bench => {
+  console.log(bench);
+  return $.ajax({
     type: "post",
     url: "api/benches",
     data: bench,
+    contentType: false,
+    processData: false,
     error: err => console.log(err.responseText),
   });
+};

@@ -15,14 +15,14 @@ const App = () => (
       <GreetingContainer />
     </header>
     <Switch>
-      <Route exact path="/benches/:benchId" component={BenchShowContainer} />
-      <AuthRoute path="/login" component={LoginFormContainer} />
-      <AuthRoute path="/signup" component={SignupFormContainer} />
       <ProtectedRoute
         exact
         path="/benches/new"
         component={BenchFormContainer}
       />
+      <Route exact path="/benches/:benchId" component={BenchShowContainer} />
+      <AuthRoute path="/login" component={LoginFormContainer} />
+      <AuthRoute path="/signup" component={SignupFormContainer} />
       <Route exact path="/" component={SearchContainer} />
     </Switch>
   </div>
