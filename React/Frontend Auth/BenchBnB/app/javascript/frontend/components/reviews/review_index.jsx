@@ -1,5 +1,7 @@
 import React from "react";
 import ReviewIndexItem from "./review_index_item";
+import { ProtectedRoute } from "../../util/route_util";
+import ReviewFormContainer from "./review_form_container";
 
 class ReviewIndex extends React.Component {
   constructor(props) {
@@ -16,13 +18,18 @@ class ReviewIndex extends React.Component {
   }
 
   render() {
-    const { reviews } = this.props;
+    const { reviews, benchId } = this.props;
     return (
-      <ul className="reviews-index">
-        {Object.keys(reviews).map(reviewId => {
-          return <ReviewIndexItem review={reviews[reviewId]} key={reviewId} />;
-        })}
-      </ul>
+      <div className="reviews-container">
+        <ReviewFormContainer benchId={benchId} />
+        <ul className="reviews-index-list">
+          {Object.keys(reviews).map(reviewId => {
+            return (
+              <ReviewIndexItem review={reviews[reviewId]} key={reviewId} />
+            );
+          })}
+        </ul>
+      </div>
     );
   }
 }

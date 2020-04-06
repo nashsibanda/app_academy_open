@@ -15,5 +15,6 @@ export const postReview = review =>
     type: "post",
     url: "api/reviews",
     data: review,
+    success: resp => console.log(resp),
     error: err => console.log(err.responseText),
   });
