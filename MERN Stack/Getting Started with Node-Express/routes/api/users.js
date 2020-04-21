@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../../models/User");
+const jwt = require("jsonwebtoken");
+const keys = require("../../config/keys");
 
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
@@ -15,7 +17,9 @@ router.post("/register", (req, res) => {
     return res.status(400).json(errors);
   }
   // Check to make sure nobody has already registered with this email address
-  User.findOne({ email: req.body.email }).then(user => {
+  User.findOne({
+    $or: [{ email: req.body.email }, { handle: req.body.handle }],
+  }).then(user => {
     if (user) {
       // Use the validations to send the error
       errors.email = "Email already exists";
@@ -35,7 +39,21 @@ router.post("/register", (req, res) => {
           newUser.password = hash;
           newUser
             .save()
-            .then(user => res.json(user))
+            .then(user => {
+              const payload = { id: user.id, handle: user.handle };
+
+              jwt.sign(
+                payload,
+                keys.secretOrKey,
+                { expiresIn: 3600 },
+                (err, token) => {
+                  res.json({
+                    success: true,
+                    token: "Bearer" + token,
+                  });
+                }
+              );
+            })
             .catch(err => console.log(err));
         });
       });
@@ -61,7 +79,21 @@ router.post("/login", (req, res) => {
 
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
-        res.json({ msg: "Success" });
+        // res.json({ msg: "Success" });
+        const payload = { id: user.id, handle: user.handle };
+
+        jwt.sign(
+          payload,
+          keys.secretOrKey,
+          // Tell the key to expire in one hour
+          { expiresIn: 3600 },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: "Bearer" + token,
+            });
+          }
+        );
       } else {
         // And here
         errors.password = "Incorrect password";
