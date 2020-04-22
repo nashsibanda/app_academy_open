@@ -45,10 +45,28 @@ router.post(
 
     const newTweet = new Tweet({
       text: req.body.text,
-      user: req.user.id,
+      userId: req.user.id,
     });
 
     newTweet.save().then(tweet => res.json(tweet));
+  }
+);
+
+router.delete(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Tweet.findById(req.params.id)
+      .then(tweet => {
+        if (tweet.userId != req.user.id) {
+          return res.status(403).json({
+            notallowed: "You are not authorised to perform this action",
+          });
+        } else {
+          tweet.delete().then(tweet => res.json(tweet));
+        }
+      })
+      .catch(err => res.status(404).json({ tweetnotfound: "Tweet not found" }));
   }
 );
 
