@@ -33,7 +33,7 @@ router.post("/register", (req, res) => {
   }).then(user => {
     if (user) {
       // Use the validations to send the error
-      errors.email = "Email already exists";
+      errors.email = "Email or handle already exists";
       // Throw a 400 error if the email address already exists
       return res.status(400).json(errors);
     } else {
