@@ -10,7 +10,7 @@ const _nullState = {
   new: undefined,
 };
 
-const TweetsReducer = (state = _nullState, action) => {
+const tweetsReducer = (state = _nullState, action) => {
   Object.freeze(state);
   let newState = Object.assign({}, state);
   switch (action.type) {
@@ -28,4 +28,4 @@ const TweetsReducer = (state = _nullState, action) => {
   }
 };
 
-export default TweetsReducer;
+export default tweetsReducer;
