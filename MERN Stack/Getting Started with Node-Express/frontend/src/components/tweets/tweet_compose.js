@@ -11,11 +11,12 @@ export default class TweetCompose extends Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.update = this.update.bind(this);
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.newTweet !== this.props.newTweet) {
-      this.setState({ newTweet: this.props.newTweet });
+    if (this.props.newTweet && prevProps.newTweet !== this.props.newTweet) {
+      this.setState({ newTweet: this.props.newTweet.text });
     }
   }
 
