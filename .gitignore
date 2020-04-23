@@ -20,5 +20,5 @@ node_modules
 bundle.js
 bundle.js.map
 master.key
-keys.js
+keys_dev.js
 Full Stack Project
