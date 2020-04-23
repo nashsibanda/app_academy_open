@@ -11,7 +11,7 @@ export default class Profile extends Component {
   }
 
   componentDidMount() {
-    const { id } = this.props.currentUser.id;
+    const { id } = this.props.currentUser;
     console.log(id);
     this.props.fetchUserTweets(id);
   }
