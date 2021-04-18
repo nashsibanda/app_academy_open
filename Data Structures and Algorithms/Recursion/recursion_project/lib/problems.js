@@ -33,7 +33,7 @@ function lucasNumber(n) {
 // sumArray([5, 2])         // => 7
 // sumArray([4, 10, -1, 2]) // => 15
 function sumArray(array) {
-
+  return array.length == 0 ? 0 : array.pop() + sumArray(array);
 }
 
 
@@ -49,7 +49,7 @@ function sumArray(array) {
 // reverseString("internet")    // => "tenretni"
 // reverseString("friends")     // => "sdneirf"
 function reverseString(str) {
-
+  return str.length <= 1 ? str : str[str.length - 1] + reverseString(str.slice(0, -1))
 }
 
 
@@ -70,7 +70,13 @@ function reverseString(str) {
 // pow(3, 4)    // => 81
 // pow(2, -5)   // => 0.03125
 function pow(base, exponent) {
-
+  if (exponent == 0) {
+    return 1;
+  }
+  if (exponent < 0) {
+    return 1 / pow(base, Math.abs(exponent));
+  }
+  return base * pow(base, exponent - 1)
 }
 
 
@@ -103,7 +109,14 @@ function pow(base, exponent) {
 //     2-dimensional array: [['some data']]
 //     3-dimensional array: [[['some data']]]
 function flatten(data) {
-
+  if (!Array.isArray(data)) {
+    return [data];
+  }
+  let output = [];
+  for (const item of data) {
+    output = output.concat(flatten(item));
+  }
+  return output;
 }
 
 // Write a function, fileFinder(directories, targetFile), that accepts an object representing directories and a string respresenting a filename.
@@ -146,7 +159,13 @@ function flatten(data) {
 // fileFinder(desktop, 'everlong.flac');            // => true
 // fileFinder(desktop, 'sequoia.jpeg');             // => false
 function fileFinder(directories, targetFile) {
-
+  if (typeof directories == 'string') {
+    return directories == targetFile;
+  }
+  return Object.keys(directories).some(key => 
+    key.startsWith("/") 
+    ? fileFinder(directories[key], targetFile) 
+    : fileFinder(key, targetFile));
 }
 
 
