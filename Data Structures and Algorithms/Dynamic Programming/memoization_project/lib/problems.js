@@ -40,10 +40,27 @@ function lucasNumberMemo(n, memo = {}) {
 // minChange([1, 5, 10, 25], 15)    // => 2, because 10 + 5 = 15
 // minChange([1, 5, 10, 25], 100)   // => 4, because 25 + 25 + 25 + 25 = 100
 function minChange(coins, amount, memo = {}) {
-  
+  if (amount === 0) {
+    return 0;
+  }
+  if (amount in memo) {
+    return memo[amount];
+  }
+  const numCoins = [];
+  for (let i = 0; i < coins.length; i++) {
+    const coin = coins[i];
+    if (coin <= amount) {
+      numCoins.push(minChange(coins, amount - coin, memo) + 1);
+    }
+  }
+
+  memo[amount] = Math.min(...numCoins);
+  return memo[amount];
 }
 
-console.log(minChange([1, 4, 5], 8))         // => 3, because 5 + 5 + 1 = 11
+console.log(minChange([1, 4, 5], 8))         // => 2, because 4 + 4 = 8
+console.log(minChange([1, 5, 10, 25], 15))    // => 2, because 10 + 5 = 15
+console.log(minChange([1, 5, 10, 25], 100))   // => 4, because 25 + 25 + 25 + 25 = 100
 
 module.exports = {
   lucasNumberMemo,
