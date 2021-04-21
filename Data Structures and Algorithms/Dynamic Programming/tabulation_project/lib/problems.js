@@ -21,7 +21,18 @@
 // stepper([3, 4, 1, 0, 10]);           // => true, because we can step through elements 3 -> 4 -> 10
 // stepper([2, 3, 1, 1, 0, 4, 7, 8])    // => false, there is no way to step to the end
 function stepper(nums) {
+  const table = Array(nums.length).fill(false);
+  table[0] = true;
 
+  for (let rootIdx = 0; rootIdx < table.length; rootIdx++) {
+    if (table[rootIdx] === false) continue;
+    const steps = nums[rootIdx];
+    for (let step = 1; step <= steps; step++) {
+      const reachableIndex = step + rootIdx;
+      table[reachableIndex] = true;
+    }
+  }
+  return table[table.length - 1];
 }
 
 
@@ -36,7 +47,20 @@ function stepper(nums) {
 // maxNonAdjacentSum([2, 7, 9, 3, 4])   // => 15, because 2 + 9 + 4
 // maxNonAdjacentSum([4,2,1,6])         // => 10, because 4 + 6 
 function maxNonAdjacentSum(nums) {
+  if (nums.length < 3) return Math.max(...nums, 0);
+  const table = Array(nums.length);
+  table[0] = nums[0];
+  table[1] = nums[1];
+  table[2] = Math.max(nums[2] + nums[0]);
 
+  for (let stepIdx = 3; stepIdx < table.length; stepIdx++) {
+    const num = nums[stepIdx];
+    table[stepIdx] = Math.max(
+      num + table[stepIdx - 2],
+      num + table[stepIdx - 3]
+    );
+  }
+  return Math.max(...table);
 }
 
 
@@ -53,9 +77,21 @@ function maxNonAdjacentSum(nums) {
 // minChange([1, 5, 10, 25], 15)    // => 2, because 10 + 5 = 15
 // minChange([1, 5, 10, 25], 100)   // => 4, because 25 + 25 + 25 + 25 = 100
 function minChange(coins, amount) {
+  const table = Array(amount + 1);
+  table[0] = 0;
 
+  for (let i = 1; i <= amount; i++) {
+    let remainders = [];
+    for (const coin of coins) {
+      if (coin > i) continue;
+      remainders.push(i - coin);
+    }
+    remainders = remainders.map(x => 1 + table[x]);
+    table[i] = Math.min(...remainders);
+  }
+
+  return table[amount];
 }
-
 
 module.exports = {
     stepper,
